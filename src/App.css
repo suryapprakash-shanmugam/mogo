@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -12,4 +14,8 @@
   --Logo-Color5: rgb(42, 96, 105);
   --Extra-Light-Gray: rgb(222, 222, 222);
   --Para-Color: rgb(168, 147, 135);
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

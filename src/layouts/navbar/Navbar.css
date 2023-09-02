@@ -1,0 +1,35 @@
+.navbar-div-container {
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    position: relative;
+}
+
+.navbar-div-container-ul {
+    width: 100%;
+    color: var(--Para-Color);
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    list-style-type: none;
+}
+
+.navbar-div-container-ul li {
+    cursor: pointer;
+}
+.navbar-div-container-ul li:hover {
+    border-bottom: 2px solid var(--Logo-Color1);
+}
+.navbar-div-container-ul-dropdown
+{
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    background-color: white;
+    top: 40px;
+    z-index: 19;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

@@ -1,6 +1,9 @@
 //import react package
-import { Container, Modal, Select } from '@mantine/core'
 import React, { useState } from 'react'
+
+//import manitine packages
+import { Container, Input, Modal, Select } from '@mantine/core'
+
 
 //import Preheader css file
 import './Preheader.css'
@@ -80,16 +83,34 @@ const Preheader = () => {
           </div>
         </Container>
       </div>
+
+      {/* model starts */}
       <Modal
-        size="lg"
+        size="md"
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Select Location"
+        title=""
         transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
-      // className='category-modal-style'
+        className='preheader-location-modal'
+        centered
       >
-
+        <div className="preheader-location-modal-header">
+          <h1>Select Location</h1>
+        </div>
+        <div className="preheader-location-modal-body">
+          <div className="preheader-location-modal-body-head">
+            <p>Mogo allows you to shop from anywhere in the world.</p>
+          </div>
+          <div className="preheader-location-modal-body-content">
+            <Input
+              icon={<img src={map} width="15" />}
+              placeholder="Enter Location"
+            />
+            <button>Update Location</button>
+          </div>
+        </div>
       </Modal>
+      {/* modal end */}
     </div>
   )
 }
