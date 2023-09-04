@@ -20,16 +20,72 @@
 .navbar-div-container-ul li {
     cursor: pointer;
 }
+
 .navbar-div-container-ul li:hover {
     border-bottom: 2px solid var(--Logo-Color1);
 }
-.navbar-div-container-ul-dropdown
-{
+
+.navbar-div-container-ul-dropdown {
     position: absolute;
     width: 100%;
-    height: 250px;
+    height: auto;
     background-color: white;
     top: 40px;
     z-index: 19;
+    padding: 2rem;
+    padding-bottom: 2rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    left: -1100rem;
+    transition: all 500ms ease-in-out;
+}
+
+.product-dropdown-hover:hover .navbar-div-container-ul-dropdown {
+    left: 0px;
+}
+
+.navbar-div-container-ul-dropdown-content {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.navbar-div-container-ul-dropdown-content-table-head,
+.navbar-div-container-ul-dropdown-content-kitchen-head,
+.navbar-div-container-ul-dropdown-content-bath-head,
+.navbar-div-container-ul-dropdown-content-bed-head,
+.navbar-div-container-ul-dropdown-content-living-head,
+.navbar-div-container-ul-dropdown-content-baby-head {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navbar-div-container-ul-dropdown-content-table-categories,
+.navbar-div-container-ul-dropdown-content-kitchen-categories,
+.navbar-div-container-ul-dropdown-content-bath-categories,
+.navbar-div-container-ul-dropdown-content-bed-categories,
+.navbar-div-container-ul-dropdown-content-living-categories,
+.navbar-div-container-ul-dropdown-content-baby-categories {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 0.5rem;
+    gap: 0.5rem;
+}
+
+.navbar-div-container-ul-dropdown-content-table-categories li,
+.navbar-div-container-ul-dropdown-content-kitchen-categories li,
+.navbar-div-container-ul-dropdown-content-bath-categories li,
+.navbar-div-container-ul-dropdown-content-bed-categories li,
+.navbar-div-container-ul-dropdown-content-living-categories li,
+.navbar-div-container-ul-dropdown-content-baby-categories li {
+    cursor: pointer;
+}
+
+.navbar-div-container-ul-dropdown-content-baby-category-div {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
 }
