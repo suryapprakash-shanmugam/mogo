@@ -32,7 +32,30 @@ import bed_linen from '../../assets/home/grid-category/bed_linen.webp'
 import living_linen from '../../assets/home/grid-category/living_linen.webp'
 import baby_linen from '../../assets/home/grid-category/baby_linen.webp'
 
+//import images for season sale
+
+import season1 from '../../assets/home/season/season1.webp'
+import season2 from '../../assets/home/season/season2.webp'
+import HomeProductsList from '../../components/HomeProductsList/HomeProductsList'
+
 const Home = () => {
+
+  //send heading Special Offers
+  const specialheader = 'Special Offers';
+  //send heading Clothing
+  const clothingheader = 'Clothing';
+  //send heading Special Offers
+  const jewelryheader = 'Jewelry & Accessories';
+
+  //send heading and sub heading to Featured products
+  const featuredheader = 'Featured Products';
+  const featuredsubheader = 'Last added featured products';
+
+  //send heading and sub heading to new Arrivals products
+  const newarrivalheader = 'New Arrivals';
+  const newarrivalsubheader = 'Last added products';
+
+
   return (
     <div>
       <Preheader />
@@ -79,7 +102,44 @@ const Home = () => {
           </div>
         </div>
       </Container>
-      <OfferSlider />
+      <OfferSlider header={specialheader} />
+      <Container size={'82rem'} className='home-season-sale'>
+        <div className="home-season-sale-season">
+          <div className="home-season-sale-season1">
+            <div className="home-season-sale-season1-image">
+              <img src={season1} alt="" />
+            </div>
+          </div>
+          <div className="home-season-sale-season2">
+            <div className="home-season-sale-season2-image">
+              <img src={season2} alt="" />
+            </div>
+          </div>
+        </div>
+      </Container>
+      <HomeProductsList header={featuredheader} subheader={featuredsubheader} />
+      <HomeProductsList header={newarrivalheader} subheader={newarrivalsubheader} />
+      <Container size={'82rem'} className='home-season-sale'>
+        <div className="home-season-sale-season">
+          <div className="home-season-sale-season1">
+            <div className="home-season-sale-season1-image">
+              <img src={season1} alt="" />
+            </div>
+          </div>
+          <div className="home-season-sale-season2">
+            <div className="home-season-sale-season2-image">
+              <img src={season2} alt="" />
+            </div>
+          </div>
+          <div className="home-season-sale-season2">
+            <div className="home-season-sale-season2-image">
+              <img src={season2} alt="" />
+            </div>
+          </div>
+        </div>
+      </Container>
+      <OfferSlider header={clothingheader} />
+      <OfferSlider header={jewelryheader} />
     </div>
   )
 }
