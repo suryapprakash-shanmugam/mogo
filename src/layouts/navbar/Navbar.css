@@ -8,6 +8,11 @@
     position: relative;
 }
 
+.navbar-link {
+    text-decoration: none;
+    color: var(--Para-Color);
+}
+
 .navbar-div-container-ul {
     width: 100%;
     color: var(--Para-Color);

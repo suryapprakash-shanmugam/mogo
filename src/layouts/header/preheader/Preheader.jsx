@@ -49,7 +49,7 @@ const Preheader = () => {
           <div className="preheader-container-location-currency-user">
             <div onClick={() => setModalOpen(true)} className="preheader-container-location-currency-user-location">
               <div className="preheader-container-location-currency-user-location-image">
-                <img src={map} alt="Loaction Image" />
+                <img src={map} alt="Loaction" />
               </div>
               <div className="preheader-container-location-currency-user-location-text">
                 <p>Location</p>
@@ -58,13 +58,13 @@ const Preheader = () => {
             <div className="preheader-container-location-currency-user-currency">
               <Select
                 defaultValue={currencyArray[0].value}
-                rightSection={<img height={'10px'} src={arrowdown} />}
+                rightSection={<img height={'10px'} alt="arrowdown" src={arrowdown} />}
                 data={currencyArray}
               />
             </div>
             <div className="preheader-container-location-currency-user-user">
               <div className="preheader-container-location-currency-user-user-image">
-                <img src={user} />
+                <img src={user} alt="user-icon" />
               </div>
               <div className="preheader-container-location-currency-user-user-dropdown">
                 <div className="preheader-container-location-currency-user-user-dropdown-signin">
@@ -103,7 +103,7 @@ const Preheader = () => {
           </div>
           <div className="preheader-location-modal-body-content">
             <Input
-              icon={<img src={map} width="15" />}
+              icon={<img src={map} alt="map-marker-icon" width="15" />}
               placeholder="Enter Location"
             />
             <button>Update Location</button>

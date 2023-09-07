@@ -1,6 +1,7 @@
 //import react packages
 import { Container } from '@mantine/core'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 //import Navbar css
 import './Navbar.css'
@@ -22,7 +23,9 @@ const Navbar = () => {
                             <div className="navbar-div-container-ul-dropdown">
                                 <div className="navbar-div-container-ul-dropdown-content">
                                     <div className="navbar-div-container-ul-dropdown-content-table">
-                                        <p className="navbar-div-container-ul-dropdown-content-table-head">Table Linen</p>
+                                        <Link to='/category/tablelinen' className='navbar-link'>
+                                            <p className="navbar-div-container-ul-dropdown-content-table-head">Table Linen</p>
+                                        </Link>
                                         <ul className='navbar-div-container-ul-dropdown-content-table-categories'>
                                             <li>Table Cloth</li>
                                             <li>Place Mat</li>
@@ -34,7 +37,9 @@ const Navbar = () => {
                                         </ul>
                                     </div>
                                     <div className="navbar-div-container-ul-dropdown-content-kitchen">
-                                        <p className="navbar-div-container-ul-dropdown-content-kitchen-head">Kitchen Linen</p>
+                                        <Link to='/category/kitchenlinen' className='navbar-link'>
+                                            <p className="navbar-div-container-ul-dropdown-content-kitchen-head">Kitchen Linen</p>
+                                        </Link>
                                         <ul className='navbar-div-container-ul-dropdown-content-kitchen-categories'>
                                             <li>Aprons</li>
                                             <li>Gloves</li>
@@ -44,7 +49,9 @@ const Navbar = () => {
                                         </ul>
                                     </div>
                                     <div className="navbar-div-container-ul-dropdown-content-bath">
-                                        <p className="navbar-div-container-ul-dropdown-content-bath-head">Bath Linen</p>
+                                        <Link to='/category/bathlinen' className='navbar-link'>
+                                            <p className="navbar-div-container-ul-dropdown-content-bath-head">Bath Linen</p>
+                                        </Link>
                                         <ul className='navbar-div-container-ul-dropdown-content-bath-categories'>
                                             <li>Bath Towels</li>
                                             <li>Hand Towels</li>
@@ -58,7 +65,9 @@ const Navbar = () => {
                                         </ul>
                                     </div>
                                     <div className="navbar-div-container-ul-dropdown-content-bed">
-                                        <p className="navbar-div-container-ul-dropdown-content-bed-head">Bed Linen</p>
+                                        <Link to='/category/bedlinen' className='navbar-link'>
+                                            <p className="navbar-div-container-ul-dropdown-content-bed-head">Bed Linen</p>
+                                        </Link>
                                         <ul className='navbar-div-container-ul-dropdown-content-bed-categories'>
                                             <li>Bed Sheets</li>
                                             <li>Pillowcases</li>
@@ -73,7 +82,9 @@ const Navbar = () => {
                                         </ul>
                                     </div>
                                     <div className="navbar-div-container-ul-dropdown-content-living">
-                                        <p className="navbar-div-container-ul-dropdown-content-living-head">Living Linen</p>
+                                        <Link to='/category/livinglinen' className='navbar-link'>
+                                            <p className="navbar-div-container-ul-dropdown-content-living-head">Living Linen</p>
+                                        </Link>
                                         <ul className='navbar-div-container-ul-dropdown-content-living-categories'>
                                             <li>Curtains</li>
                                             <li>Throws</li>
@@ -88,7 +99,9 @@ const Navbar = () => {
                                         </ul>
                                     </div>
                                     <div className="navbar-div-container-ul-dropdown-content-baby">
-                                        <p className="navbar-div-container-ul-dropdown-content-baby-head">Baby Linen</p>
+                                        <Link to='/category/babylinen' className='navbar-link'>
+                                            <p className="navbar-div-container-ul-dropdown-content-baby-head">Baby Linen</p>
+                                        </Link>
                                         <div className="navbar-div-container-ul-dropdown-content-baby-category-div">
                                             <ul className='navbar-div-container-ul-dropdown-content-baby-categories'>
                                                 <li>Hoodies</li>

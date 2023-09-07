@@ -36,7 +36,7 @@ function BottomToTopButton() {
         // >
         //     Scroll to Top
         // </button>
-        <img src={uparrow} alt="bottom to top image" className={`bottom-to-top-button ${isVisible ? 'visible' : ''}`}
+        <img src={uparrow} alt="bottom to top" className={`bottom-to-top-button ${isVisible ? 'visible' : ''}`}
             onClick={scrollToTop} />
     );
 }

@@ -2,7 +2,7 @@
 import React from 'react'
 
 //import mantine packages
-import { Container, Text } from '@mantine/core'
+import { Container } from '@mantine/core'
 
 import { Link } from 'react-router-dom'
 
@@ -61,43 +61,55 @@ const Home = () => {
       <HomeSlider />
       <Container className='product-category-grid' size={'82rem'}>
         <div className="product-category-grid-div">
-          <Link to='/category'>
-            <div className="product-category-grid-div-table">
+
+          <div className="product-category-grid-div-table">
+            <Link to='/category/tablelinen'>
               <div className="product-category-grid-div-table-image">
-                <img src={table_linen} alt="table linen image" />
+                <img src={table_linen} alt="table linen" />
                 <div className="product-category-grid-div-image-content">Table Linen</div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
+
           <div className="product-category-grid-div-kitchen">
-            <div className="product-category-grid-div-kitchen-image">
-              <img src={kitchen_linen} alt="kitchen linen image" />
-              <div className="product-category-grid-div-image-content">Kitchen Linen</div>
-            </div>
+            <Link to='/category/kitchenlinen'>
+              <div className="product-category-grid-div-kitchen-image">
+                <img src={kitchen_linen} alt="kitchen linen" />
+                <div className="product-category-grid-div-image-content">Kitchen Linen</div>
+              </div>
+            </Link>
           </div>
           <div className="product-category-grid-div-bath">
-            <div className="product-category-grid-div-bath-image">
-              <img src={bath_linen} alt="bath linen image" />
-              <div className="product-category-grid-div-image-content">Bath Linen</div>
-            </div>
+            <Link to='/category/bathlinen'>
+              <div className="product-category-grid-div-bath-image">
+                <img src={bath_linen} alt="bath linen" />
+                <div className="product-category-grid-div-image-content">Bath Linen</div>
+              </div>
+            </Link>
           </div>
           <div className="product-category-grid-div-bed">
-            <div className="product-category-grid-div-bed-image">
-              <img src={bed_linen} alt="bed linen image" />
-              <div className="product-category-grid-div-image-content">Bed Linen</div>
-            </div>
+            <Link to='/category/bedlinen'>
+              <div className="product-category-grid-div-bed-image">
+                <img src={bed_linen} alt="bed linen" />
+                <div className="product-category-grid-div-image-content">Bed Linen</div>
+              </div>
+            </Link>
           </div>
           <div className="product-category-grid-div-living">
-            <div className="product-category-grid-div-living-image">
-              <img src={baby_linen} alt="baby linen image" />
-              <div className="product-category-grid-div-image-content">Baby Linen</div>
-            </div>
+            <Link to='/category/livinglinen'>
+              <div className="product-category-grid-div-living-image">
+                <img src={baby_linen} alt="baby linen" />
+                <div className="product-category-grid-div-image-content">Baby Linen</div>
+              </div>
+            </Link>
           </div>
           <div className="product-category-grid-div-baby">
-            <div className="product-category-grid-div-baby-image">
-              <img src={living_linen} alt="baby linen image" />
-              <div className="product-category-grid-div-image-content">Living Linen</div>
-            </div>
+            <Link to='/category/babylinen'>
+              <div className="product-category-grid-div-baby-image">
+                <img src={living_linen} alt="baby linen" />
+                <div className="product-category-grid-div-image-content">Living Linen</div>
+              </div>
+            </Link>
           </div>
         </div>
       </Container>
@@ -105,14 +117,18 @@ const Home = () => {
       <Container size={'82rem'} className='home-season-sale'>
         <div className="home-season-sale-season">
           <div className="home-season-sale-season1">
-            <div className="home-season-sale-season1-image">
-              <img src={season1} alt="" />
-            </div>
+            <Link to='/category'>
+              <div className="home-season-sale-season1-image">
+                <img src={season1} alt="season1" />
+              </div>
+            </Link>
           </div>
           <div className="home-season-sale-season2">
-            <div className="home-season-sale-season2-image">
-              <img src={season2} alt="" />
-            </div>
+            <Link to='/category'>
+              <div className="home-season-sale-season2-image">
+                <img src={season2} alt="season2" />
+              </div>
+            </Link>
           </div>
         </div>
       </Container>
@@ -121,19 +137,25 @@ const Home = () => {
       <Container size={'82rem'} className='home-season-sale'>
         <div className="home-season-sale-season">
           <div className="home-season-sale-season1">
-            <div className="home-season-sale-season1-image">
-              <img src={season1} alt="" />
-            </div>
+            <Link to='/category'>
+              <div className="home-season-sale-season1-image">
+                <img src={season1} alt="home-season-sale-season1" />
+              </div>
+            </Link>
           </div>
           <div className="home-season-sale-season2">
-            <div className="home-season-sale-season2-image">
-              <img src={season2} alt="" />
-            </div>
+            <Link to='/category'>
+              <div className="home-season-sale-season2-image">
+                <img src={season2} alt="home-season-sale-season2" />
+              </div>
+            </Link>
           </div>
           <div className="home-season-sale-season2">
-            <div className="home-season-sale-season2-image">
-              <img src={season2} alt="" />
-            </div>
+            <Link to='/category'>
+              <div className="home-season-sale-season2-image">
+                <img src={season2} alt="home-season-sale-season3" />
+              </div>
+            </Link>
           </div>
         </div>
       </Container>

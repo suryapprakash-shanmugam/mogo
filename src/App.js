@@ -5,9 +5,6 @@ import './App.css';
 import BottomToTopButton from './components/BottomToTopButton/BottomToTopButton';
 import Wipper from './Wipper';
 function App() {
-
-  
-
   return (
     <div>
       <Wipper />

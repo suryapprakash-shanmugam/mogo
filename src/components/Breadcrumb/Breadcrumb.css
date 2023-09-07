@@ -1,0 +1,7 @@
+.breadcrumb {
+    color: var(--Logo-Color1);
+}
+
+.breadcrumb-link {
+    text-decoration: none;
+}

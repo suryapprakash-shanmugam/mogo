@@ -31,12 +31,12 @@ const Header = () => {
             <div className="header-div">
                 <Container size={'82rem'} className='header-div-container'>
                     <Text className="header-div-container-logo" component={Link} to='/'>
-                        <img src={logo} />
+                        <img src={logo} alt="logo" />
                     </Text>
                     <div className="header-div-container-search">
                         <Paper className="header-div-container-search-paper">
                             <Select
-                                rightSection={<img src={arrowdown} width='10px' />}
+                                rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
                                 className="header-div-container-search-category-select"
                                 defaultValue={searchCategoryArray[0].value}
                                 data={searchCategoryArray}
@@ -45,13 +45,13 @@ const Header = () => {
                                 className='header-div-container-search-input'
                                 placeholder="Enter text"
                             />
-                            <Button className='header-div-container-search-button'><img src={search} width="20px" /></Button>
+                            <Button className='header-div-container-search-button'><img src={search} width="20px" alt="search-icon" /></Button>
                         </Paper>
                     </div>
                     <div className="header-div-container-cart-wishlist-sell-now">
                         <div className="header-div-container-cart-wishlist-sell-now-cart">
                             <div className="header-div-container-cart-wishlist-sell-now-cart-image">
-                                <img src={cart} />
+                                <img src={cart} alt="carticon" />
                             </div>
                             <div className="header-div-container-cart-wishlist-sell-now-cart-content">
                                 <p>Cart</p>
@@ -59,7 +59,7 @@ const Header = () => {
                         </div>
                         <div className="header-div-container-cart-wishlist-sell-now-wishlist">
                             <div className="header-div-container-cart-wishlist-sell-now-wishlist-image">
-                                <img src={wishlist} />
+                                <img src={wishlist} alt="heart-icon" />
                             </div>
                             <div className="header-div-container-cart-wishlist-sell-now-wishlist-content">
                                 <p>Wishlist</p>

@@ -92,7 +92,7 @@
     width: 20%;
     height: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     gap: 0.3rem;
     color: var(--Para-Color);

@@ -48,8 +48,8 @@
     gap: 1rem;
     padding: 0.2rem 0rem;
 }
-.offerslider-div-container-slider-individual-discount
-{
+
+.offerslider-div-container-slider-individual-discount {
     position: absolute;
     width: 50px;
     height: 25px;
@@ -165,7 +165,7 @@
 .offerslider-div-container-slider-content-rating-wishlist-wishlist {
     width: 50%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .offerslider-div-container-slider-content-price {

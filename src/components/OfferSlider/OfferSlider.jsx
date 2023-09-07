@@ -1,5 +1,5 @@
 //import react packages
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 //import mantine components
 import { Container, Rating } from '@mantine/core'
@@ -10,8 +10,6 @@ import './OfferSlider.css'
 import { Carousel } from '@mantine/carousel';
 
 import Autoplay from 'embla-carousel-autoplay';
-
-import { useEmblaCarousel } from 'embla-carousel-react';
 
 //import images
 import baby_linen from '../../assets/home/grid-category/baby_linen.webp'
@@ -122,7 +120,7 @@ const OfferSlider = ({ header }) => {
             productnewprice: '26',
         },
     ]
-    const totalSlides = offerSliderArray.length;
+    // const totalSlides = offerSliderArray.length;
     const slidesToShow = 5;
     const calculatedSlideSize = `${100 / slidesToShow}%`;
 
