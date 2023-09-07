@@ -18,36 +18,42 @@
     grid-row: span 4;
     grid-column: span 1;
     background-color: black;
+    cursor: pointer;
 }
 
 .product-category-grid-div-kitchen {
     grid-row: span 3;
     grid-column: 2/span 1;
     background-color: black;
+    cursor: pointer;
 }
 
 .product-category-grid-div-bath {
     grid-row: span 2;
     grid-column: 3/span 1;
     background-color: black;
+    cursor: pointer;
 }
 
 .product-category-grid-div-bed {
     grid-row: span 10;
     grid-column: 3 /span 1;
     background-color: black;
+    cursor: pointer;
 }
 
 .product-category-grid-div-living {
     grid-row: span 9;
     grid-column: span 1;
     background-color: black;
+    cursor: pointer;
 }
 
 .product-category-grid-div-baby {
     grid-row: span 8;
     grid-column: span 1;
     background-color: black;
+    cursor: pointer;
 }
 
 .product-category-grid-div-table-image {

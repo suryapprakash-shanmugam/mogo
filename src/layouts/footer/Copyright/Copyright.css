@@ -1,0 +1,20 @@
+.copyright-div {
+    width: 100%;
+    height: 60px;
+    background-color: var(--Logo-Color3);
+    color: white;
+}
+
+.copyright-div-container {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.copyright-div-container-cards
+{
+    display: flex;
+    gap: 0.3rem;
+}

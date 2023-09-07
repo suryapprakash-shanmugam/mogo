@@ -1,6 +1,6 @@
 .header-div {
     width: 100%;
-    height: 78px;
+    height: 60px;
 }
 
 .header-div-container {
@@ -15,7 +15,7 @@
 
 .header-div-container-logo {
     height: 100%;
-    width: 200px;
+    width: 175px;
 }
 
 .header-div-container-logo img {

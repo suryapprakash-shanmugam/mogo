@@ -1,12 +1,17 @@
 //import app css file
 import './App.css';
 
-//import Home page file
-import Home from '../src/pages/Home/Home'
+//import pages
+import BottomToTopButton from './components/BottomToTopButton/BottomToTopButton';
+import Wipper from './Wipper';
 function App() {
+
+  
+
   return (
     <div>
-      <Home />
+      <Wipper />
+      <BottomToTopButton />
     </div>
   );
 }

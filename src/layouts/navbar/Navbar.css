@@ -17,11 +17,28 @@
     list-style-type: none;
 }
 
+.navbar-div-container-ul2 {
+    width: fit-content;
+    color: var(--Para-Color);
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    list-style-type: none;
+}
+
 .navbar-div-container-ul li {
     cursor: pointer;
 }
 
 .navbar-div-container-ul li:hover {
+    border-bottom: 2px solid var(--Logo-Color1);
+}
+
+.navbar-div-container-ul2 li {
+    cursor: pointer;
+}
+
+.navbar-div-container-ul2 li:hover {
     border-bottom: 2px solid var(--Logo-Color1);
 }
 

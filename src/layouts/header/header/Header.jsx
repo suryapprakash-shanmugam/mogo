@@ -1,6 +1,8 @@
 //import react pakages
-import { Button, Container, Input, Paper, Select } from '@mantine/core'
+import { Button, Container, Input, Paper, Select, Text } from '@mantine/core'
 import React from 'react'
+
+import { Link } from 'react-router-dom'
 
 //import Header css
 import './Header.css'
@@ -28,9 +30,9 @@ const Header = () => {
         <div>
             <div className="header-div">
                 <Container size={'82rem'} className='header-div-container'>
-                    <div className="header-div-container-logo">
+                    <Text className="header-div-container-logo" component={Link} to='/'>
                         <img src={logo} />
-                    </div>
+                    </Text>
                     <div className="header-div-container-search">
                         <Paper className="header-div-container-search-paper">
                             <Select

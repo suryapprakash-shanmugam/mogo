@@ -2,19 +2,12 @@
 import React from 'react'
 
 //import mantine packages
-import { Container } from '@mantine/core'
+import { Container, Text } from '@mantine/core'
+
+import { Link } from 'react-router-dom'
 
 //import home css file
 import './Home.css'
-
-//import preheader file from layout -> header -> preheader 
-import Preheader from '../../layouts/header/preheader/Preheader'
-
-//import header file from layout -> header -> header
-import Header from '../../layouts/header/header/Header'
-
-//import header file from layout -> navbar
-import Navbar from '../../layouts/navbar/Navbar'
 
 //import HomeSlider from components ->homeslider
 import HomeSlider from '../../components/HomeSlider/HomeSlider'
@@ -22,6 +15,11 @@ import HomeSlider from '../../components/HomeSlider/HomeSlider'
 //import OfferSlider from components ->OfferSlider
 import OfferSlider from '../../components/OfferSlider/OfferSlider'
 
+//import HomeProductsList from components ->HomeProductsList
+import HomeProductsList from '../../components/HomeProductsList/HomeProductsList'
+
+//import HomeBlogs from components ->HomeBlogs
+import HomeBlogs from '../../components/HomeBlogs/HomeBlogs'
 
 //import images for category grid
 
@@ -36,7 +34,6 @@ import baby_linen from '../../assets/home/grid-category/baby_linen.webp'
 
 import season1 from '../../assets/home/season/season1.webp'
 import season2 from '../../assets/home/season/season2.webp'
-import HomeProductsList from '../../components/HomeProductsList/HomeProductsList'
 
 const Home = () => {
 
@@ -55,21 +52,23 @@ const Home = () => {
   const newarrivalheader = 'New Arrivals';
   const newarrivalsubheader = 'Last added products';
 
+  //send heading and sub heading to blogs
+  const blogheader = 'Latest Blog Posts';
+  const blogsubheader = 'Last added blog posts';
 
   return (
     <div>
-      <Preheader />
-      <Header />
-      <Navbar />
       <HomeSlider />
       <Container className='product-category-grid' size={'82rem'}>
         <div className="product-category-grid-div">
-          <div className="product-category-grid-div-table">
-            <div className="product-category-grid-div-table-image">
-              <img src={table_linen} alt="table linen image" />
-              <div className="product-category-grid-div-image-content">Table Linen</div>
+          <Link to='/category'>
+            <div className="product-category-grid-div-table">
+              <div className="product-category-grid-div-table-image">
+                <img src={table_linen} alt="table linen image" />
+                <div className="product-category-grid-div-image-content">Table Linen</div>
+              </div>
             </div>
-          </div>
+          </Link>
           <div className="product-category-grid-div-kitchen">
             <div className="product-category-grid-div-kitchen-image">
               <img src={kitchen_linen} alt="kitchen linen image" />
@@ -140,6 +139,7 @@ const Home = () => {
       </Container>
       <OfferSlider header={clothingheader} />
       <OfferSlider header={jewelryheader} />
+      <HomeBlogs header={blogheader} subheader={blogsubheader} />
     </div>
   )
 }
