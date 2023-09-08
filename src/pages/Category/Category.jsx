@@ -14,7 +14,7 @@ import './Category.css'
 import angleleft from '../../assets/pagination/angleleft.webp'
 import angleright from '../../assets/pagination/angleright.webp'
 
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 //import react pagination package
 import ReactPaginate from 'react-paginate';
@@ -31,26 +31,222 @@ import bath_linen from '../../assets/home/grid-category/bath_linen.webp'
 const Category = () => {
 
     const location = useLocation()
-
     const value = {
+        "/products": { title: 'Products', href: '/products' },
         "/category/tablelinen": { title: 'Table Linen', href: '/category/tablelinen' },
         "/category/kitchenlinen": { title: 'Kitchen Linen', href: '/category/kitchenlinen' },
         "/category/bathlinen": { title: 'Bath Linen', href: '/category/bathlinen' },
         "/category/bedlinen": { title: 'Bed Linen', href: '/category/bedlinen' },
         "/category/livinglinen": { title: 'Living Linen', href: '/category/livinglinen' },
         "/category/babylinen": { title: 'Baby Linen', href: '/category/babylinen' },
+        "/babylinen/hoodies": { title: 'Hoodies', href: '/babylinen/hoodies', },
+        "/babylinen/blanket": { title: 'Blanket', href: '/babylinen/blanket', },
+        "/babylinen/booties": { title: 'Booties', href: '/babylinen/booties', },
+        "/babylinen/cap": { title: 'Cap', href: '/babylinen/cap', },
+        "/babylinen/headband": { title: 'Head Band', href: '/babylinen/headband', },
+        "/babylinen/wrap": { title: 'Wrap', href: '/babylinen/wrap', },
+        "/babylinen/wipes": { title: 'Wipes', href: '/babylinen/wipes', },
+        "/babylinen/gloves": { title: 'Gloves', href: '/babylinen/gloves', },
+        "/babylinen/bathrobe": { title: 'Bathrobe', href: '/babylinen/bathrobe', },
+        "/babylinen/playmat": { title: 'Playsuit', href: '/babylinen/playmat', },
+        "/babylinen/sleepingbag": { title: 'Sleeping Bag', href: '/babylinen/sleepingbag', },
+        "/babylinen/padcover": { title: 'Changing Pad Cover', href: '/babylinen/padcover', },
+        "/babylinen/duvet_pillow": { title: 'Duvet & Pillow', href: '/babylinen/duvet_pillow', },
+        "/babylinen/bib": { title: 'Bib', href: '/babylinen/bib', },
+        "/babylinen/toys": { title: 'Soft Toys', href: '/babylinen/toys', },
+        "/babylinen/bottlecover": { title: 'Feeding Bottle Cover', href: '/babylinen/bottlecover', },
+        "/babylinen/fittedsheet": { title: 'Fitted Sheet', href: '/babylinen/fittedsheet', },
+        "/babylinen/apron": { title: 'Apron', href: '/babylinen/apron', },
+        "/babylinen/bumper": { title: 'Bumper', href: '/babylinen/bumper', },
+        "/livinglinen/curtains": { title: 'Curtains', href: '/livinglinen/curtains', },
+        "/livinglinen/throws": { title: 'Throws', href: '/livinglinen/throws', },
+        "/livinglinen/mattress": { title: 'Mattress', href: '/livinglinen/mattress', },
+        "/livinglinen/windowpanel": { title: 'Window Panel', href: '/livinglinen/windowpanel', },
+        "/livinglinen/cushion": { title: 'Cushion', href: '/livinglinen/cushion', },
+        "/livinglinen/chairpads": { title: 'Chair Pads', href: '/livinglinen/chairpads', },
+        "/livinglinen/boxcushions": { title: 'Box Cushions', href: '/livinglinen/boxcushions', },
+        "/livinglinen/hammocks": { title: 'Hammocks', href: '/livinglinen/hammocks', },
+        "/livinglinen/chaircovers": { title: 'Chair Covers', href: '/livinglinen/chaircovers', },
+        "/livinglinen/doorstoppers": { title: 'Door Stoppers', href: '/livinglinen/doorstoppers', },
+        "/bedlinen/bedsheets": { title: 'Bed Sheets', href: '/bedlinen/bedsheets', },
+        "/bedlinen/pillowcases": { title: 'Pillowcases', href: '/bedlinen/pillowcases', },
+        "/bedlinen/duvetcovers": { title: 'Duvet Covers', href: '/bedlinen/duvetcovers', },
+        "/bedlinen/bedspreads": { title: 'Bedspreads', href: '/bedlinen/bedspreads', },
+        "/bedlinen/blankets_throws": { title: 'Blankets and Throws', href: '/bedlinen/blankets_throws', },
+        "/bedlinen/cushions": { title: 'Cushions', href: '/bedlinen/cushions', },
+        "/bedlinen/thermalblankets": { title: 'Thermal Blankets', href: '/bedlinen/thermalblankets', },
+        "/bedlinen/quilts": { title: 'Quilts', href: '/bedlinen/quilts', },
+        "/bedlinen/bolsters": { title: 'Bolsters', href: '/bedlinen/bolsters', },
+        "/bedlinen/shams": { title: 'Shams', href: '/bedlinen/shams', },
+        "/bathlinen/towels": { title: 'Bath Towels', href: '/bathlinen/towels', },
+        "/bathlinen/handtowels": { title: 'Hand Towels', href: '/bathlinen/handtowels', },
+        "/bathlinen/facetowels": { title: 'Face Towels', href: '/bathlinen/facetowels', },
+        "/bathlinen/mats": { title: 'Bath Mats', href: '/bathlinen/mats', },
+        "/bathlinen/robes": { title: 'Bathrobes', href: '/bathlinen/robes', },
+        "/bathlinen/curtains": { title: 'Shower Curtains', href: '/bathlinen/curtains', },
+        "/bathlinen/towelracks": { title: 'Towel Racks', href: '/bathlinen/towelracks', },
+        "/bathlinen/towelrings": { title: 'Towel Rings', href: '/bathlinen/towelrings', },
+        "/bathlinen/towelhooks": { title: 'Towel Hooks', href: '/bathlinen/towelhooks', },
+        "/kitchenlinen/aprons": { title: 'Aprons', href: '/kitchenlinen/aprons', },
+        "/kitchenlinen/gloves": { title: 'Gloves', href: '/kitchenlinen/gloves', },
+        "/kitchenlinen/potholders": { title: 'Pot Holders', href: '/kitchenlinen/potholders', },
+        "/kitchenlinen/towels": { title: 'kitchen Towels', href: '/kitchenlinen/towels', },
+        "/kitchenlinen/dishcloths": { title: 'Dish Cloths', href: '/kitchenlinen/dishcloths', },
+        "/tablelinen/cloth": { title: 'Table Cloth', href: '/tablelinen/cloth', },
+        "/tablelinen/placemat": { title: 'Place Mat', href: '/tablelinen/placemat', },
+        "/tablelinen/runner": { title: 'Table Runner', href: '/tablelinen/runner', },
+        "/tablelinen/napkins": { title: 'Table Napkins', href: '/tablelinen/napkins', },
+        "/tablelinen/napkinsrings": { title: 'Napkins Rings', href: '/tablelinen/napkinsrings', },
+        "/tablelinen/coasters": { title: 'Coasters', href: '/tablelinen/coasters', },
+        "/tablelinen/breadbaskets": { title: 'Bread Baskets', href: '/tablelinen/breadbaskets', },
     }
+
+    const categoryArray = [
+        {
+            category: 'Products',
+            link: '/products',
+            value: [
+                { value: 'Table Linen', link: '/category/tablelinen', },
+                { value: 'Kitchen Linen', link: '/category/kitchenlinen', },
+                { value: 'Bath Linen', link: '/category/bathlinen', },
+                { value: 'Bed Linen', link: '/category/bedlinen', },
+                { value: 'Living Linen', link: '/category/livinglinen', },
+                { value: 'Baby Linen', link: '/category/babylinen', },
+            ]
+        },
+        {
+            category: 'Table Linen',
+            value: [
+                { value: 'Table Cloth', link: '/tablelinen/cloth', },
+                { value: 'Place Mat', link: '/tablelinen/placemat', },
+                { value: 'Table Runner', link: '/tablelinen/runner', },
+                { value: 'Table Napkins', link: '/tablelinen/napkins', },
+                { value: 'Napkins Rings', link: '/tablelinen/napkinsrings', },
+                { value: 'Coasters', link: '/tablelinen/coasters', },
+                { value: 'Bread Baskets', link: '/tablelinen/breadbaskets', },
+            ]
+        },
+        {
+            category: 'Kitchen Linen',
+            value: [
+                { value: 'Aprons', link: '/kitchenlinen/aprons', },
+                { value: 'Gloves', link: '/kitchenlinen/gloves', },
+                { value: 'Pot Holders', link: '/kitchenlinen/potholders', },
+                { value: 'kitchen Towels', link: '/kitchenlinen/towels', },
+                { value: 'Dish Cloths', link: '/kitchenlinen/dishcloths', },
+            ]
+        },
+        {
+            category: 'Bath Linen',
+            value: [
+                { value: 'Bath Towels', link: '/bathlinen/towels', },
+                { value: 'Hand Towels', link: '/bathlinen/handtowels', },
+                { value: 'Face Towels', link: '/bathlinen/facetowels', },
+                { value: 'Bath Mats', link: '/bathlinen/mats', },
+                { value: 'Bathrobes', link: '/bathlinen/robes', },
+                { value: 'Shower Curtains', link: '/bathlinen/curtains', },
+                { value: 'Towel Racks', link: '/bathlinen/towelracks', },
+                { value: 'Towel Rings', link: '/bathlinen/towelrings', },
+                { value: 'Towel Hooks', link: '/bathlinen/towelhooks', },
+            ]
+        },
+        {
+            category: 'Bed Linen',
+            value: [
+                { value: 'Bed Sheets', link: '/bedlinen/bedsheets', },
+                { value: 'Pillowcases', link: '/bedlinen/pillowcases', },
+                { value: 'Duvet Covers', link: '/bedlinen/duvetcovers', },
+                { value: 'Bedspreads', link: '/bedlinen/bedspreads', },
+                { value: 'Blankets and Throws', link: '/bedlinen/blankets_throws', },
+                { value: 'Cushions', link: '/bedlinen/cushions', },
+                { value: 'Thermal Blankets', link: '/bedlinen/thermalblankets', },
+                { value: 'Quilts', link: '/bedlinen/quilts', },
+                { value: 'Bolsters', link: '/bedlinen/bolsters', },
+                { value: 'Shams', link: '/bedlinen/shams', },
+            ]
+        },
+        {
+            category: 'Living Linen',
+            value: [
+                { value: 'Curtains', link: '/livinglinen/curtains', },
+                { value: 'Throws', link: '/livinglinen/throws', },
+                { value: 'Mattress', link: '/livinglinen/mattress', },
+                { value: 'Window Panel', link: '/livinglinen/windowpanel', },
+                { value: 'Cushion', link: '/livinglinen/cushion', },
+                { value: 'Chair Pads', link: '/livinglinen/chairpads', },
+                { value: 'Box Cushions', link: '/livinglinen/boxcushions', },
+                { value: 'Hammocks', link: '/livinglinen/hammocks', },
+                { value: 'Chair Covers', link: '/livinglinen/chaircovers', },
+                { value: 'Door Stoppers', link: '/livinglinen/doorstoppers', },
+            ]
+        },
+        {
+            category: 'Baby Linen',
+            value: [
+                { value: 'Hoodies', link: '/babylinen/hoodies', },
+                { value: 'Blanket', link: '/babylinen/blanket', },
+                { value: 'Booties', link: '/babylinen/booties', },
+                { value: 'Cap', link: '/babylinen/cap', },
+                { value: 'Head Band', link: '/babylinen/headband', },
+                { value: 'Wrap', link: '/babylinen/wrap', },
+                { value: 'Wipes', link: '/babylinen/wipes', },
+                { value: 'Gloves', link: '/babylinen/gloves', },
+                { value: 'Bathrobe', link: '/babylinen/bathrobe', },
+                { value: 'Playsuit', link: '/babylinen/playmat', },
+                { value: 'Sleeping Bag', link: '/babylinen/sleepingbag', },
+                { value: 'Changing Pad Cover', link: '/babylinen/padcover', },
+                { value: 'Duvet & Pillow', link: '/babylinen/duvet_pillow', },
+                { value: 'Bib', link: '/babylinen/bib', },
+                { value: 'Soft Toys', link: '/babylinen/toys', },
+                { value: 'Feeding Bottle Cover', link: '/babylinen/bottlecover', },
+                { value: 'Fitted Sheet', link: '/babylinen/fittedsheet', },
+                { value: 'Apron', link: '/babylinen/apron', },
+                { value: 'Bumper', link: '/babylinen/bumper', },
+            ]
+        },
+    ]
 
     // array for breadcrumb
     const items = [
         { title: 'Home', href: '/' },
-        { title: 'Category', href: '/category' },
+        { title: 'Products', href: '/products' },
     ];
-    if (location.pathname !== '/category') {
+
+    const foundItem = categoryArray.find(category => {
+        return category.value.find(item => item.link === location.pathname);
+    });
+
+
+    if (foundItem) {
+        const categoryValue = foundItem.category;
+
+        // Find the link and value from the 0th array of categoryArray based on categoryValue
+        const categoryInfo = categoryArray[0].value.find(item => item.value === categoryValue);
+
+        if (categoryInfo) {
+            const { value, link } = categoryInfo;
+            items.push({ title: value, href: link }); // Push categoryInfo to items
+        }
+
+    }
+
+    if (location.pathname !== '/products') {
         items.push(value[location.pathname])
     }
 
-    const returnValue = items[items.length - 1].title
+    const categoryZero = categoryArray[0]; // Get the first category object
+
+    const foundItemsInCategoryZero = items.filter((item) => {
+        // Check if the item's href exists in categoryZero's value
+        return categoryZero.value.some((categoryItem) => categoryItem.link === item.href);
+    });
+
+    const output = foundItemsInCategoryZero[0]?.title;
+
+    const matchingCategory = categoryArray.find((category) => category.category === output);
+
+
+    const returnValue = items[items.length - 1]?.title
 
     //display individual product array
     const productDetailsArray = [
@@ -175,7 +371,7 @@ const Category = () => {
             featured: 'Featured',
         },
     ]
-    const ITEMS_PER_PAGE = 8;
+    const ITEMS_PER_PAGE = 12;
     const [currentPage, setCurrentPage] = useState(0);
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
@@ -185,7 +381,6 @@ const Category = () => {
 
     const displayedItems = productDetailsArray.slice(
         currentPage * ITEMS_PER_PAGE,
-        // (currentPage + 1) * ITEMS_PER_PAGE
         (currentPage * ITEMS_PER_PAGE) + ITEMS_PER_PAGE
     );
 
@@ -208,17 +403,88 @@ const Category = () => {
                     <div className="category-div-container-main">
                         <div className="category-div-container-main-filter">
                             <div className="category-div-container-main-filter-main">
-                                <div className="category-div-container-main-filter-main-category">
+                                <div className={returnValue !== 'Products' ? 'category-div-container-main-filter-main-category' : 'category-div-container-main-filter-main-category-product'}>
                                     <p className='category-div-container-main-filter-main-category-head'>Category</p>
+                                    <div className="category-div-container-main-filter-main-category-content">
+                                        {
+                                            location.pathname === '/products' ? (
+                                                <>
+
+                                                    {
+                                                        categoryArray.map((category, index) => {
+                                                            if (category.category === returnValue) {
+                                                                return (
+                                                                    <div key={index}>
+                                                                        {category.value.map((categoryval, innerIndex) => {
+                                                                            return (
+                                                                                <Link key={innerIndex} className='category-div-container-main-filter-main-category-content-link' to={categoryval.link}><p key={innerIndex}>{categoryval.value}</p></Link>
+                                                                            )
+                                                                        })}
+                                                                    </div>
+                                                                )
+                                                            }
+                                                            return null; // Add this to handle cases where category.category doesn't match
+                                                        })
+                                                    }
+                                                </>
+                                            ) : (
+                                                <>
+
+                                                    {matchingCategory && matchingCategory.value.length > 0 && (
+                                                        <div>
+                                                            {matchingCategory.value.map((categoryval, innerIndex) => (
+                                                                <Link
+                                                                    key={innerIndex}
+                                                                    className='category-div-container-main-filter-main-category-content-link'
+                                                                    to={categoryval.link}
+                                                                >
+                                                                    <p key={innerIndex}>{categoryval.value}</p>
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </>
+                                            )
+                                        }
+                                        {/* {categoryArray.map((category, index) => {
+                                            if (category.category === returnValue) {
+                                                return (
+                                                    <div key={index}>
+                                                        {category.value.map((categoryval, innerIndex) => {
+                                                            return (
+                                                                <Link key={innerIndex} className='category-div-container-main-filter-main-category-content-link' to={categoryval.link}><p key={innerIndex}>{categoryval.value}</p></Link>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                )
+                                            }
+                                            return null; // Add this to handle cases where category.category doesn't match
+                                        })} */}
+
+                                    </div>
+
                                 </div>
                                 <hr />
-                                <div className="category-div-container-main-filter-main-brand">
-                                    <p className='category-div-container-main-filter-main-category-head'>Brand</p>
-                                </div>
-                                <hr />
-                                <div className="category-div-container-main-filter-main-fabric">
-                                    <p className='category-div-container-main-filter-main-category-head'>Fabric</p>
-                                </div>
+                                {
+                                    returnValue !== 'Products' ? (
+                                        <>
+                                            <div className="category-div-container-main-filter-main-brand">
+                                                <p className='category-div-container-main-filter-main-category-head'>Brand</p>
+                                            </div>
+                                            <hr />
+                                            <div className="category-div-container-main-filter-main-fabric">
+                                                <p className='category-div-container-main-filter-main-category-head'>Fabric</p>
+                                            </div>
+                                            <div className="category-div-container-main-filter-main-price">
+                                                <p className='category-div-container-main-filter-main-category-head'>Price</p>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div className="category-div-container-main-filter-main-price">
+                                            <p className='category-div-container-main-filter-main-category-head'>Price</p>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="category-div-container-main-product">
@@ -230,7 +496,7 @@ const Category = () => {
                                     <div className="category-div-container-main-product-sortby-form-select">
                                         <Select
                                             defaultValue={sortByArray[0].value}
-                                            rightSection={<img src={arrowdown} width='10' />}
+                                            rightSection={<img src={arrowdown} width='10' alt='arrow down' />}
                                             data={sortByArray}
                                         />
                                     </div>
@@ -245,7 +511,7 @@ const Category = () => {
                                                     <img src={productDetails.image} alt="first product" />
                                                     <img src={productDetails.secondimage} id="category_second_image" alt="second product" />
                                                     {
-                                                        productDetails.featured != '' ?
+                                                        productDetails.featured !== '' ?
                                                             <div className="category-div-container-main-product-product_display-individual-image-featured">
                                                                 <p>{productDetails.featured}</p>
                                                             </div> : ''
@@ -277,7 +543,7 @@ const Category = () => {
                                                 </div>
                                                 <div className="category-div-container-main-product-product_display-individual-price">
                                                     {
-                                                        productDetails.oldprice != '' ? <p className='oldprice'>{`${productDetails.currencysymbol}${productDetails.oldprice}`}</p> : ''
+                                                        productDetails.oldprice !== '' ? <p className='oldprice'>{`${productDetails.currencysymbol}${productDetails.oldprice}`}</p> : ''
                                                     }
                                                     <p>{`${productDetails.currencysymbol}${productDetails.newprice}`}</p>
                                                 </div>

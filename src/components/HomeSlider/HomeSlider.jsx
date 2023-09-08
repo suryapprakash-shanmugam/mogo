@@ -7,6 +7,8 @@ import './HomeSlider.css'
 //import swipper
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { Link } from 'react-router-dom'
+
 //import css and other data for slider
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -23,19 +25,31 @@ import slider3 from '../../assets/home/slider/slider3.webp'
 //slider array
 
 const sliderArray = [
-    { image: slider1 },
-    { image: slider2 },
-    { image: slider3 },
+    {
+        image: slider1,
+        content: 'Table Linen',
+        link: '/category/tablelinen',
+    },
+    {
+        image: slider2,
+        content: "Living Linen",
+        link: '/category/livinglinen',
+    },
+    {
+        image: slider3,
+        content: "Bed Linen.",
+        link: '/category/bedlinen',
+    },
 ]
 
 const HomeSlider = () => {
     return (
         <div>
-            <div className="homeSlider">
+            <div className="homeslider">
                 <Swiper
                     slidesPerView={1}
                     autoplay={{
-                        delay: 2500,
+                        delay: 3500,
                         disableOnInteraction: false,
                     }}
                     spaceBetween={30}
@@ -48,7 +62,16 @@ const HomeSlider = () => {
                     {
                         sliderArray.map((slider, index) => {
                             return (
-                                <SwiperSlide key={index}><img src={slider.image} alt="" /></SwiperSlide>
+                                <SwiperSlide className='homeslider-slide' key={index}>
+                                    <div className="overlay"></div>
+                                    <img src={slider.image} alt="slider" />
+                                    <div className={`homeslider-slide-content`}>
+                                        <p className="typing-text">{slider.content}</p>
+                                        <Link to={slider.link}>
+                                            <button className='drop-button'>Buy Now</button>
+                                        </Link>
+                                    </div>
+                                </SwiperSlide>
                             )
                         })
                     }
