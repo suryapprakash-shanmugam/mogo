@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import mantine packages
-import { Container, Rating, Select } from '@mantine/core'
+import { Checkbox, Container, Input, Rating, Select } from '@mantine/core'
 
 //import Breadcrumb component from components->Breadcrumb
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
@@ -27,6 +27,7 @@ import arrowdown from '../../assets/preheader/arrow-down.webp'
 //import demo images
 import baby_linen from '../../assets/home/grid-category/baby_linen.webp'
 import bath_linen from '../../assets/home/grid-category/bath_linen.webp'
+import NumericInput from '../../components/Input/NumericInput'
 
 const Category = () => {
 
@@ -384,6 +385,79 @@ const Category = () => {
         (currentPage * ITEMS_PER_PAGE) + ITEMS_PER_PAGE
     );
 
+    //display brand array
+
+    const brandArray = [
+        {
+            brandname: 'Brand 1',
+        },
+        {
+            brandname: 'Brand 2',
+        },
+        {
+            brandname: 'Brand 3',
+        },
+        {
+            brandname: 'Brand 4',
+        },
+        {
+            brandname: 'Brand 5',
+        },
+        {
+            brandname: 'Brand 6',
+        },
+    ]
+    const brandArray1 = [
+        {
+            brandname: 'Brand 7',
+        },
+        {
+            brandname: 'Brand 8',
+        },
+        {
+            brandname: 'Brand 9',
+        },
+        {
+            brandname: 'Brand 10',
+        },
+        {
+            brandname: 'Brand 11',
+        },
+        {
+            brandname: 'Brand 12',
+        },
+    ]
+
+    const [filterText, setFilterText] = useState(''); // State to store the filter input
+    const [filterText1, setFilterText1] = useState(''); // State to store the filter input
+    const [filteredBrands, setFilteredBrands] = useState(brandArray); // State to store the filtered brands
+    const [filteredBrands1, setFilteredBrands1] = useState(brandArray1); // State to store the filtered brands
+
+    // Function to handle input change
+    const handleInputChange = (event) => {
+        const searchText = event.target.value;
+        setFilterText(searchText);
+
+        // Filter the brands based on the input
+        const filtered = brandArray.filter((brand) =>
+            brand.brandname.toLowerCase().includes(searchText.toLowerCase())
+        );
+
+        setFilteredBrands(filtered);
+    };
+    // Function to handle input change
+    const handleInputChange1 = (event) => {
+        const searchText = event.target.value;
+        setFilterText1(searchText);
+
+        // Filter the brands based on the input
+        const filtered = brandArray1.filter((brand) =>
+            brand.brandname.toLowerCase().includes(searchText.toLowerCase())
+        );
+
+        setFilteredBrands1(filtered);
+    };
+
     //sortby select array
     const sortByArray = [
         { value: 'mostrating', label: 'Most Recent' },
@@ -391,6 +465,9 @@ const Category = () => {
         { value: 'hightpricing', label: 'Highest Price' },
         { value: 'highestrating', label: 'Highest Rating' },
     ]
+
+    const [minValue, setMinValue] = useState('');
+    const [maxValue, setMaxValue] = useState('');
 
     return (
         <div>
@@ -417,7 +494,9 @@ const Category = () => {
                                                                     <div key={index}>
                                                                         {category.value.map((categoryval, innerIndex) => {
                                                                             return (
-                                                                                <Link key={innerIndex} className='category-div-container-main-filter-main-category-content-link' to={categoryval.link}><p key={innerIndex}>{categoryval.value}</p></Link>
+                                                                                <Link key={innerIndex} className='category-div-container-main-filter-main-category-content-link' to={categoryval.link}>
+                                                                                    <p className={`${returnValue === categoryval.value ? 'category-div-container-main-filter-main-category-content-link-active' : ''}`} key={innerIndex}>{categoryval.value}</p>
+                                                                                </Link>
                                                                             )
                                                                         })}
                                                                     </div>
@@ -438,7 +517,7 @@ const Category = () => {
                                                                     className='category-div-container-main-filter-main-category-content-link'
                                                                     to={categoryval.link}
                                                                 >
-                                                                    <p key={innerIndex}>{categoryval.value}</p>
+                                                                    <p className={`${returnValue === categoryval.value ? 'category-div-container-main-filter-main-category-content-link-active' : ''}`} key={innerIndex}>{categoryval.value}</p>
                                                                 </Link>
                                                             ))}
                                                         </div>
@@ -446,21 +525,6 @@ const Category = () => {
                                                 </>
                                             )
                                         }
-                                        {/* {categoryArray.map((category, index) => {
-                                            if (category.category === returnValue) {
-                                                return (
-                                                    <div key={index}>
-                                                        {category.value.map((categoryval, innerIndex) => {
-                                                            return (
-                                                                <Link key={innerIndex} className='category-div-container-main-filter-main-category-content-link' to={categoryval.link}><p key={innerIndex}>{categoryval.value}</p></Link>
-                                                            )
-                                                        })}
-                                                    </div>
-                                                )
-                                            }
-                                            return null; // Add this to handle cases where category.category doesn't match
-                                        })} */}
-
                                     </div>
 
                                 </div>
@@ -470,18 +534,90 @@ const Category = () => {
                                         <>
                                             <div className="category-div-container-main-filter-main-brand">
                                                 <p className='category-div-container-main-filter-main-category-head'>Brand</p>
+                                                <div className="category-div-container-main-filter-main-brand-form-display">
+                                                    <div className="category-div-container-main-filter-main-brand-form-display-form">
+                                                        <Input
+                                                            value={filterText}
+                                                            onChange={handleInputChange}
+                                                            placeholder="Search Brand"
+                                                        />
+                                                    </div>
+                                                    <div className="category-div-container-main-filter-main-brand-form-display-display">
+                                                        {filteredBrands.map((brand, index) => (
+                                                            <Checkbox
+                                                                key={index}
+                                                                label={brand.brandname}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                </div>
                                             </div>
                                             <hr />
                                             <div className="category-div-container-main-filter-main-fabric">
                                                 <p className='category-div-container-main-filter-main-category-head'>Fabric</p>
+                                                <div className="category-div-container-main-filter-main-fabric-form-display">
+                                                    <div className="category-div-container-main-filter-main-fabric-form-display-form">
+                                                        <Input
+                                                            value={filterText1}
+                                                            onChange={handleInputChange1}
+                                                            placeholder="Search Fabric"
+                                                        />
+                                                    </div>
+                                                    <div className="category-div-container-main-filter-main-fabric-form-display-display">
+                                                        {filteredBrands1.map((brand, index) => (
+                                                            <Checkbox
+                                                                key={index}
+                                                                label={brand.brandname}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div className="category-div-container-main-filter-main-price">
                                                 <p className='category-div-container-main-filter-main-category-head'>Price</p>
+                                                <div className="category-div-container-main-filter-main-price-form">
+                                                    <div className="category-div-container-main-filter-main-price-form-min-input">
+                                                        <NumericInput
+                                                            value={minValue}
+                                                            onChange={setMinValue}
+                                                            label="Min"
+                                                        />
+                                                    </div>
+                                                    <div className="category-div-container-main-filter-main-price-form-max-input">
+                                                        <NumericInput
+                                                            value={maxValue}
+                                                            onChange={setMaxValue}
+                                                            label="Max"
+                                                        />
+                                                    </div>
+                                                    <div className="category-div-container-main-filter-main-price-form-button">
+                                                        <button><img src={angleright} width="50" alt="angle right icon" /></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </>
                                     ) : (
                                         <div className="category-div-container-main-filter-main-price">
                                             <p className='category-div-container-main-filter-main-category-head'>Price</p>
+                                            <div className="category-div-container-main-filter-main-price-form">
+                                                <div className="category-div-container-main-filter-main-price-form-min-input">
+                                                    <NumericInput
+                                                        value={minValue}
+                                                        onChange={setMinValue}
+                                                        label="Min"
+                                                    />
+                                                </div>
+                                                <div className="category-div-container-main-filter-main-price-form-max-input">
+                                                    <NumericInput
+                                                        value={maxValue}
+                                                        onChange={setMaxValue}
+                                                        label="Max"
+                                                    />
+                                                </div>
+                                                <div className="category-div-container-main-filter-main-price-form-button">
+                                                    <button><img src={angleright} width="50" alt="angle right icon" /></button>
+                                                </div>
+                                            </div>
                                         </div>
                                     )
                                 }
