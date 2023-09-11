@@ -135,3 +135,9 @@
 {
     width: 75%;
 }
+.product-div-container-main-product-display-content-price-askquestion
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

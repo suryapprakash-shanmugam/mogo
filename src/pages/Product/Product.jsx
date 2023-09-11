@@ -130,6 +130,11 @@ const Product = ({ category, subcategory, heading }) => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="product-div-container-main-product-display-content-price-askquestion">
+                                    <div className="product-div-container-main-product-display-content-price-askquestion-price">
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
