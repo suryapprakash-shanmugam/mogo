@@ -246,6 +246,7 @@
     position: relative;
     width: 100%;
     height: 305px;
+    cursor: pointer;
 }
 
 .category-div-container-main-product-product_display-individual-image img {

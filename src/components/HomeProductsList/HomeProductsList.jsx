@@ -1,6 +1,11 @@
 //import react packages
-import { Container, Rating } from '@mantine/core'
 import React, { useState } from 'react'
+
+//import mantine packages
+import { Container, Rating } from '@mantine/core'
+
+//import react-router-dom packages
+import { Link } from 'react-router-dom'
 
 //import HomeProductsList css
 import './HomeProductsList.css'
@@ -35,7 +40,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -45,7 +51,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -55,7 +62,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -65,7 +73,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -75,7 +84,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -85,7 +95,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -95,7 +106,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -105,7 +117,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -115,7 +128,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -125,7 +139,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -135,7 +150,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -145,7 +161,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -155,7 +172,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
         {
             image: bath_linen,
@@ -165,7 +183,8 @@ const HomeProductsList = ({ header, subheader }) => {
             rating: '0',
             like: '0',
             currencysymbol: '$',
-            price: '10'
+            price: '10',
+            link: '/product',
         },
     ]
 
@@ -182,24 +201,26 @@ const HomeProductsList = ({ header, subheader }) => {
                             homeProductListArray.slice(0, itemsToShow).map((homeProductList, index) => {
                                 return (
                                     <div key={index} className="homeproductlist-div-container-content-product">
-                                        <div className="homeproductlist-div-container-content-product-image">
-                                            <div className="homeproductlist-div-container-content-product-image-img">
-                                                <img src={homeProductList.image} alt="" />
-                                                <img src={homeProductList.secondimage} alt="" id='second-image' />
-                                                <div className="homeproductlist-div-container-content-product-wishlist-cart">
-                                                    <div className="homeproductlist-div-container-content-product-wishlist-cart-wishlist">
-                                                        <div className="homeproductlist-div-container-content-product-wishlist-cart-wishlist-image">
-                                                            <img src={wishlist} alt="" />
+                                        <Link to={homeProductList.link}>
+                                            <div className="homeproductlist-div-container-content-product-image">
+                                                <div className="homeproductlist-div-container-content-product-image-img">
+                                                    <img src={homeProductList.image} alt="" />
+                                                    <img src={homeProductList.secondimage} alt="" id='second-image' />
+                                                    <div className="homeproductlist-div-container-content-product-wishlist-cart">
+                                                        <div className="homeproductlist-div-container-content-product-wishlist-cart-wishlist">
+                                                            <div className="homeproductlist-div-container-content-product-wishlist-cart-wishlist-image">
+                                                                <img src={wishlist} alt="" />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="homeproductlist-div-container-content-product-wishlist-cart-cart">
-                                                    <div className="homeproductlist-div-container-content-product-wishlist-cart-cart-image">
-                                                            <img src={cart} alt="" />
+                                                        <div className="homeproductlist-div-container-content-product-wishlist-cart-cart">
+                                                            <div className="homeproductlist-div-container-content-product-wishlist-cart-cart-image">
+                                                                <img src={cart} alt="" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                         <div className="homeproductlist-div-container-content-product-content">
                                             <div className="homeproductlist-div-container-content-product-content-header">
                                                 <p>{homeProductList.header}</p>

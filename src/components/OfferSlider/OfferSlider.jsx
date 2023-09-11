@@ -11,6 +11,9 @@ import { Carousel } from '@mantine/carousel';
 
 import Autoplay from 'embla-carousel-autoplay';
 
+//import react-router-dom packages
+import { Link } from 'react-router-dom'
+
 //import images
 import baby_linen from '../../assets/home/grid-category/baby_linen.webp'
 import bath_linen from '../../assets/home/grid-category/bath_linen.webp'
@@ -34,6 +37,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '25',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -46,6 +50,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '29',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -58,6 +63,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '25',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -70,6 +76,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '50',
             currencysymbol: '$',
             productnewprice: '25',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -82,6 +89,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '40',
             currencysymbol: '$',
             productnewprice: '25',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -94,6 +102,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '25',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -106,6 +115,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '35',
             currencysymbol: '$',
             productnewprice: '25',
+            link: '/product',
         },
         {
             offer: '10%',
@@ -118,6 +128,7 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '26',
+            link: '/product',
         },
     ]
     // const totalSlides = offerSliderArray.length;
@@ -147,19 +158,21 @@ const OfferSlider = ({ header }) => {
                             offerSliderArray.map((offerSlider, index) => {
                                 return (
                                     <Carousel.Slide key={index} className='offerslider-div-container-slider-individual'>
-                                        <div className="offerslider-div-container-slider-image">
-                                            <img src={offerSlider.image} alt="" />
-                                            <img src={offerSlider.secondImage} className="second-image" alt="" />
-                                            <div className="offerslider-div-container-slider-individual-wishlist-cart">
-                                                <div id="offerslider-div-container-slider-individual-wishlist-cart-wishlist">
-                                                    <img src={wishlist} width='10' alt="" />
+                                        <Link to={offerSlider.link}>
+                                            <div className="offerslider-div-container-slider-image">
+                                                <img src={offerSlider.image} alt="" />
+                                                <img src={offerSlider.secondImage} className="second-image" alt="" />
+                                                <div className="offerslider-div-container-slider-individual-wishlist-cart">
+                                                    <div id="offerslider-div-container-slider-individual-wishlist-cart-wishlist">
+                                                        <img src={wishlist} width='10' alt="" />
+                                                    </div>
+                                                    <div id="offerslider-div-container-slider-individual-wishlist-cart-cart">
+                                                        <img src={cart} width='10' alt="" />
+                                                    </div>
                                                 </div>
-                                                <div id="offerslider-div-container-slider-individual-wishlist-cart-cart">
-                                                    <img src={cart} width='10' alt="" />
-                                                </div>
+                                                <div className="offerslider-div-container-slider-individual-discount"><p>{offerSlider.offer}</p></div>
                                             </div>
-                                            <div className="offerslider-div-container-slider-individual-discount"><p>{offerSlider.offer}</p></div>
-                                        </div>
+                                        </Link>
                                         <div className="offerslider-div-container-slider-content">
                                             <div className="offerslider-div-container-slider-content-heading">
                                                 <p>{offerSlider.heading}</p>

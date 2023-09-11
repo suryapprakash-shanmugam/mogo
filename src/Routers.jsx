@@ -1,19 +1,43 @@
+//import react packages
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+
+//import react-router-dom packages
+import { useLocation, useParams } from 'react-router-dom';
+
+//import copyright page from layouts->footer->copyright
 import Copyright from './layouts/footer/Copyright/Copyright'
+
+//import footer from layouts->footer->footer
 import Footer from './layouts/footer/Footer/Footer'
+
+//import header from layouts->header->header
 import Header from './layouts/header/header/Header'
+
+//import preheader from layouts->header->preheader
 import Preheader from './layouts/header/preheader/Preheader'
+
+//import navbar from layouts->navbar
 import Navbar from './layouts/navbar/Navbar'
+
+//import home from src->pages->home
 import Home from "../src/pages/Home/Home"
+
+//import category from src->pages->category
 import Category from './pages/Category/Category'
+
+//import product from src->pages->product
+import Product from './pages/Product/Product';
+
+
 
 const Routers = () => {
     const location = useLocation();
+
+    const { category, subcategory, heading } = useParams();
     const bodyContent = {
         '/': <Home />,
         '/products': <Category />,
-        
+
         '/category': <Category />,
 
         '/category/tablelinen': <Category />,
@@ -24,16 +48,16 @@ const Routers = () => {
         '/tablelinen/napkinsrings': <Category />,
         '/tablelinen/coasters': <Category />,
         '/tablelinen/breadbaskets': <Category />,
-        
-        
+
+
         '/category/kitchenlinen': <Category />,
         '/kitchenlinen/aprons': <Category />,
         '/kitchenlinen/gloves': <Category />,
         '/kitchenlinen/potholders': <Category />,
         '/kitchenlinen/towels': <Category />,
         '/kitchenlinen/dishcloths': <Category />,
-        
-        
+
+
         '/category/bathlinen': <Category />,
         '/bathlinen/towels': <Category />,
         '/bathlinen/handtowels': <Category />,
@@ -44,8 +68,8 @@ const Routers = () => {
         '/bathlinen/towelracks': <Category />,
         '/bathlinen/towelrings': <Category />,
         '/bathlinen/towelhooks': <Category />,
-        
-        
+
+
         '/category/bedlinen': <Category />,
         '/bedlinen/bedsheets': <Category />,
         '/bedlinen/pillowcases': <Category />,
@@ -57,8 +81,8 @@ const Routers = () => {
         '/bedlinen/quilts': <Category />,
         '/bedlinen/bolsters': <Category />,
         '/bedlinen/shams': <Category />,
-        
-        
+
+
         '/category/livinglinen': <Category />,
         '/livinglinen/curtains': <Category />,
         '/livinglinen/throws': <Category />,
@@ -70,8 +94,8 @@ const Routers = () => {
         '/livinglinen/hammocks': <Category />,
         '/livinglinen/chaircovers': <Category />,
         '/livinglinen/doorstoppers': <Category />,
-        
-        
+
+
         '/category/babylinen': <Category />,
         '/babylinen/hoodies': <Category />,
         '/babylinen/blanket': <Category />,
@@ -92,10 +116,27 @@ const Routers = () => {
         '/babylinen/fittedsheet': <Category />,
         '/babylinen/apron': <Category />,
         '/babylinen/bumper': <Category />,
+
+        '/product/:category/:subcategory/:heading': (
+            <Product
+                category={category}
+                subcategory={subcategory}
+                heading={heading}
+            />
+        ),
+
     }
 
-
-    const renderBodyData = bodyContent[location.pathname] || null;
+    const renderBodyData =
+        category === '' || category === undefined
+            ? bodyContent[location.pathname] || null
+            : (
+                <Product
+                    category={category}
+                    subcategory={subcategory}
+                    heading={heading}
+                />
+            );
 
     return (
         <div>

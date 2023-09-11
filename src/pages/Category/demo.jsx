@@ -32,11 +32,6 @@ import NumericInput from '../../components/Input/NumericInput'
 const Category = () => {
 
     const location = useLocation()
-
-    const category = 'Table_Linen';
-    const subcategory = 'Table_Napkins';
-    const heading = 'This_is_a_heading';
-
     const value = {
         "/products": { title: 'Products', href: '/products' },
         "/category/tablelinen": { title: 'Table Linen', href: '/category/tablelinen' },
@@ -658,7 +653,7 @@ const Category = () => {
                                     displayedItems.map((productDetails, index) => {
                                         return (
                                             <div key={index} className="category-div-container-main-product-product_display-individual">
-                                                <Link to={`${productDetails.link}/${category}/${subcategory}/${heading}`}>
+                                                <Link to={productDetails.link}>
                                                     <div className="category-div-container-main-product-product_display-individual-image">
                                                         <img src={productDetails.image} alt="first product" />
                                                         <img src={productDetails.secondimage} id="category_second_image" alt="second product" />
