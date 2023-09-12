@@ -1,8 +1,8 @@
 //import react packages
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 //import mantine packages
-import { Container, Rating } from '@mantine/core'
+import { Container, Input, Modal, Rating, Select, Tabs, Textarea } from '@mantine/core'
 
 //import react-router-dom packages
 
@@ -18,6 +18,17 @@ import './Product.css'
 import eye from '../../assets/product/eye.webp'
 import heart from '../../assets/product/heart.webp'
 import comment from '../../assets/product/comment.webp'
+import email from '../../assets/product/email.webp'
+import phone from '../../assets/product/phone.webp'
+import send from '../../assets/product/send.webp'
+import cart_fill from '../../assets/header/cart_fill.webp'
+import wishlist from '../../assets/header/wishlist.webp'
+import wishlist_fill from '../../assets/header/wishlist_fill.webp'
+import facebook_fill from '../../assets/footer/follow-as/facebook_fill.webp'
+import instagram_fill from '../../assets/footer/follow-as/instagram_fill.webp'
+import twitter_fill from '../../assets/footer/follow-as/twitter_fill.webp'
+import whatsapp_fill from '../../assets/footer/follow-as/whatsapp_fill.webp'
+import arrowdown from '../../assets/preheader/arrow-down.webp'
 
 
 // array for breadcrumb
@@ -60,7 +71,29 @@ const Product = ({ category, subcategory, heading }) => {
         { title: productheading, href: '/' },
     ];
 
+    const [questionModalOpen, setQuestionModalOpen] = useState(false)
+    const [questionSubject, setQuestionSubject] = useState(convertedString2)
 
+    const handleInputChange = (e) => {
+        setQuestionSubject(e.target.value);
+    };
+
+    // Quantity Value 
+    const [quantityValue, setQuantityValue] = useState(1)
+
+    // useEffect 
+    useEffect(() => {
+        if (quantityValue <= 0) {
+            setQuantityValue(1)
+        }
+        // setTotalPrice(quantityValue * 999)
+    }, [quantityValue])
+
+    const [isWishlist, setIsWishlist] = useState(true);
+
+    const toggleWishlist = () => {
+        setIsWishlist(!isWishlist);
+    };
 
     return (
         <div>
@@ -132,13 +165,314 @@ const Product = ({ category, subcategory, heading }) => {
                                 </div>
                                 <div className="product-div-container-main-product-display-content-price-askquestion">
                                     <div className="product-div-container-main-product-display-content-price-askquestion-price">
-                                        
+                                        <div className="product-div-container-main-product-display-content-price-askquestion-price-price">
+                                            <p className='old-price'>$89</p>
+                                            <p className='current-price'>$80.10</p>
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-price-askquestion-price-discount">
+                                            <p>-10%</p>
+                                        </div>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-price-askquestion-askquestion">
+                                        <button onClick={() => setQuestionModalOpen(true)}>
+                                            <div className="product-div-container-main-product-display-content-price-askquestion-askquestion-image">
+                                                <img src={email} width={14} alt="email icon" />
+                                            </div>
+                                            <div className="product-div-container-main-product-display-content-price-askquestion-askquestion-content">Ask Question</div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="product-div-container-main-product-display-content-status">
+                                    <div className="product-div-container-main-product-display-content-status-heading">
+                                        <p>Status</p>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-status-status">
+                                        <p>In Stock</p>
+                                    </div>
+                                </div>
+                                <div className="product-div-container-main-product-display-content-sku">
+                                    <div className="product-div-container-main-product-display-content-sku-heading">
+                                        <p>SKU</p>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-sku-sku">
+                                        <p>QYJHUBIUHOI9967</p>
+                                    </div>
+                                </div>
+                                <div className="product-div-container-main-product-display-content-variation">
+                                    <div className="product-div-container-main-product-display-content-variation-heading">
+                                        <p>Color</p>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-variation-color">
+                                        <div className="product-div-container-main-product-display-content-variation-color-individual">
+                                            <button></button>
+                                            <button></button>
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="product-div-container-main-product-display-content-size">
+                                    <div className="product-div-container-main-product-display-content-size-heading">
+                                        <p>Size</p>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-size-color">
+                                        <div className="product-div-container-main-product-display-content-size-color-individual">
+                                            <button></button>
+                                            <button></button>
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="product-div-container-main-product-display-content-counter-cart-wishlist">
+                                    <div className='product-div-container-main-product-display-content-counter-cart-wishlist-counter'>
+                                        <button
+                                            disabled={quantityValue === 1 ? true : false}
+                                            onClick={() => setQuantityValue(quantityValue - 1)}
+                                        >
+                                            -
+                                        </button>
+                                        <input
+                                            onChange={(e) => setQuantityValue(parseInt(e.target.value))}
+                                            className='product-div-container-main-product-display-content-counter-cart-wishlist-counter-input'
+                                            value={quantityValue}
+                                        />
+
+                                        <button
+                                            onClick={() => setQuantityValue(quantityValue + 1)}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-counter-cart-wishlist-cart">
+                                        <button>
+                                            <img src={cart_fill} width={20} alt="cart icon" />
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-counter-cart-wishlist-wishlist">
+                                        <button onClick={toggleWishlist}>
+                                            {isWishlist ? (
+                                                <>
+                                                    <img src={wishlist} width={20} alt="wishlist icon" /> Add to Wishlist
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <img src={wishlist_fill} width={25} alt="wishlist color icon" /> Remove from Wishlist
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="product-div-container-main-product-display-content-share">
+                                    <div className="product-div-container-main-product-display-content-share-heading">
+                                        <p>Share</p>
+                                    </div>
+                                    <div className="product-div-container-main-product-display-content-share-icons">
+                                        <div className="product-div-container-main-product-display-content-share-icon">
+                                            <img src={facebook_fill} alt="facebook" />
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-share-icon">
+                                            <img src={twitter_fill} alt="twitter" />
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-share-icon">
+                                            <img src={instagram_fill} alt="instagram" />
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-share-icon">
+                                            <img src={whatsapp_fill} alt="whatsapp" />
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div className="product-div-container-main-product-details">
+                            <Tabs variant="outline" radius="xs" defaultValue="description">
+                                <Tabs.List>
+                                    <Tabs.Tab value="description">Description</Tabs.Tab>
+                                    <Tabs.Tab value="additional">Additional Information</Tabs.Tab>
+                                    <Tabs.Tab value="shipping">Shipping & Location</Tabs.Tab>
+                                    <Tabs.Tab value="reviews">Reviews</Tabs.Tab>
+                                    <Tabs.Tab value="comments">Comments</Tabs.Tab>
+                                </Tabs.List>
+
+                                <Tabs.Panel value="description" pt="xs">
+                                    <div className="product-div-container-main-product-details-tab-description">
+                                        <h2>Women sun dress</h2>
+                                        <p>Many scholars believe, however, that the first crude garments and ornaments worn by humans were designed not for utilitarian but for religious or ritual purposes. Other basic functions of dress include identifying the wearer and making the wearer appear more attractive.</p>
+                                        <p>Although it is clear why such uses of dress developed and remain significant, it can often be difficult to determine how they are achieved. Some garments thought of as beautiful offer no protection whatsoever and may in fact even injure the wearer. Items that definitely identify one wearer can lose their meaning in another time and place.</p>
+                                        <p>There are no simple answers to such questions, of course, and any one reason is influenced by a multitude of others, but certainly one of the most prevalent theories is that fashion evolved in conjunction with capitalism and the development of modern socioeconomic classes. Thus, in relatively static societies with limited movement between classes, as in many parts of Asia until modern times or in Europe before the Middle Ages, styles did not undergo a pattern of change. In contrast, when lower classes have the ability to copy upper classes, the upper classes quickly instigate fashion changes that demonstrate their authority and high position. During the 20th century, for example, improved communication and manufacturing technology enabled new styles to trickle down from the elite to the masses at ever faster speeds, with the result that fashion change accelerated.</p>
+                                    </div>
+                                </Tabs.Panel>
+
+                                <Tabs.Panel value="additional" pt="xs">
+                                    <div className="product-div-container-main-product-details-tab-additional">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Brand</td>
+                                                    <td>Mango</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fabric</td>
+                                                    <td>Cotton, Silk</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </Tabs.Panel>
+
+                                <Tabs.Panel value="shipping" pt="xs">
+                                    <div className="product-div-container-main-product-details-tab-shipping">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Shipping Cost</td>
+                                                    <td>
+                                                        <div className="product-div-container-main-product-details-tab-shipping-select">
+                                                            <Select
+                                                                label="Select Your Location"
+                                                                placeholder="Pick one"
+                                                                searchable
+                                                                className='product-div-container-main-product-details-tab-shipping-select-country'
+                                                                nothingFound="No Countries Found"
+                                                                data={['React', 'Angular', 'Svelte', 'Vue']}
+                                                                rightSection={<img src={arrowdown} width={15} alt="arrowdown icon" />}
+                                                            />
+                                                            <Select
+                                                                label=""
+                                                                className='product-div-container-main-product-details-tab-shipping-select-state'
+                                                                placeholder="Pick one"
+                                                                searchable
+                                                                nothingFound="No Countries Found"
+                                                                data={['React', 'Angular', 'Svelte', 'Vue']}
+                                                                rightSection={<img src={arrowdown} width={15} alt="arrowdown icon" />}
+                                                            />
+                                                        </div>
+                                                        <div className="product-div-container-main-product-details-tab-shipping-details">
+                                                            <div className="product-div-container-main-product-details-tab-shipping-details-heding">
+                                                                <p>Free Shipping</p>
+                                                            </div>
+                                                            <div className="product-div-container-main-product-details-tab-shipping-details-content">
+                                                                <p>(Minimum order amount: $100)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="product-div-container-main-product-details-tab-shipping-details">
+                                                            <div className="product-div-container-main-product-details-tab-shipping-details-heding">
+                                                                <p>Flat Rate</p>
+                                                            </div>
+                                                            <div className="product-div-container-main-product-details-tab-shipping-details-content">
+                                                                <p>: $15</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Delivery Time</td>
+                                                    <td>Ready to ship in 2-3 Business Days</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Shop Location</td>
+                                                    <td>Florida, United States</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div className="product-div-container-main-product-details-tab-shipping-map">
+                                            <div className="mapouter">
+                                                <div className="gmap_canvas">
+                                                    <iframe
+                                                        className="gmap_iframe"
+                                                        width="100%"
+                                                        frameBorder="0"
+                                                        scrolling="no"
+                                                        marginHeight="0"
+                                                        marginWidth="0"
+                                                        src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=karur&amp;t=p&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                                                    ></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Tabs.Panel>
+                                <Tabs.Panel value="reviews" pt="xs">
+                                    <div className="product-div-container-main-product-details-tab-reviews">
+                                        <div className="product-div-container-main-product-details-tab-reviews-heding">
+                                            <Rating value={5} readOnly />
+                                            Reviews (1)
+                                        </div>
+                                        <div className="product-div-container-main-product-details-tab-reviews-content">
+                                            <div className="product-div-container-main-product-details-tab-reviews-content-reviewer">
+                                                <div className="product-div-container-main-product-details-tab-reviews-content-reviewer-image"></div>
+                                                <div className="product-div-container-main-product-details-tab-reviews-content-reviewer-content"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Tabs.Panel>
+                                <Tabs.Panel value="comments" pt="xs">
+                                    <div className="product-div-container-main-product-details-tab-description">
+                                        Settings tab content
+                                    </div>
+                                </Tabs.Panel>
+                            </Tabs>
+                        </div>
                     </div>
                 </Container>
+                <Modal
+                    size="lg"
+                    opened={questionModalOpen}
+                    onClose={() => setQuestionModalOpen(false)}
+                    className='product-div-ask-question-modal'
+                >
+                    <div className="product-div-ask-question-modal-content">
+                        <div className="product-div-ask-question-modal-content-heading">
+                            <h1>Send Message</h1>
+                        </div>
+                        <div className="product-div-ask-question-modal-content-shoper-details">
+                            <div className="product-div-ask-question-modal-content-shoper-details-image"></div>
+                            <div className="product-div-ask-question-modal-content-shoper-details-details">
+                                <div className="product-div-ask-question-modal-content-shoper-details-details-name">
+                                    <h1>Mogo</h1>
+                                </div>
+                                <div className="product-div-ask-question-modal-content-shoper-details-details-call">
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-icon">
+                                        <img src={phone} alt="phone icon" />
+                                    </div>
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-content">
+                                        <p>+91 9876543210</p>
+                                    </div>
+                                </div>
+                                <div className="product-div-ask-question-modal-content-shoper-details-details-call">
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-icon">
+                                        <img src={email} alt="email icon" />
+                                    </div>
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-content">
+                                        <p>info@mogo.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="product-div-ask-question-modal-content-form">
+                            <Input.Wrapper
+                                id="input-subject"
+                                label="Subject"
+                            >
+                                <Input id="input-subject" placeholder="Subject" value={questionSubject}
+                                    onChange={handleInputChange} />
+                            </Input.Wrapper>
+                            <Textarea
+                                placeholder="Write a message..."
+                                label="Message"
+                                radius="xs"
+                            />
+                            <div className="product-div-ask-question-modal-content-form-button">
+                                <div className="product-div-ask-question-modal-content-form-button-content">
+                                    <button>
+                                        <img src={send} width={20} alt="send icon" />
+                                        Send
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         </div>
     )

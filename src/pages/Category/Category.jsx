@@ -33,10 +33,6 @@ const Category = () => {
 
     const location = useLocation()
 
-    const category = 'Table_Linen';
-    const subcategory = 'Table_Napkins';
-    const heading = 'This_is_a_heading';
-
     const value = {
         "/products": { title: 'Products', href: '/products' },
         "/category/tablelinen": { title: 'Table Linen', href: '/category/tablelinen' },
@@ -483,6 +479,13 @@ const Category = () => {
 
     const [minValue, setMinValue] = useState('');
     const [maxValue, setMaxValue] = useState('');
+
+
+    const category = 'Table_Linen';
+    const subcategory = 'Table_Napkins';
+    const heading = 'This_is_a_heading';
+
+    
 
     return (
         <div>
