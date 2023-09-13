@@ -485,7 +485,7 @@ const Category = () => {
     const subcategory = 'Table_Napkins';
     const heading = 'This_is_a_heading';
 
-    
+
 
     return (
         <div>
@@ -494,7 +494,23 @@ const Category = () => {
                     <div className="category-div-container-breadcrumb">
                         <Breadcrumb value={items} />
                     </div>
-                    <h1>{returnValue}</h1>
+                    <div className='category-div-container-heading-sort-by'>
+                        <h1>{returnValue}</h1>
+                        <div className="category-div-container-main-product-sortby">
+                            <div className="category-div-container-main-product-sortby-form">
+                                <div className="category-div-container-main-product-sortby-form-label">
+                                    <p>Sort By:</p>
+                                </div>
+                                <div className="category-div-container-main-product-sortby-form-select">
+                                    <Select
+                                        defaultValue={sortByArray[0].value}
+                                        rightSection={<img src={arrowdown} width='10' alt='arrow down' />}
+                                        data={sortByArray}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="category-div-container-main">
                         <div className="category-div-container-main-filter">
                             <div className="category-div-container-main-filter-main">
@@ -642,20 +658,7 @@ const Category = () => {
                             </div>
                         </div>
                         <div className="category-div-container-main-product">
-                            <div className="category-div-container-main-product-sortby">
-                                <div className="category-div-container-main-product-sortby-form">
-                                    <div className="category-div-container-main-product-sortby-form-label">
-                                        <p>Sort By:</p>
-                                    </div>
-                                    <div className="category-div-container-main-product-sortby-form-select">
-                                        <Select
-                                            defaultValue={sortByArray[0].value}
-                                            rightSection={<img src={arrowdown} width='10' alt='arrow down' />}
-                                            data={sortByArray}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+
                             <div className="category-div-container-main-product-product_display">
                                 {
                                     displayedItems.map((productDetails, index) => {

@@ -1,6 +1,7 @@
 .header-div {
     width: 100%;
     height: 60px;
+    font-family: 'Open Sans';
 }
 
 .header-div-container {
@@ -10,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .header-div-container-logo {
@@ -39,14 +40,15 @@
     width: 175px;
     height: 40px;
     color: var(--Para-Color);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
+    font-size: 13px;
 }
 
 .header-div-container-search-input .mantine-gszoqu {
     width: 400px;
     border: 0;
     color: var(--Para-Color);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .header-div-container-search-button {
@@ -64,8 +66,8 @@
 .header-div-container-cart-wishlist-sell-now {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     gap: 1rem;
+    font-size: 14px;
 }
 
 .header-div-container-cart-wishlist-sell-now-cart {
@@ -122,6 +124,8 @@
     color: white;
     background-color: var(--Logo-Color1);
     cursor: pointer;
+    font-size: 14px;
+    /* font-family: 'Open Sans'; */
 }
 
 .header-div-container-cart-wishlist-sell-now-sellnow button:hover {

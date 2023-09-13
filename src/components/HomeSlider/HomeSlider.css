@@ -1,6 +1,7 @@
 .homeslider {
     width: 100%;
     height: 500px;
+    font-family: 'Open Sans';
 }
 
 .swiper {
@@ -97,7 +98,7 @@
 }
 
 .homeslider-slide-content p {
-    font-size: 80px;
+    font-size: 100px;
     color: #fff;
 }
 

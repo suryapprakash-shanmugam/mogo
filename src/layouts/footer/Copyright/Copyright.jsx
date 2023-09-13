@@ -23,11 +23,11 @@ const Copyright = () => {
             <p>Copyright 2023 Mogo - All Rights Reserved. Designed and Developed By Weboney</p>
           </div>
           <div className="copyright-div-container-cards">
-            <img src={visa} width={40} alt="" />
-            <img src={mastercard} width={40} alt="" />
-            <img src={maestro} width={40} alt="" />
-            <img src={discover} width={40} alt="" />
-            <img src={amex} width={40} alt="" />
+            <img src={visa} width={35} height={22} alt="" />
+            <img src={mastercard} width={35} height={22} alt="" />
+            <img src={maestro} width={35} height={22} alt="" />
+            <img src={discover} width={35} height={22} alt="" />
+            <img src={amex} width={35} height={22} alt="" />
           </div>
         </Container>
       </div>

@@ -3,6 +3,7 @@
     height: 60px;
     background-color: var(--Logo-Color3);
     color: white;
+    font-family: 'Open Sans';
 }
 
 .copyright-div-container {
@@ -12,6 +13,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.copyright-div-container-copyright p
+{
+    font-size: 14px;
 }
 .copyright-div-container-cards
 {

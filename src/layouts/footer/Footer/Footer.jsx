@@ -67,19 +67,19 @@ const Footer = () => {
                                 </div>
                                 <div className="footer-div-container-main-follow-as-newsletter-follow-as-icon">
                                     <div className='follow-as-icon'>
-                                        <img src={facebook} width={15} alt="" />
+                                        <img src={facebook} width={18} alt="" />
                                         <p>@mogo_ecomm</p>
                                     </div>
                                     <div className='follow-as-icon'>
-                                        <img src={instagram} width={15} alt="" />
+                                        <img src={instagram} width={18} alt="" />
                                         <p>@mogo_ecommernce</p>
                                     </div>
                                     <div className='follow-as-icon'>
-                                        <img src={twitter} width={15} alt="" />
+                                        <img src={twitter} width={18} alt="" />
                                         <p>@mogo_ecommernce</p>
                                     </div>
                                     <div className='follow-as-icon'>
-                                        <img src={whatsapp} width={15} alt="" />
+                                        <img src={whatsapp} width={18} alt="" />
                                         <p>@mogo</p>
                                     </div>
                                 </div>

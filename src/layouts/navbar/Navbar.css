@@ -4,7 +4,7 @@
     height: 50px;
     display: flex;
     align-items: center;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
     position: relative;
 }
 
@@ -20,6 +20,7 @@
     align-items: center;
     gap: 4rem;
     list-style-type: none;
+    font-size: 14px;
 }
 
 .navbar-div-container-ul2 {
@@ -81,6 +82,8 @@
 .navbar-div-container-ul-dropdown-content-baby-head {
     cursor: pointer;
     font-weight: bold;
+    font-family: 'Open Sans';
+    font-size: 14px;
 }
 
 .navbar-div-container-ul-dropdown-content-table-categories,
@@ -95,6 +98,8 @@
     height: 100%;
     padding-top: 0.5rem;
     gap: 0.5rem;
+    font-family: 'Open Sans';
+    font-size: 13px;
 }
 
 .navbar-div-container-ul-dropdown-content-table-categories li,

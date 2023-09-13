@@ -106,7 +106,7 @@ const HomeBlogs = ({ header, subheader }) => {
                                                     <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time">
                                                         <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-type">
                                                             <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-type-icon">
-                                                                <img src={folder} width="20" alt="" />
+                                                                <img src={folder} width="12" alt="" />
                                                             </div>
                                                             <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-type-icon-content">
                                                                 <p>{homeblogs.type}</p>
@@ -114,7 +114,7 @@ const HomeBlogs = ({ header, subheader }) => {
                                                         </div>
                                                         <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-time">
                                                             <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-type-icon">
-                                                                <img src={time} width="15" alt="" />
+                                                                <img src={time} width="10" alt="" />
                                                             </div>
                                                             <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-type-icon-content">
                                                                 <p>{homeblogs.uploadedtime}</p>

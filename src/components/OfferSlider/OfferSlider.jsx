@@ -21,9 +21,9 @@ import wishlist from '../../assets/header/wishlist.webp'
 import cart from '../../assets/header/cart.webp'
 
 const OfferSlider = ({ header }) => {
-
+    
     const autoplay = useRef(Autoplay({ delay: 2000 }));
-
+    
     //offerslider array
     const offerSliderArray = [
         {
@@ -37,7 +37,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '25',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -50,7 +51,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '29',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -63,7 +65,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '25',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -76,7 +79,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '50',
             currencysymbol: '$',
             productnewprice: '25',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -89,7 +93,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '40',
             currencysymbol: '$',
             productnewprice: '25',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -102,7 +107,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '25',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -115,7 +121,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '35',
             currencysymbol: '$',
             productnewprice: '25',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
         {
             offer: '10%',
@@ -128,7 +135,8 @@ const OfferSlider = ({ header }) => {
             productoldprice: '30',
             currencysymbol: '$',
             productnewprice: '26',
-            link: '/product',
+            link: '/products',
+            like:'0',
         },
     ]
     // const totalSlides = offerSliderArray.length;
@@ -180,12 +188,23 @@ const OfferSlider = ({ header }) => {
                                             <div className="offerslider-div-container-slider-content-seller">
                                                 <p>{offerSlider.productshop}</p>
                                             </div>
-                                            <div className="offerslider-div-container-slider-content-rating-wishlist">
+                                            {/* <div className="offerslider-div-container-slider-content-rating-wishlist">
                                                 <div className="offerslider-div-container-slider-content-rating-wishlist-rating">
                                                     <Rating value={offerSlider.productrating} readOnly />
                                                 </div>
                                                 <div className="offerslider-div-container-slider-content-rating-wishlist-wishlist">
                                                     <img src={wishlist} width="20" alt="" />
+                                                </div>
+                                            </div> */}
+                                            <div className="homeproductlist-div-container-content-product-content-rating-like">
+                                                <div className="homeproductlist-div-container-content-product-content-rating-like-rating">
+                                                    <Rating value={offerSlider.productrating} readOnly />
+                                                </div>
+                                                <div className="homeproductlist-div-container-content-product-content-rating-like-like">
+                                                    <div className="homeproductlist-div-container-content-product-content-rating-like-like-image">
+                                                        <img src={wishlist} alt="" width={10} />
+                                                    </div>
+                                                    {offerSlider.like}
                                                 </div>
                                             </div>
                                             <div className="offerslider-div-container-slider-content-price">

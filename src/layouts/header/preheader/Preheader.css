@@ -2,7 +2,8 @@
     width: 100%;
     height: 40px;
     border-bottom: 1px solid var(--Extra-Light-Gray);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
+    font-size: 14px;
 }
 
 .preheader-container {
@@ -12,11 +13,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .preheader-container-location-currency-user-currency .mantine-1cn2mlo {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .preheader-container-contact-sell {
@@ -115,7 +116,7 @@
     flex-direction: column;
     border-radius: 8px;
     transition: all 500ms ease-in-out;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
     z-index: 9;
 }
 
@@ -175,12 +176,12 @@
     font-size: 16px;
     text-align: center;
     padding: 0rem 0rem 1.5rem;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .preheader-location-modal-body-head {
     text-align: center;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .preheader-location-modal-body-content {
@@ -192,7 +193,7 @@
 
 .preheader-location-modal-body-content .mantine-gszoqu {
     height: 40px;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans';
 }
 
 .preheader-location-modal-body-content button {

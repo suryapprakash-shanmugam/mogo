@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 
 //import mantine packages
-import { Container, Input, Modal, Rating, Select, Tabs, Textarea } from '@mantine/core'
+import { Container, Input, Modal, Rating, ScrollArea, Select, Tabs, Textarea } from '@mantine/core'
 
 //import react-router-dom packages
 
@@ -29,7 +29,62 @@ import instagram_fill from '../../assets/footer/follow-as/instagram_fill.webp'
 import twitter_fill from '../../assets/footer/follow-as/twitter_fill.webp'
 import whatsapp_fill from '../../assets/footer/follow-as/whatsapp_fill.webp'
 import arrowdown from '../../assets/preheader/arrow-down.webp'
+import OfferSlider from '../../components/OfferSlider/OfferSlider';
+import angleleft from '../../assets/pagination/angleleft.webp'
+import angleright from '../../assets/pagination/angleright.webp'
 
+//import images
+import image1 from '../../assets/home/grid-category/baby_linen.webp'
+import image2 from '../../assets/home/grid-category/bath_linen.webp'
+import image3 from '../../assets/home/grid-category/bed_linen.webp'
+import image4 from '../../assets/home/grid-category/kitchen_linen.webp'
+import image5 from '../../assets/home/grid-category/living_linen.webp'
+import image6 from '../../assets/home/grid-category/table_linen.webp'
+import image7 from '../../assets/home/season/season1.webp'
+import image8 from '../../assets/home/season/season2.webp'
+
+//array for product
+const productArray = [
+    {
+        color: '1',
+        image: [
+            {
+                image: image1,
+            },
+            {
+                image: image2,
+            }
+        ]
+    },
+    {
+        color: '2',
+        image: [
+            {
+                image: image3,
+            },
+            {
+                image: image4,
+            },
+            {
+                image: image5,
+            }
+        ]
+    },
+    {
+        color: '3',
+        image: [
+            {
+                image: image6,
+            },
+            {
+                image: image7,
+            },
+            {
+                image: image8,
+            }
+        ]
+    },
+]
 
 // array for breadcrumb
 
@@ -95,6 +150,74 @@ const Product = ({ category, subcategory, heading }) => {
         setIsWishlist(!isWishlist);
     };
 
+    //send heading Clothing
+    const moreheader = 'More from Mogo';
+    const likeheader = 'You May Also Like';
+
+    const [selectedColor, setSelectedColor] = useState('1');
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    // const [currentDisplayImage, setCurrentDisplayImage] = useState(''); // Track the currently displayed image
+
+    const handleColorButtonClick = (color) => {
+        setSelectedColor(color);
+        setCurrentImageIndex(0); // Reset the image index when a new color is selected
+        // setCurrentDisplayImage(''); // Reset the currently displayed image when changing colors
+    };
+
+    const handleImageClick = (imageSrc, imageIndex) => {
+        // setCurrentDisplayImage(imageSrc);
+        setCurrentImageIndex(imageIndex);
+    };
+
+    // Function to handle next image
+    const handleNextImage = () => {
+        if (selectedColor) {
+            const selectedProduct = productArray.find(
+                (product) => product.color === selectedColor
+            );
+            if (selectedProduct && selectedProduct.image.length > 0) {
+                setCurrentImageIndex((prevIndex) => {
+                    const newIndex = (prevIndex + 1) % selectedProduct.image.length;
+                    return newIndex;
+                });
+            }
+        }
+    };
+
+    // Function to handle previous image
+    const handlePreviousImage = () => {
+        if (selectedColor) {
+            const selectedProduct = productArray.find(
+                (product) => product.color === selectedColor
+            );
+            if (selectedProduct && selectedProduct.image.length > 0) {
+                setCurrentImageIndex((prevIndex) => {
+                    const newIndex =
+                        (prevIndex - 1 + selectedProduct.image.length) %
+                        selectedProduct.image.length;
+                    return newIndex;
+                });
+            }
+        }
+    };
+    // Function to get the currently displayed image
+    const getCurrentImage = () => {
+        if (selectedColor) {
+            const selectedProduct = productArray.find(
+                (product) => product.color === selectedColor
+            );
+            if (
+                selectedProduct &&
+                selectedProduct.image.length > 0 &&
+                currentImageIndex >= 0 &&
+                currentImageIndex < selectedProduct.image.length
+            ) {
+                return selectedProduct.image[currentImageIndex].image;
+            }
+        }
+        return null;
+    };
+
     return (
         <div>
             <div className="product-div">
@@ -107,19 +230,33 @@ const Product = ({ category, subcategory, heading }) => {
                             <div className="product-div-container-main-product-display-image">
                                 <div className="product-div-container-main-product-display-image-container">
                                     <div className="product-div-container-main-product-display-image-container-images">
-                                        <div className="product-div-container-main-product-display-image-container-images-div">
-
-                                        </div>
-                                        <div className="product-div-container-main-product-display-image-container-images-div">
-
-                                        </div>
-                                        <div className="product-div-container-main-product-display-image-container-images-div">
-
-                                        </div>
+                                        {selectedColor && (
+                                            <div className="product-div-container-main-product-display-image-container-images-div">
+                                                {productArray
+                                                    .find((product) => product.color === selectedColor)
+                                                    .image.map((img, index) => (
+                                                        <img
+                                                            key={index}
+                                                            src={img.image}
+                                                            alt={`product ${index}`}
+                                                            onClick={() => handleImageClick(img.image, index)}
+                                                        />
+                                                    ))}
+                                            </div>
+                                        )}
                                     </div>
-                                    <div className="product-div-container-main-product-display-image-container-mainimage">
-
-                                    </div>
+                                    {selectedColor && (
+                                        <div className="product-div-container-main-product-display-image-container-mainimage">
+                                            <img
+                                                src={getCurrentImage()}
+                                                alt={`First product of Selected Color`}
+                                            />
+                                            <div className="product-div-container-main-product-display-image-container-prev-next">
+                                                <button onClick={handlePreviousImage}><img src={angleleft} alt="angleleft icon" /></button>
+                                                <button onClick={handleNextImage}><img src={angleright} alt="angleright icon" /></button>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="product-div-container-main-product-display-content">
@@ -204,9 +341,14 @@ const Product = ({ category, subcategory, heading }) => {
                                     </div>
                                     <div className="product-div-container-main-product-display-content-variation-color">
                                         <div className="product-div-container-main-product-display-content-variation-color-individual">
-                                            <button></button>
-                                            <button></button>
-                                            <button></button>
+                                            {productArray.map((product) => (
+                                                <button
+                                                    key={product.color}
+                                                    onClick={() => handleColorButtonClick(product.color)}
+                                                >
+                                                    {product.color}
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -290,8 +432,8 @@ const Product = ({ category, subcategory, heading }) => {
                                     <Tabs.Tab value="description">Description</Tabs.Tab>
                                     <Tabs.Tab value="additional">Additional Information</Tabs.Tab>
                                     <Tabs.Tab value="shipping">Shipping & Location</Tabs.Tab>
-                                    <Tabs.Tab value="reviews">Reviews</Tabs.Tab>
-                                    <Tabs.Tab value="comments">Comments</Tabs.Tab>
+                                    <Tabs.Tab value="reviews">Reviews (1)</Tabs.Tab>
+                                    <Tabs.Tab value="comments">Comments (0)</Tabs.Tab>
                                 </Tabs.List>
 
                                 <Tabs.Panel value="description" pt="xs">
@@ -385,6 +527,7 @@ const Product = ({ category, subcategory, heading }) => {
                                                         scrolling="no"
                                                         marginHeight="0"
                                                         marginWidth="0"
+                                                        title='vendor map'
                                                         src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=karur&amp;t=p&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                                                     ></iframe>
                                                 </div>
@@ -401,19 +544,50 @@ const Product = ({ category, subcategory, heading }) => {
                                         <div className="product-div-container-main-product-details-tab-reviews-content">
                                             <div className="product-div-container-main-product-details-tab-reviews-content-reviewer">
                                                 <div className="product-div-container-main-product-details-tab-reviews-content-reviewer-image"></div>
-                                                <div className="product-div-container-main-product-details-tab-reviews-content-reviewer-content"></div>
+                                                <div className="product-div-container-main-product-details-tab-reviews-content-reviewer-content">
+                                                    <Rating value={5} readOnly />
+                                                    <p className='product-div-container-main-product-details-tab-reviews-content-reviewer-content-heading'>Peter Jone</p>
+                                                    <p className='product-div-container-main-product-details-tab-reviews-content-reviewer-content-review'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem laudantium voluptas dignissimos, rerum quasi tempora quia culpa, quibusdam vel, est ut sit fugit! Accusantium, aperiam. At vel nemo corrupti.</p>
+                                                    <p className='product-div-container-main-product-details-tab-reviews-content-reviewer-content-time'>6 month ago</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </Tabs.Panel>
                                 <Tabs.Panel value="comments" pt="xs">
-                                    <div className="product-div-container-main-product-details-tab-description">
-                                        Settings tab content
+                                    <div className="product-div-container-main-product-details-tab-comments">
+                                        <div className="product-div-container-main-product-details-tab-comments-main">
+                                            <div className="product-div-container-main-product-details-tab-comments-main-show-comment">
+                                                <p className="product-div-container-main-product-details-tab-comments-main-show-comment-heading">Comments (1)</p>
+                                                <ScrollArea h={250} offsetScrollbars scrollbarSize={6} scrollHideDelay={500}>
+                                                    <div className="product-div-container-main-product-details-tab-comments-main-show-comment-individual">
+                                                        <div className="product-div-container-main-product-details-tab-comments-main-show-comment-individual-image"></div>
+                                                        <div className="product-div-container-main-product-details-tab-comments-main-show-comment-individual-content">
+                                                            <p className='product-div-container-main-product-details-tab-comments-main-show-comment-individual-content-user'>Admin</p>
+                                                            <p className="product-div-container-main-product-details-tab-comments-main-show-comment-individual-content-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, inventore corporis neque beatae minima ipsam voluptatum laboriosam, aliquam atque vero mollitia accusantium doloribus at repellendus! Facilis, cum. Minus, sed sit?</p>
+                                                            <p className="product-div-container-main-product-details-tab-comments-main-show-comment-individual-content-time">1 hour Ago</p>
+                                                        </div>
+                                                    </div>
+                                                </ScrollArea>
+                                            </div>
+                                            <div className="product-div-container-main-product-details-tab-comments-main-comment-form">
+                                                <label htmlFor="product-div-container-main-product-details-tab-comments-main-comment-form-textarea">Add a comment</label>
+                                                <Textarea
+                                                    placeholder="Comment"
+                                                    autosize
+                                                    minRows={6}
+                                                    className='product-div-container-main-product-details-tab-comments-main-comment-form-textarea'
+                                                />
+                                                <button className='product-div-container-main-product-details-tab-comments-main-comment-form-button'>Submit</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Tabs.Panel>
                             </Tabs>
                         </div>
                     </div>
+                    <OfferSlider header={moreheader} />
+                    <OfferSlider header={likeheader} />
                 </Container>
                 <Modal
                     size="lg"

@@ -2,6 +2,7 @@
     width: 100%;
     height: 350px;
     background-color: var(--Logo-Color1);
+    font-family: 'Open Sans';
 }
 
 .footer-div-container {
@@ -49,6 +50,7 @@
     height: 20%;
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .footer-div-container-main-logo-description-address-contact-address {
@@ -56,6 +58,7 @@
     height: 20%;
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .footer-div-container-main-logo-description-address-contact-contact {
@@ -63,6 +66,7 @@
     height: 20%;
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .footer-div-container-main-quick-links {
@@ -74,6 +78,9 @@
 .footer-div-container-main-quick-links-heading {
     width: 100%;
     height: 30%;
+}
+.footer-div-container-main-quick-links-heading h2{
+    font-size: 18px;
 }
 
 .footer-div-container-main-quick-links-ul {
@@ -90,6 +97,7 @@
 
 .footer-div-container-main-quick-links-ul ul li {
     cursor: pointer;
+    font-size: 14px;
 }
 
 .footer-div-container-main-information {
@@ -101,6 +109,9 @@
 .footer-div-container-main-information-heading {
     width: 100%;
     height: 30%;
+}
+.footer-div-container-main-information-heading h2{
+    font-size: 18px;
 }
 
 .footer-div-container-main-information-ul {
@@ -117,6 +128,12 @@
 
 .footer-div-container-main-information-ul ul li {
     cursor: pointer;
+    font-size: 14px;
+}
+
+.footer-div-container-main-follow-as-newsletter-follow-as-heading h2
+{
+    font-size: 18px;
 }
 
 .footer-div-container-main-follow-as-newsletter {
@@ -141,6 +158,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    font-size: 14px;
 }
 
 .follow-as-icon {
@@ -161,6 +179,9 @@
 
 .footer-div-container-main-follow-as-newsletter-newsletter-heading {
     color: white;
+}
+.footer-div-container-main-follow-as-newsletter-newsletter-heading h2{
+    font-size: 18px;
 }
 
 .footer-div-container-main-follow-as-newsletter-newsletter-form {

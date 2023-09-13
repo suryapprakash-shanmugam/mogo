@@ -2,6 +2,7 @@
     width: 100%;
     height: 450px;
     margin: 2rem 0rem;
+    font-family: 'Open Sans';
 }
 
 .offerslider-div-container {
@@ -12,6 +13,7 @@
 
 .offerslider-div-container-heading {
     margin-bottom: 1rem;
+    font-size: 20px;
 }
 
 .offerslider-div-container-slider {
@@ -59,7 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 12px;
     top: 10px;
     left: 8px;
 }
@@ -138,6 +140,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .offerslider-div-container-slider-content-seller {
@@ -146,6 +149,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .offerslider-div-container-slider-content-rating-wishlist {
@@ -174,6 +178,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-size: 14px;
 }
 
 .offerslider-div-container-slider-content-price-old {

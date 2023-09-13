@@ -41,7 +41,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -52,7 +52,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -63,7 +63,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -74,7 +74,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -85,7 +85,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -96,7 +96,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -107,7 +107,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -118,7 +118,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -129,7 +129,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -140,7 +140,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -151,7 +151,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -162,7 +162,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -173,7 +173,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
         {
             image: bath_linen,
@@ -184,7 +184,7 @@ const HomeProductsList = ({ header, subheader }) => {
             like: '0',
             currencysymbol: '$',
             price: '10',
-            link: '/product',
+            link: '/products',
         },
     ]
 
