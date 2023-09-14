@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 
 //import mantine packages
-import { Container, Input, Modal, Rating, ScrollArea, Select, Tabs, Textarea } from '@mantine/core'
+import { Container, Input, Modal, Rating, ScrollArea, Select, Tabs, Text, Textarea } from '@mantine/core'
 
 //import react-router-dom packages
 
@@ -42,6 +42,9 @@ import image5 from '../../assets/home/grid-category/living_linen.webp'
 import image6 from '../../assets/home/grid-category/table_linen.webp'
 import image7 from '../../assets/home/season/season1.webp'
 import image8 from '../../assets/home/season/season2.webp'
+
+//import react router dom packages
+import { Link } from 'react-router-dom';
 
 //array for product
 const productArray = [
@@ -265,7 +268,7 @@ const Product = ({ category, subcategory, heading }) => {
                                 </div>
                                 <div className="product-div-container-main-product-display-content-shoper">
                                     <div className="product-div-container-main-product-display-content-shoper-by-rating">
-                                        <p>By </p>
+                                        <p>By <span>Admin</span></p>
                                         <div className="product-div-container-main-product-display-content-shoper-by-rating-rating">
                                             <Rating value={5} readOnly />
                                             <p>{'(1)'}</p>
@@ -313,54 +316,58 @@ const Product = ({ category, subcategory, heading }) => {
                                     <div className="product-div-container-main-product-display-content-price-askquestion-askquestion">
                                         <button onClick={() => setQuestionModalOpen(true)}>
                                             <div className="product-div-container-main-product-display-content-price-askquestion-askquestion-image">
-                                                <img src={email} width={14} alt="email icon" />
+                                                <img src={email} width={12} alt="email icon" />
                                             </div>
                                             <div className="product-div-container-main-product-display-content-price-askquestion-askquestion-content">Ask Question</div>
                                         </button>
                                     </div>
                                 </div>
-                                <div className="product-div-container-main-product-display-content-status">
-                                    <div className="product-div-container-main-product-display-content-status-heading">
-                                        <p>Status</p>
+                                <div className="product-div-container-main-product-display-content-status-sku">
+                                    <div className="product-div-container-main-product-display-content-status">
+                                        <div className="product-div-container-main-product-display-content-status-heading">
+                                            <p>Status</p>
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-status-status">
+                                            <p>In Stock</p>
+                                        </div>
                                     </div>
-                                    <div className="product-div-container-main-product-display-content-status-status">
-                                        <p>In Stock</p>
-                                    </div>
-                                </div>
-                                <div className="product-div-container-main-product-display-content-sku">
-                                    <div className="product-div-container-main-product-display-content-sku-heading">
-                                        <p>SKU</p>
-                                    </div>
-                                    <div className="product-div-container-main-product-display-content-sku-sku">
-                                        <p>QYJHUBIUHOI9967</p>
-                                    </div>
-                                </div>
-                                <div className="product-div-container-main-product-display-content-variation">
-                                    <div className="product-div-container-main-product-display-content-variation-heading">
-                                        <p>Color</p>
-                                    </div>
-                                    <div className="product-div-container-main-product-display-content-variation-color">
-                                        <div className="product-div-container-main-product-display-content-variation-color-individual">
-                                            {productArray.map((product) => (
-                                                <button
-                                                    key={product.color}
-                                                    onClick={() => handleColorButtonClick(product.color)}
-                                                >
-                                                    {product.color}
-                                                </button>
-                                            ))}
+                                    <div className="product-div-container-main-product-display-content-sku">
+                                        <div className="product-div-container-main-product-display-content-sku-heading">
+                                            <p>SKU</p>
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-sku-sku">
+                                            <p>QYJHUBIUHOI9967</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="product-div-container-main-product-display-content-size">
-                                    <div className="product-div-container-main-product-display-content-size-heading">
-                                        <p>Size</p>
+                                <div className="product-div-container-main-product-display-content-variation-size">
+                                    <div className="product-div-container-main-product-display-content-variation">
+                                        <div className="product-div-container-main-product-display-content-variation-heading">
+                                            <p>Color</p>
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-variation-color">
+                                            <div className="product-div-container-main-product-display-content-variation-color-individual">
+                                                {productArray.map((product) => (
+                                                    <button
+                                                        key={product.color}
+                                                        onClick={() => handleColorButtonClick(product.color)}
+                                                    >
+                                                        {product.color}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="product-div-container-main-product-display-content-size-color">
-                                        <div className="product-div-container-main-product-display-content-size-color-individual">
-                                            <button></button>
-                                            <button></button>
-                                            <button></button>
+                                    <div className="product-div-container-main-product-display-content-size">
+                                        <div className="product-div-container-main-product-display-content-size-heading">
+                                            <p>Size</p>
+                                        </div>
+                                        <div className="product-div-container-main-product-display-content-size-color">
+                                            <div className="product-div-container-main-product-display-content-size-color-individual">
+                                                <button></button>
+                                                <button></button>
+                                                <button></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -385,16 +392,18 @@ const Product = ({ category, subcategory, heading }) => {
                                         </button>
                                     </div>
                                     <div className="product-div-container-main-product-display-content-counter-cart-wishlist-cart">
-                                        <button>
-                                            <img src={cart_fill} width={20} alt="cart icon" />
-                                            Add to Cart
-                                        </button>
+                                        <Text component={Link} to={'/cart'}>
+                                            <button>
+                                                <img src={cart_fill} width={14} alt="cart icon" />
+                                                Add to Cart
+                                            </button>
+                                        </Text>
                                     </div>
                                     <div className="product-div-container-main-product-display-content-counter-cart-wishlist-wishlist">
                                         <button onClick={toggleWishlist}>
                                             {isWishlist ? (
                                                 <>
-                                                    <img src={wishlist} width={20} alt="wishlist icon" /> Add to Wishlist
+                                                    <img src={wishlist} width={26} alt="wishlist icon" /> Add to Wishlist
                                                 </>
                                             ) : (
                                                 <>
@@ -406,7 +415,7 @@ const Product = ({ category, subcategory, heading }) => {
                                 </div>
                                 <div className="product-div-container-main-product-display-content-share">
                                     <div className="product-div-container-main-product-display-content-share-heading">
-                                        <p>Share</p>
+                                        <p>Share:</p>
                                     </div>
                                     <div className="product-div-container-main-product-display-content-share-icons">
                                         <div className="product-div-container-main-product-display-content-share-icon">
@@ -599,49 +608,52 @@ const Product = ({ category, subcategory, heading }) => {
                         <div className="product-div-ask-question-modal-content-heading">
                             <h1>Send Message</h1>
                         </div>
-                        <div className="product-div-ask-question-modal-content-shoper-details">
-                            <div className="product-div-ask-question-modal-content-shoper-details-image"></div>
-                            <div className="product-div-ask-question-modal-content-shoper-details-details">
-                                <div className="product-div-ask-question-modal-content-shoper-details-details-name">
-                                    <h1>Mogo</h1>
-                                </div>
-                                <div className="product-div-ask-question-modal-content-shoper-details-details-call">
-                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-icon">
-                                        <img src={phone} alt="phone icon" />
+                        <div className="product-div-ask-question-modal-content-main">
+                            <div className="product-div-ask-question-modal-content-shoper-details">
+                                <div className="product-div-ask-question-modal-content-shoper-details-image"></div>
+                                <div className="product-div-ask-question-modal-content-shoper-details-details">
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-name">
+                                        <h1>Mogo</h1>
                                     </div>
-                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-content">
-                                        <p>+91 9876543210</p>
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call">
+                                        <div className="product-div-ask-question-modal-content-shoper-details-details-call-icon">
+                                            <img src={phone} alt="phone icon" />
+                                        </div>
+                                        <div className="product-div-ask-question-modal-content-shoper-details-details-call-content">
+                                            <p>+91 9876543210</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="product-div-ask-question-modal-content-shoper-details-details-call">
-                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-icon">
-                                        <img src={email} alt="email icon" />
-                                    </div>
-                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call-content">
-                                        <p>info@mogo.com</p>
+                                    <div className="product-div-ask-question-modal-content-shoper-details-details-call">
+                                        <div className="product-div-ask-question-modal-content-shoper-details-details-call-icon">
+                                            <img src={email} alt="email icon" />
+                                        </div>
+                                        <div className="product-div-ask-question-modal-content-shoper-details-details-call-content">
+                                            <p>info@mogo.com</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="product-div-ask-question-modal-content-form">
-                            <Input.Wrapper
-                                id="input-subject"
-                                label="Subject"
-                            >
-                                <Input id="input-subject" placeholder="Subject" value={questionSubject}
-                                    onChange={handleInputChange} />
-                            </Input.Wrapper>
-                            <Textarea
-                                placeholder="Write a message..."
-                                label="Message"
-                                radius="xs"
-                            />
-                            <div className="product-div-ask-question-modal-content-form-button">
-                                <div className="product-div-ask-question-modal-content-form-button-content">
-                                    <button>
-                                        <img src={send} width={20} alt="send icon" />
-                                        Send
-                                    </button>
+                            <div className="product-div-ask-question-modal-content-form">
+                                <Input.Wrapper
+                                    id="input-subject"
+                                    label="Subject"
+                                >
+                                    <Input id="input-subject" placeholder="Subject" value={questionSubject}
+                                        onChange={handleInputChange} />
+                                </Input.Wrapper>
+                                <Textarea
+                                    placeholder="Write a message..."
+                                    label="Message"
+                                    radius="xs"
+                                    minRows={3}
+                                />
+                                <div className="product-div-ask-question-modal-content-form-button">
+                                    <div className="product-div-ask-question-modal-content-form-button-content">
+                                        <button>
+                                            <img src={send} width={14} alt="send icon" />
+                                            Send
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

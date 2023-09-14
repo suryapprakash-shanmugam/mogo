@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import mantine packages
-import { Checkbox, Container, Input, Rating, Select } from '@mantine/core'
+import { Checkbox, Container, Input, Rating, ScrollArea, Select } from '@mantine/core'
 
 //import Breadcrumb component from components->Breadcrumb
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
@@ -514,6 +514,7 @@ const Category = () => {
                     <div className="category-div-container-main">
                         <div className="category-div-container-main-filter">
                             <div className="category-div-container-main-filter-main">
+                            <ScrollArea h={225} offsetScrollbars scrollbarSize={6} scrollHideDelay={500}>
                                 <div className={returnValue !== 'Products' ? 'category-div-container-main-filter-main-category' : 'category-div-container-main-filter-main-category-product'}>
                                     <p className='category-div-container-main-filter-main-category-head'>Category</p>
                                     <div className="category-div-container-main-filter-main-category-content">
@@ -562,10 +563,12 @@ const Category = () => {
                                     </div>
 
                                 </div>
+                                </ScrollArea>
                                 <hr />
                                 {
                                     returnValue !== 'Products' ? (
                                         <>
+                                        <ScrollArea h={250} offsetScrollbars scrollbarSize={6} scrollHideDelay={500}>
                                             <div className="category-div-container-main-filter-main-brand">
                                                 <p className='category-div-container-main-filter-main-category-head'>Brand</p>
                                                 <div className="category-div-container-main-filter-main-brand-form-display">
@@ -586,6 +589,7 @@ const Category = () => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            </ScrollArea>
                                             <hr />
                                             <div className="category-div-container-main-filter-main-fabric">
                                                 <p className='category-div-container-main-filter-main-category-head'>Fabric</p>
@@ -597,16 +601,19 @@ const Category = () => {
                                                             placeholder="Search Fabric"
                                                         />
                                                     </div>
-                                                    <div className="category-div-container-main-filter-main-fabric-form-display-display">
-                                                        {filteredBrands1.map((brand, index) => (
-                                                            <Checkbox
-                                                                key={index}
-                                                                label={brand.brandname}
-                                                            />
-                                                        ))}
-                                                    </div>
+                                                    <ScrollArea h={175} offsetScrollbars scrollbarSize={6} scrollHideDelay={500}>
+                                                        <div className="category-div-container-main-filter-main-fabric-form-display-display">
+                                                            {filteredBrands1.map((brand, index) => (
+                                                                <Checkbox
+                                                                    key={index}
+                                                                    label={brand.brandname}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </ScrollArea>
                                                 </div>
                                             </div>
+                                            <hr />
                                             <div className="category-div-container-main-filter-main-price">
                                                 <p className='category-div-container-main-filter-main-category-head'>Price</p>
                                                 <div className="category-div-container-main-filter-main-price-form">
@@ -676,14 +683,15 @@ const Category = () => {
                                                         }
                                                         <div className="category-div-container-main-product-product_display-individual-image-cart-wishlist">
                                                             <div className="category-div-container-main-product-product_display-individual-image-cart-wishlist-cart">
-                                                                <img src={cart} alt="cart icon" />
+                                                                <img src={cart} width={20} alt="cart icon" />
                                                             </div>
                                                             <div className="category-div-container-main-product-product_display-individual-image-cart-wishlist-wishlist">
-                                                                <img src={wishlist} alt="wishlist icon" />
+                                                                <img src={wishlist} width={20} alt="wishlist icon" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </Link>
+                                                <div className="category-div-container-main-product-product_display-individual-content">
                                                 <div className="category-div-container-main-product-product_display-individual-heading">
                                                     <p>{productDetails.heading}</p>
                                                 </div>
@@ -695,7 +703,7 @@ const Category = () => {
                                                         <Rating value={productDetails.rating} readOnly />
                                                     </div>
                                                     <div className="category-div-container-main-product-product_display-individual-rating-heart-heart">
-                                                        <div><img src={wishlist} width={15} alt="" /></div>
+                                                        <div><img src={wishlist} width={14} alt="" /></div>
                                                         <div>{productDetails.like}</div>
                                                     </div>
 
@@ -705,6 +713,7 @@ const Category = () => {
                                                         productDetails.oldprice !== '' ? <p className='oldprice'>{`${productDetails.currencysymbol}${productDetails.oldprice}`}</p> : ''
                                                     }
                                                     <p>{`${productDetails.currencysymbol}${productDetails.newprice}`}</p>
+                                                </div>
                                                 </div>
                                             </div>
                                         )

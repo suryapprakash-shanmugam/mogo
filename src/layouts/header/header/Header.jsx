@@ -49,6 +49,7 @@ const Header = () => {
                         </Paper>
                     </div>
                     <div className="header-div-container-cart-wishlist-sell-now">
+                        <Text component={Link} to='/cart'>
                         <div className="header-div-container-cart-wishlist-sell-now-cart">
                             <div className="header-div-container-cart-wishlist-sell-now-cart-image">
                                 <img src={cart} alt="carticon" />
@@ -57,6 +58,7 @@ const Header = () => {
                                 <p>Cart</p>
                             </div>
                         </div>
+                        </Text>
                         <div className="header-div-container-cart-wishlist-sell-now-wishlist">
                             <div className="header-div-container-cart-wishlist-sell-now-wishlist-image">
                                 <img src={wishlist} alt="heart-icon" />
