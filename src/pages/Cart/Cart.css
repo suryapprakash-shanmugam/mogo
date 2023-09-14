@@ -182,6 +182,7 @@
     color: white;
     font-family: 'Open Sans';
     font-size: 14px;
+    border: 0;
 }
 
 .cart-div-container-main-right-checkout-accepted-payments {
@@ -190,10 +191,11 @@
     justify-content: center;
     gap: 0.5rem;
 }
-.cart-div-container-main-right-discount-coupen-form
-{
+
+.cart-div-container-main-right-discount-coupen-form {
     width: 100%;
 }
+
 .cart-div-container-main-right-discount-coupen-form label {
     font-weight: bold;
     font-size: 14px;
@@ -201,7 +203,12 @@
 
 .cart-div-container-main-right-discount-coupen-form-form {
     margin-top: 14px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.cart-div-container-main-right-discount-coupen-form-form .mantine-gszoqu {
+    height: 40px;
 }
 
 .cart-div-container-main-right-discount-coupen-form-button {
