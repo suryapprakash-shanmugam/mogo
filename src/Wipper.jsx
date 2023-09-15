@@ -88,6 +88,8 @@ const Wipper = () => {
 
                 <Route path="/cart" element={<CustumRouters />} />
 
+                <Route path="/checkout" element={<CustumRouters />} />
+
             </Routes>
         </div>
     )

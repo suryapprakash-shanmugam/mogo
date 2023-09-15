@@ -28,8 +28,11 @@ import Category from './pages/Category/Category'
 //import product from src->pages->product
 import Product from './pages/Product/Product';
 
-//import product from src->pages->cart
+//import cart from src->pages->cart
 import Cart from './pages/Cart/Cart';
+
+//import checkout from src->pages->checkout
+import Checkout from './pages/Checkout/Checkout';
 
 
 
@@ -42,7 +45,7 @@ const Routers = () => {
         '/products': <Category />,
 
         '/category': <Category />,
-        
+
         '/category/tablelinen': <Category />,
         '/tablelinen/cloth': <Category />,
         '/tablelinen/placemat': <Category />,
@@ -51,16 +54,16 @@ const Routers = () => {
         '/tablelinen/napkinsrings': <Category />,
         '/tablelinen/coasters': <Category />,
         '/tablelinen/breadbaskets': <Category />,
-        
-        
+
+
         '/category/kitchenlinen': <Category />,
         '/kitchenlinen/aprons': <Category />,
         '/kitchenlinen/gloves': <Category />,
         '/kitchenlinen/potholders': <Category />,
         '/kitchenlinen/towels': <Category />,
         '/kitchenlinen/dishcloths': <Category />,
-        
-        
+
+
         '/category/bathlinen': <Category />,
         '/bathlinen/towels': <Category />,
         '/bathlinen/handtowels': <Category />,
@@ -71,8 +74,8 @@ const Routers = () => {
         '/bathlinen/towelracks': <Category />,
         '/bathlinen/towelrings': <Category />,
         '/bathlinen/towelhooks': <Category />,
-        
-        
+
+
         '/category/bedlinen': <Category />,
         '/bedlinen/bedsheets': <Category />,
         '/bedlinen/pillowcases': <Category />,
@@ -84,8 +87,8 @@ const Routers = () => {
         '/bedlinen/quilts': <Category />,
         '/bedlinen/bolsters': <Category />,
         '/bedlinen/shams': <Category />,
-        
-        
+
+
         '/category/livinglinen': <Category />,
         '/livinglinen/curtains': <Category />,
         '/livinglinen/throws': <Category />,
@@ -97,8 +100,8 @@ const Routers = () => {
         '/livinglinen/hammocks': <Category />,
         '/livinglinen/chaircovers': <Category />,
         '/livinglinen/doorstoppers': <Category />,
-        
-        
+
+
         '/category/babylinen': <Category />,
         '/babylinen/hoodies': <Category />,
         '/babylinen/blanket': <Category />,
@@ -119,7 +122,7 @@ const Routers = () => {
         '/babylinen/fittedsheet': <Category />,
         '/babylinen/apron': <Category />,
         '/babylinen/bumper': <Category />,
-        
+
         '/product/:category/:subcategory/:heading': (
             <Product
                 category={category}
@@ -129,13 +132,15 @@ const Routers = () => {
         ),
 
         '/cart': <Cart />,
-        
+
+        '/checkout': <Checkout />,
+
     }
-    
+
     const renderBodyData =
-    category === '' || category === undefined
-    ? bodyContent[location.pathname] || null
-    : (
+        category === '' || category === undefined
+            ? bodyContent[location.pathname] || null
+            : (
                 <Product
                     category={category}
                     subcategory={subcategory}

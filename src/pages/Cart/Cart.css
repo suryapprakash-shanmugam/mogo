@@ -135,6 +135,10 @@
     font-size: 14px;
 }
 
+.cart-div-container-main-left-keep-shoping button:hover {
+    background-color: var(--Logo-Color2);
+}
+
 .cart-div-container-main-left-keep-shoping button img {
     margin-right: 8px;
 }
@@ -185,6 +189,10 @@
     border: 0;
 }
 
+.cart-div-container-main-right-checkout-button button:hover {
+    background-color: var(--Logo-Color2);
+}
+
 .cart-div-container-main-right-checkout-accepted-payments {
     display: flex;
     margin: 1rem 0;
@@ -226,4 +234,8 @@
     border: 0;
     font-size: 14px;
     font-family: 'Open Sans';
+}
+
+.cart-div-container-main-right-discount-coupen-form-button button:hover {
+    background-color: var(--Logo-Color2);
 }

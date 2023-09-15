@@ -99,7 +99,9 @@ const Cart = () => {
                                 <p><span>$</span>80.10</p>
                             </div>
                             <div className="cart-div-container-main-right-checkout-button mb-15">
-                                <button>Continue to Checkout</button>
+                                <Text component={Link} to='/checkout'>
+                                    <button>Continue to Checkout</button>
+                                </Text>
                             </div>
                             <div className="cart-div-container-main-right-checkout-accepted-payments">
                                 <img src={visa} width={42} height={26} alt="" />
