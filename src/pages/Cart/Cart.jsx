@@ -1,5 +1,5 @@
 //import react packages
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 //import mantine packages
 import { Container, Input, Text } from '@mantine/core'
@@ -22,6 +22,18 @@ import visa from '../../assets/footer/copyright/visa.webp'
 import { Link } from 'react-router-dom'
 
 const Cart = () => {
+
+    // Quantity Value 
+    const [quantityValue, setQuantityValue] = useState(1)
+
+    // useEffect 
+    useEffect(() => {
+        if (quantityValue <= 0) {
+            setQuantityValue(1)
+        }
+        // setTotalPrice(quantityValue * 999)
+    }, [quantityValue])
+
     return (
         <div>
             <div className="cart-div">
@@ -74,7 +86,25 @@ const Cart = () => {
                                         </div>
                                     </div>
                                     <div className="cart-div-container-main-cart-products-count">
+                                        <div className='product-div-container-main-product-display-content-counter-cart-wishlist-counter'>
+                                            <button
+                                                disabled={quantityValue === 1 ? true : false}
+                                                onClick={() => setQuantityValue(quantityValue - 1)}
+                                            >
+                                                -
+                                            </button>
+                                            <input
+                                                onChange={(e) => setQuantityValue(parseInt(e.target.value))}
+                                                className='product-div-container-main-product-display-content-counter-cart-wishlist-counter-input'
+                                                value={quantityValue}
+                                            />
 
+                                            <button
+                                                onClick={() => setQuantityValue(quantityValue + 1)}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

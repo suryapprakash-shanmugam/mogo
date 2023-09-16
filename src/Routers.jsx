@@ -34,6 +34,9 @@ import Cart from './pages/Cart/Cart';
 //import checkout from src->pages->checkout
 import Checkout from './pages/Checkout/Checkout';
 
+//import OrderPlaced from src->pages->OrderPlaced
+import OrderPlaced from './pages/OrderPlaced/OrderPlaced';
+
 
 
 const Routers = () => {
@@ -134,6 +137,8 @@ const Routers = () => {
         '/cart': <Cart />,
 
         '/checkout': <Checkout />,
+
+        '/orderplaced': <OrderPlaced />,
 
     }
 

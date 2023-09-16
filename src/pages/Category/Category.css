@@ -301,13 +301,16 @@
     left: 15px;
     width: 70px;
     height: 22px;
-    font-size: 12px;
     justify-content: center;
     border-radius: 4px;
     background-color: var(--Logo-Color2);
     color: #fff;
     display: flex;
     align-items: center;
+}
+.category-div-container-main-product-product_display-individual-image-featured p
+{
+    font-size: 12px;
 }
 
 .category-div-container-main-product-product_display-individual-shop-name {

@@ -34,8 +34,9 @@
 }
 
 .checkout-div-container-main-checkout-shipping-content {
-    margin-bottom: 45px;
-    padding: 0px 15px;
+    /* margin-bottom: 45px; */
+    padding: 0px 15px 45px;
+    border-bottom: 1px solid var(--Extra-Light-Gray);
 }
 
 .checkout-div-container-main-checkout-shipping-guest p {
@@ -101,4 +102,85 @@
 .checkout-div-container-main-checkout-summary-content {
     background-color: var(--Light-Light-Gray);
     padding: 30px;
+}
+
+.mantine-kegijc {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-return-cart-continue-payment {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-return-cart-continue-payment .paymenmt-method {
+    width: fit-content !important;
+}
+
+.payment {
+    text-align: center !important;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-return-cart {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-continue-payment {
+    width: 245px;
+    height: 41px;
+    border: 0;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-continue-payment:hover {
+    background-color: var(--Logo-Color2);
+}
+
+.checkout-div-container-main-checkout-payment-method-content {
+    margin-top: 30px;
+    margin-bottom: 45px;
+    padding: 0 15px 45px;
+    border-bottom: 1px solid var(--Extra-Light-Gray);
+}
+
+.checkout-div-container-main-checkout-payment-method-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-image {
+    width: 60px;
+    height: 70px;
+    background-color: red;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-product-details {
+    margin-bottom: 30px;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-product-details h1 {
+    font-size: 14px;
+    font-weight: 600;
+
 }

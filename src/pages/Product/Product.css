@@ -211,12 +211,15 @@
 .product-div-container-main-product-display-content-price-askquestion-price-discount {
     width: 50px;
     height: 25px;
-    font-size: 13px;
     background-color: var(--Discount-Color);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
+}
+.product-div-container-main-product-display-content-price-askquestion-price-discount p
+{
+    font-size: 13px;
 }
 
 .product-div-container-main-product-display-content-price-askquestion-askquestion {
