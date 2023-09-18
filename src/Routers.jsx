@@ -37,6 +37,12 @@ import Checkout from './pages/Checkout/Checkout';
 //import OrderPlaced from src->pages->OrderPlaced
 import OrderPlaced from './pages/OrderPlaced/OrderPlaced';
 
+//import TermsAndConditions from src->pages->TermsAndConditions
+import TermsAndConditions from './pages/TermsAndConditions/TermsAndConditions';
+
+//import Wishlist from src->pages->Wishlist
+import WishList from './pages/WishList/WishList';
+
 
 
 const Routers = () => {
@@ -139,6 +145,11 @@ const Routers = () => {
         '/checkout': <Checkout />,
 
         '/orderplaced': <OrderPlaced />,
+
+        '/terms-and-conditions': <TermsAndConditions />,
+
+        '/wishlist': <WishList />,
+
 
     }
 

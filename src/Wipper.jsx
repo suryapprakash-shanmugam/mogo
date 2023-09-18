@@ -92,6 +92,10 @@ const Wipper = () => {
 
                 <Route path="/orderplaced" element={<CustumRouters />} />
 
+                <Route path="/terms-and-conditions" element={<CustumRouters />} />
+
+                <Route path="/wishlist" element={<CustumRouters />} />
+
             </Routes>
         </div>
     )

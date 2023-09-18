@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import './OrderPlaced.css'
 
 //import checkicon
-    import check from '../../assets/orderplaced/check.gif'
+    import check from '../../assets/orderplaced/check.webp'
 
 const OrderPlaced = () => {
     return (

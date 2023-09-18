@@ -169,7 +169,12 @@ const Checkout = () => {
                                     </div>
                                     <div className="checkout-div-container-main-checkout-shipping-information-form-input mt-15">
                                         <Checkbox
-                                            label="I have read and agree to the  Terms & Conditions"
+                                            label={
+                                                <>
+                                                    I have read and agree to the{' '}
+                                                    <Link to="/terms-and-conditions" className='preheader-register-model-tearms-and-conditions-link'>Terms & Conditions</Link>
+                                                </>
+                                            }
                                         />
                                     </div>
                                     <div className="checkout-div-container-main-checkout-shipping-information-form-group-return-cart-continue-payment">

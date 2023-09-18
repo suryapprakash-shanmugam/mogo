@@ -2,8 +2,11 @@
 import React, { useState } from 'react'
 
 //import manitine packages
-import { Container, Input, Modal, Select } from '@mantine/core'
+import { Checkbox, Container, Input, Modal, PasswordInput, Select } from '@mantine/core'
 
+
+//import react router dom packages
+import { Link } from 'react-router-dom'
 
 //import Preheader css file
 import './Preheader.css'
@@ -33,6 +36,13 @@ const Preheader = () => {
 
   //usestate for open location modal
   const [modalOpen, setModalOpen] = useState(false)
+  //usestate for open register modal
+  const [registermodalOpen, setRegisterModalOpen] = useState(false)
+  //usestate for open login modal
+  const [loginmodalOpen, setLoginModalOpen] = useState(false)
+
+  //usestate for open login modal
+  const [forgotmodalOpen, setForgotModalOpen] = useState(false)
 
   return (
     <div>
@@ -68,8 +78,8 @@ const Preheader = () => {
               </div>
               <div className="preheader-container-location-currency-user-user-dropdown">
                 <div className="preheader-container-location-currency-user-user-dropdown-signin">
-                  <button>Signin</button>
-                  <p>New Customer ? <span>Start here</span></p>
+                  <button onClick={() => setLoginModalOpen(true)}>Signin</button>
+                  <p onClick={() => setRegisterModalOpen(true)}>New Customer ? <span>Start here</span></p>
                 </div>
                 <hr />
                 <div className="preheader-container-location-currency-user-user-dropdown-extra">
@@ -111,6 +121,106 @@ const Preheader = () => {
         </div>
       </Modal>
       {/* modal end */}
+      {/* Register model starts */}
+      <Modal
+        size="md"
+        opened={registermodalOpen}
+        onClose={() => setRegisterModalOpen(false)}
+        title=""
+        transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+        className='preheader-register-modal'
+      >
+        <div className="preheader-register-modal-header">
+          <h1>Register</h1>
+        </div>
+        <div className="preheader-register-modal-body">
+          <div className="preheader-register-modal-body-content">
+            <Input
+              placeholder="First Name"
+            />
+            <Input
+              placeholder="Last Name"
+            />
+            <Input
+              placeholder="Email Address"
+            />
+            <PasswordInput
+              placeholder="Password"
+              className='preheader-register-model-password-show-hide-btn'
+            />
+            <PasswordInput
+              placeholder="Confirm Password"
+              className='preheader-register-model-password-show-hide-btn'
+            />
+            <Checkbox
+              className='preheader-register-model-checkbox'
+              label={
+                <>
+                  I have read and agree to the{' '}
+                  <Link onClick={() => setRegisterModalOpen(false)} to="/terms-and-conditions" className='preheader-register-model-tearms-and-conditions-link'>Terms & Conditions</Link>
+                </>
+              }
+            />
+            <button>Register</button>
+            <p className='preheader-register-model-goto-login'>Have an account? <span onClick={() => { setRegisterModalOpen(false); setLoginModalOpen(true); }}>Login</span></p>
+          </div>
+        </div>
+      </Modal>
+      {/*Register modal end */}
+      {/* Login model starts */}
+      <Modal
+        size="md"
+        opened={loginmodalOpen}
+        onClose={() => setLoginModalOpen(false)}
+        title=""
+        transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+        className='preheader-login-modal'
+      >
+        <div className="preheader-login-modal-header">
+          <h1>Login</h1>
+        </div>
+        <div className="preheader-login-modal-body">
+          <div className="preheader-login-modal-body-content">
+            <Input
+              placeholder="Email Address"
+            />
+            <PasswordInput
+              placeholder="Password"
+              className='preheader-login-model-password-show-hide-btn'
+            />
+            <p className='preheader-login-model-goto-forgot-password' onClick={() => { setForgotModalOpen(true); setLoginModalOpen(false); }}>Forgot Password?</p>
+            <button>Login</button>
+            <p className='preheader-login-model-goto-login'>Don't have an account? <span onClick={() => { setRegisterModalOpen(true); setLoginModalOpen(false); }}>Register</span></p>
+          </div>
+        </div>
+      </Modal>
+      {/*Login modal end */}
+      {/* Forgot model starts */}
+      <Modal
+        size="md"
+        opened={forgotmodalOpen}
+        onClose={() => setForgotModalOpen(false)}
+        title=""
+        transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+        className='preheader-login-modal'
+      >
+        <div className="preheader-login-modal-header">
+          <h1>Reset Password</h1>
+        </div>
+        <div className="preheader-login-modal-body">
+          <div className="preheader-login-modal-body-content">
+            <p className='preheader-forgot-model-sub-heading'>Enter your email address</p>
+            <Input
+              placeholder="Email Address"
+            />
+            <Input
+              placeholder="OTP In Email"
+            />
+            <button>Submit</button>
+          </div>
+        </div>
+      </Modal>
+      {/*Forgot modal end */}
     </div>
   )
 }
