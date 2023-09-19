@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import manitine packages
-import { Checkbox, Container, Input, Modal, PasswordInput, Select } from '@mantine/core'
+import { Checkbox, Container, Input, Modal, PasswordInput, Select, Text } from '@mantine/core'
 
 
 //import react router dom packages
@@ -50,10 +50,14 @@ const Preheader = () => {
         <Container size={'82rem'} className='preheader-container'>
           <div className="preheader-container-contact-sell">
             <div className="preheader-container-contact-sell-contact">
-              <p>Contact</p>
+              <Text component={Link} to='/contact'>
+                <p>Contact</p>
+              </Text>
             </div>
             <div className="preheader-container-contact-sell-sell">
-              <p>Sell on Mogo</p>
+              <Text component={Link} to='/sellonmogo'>
+                <p>Sell on Mogo</p>
+              </Text>
             </div>
           </div>
           <div className="preheader-container-location-currency-user">

@@ -1,6 +1,14 @@
+//import react packages
 import React from 'react'
+
+//import react router dom packages
 import { Routes, Route } from "react-router-dom"
+
+//import custumrouters for frontend ui
 import CustumRouters from './Routers'
+
+//import login page for admin login (pages->admin->login)
+import Login from './pages/Admin/Login/Login'
 
 const Wipper = () => {
     return (
@@ -95,6 +103,15 @@ const Wipper = () => {
                 <Route path="/terms-and-conditions" element={<CustumRouters />} />
 
                 <Route path="/wishlist" element={<CustumRouters />} />
+
+                <Route path="/sellonmogo" element={<CustumRouters />} />
+
+                <Route path="/contact" element={<CustumRouters />} />
+
+                <Route path="/about" element={<CustumRouters />} />
+
+                <Route path="/admin" element={<Login />} />
+
 
             </Routes>
         </div>

@@ -20,33 +20,42 @@ import Preheader from './layouts/header/preheader/Preheader'
 import Navbar from './layouts/navbar/Navbar'
 
 //import home from src->pages->home
-import Home from "../src/pages/Home/Home"
+import Home from "./pages/UI/Home/Home"
 
 //import category from src->pages->category
-import Category from './pages/Category/Category'
+import Category from './pages/UI/Category/Category'
 
 //import product from src->pages->product
-import Product from './pages/Product/Product';
+import Product from './pages/UI/Product/Product';
 
 //import cart from src->pages->cart
-import Cart from './pages/Cart/Cart';
+import Cart from './pages/UI/Cart/Cart';
 
 //import checkout from src->pages->checkout
-import Checkout from './pages/Checkout/Checkout';
+import Checkout from './pages/UI/Checkout/Checkout';
 
 //import OrderPlaced from src->pages->OrderPlaced
-import OrderPlaced from './pages/OrderPlaced/OrderPlaced';
+import OrderPlaced from './pages/UI/OrderPlaced/OrderPlaced';
 
 //import TermsAndConditions from src->pages->TermsAndConditions
-import TermsAndConditions from './pages/TermsAndConditions/TermsAndConditions';
+import TermsAndConditions from './pages/UI/TermsAndConditions/TermsAndConditions';
 
 //import Wishlist from src->pages->Wishlist
-import WishList from './pages/WishList/WishList';
+import WishList from './pages/UI/WishList/WishList';
 
+//import sellonmogo from src->pages->SellOnMogo
+import SellOnMogo from './pages/UI/SellOnMogo/SellOnMogo';
 
+//import contact from src->pages->contact
+import Contact from './pages/UI/Contact/Contact';
+
+//import about from src->pages->about
+import About from './pages/UI/About/About';
 
 const Routers = () => {
     const location = useLocation();
+
+    window.scrollTo(0, 0)
 
     const { category, subcategory, heading } = useParams();
     const bodyContent = {
@@ -149,6 +158,13 @@ const Routers = () => {
         '/terms-and-conditions': <TermsAndConditions />,
 
         '/wishlist': <WishList />,
+
+        '/sellonmogo': <SellOnMogo />,
+
+        '/contact': <Contact />,
+
+        '/about': <About />,
+
 
 
     }

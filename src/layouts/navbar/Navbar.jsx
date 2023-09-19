@@ -131,8 +131,8 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </ul>
-                        <li>About Us</li>
-                        <li>Contact Us</li>
+                        <li><Link className='navbar-link' to={'/about'}>About Us</Link></li>
+                        <li><Link className='navbar-link' to={'/contact'}>Contact Us</Link></li>
                     </ul>
                 </Container>
             </div>

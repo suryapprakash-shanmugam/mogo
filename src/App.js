@@ -2,7 +2,7 @@
 import './App.css';
 
 //import pages
-import BottomToTopButton from './components/BottomToTopButton/BottomToTopButton';
+import BottomToTopButton from './components/UI/BottomToTopButton/BottomToTopButton';
 import Wipper from './Wipper';
 function App() {
   return (

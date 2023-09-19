@@ -2,7 +2,7 @@
 import React from 'react'
 
 //import mantine pakages
-import { Button, Container, Input } from '@mantine/core'
+import { Button, Container, Input, Text } from '@mantine/core'
 
 //import Footer css
 import './Footer.css'
@@ -13,6 +13,7 @@ import facebook from '../../../assets/footer/follow-as/facebook.webp'
 import instagram from '../../../assets/footer/follow-as/instagram.webp'
 import twitter from '../../../assets/footer/follow-as/twitter.webp'
 import whatsapp from '../../../assets/footer/follow-as/whatsapp.webp'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -42,9 +43,9 @@ const Footer = () => {
                             </div>
                             <div className="footer-div-container-main-quick-links-ul">
                                 <ul>
-                                    <li>Home</li>
+                                    <li><Text className='footer-link' component={Link} to={'/'}>Home</Text></li>
                                     <li>Blogs</li>
-                                    <li>Contact Us</li>
+                                    <li><Text className='footer-link' component={Link} to={'/contact'}>Contact Us</Text></li>
                                     <li>Help Center</li>
                                 </ul>
                             </div>
@@ -55,8 +56,8 @@ const Footer = () => {
                             </div>
                             <div className="footer-div-container-main-information-ul">
                                 <ul>
-                                    <li>Terms & Conditions</li>
-                                    <li>About Us</li>
+                                    <li><Text className='footer-link' component={Link} to={'/terms-and-conditions'}>Terms & Conditions</Text></li>
+                                    <li><Text className='footer-link' component={Link} to={'/about'}>About Us</Text></li>
                                 </ul>
                             </div>
                         </div>
