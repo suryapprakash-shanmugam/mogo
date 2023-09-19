@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     font-family: 'Source Sans 3';
-    padding-top: 150px;
+    padding-top: 130px;
     background-color: var(--Light-Light-Gray);
 }
 
@@ -12,7 +12,7 @@
 
 .login-div-container-main {
     width: 100%;
-    height: 225px;
+    height: 230px;
 }
 
 .login-div-container-main-card {
@@ -58,6 +58,25 @@
 
 .login-div-container-main-card-content-form-individual {
     margin-bottom: 15px;
+}
+
+.login-div-container-main-card-content-form-individual-button {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+}
+
+.login-div-container-main-card-content-form-individual-button button {
+    border: 0px;
+    width: 87px;
+    height: 34px;
+    cursor: pointer;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+}
+
+.login-div-container-main-card-content-form-individual-button button:hover {
+    background-color: var(--Logo-Color2);
 }
 
 .login-div-container-main-card-content-form-individual .mantine-kcpopt {

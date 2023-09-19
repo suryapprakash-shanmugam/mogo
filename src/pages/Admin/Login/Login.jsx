@@ -2,7 +2,7 @@
 import React from 'react'
 
 //import mantine packages
-import { Container, Input, PasswordInput, Text } from '@mantine/core'
+import { Container, Input, Text } from '@mantine/core'
 
 //import react router dom packages
 import { Link } from 'react-router-dom'
@@ -10,11 +10,12 @@ import { Link } from 'react-router-dom'
 //import Login css
 import './Login.css'
 
+//import custompasswordinput from component
+import CustomPasswordInput from '../../../components/Admin/CustomPasswordInput/CustomPasswordInput'
+
 //import images
 import logo from '../../../assets/Mogo-Logo.png'
 import email from '../../../assets/product/email.webp'
-
-
 
 const Login = () => {
     return (
@@ -41,11 +42,10 @@ const Login = () => {
                                         </Input.Wrapper>
                                     </div>
                                     <div className="login-div-container-main-card-content-form-individual">
-                                        <PasswordInput
-                                            rightSection={<img src={email} width={15} alt='email icon' />}
-                                            placeholder="Password"
-                                            radius="xs"
-                                        />
+                                        <CustomPasswordInput placeholder="Password" />
+                                    </div>
+                                    <div className="login-div-container-main-card-content-form-individual-button">
+                                        <Text component={Link} to={'/admin_dashboard'}><button>Login</button></Text>
                                     </div>
                                 </div>
                             </div>

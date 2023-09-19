@@ -10,6 +10,9 @@ import CustumRouters from './Routers'
 //import login page for admin login (pages->admin->login)
 import Login from './pages/Admin/Login/Login'
 
+//import AdminROuters for backend
+import AdminRouters from './AdminRouters'
+
 const Wipper = () => {
     return (
         <div>
@@ -111,6 +114,9 @@ const Wipper = () => {
                 <Route path="/about" element={<CustumRouters />} />
 
                 <Route path="/admin" element={<Login />} />
+
+                <Route path="/admin_dashboard" element={<AdminRouters />} />
+
 
 
             </Routes>
