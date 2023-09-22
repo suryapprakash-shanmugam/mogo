@@ -10,22 +10,23 @@
 
 .navbar-link {
     text-decoration: none;
-    color: var(--Para-Color);
+    color: black;
 }
 
 .navbar-div-container-ul {
     width: 100%;
-    color: var(--Para-Color);
+    color: black;
     display: flex;
     align-items: center;
     gap: 4rem;
     list-style-type: none;
+    justify-content: center;
     font-size: 14px;
 }
 
 .navbar-div-container-ul2 {
     width: fit-content;
-    color: var(--Para-Color);
+    color: black;
     display: flex;
     align-items: center;
     gap: 4rem;

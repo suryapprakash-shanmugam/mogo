@@ -12,13 +12,13 @@ const Navbar = () => {
             <div className="navbar-div">
                 <Container size={'82rem'} className='navbar-div-container'>
                     <ul className='navbar-div-container-ul'>
-                        <li><Link to='/' className='navbar-link'>Home</Link></li>
+                        {/* <li><Link to='/' className='navbar-link'>Home</Link></li> */}
                         <ul className='product-dropdown-hover navbar-div-container-ul2'>
-                            <li>Table Linen</li>
-                            <li>Kitchen Linen</li>
-                            <li>Bath Linen</li>
+                            <li>Home Linen</li>
                             <li>Bed Linen</li>
-                            <li>Living Linen</li>
+                            <li>Kitchen Linen</li>
+                            <li>Table Linen</li>
+                            <li>Bath Linen</li>
                             <li>Baby Linen</li>
                             <div className="navbar-div-container-ul-dropdown">
                                 <div className="navbar-div-container-ul-dropdown-content">
@@ -131,8 +131,8 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </ul>
-                        <li><Link className='navbar-link' to={'/about'}>About Us</Link></li>
-                        <li><Link className='navbar-link' to={'/contact'}>Contact Us</Link></li>
+                        {/* <li><Link className='navbar-link' to={'/about'}>About Us</Link></li>
+                        <li><Link className='navbar-link' to={'/contact'}>Contact Us</Link></li> */}
                     </ul>
                 </Container>
             </div>
