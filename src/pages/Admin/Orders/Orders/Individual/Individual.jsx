@@ -14,7 +14,7 @@ import { Modal, Card, Badge, Table, Menu as MenuMantine, Select, Button } from '
 // Font Awesome
 import 'font-awesome/css/font-awesome.min.css';
 
-import image2 from '../../../../assets/home/grid-category/bed_linen.webp'
+import image2 from '../../../../../assets/home/grid-category/bed_linen.webp'
 
 const Individual = () => {
     useEffect(() => {

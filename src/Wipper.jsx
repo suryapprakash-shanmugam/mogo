@@ -123,6 +123,11 @@ const Wipper = () => {
 
                 <Route path="/transactions" element={<AdminRouters />} />
 
+                <Route path="/earnings" element={<AdminRouters />} />
+
+                <Route path="/sellerbalances" element={<AdminRouters />} />
+
+
 
             </Routes>
         </div>

@@ -23,13 +23,19 @@ import './AdminRouters.css'
 import Dashboard from './pages/Admin/Dashboard/Dashboard';
 
 //import Individual from pages->admin->Orders->Individual
-import Individual from './pages/Admin/Orders/Individual/Individual';
+import Individual from './pages/Admin/Orders/Orders/Individual/Individual';
 
 //import Orders from pages->admin->Orders
 import Orders from './pages/Admin/Orders/Orders/Orders';
 
 //import Orders from pages->admin->Orders->transactions
 import Transactions from './pages/Admin/Orders/Transactions/Transactions';
+
+//import Earnings from pages->admin->Earnings->Earnings
+import Earnings from './pages/Admin/Earnings/Earnings/Earnings';
+
+//import SellerBalances from pages->admin->Earnings->SellerBalances
+import SellerBalances from './pages/Admin/Earnings/SellerBalances/SellerBalances';
 
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
@@ -55,6 +61,8 @@ const AdminRouters = () => {
         '/individualorder': <Individual />,
         '/orders': <Orders />,
         '/transactions': <Transactions />,
+        '/earnings': <Earnings />,
+        '/sellerbalances': <SellerBalances />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -110,10 +118,10 @@ const AdminRouters = () => {
                             disabled={collapsed !== true ? true : false}
                         >
                             <SubMenu label="Earnings" icon={<i className='fa fa-money' />}>
-                                <Link to="">
+                                <Link to="/earnings">
                                     <MenuItem component="span"> Earnings</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/sellerbalances">
                                     <MenuItem component="span"> Seller Balances</MenuItem>
                                 </Link>
                             </SubMenu>
