@@ -1,6 +1,6 @@
 .admin-dashboard {
     padding: 0rem 1rem;
-    font-family: 'Source Sans';
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .admin-dashboard-show-count-main-div {
@@ -152,7 +152,7 @@
     align-items: center;
     text-align: right;
     font-size: 12px;
-    font-family: 'SOurce Sans';
+    font-family: 'Source Sans Pro', sans-serif;
     background-color: #f4f4f4;
     color: #a79487;
     justify-content: center;

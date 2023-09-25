@@ -1,0 +1,67 @@
+.addpayout-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.addpayout-div .mantine-othpma {
+    padding: 0;
+}
+
+.addpayout-div-card {
+    width: 625px;
+}
+
+.addpayment-div-card-header {
+    padding: 20px 20px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addpayment-div-card-header button {
+    width: 147px;
+    height: 34px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.addpayout-div-card-body {
+    padding: 20px;
+}
+
+.addpayout-div-card-body-input {
+    margin-bottom: 15px;
+}
+
+.addpayout-div-card-body .mantine-1fzet7j {
+    margin-bottom: 5px;
+}
+
+.addpayout-div-card-body .mantine-kcpopt {
+    height: 36px;
+}
+
+.addpayout-div-card-button {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addpayout-div-card-button button {
+    border: 0px;
+    width: 92px;
+    height: 34px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    cursor: pointer;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+}

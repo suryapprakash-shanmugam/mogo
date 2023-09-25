@@ -127,6 +127,17 @@ const Wipper = () => {
 
                 <Route path="/sellerbalances" element={<AdminRouters />} />
 
+                <Route path="/addpayout" element={<AdminRouters />} />
+
+                <Route path="/payoutrequests" element={<AdminRouters />} />
+
+                <Route path="/refundrequests" element={<AdminRouters />} />
+
+                <Route path="/individualrefund" element={<AdminRouters />} />
+
+                <Route path="/addproduct" element={<AdminRouters />} />
+
+
 
 
             </Routes>

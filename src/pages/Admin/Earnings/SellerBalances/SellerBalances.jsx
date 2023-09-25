@@ -244,13 +244,27 @@ const SellerBalances = () => {
                 </div>
                 <div className="sellerbalance-edit-modal-body">
                     <div className="sellerbalance-edit-modal-body-content">
-                        <p>User Id: 1</p>
-                        <p>Username: John Doe</p>
-                        <NumericInput
-                            value={maxValue}
-                            onChange={setMaxValue}
-                            label="Max"
-                        />
+                        <div className="sellerbalance-edit-modal-body-content-user-display">
+                            <p>User Id: 1</p>
+                            <p>Username: John Doe</p>
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-input">
+                            <NumericInput
+                                value={maxValue}
+                                onChange={setMaxValue}
+                                label="Number of total sales"
+                            />
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-input">
+                            <NumericInput
+                                value={maxValue}
+                                onChange={setMaxValue}
+                                label="Balance"
+                            />
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-button">
+                            <button>Submit</button>
+                        </div>
                     </div>
                 </div>
             </Modal>

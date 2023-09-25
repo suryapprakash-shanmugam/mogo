@@ -37,6 +37,21 @@ import Earnings from './pages/Admin/Earnings/Earnings/Earnings';
 //import SellerBalances from pages->admin->Earnings->SellerBalances
 import SellerBalances from './pages/Admin/Earnings/SellerBalances/SellerBalances';
 
+//import AddPayout from pages->admin->Payout->AddPayout
+import AddPayout from './pages/Admin/Payouts/AddPayout/AddPayout';
+
+//import PayoutRequests from pages->admin->Payout->PayoutRequests
+import PayoutRequests from './pages/Admin/Payouts/PayoutRequests/PayoutRequests';
+
+//import RefundRequests from pages->admin->RefundRequests
+import RefundRequests from './pages/Admin/RefundRequests/RefundRequests';
+
+//import IndividualRefund from pages->admin->RefundRequests->IndividualRefund
+import IndividualRefund from './pages/Admin/RefundRequests/IndividualRefund/IndividualRefund';
+
+//import AddProduct from pages->admin->product->addproduct
+import AddProduct from './pages/Admin/Product/AddProduct/AddProduct';
+
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
 import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
@@ -63,6 +78,11 @@ const AdminRouters = () => {
         '/transactions': <Transactions />,
         '/earnings': <Earnings />,
         '/sellerbalances': <SellerBalances />,
+        '/addpayout': <AddPayout />,
+        '/payoutrequests': <PayoutRequests />,
+        '/refundrequests': <RefundRequests />,
+        '/individualrefund': <IndividualRefund />,
+        '/addproduct': <AddProduct />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -134,10 +154,10 @@ const AdminRouters = () => {
                             disabled={collapsed !== true ? true : false}
                         >
                             <SubMenu label="Payouts" icon={<i className='fa fa-credit-card' />}>
-                                <Link to="">
+                                <Link to="/addpayout">
                                     <MenuItem component="span"> Add Payout</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/payoutrequests">
                                     <MenuItem component="span"> Payout Requests</MenuItem>
                                 </Link>
                                 <Link to="">
@@ -152,7 +172,7 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <Link to="">
+                            <Link to="/refundrequests">
                                 <MenuItem component="span" active icon={<i className='fa fa-flag' />}>
                                     Refund Requests
                                 </MenuItem>
@@ -190,12 +210,12 @@ const AdminRouters = () => {
                                 <Link to="">
                                     <MenuItem component="span"> Deleted Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/addproduct">
                                     <MenuItem component="span"> Add Product</MenuItem>
                                 </Link>
-                                <Link to="">
+                                {/* <Link to="">
                                     <MenuItem component="span"> Bulk Product Upload</MenuItem>
-                                </Link>
+                                </Link> */}
                             </SubMenu>
                         </Tooltip>
                         <Tooltip

@@ -1,17 +1,17 @@
 .earnings-div {
-    font-family: 'Source Sans';
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .earnings-filter-container {
     display: grid;
     grid-template-columns: 7% 20% 10% auto;
     gap: 1rem;
-    font-family: 'Source Sans';
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .earnings-filter-container-div4 .mantine-1fzet7j,
 .earnings-filter-container-div1 .mantine-1fzet7j {
-    font-family: 'Source Sans';
+    font-family: 'Source Sans Pro', sans-serif;
     margin-bottom: 5px;
     font-weight: 600 !important;
 }
