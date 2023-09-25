@@ -174,7 +174,7 @@ const Dashboard = () => {
                         <div className="admin-dashboard-show-count-products-right">
                             <Link to="/admindashboard/products">
                                 <Basket
-                                    size={35}
+                                    size={38}
                                     strokeWidth={2}
                                     className="admin-dashboard-show-count-tabler-icons"
                                 />
@@ -203,9 +203,21 @@ const Dashboard = () => {
                             </Link>
                         </div>
                     </div>
+                    <div className="admin-dashboard-show-count-vendors">
+                        <div className="admin-dashboard-show-count-vendors-left">
+                            <h1>5</h1>
+                            <p>Vendors</p>
+                        </div>
+                        <div className="admin-dashboard-show-count-vendors-right">
+                            <Link to="/admindashboard/users_users">
+                                <i className='fa fa-users'></i>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
                 <div className="admin-dashboard-show-latest">
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Orders"
@@ -243,6 +255,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Transactions"
@@ -282,6 +295,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Products"
@@ -318,6 +332,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Pending Products"
@@ -349,6 +364,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Transactions (Featured Products)"
@@ -387,6 +403,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Reviews"
@@ -423,6 +440,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Comments"
@@ -459,6 +477,7 @@ const Dashboard = () => {
                         </Accordion.Item>
                     </Accordion>
                     <Accordion
+                        radius="lg"
                         variant="separated"
                         transitionDuration={1000}
                         defaultValue="Latest Members"

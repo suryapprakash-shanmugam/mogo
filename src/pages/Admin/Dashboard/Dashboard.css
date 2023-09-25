@@ -5,7 +5,7 @@
 
 .admin-dashboard-show-count-main-div {
     display: grid;
-    grid-template-columns: 24% 24% 24% 24%;
+    grid-template-columns: 19% 19% 19% 19% 19%;
     gap: 1rem;
 }
 
@@ -23,9 +23,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     height: 125px;
+    border-radius: 20px;
     /* border-radius: 8px; */
+}
+.style-accortion
+{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .admin-dashboard-show-count-orders {
@@ -61,6 +67,14 @@
 .admin-dashboard-show-count-users:hover i {
     font-size: 60px;
 }
+.admin-dashboard-show-count-vendors {
+
+    background-color: var(--Logo-Color5);
+}
+
+.admin-dashboard-show-count-vendors:hover i {
+    font-size: 60px;
+}
 
 .admin-dashboard-show-count-blogs:hover i {
     font-size: 60px;
@@ -77,22 +91,26 @@
 .admin-dashboard-show-count-orders-left,
 .admin-dashboard-show-count-products-left,
 .admin-dashboard-show-count-users-left,
+.admin-dashboard-show-count-vendors-left,
 .admin-dashboard-show-count-sales-amount-left {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     justify-content: space-between;
+    text-align: center;
     color: #fff;
 }
 .admin-dashboard-show-count-orders-left h1,
 .admin-dashboard-show-count-products-left h1,
 .admin-dashboard-show-count-users-left h1,
+.admin-dashboard-show-count-vendors-left h1,
 .admin-dashboard-show-count-sales-amount-left h1 {
     font-size: 38px;
 }
 .admin-dashboard-show-count-orders-left p,
 .admin-dashboard-show-count-products-left p,
 .admin-dashboard-show-count-users-left p,
+.admin-dashboard-show-count-vendors-left p,
 .admin-dashboard-show-count-sales-amount-left p {
     font-size: 15px;
 }
@@ -104,6 +122,7 @@
 .admin-dashboard-show-count-expired-products-right i,
 .admin-dashboard-show-count-vendors-right i,
 .admin-dashboard-show-count-users-right i,
+.admin-dashboard-show-count-vendors-right i,
 .admin-dashboard-show-count-blogs-right i,
 .admin-dashboard-show-count-sales-amount-right i {
     font-size: 35px;
@@ -122,7 +141,7 @@
 .admin-dashboard-show-latest {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 1.5rem;
+    gap: 0.8rem;
     margin: 1rem 0rem;
 }
 

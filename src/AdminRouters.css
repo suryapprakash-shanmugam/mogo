@@ -124,5 +124,6 @@
 }
 
 .admin-sidenav .admin-sidenav-menu-style {
-    font-family: 'Arial';
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
 }
