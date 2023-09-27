@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './NumericInput.css'
+import './Quantity.css'
 
-function NumericInput({ value, onChange, label, placeholder }) {
+function Quantity({ value, onChange }) {
     const handleInputChange = (event) => {
         let numericValue = event.target.value;
 
@@ -18,7 +18,11 @@ function NumericInput({ value, onChange, label, placeholder }) {
         // Allow only numeric characters and a single decimal point
         numericValue = numericValue.replace(/[^0-9.]/g, '');
 
-        onChange(numericValue);
+        if (numericValue === '' || parseFloat(numericValue) < 1) {
+            onChange(''); // Set the value to an empty string for displaying the placeholder
+        } else {
+            onChange(numericValue);
+        }
     };
 
     return (
@@ -27,11 +31,11 @@ function NumericInput({ value, onChange, label, placeholder }) {
                 type="text"
                 value={value}
                 onChange={handleInputChange}
+                // placeholder={value === '' ? 'Value should be at least 1' : ''}
                 className='numeric-input'
-                placeholder={placeholder}
             />
         </div>
     );
 }
 
-export default NumericInput
+export default Quantity
