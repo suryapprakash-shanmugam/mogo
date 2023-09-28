@@ -1,16 +1,22 @@
 //import react packages
-import { Card, Rating } from '@mantine/core'
-import React from 'react'
+import { Card, Modal, Rating, Text, Textarea } from '@mantine/core'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //import ProductIndividual css
 import './ProductIndividual.css'
+
+//import icons
+import blockfilled from '../../../../assets/admin/table/dropdown/block-filled.png'
+import editfilled from '../../../../assets/admin/table/dropdown/edit-filled.png'
 
 const ProductIndividual = () => {
 
   const category = 'Table_Linen';
   const subcategory = 'Table_Napkins';
   const heading = 'This_is_a_heading';
+
+  const [rejectModalOpen, setrejectModalOpen] = useState(false)
 
   const individualProductArray = [
     {
@@ -116,6 +122,10 @@ const ProductIndividual = () => {
                       <div className="productindividual-div-card-body-product-details-right">{individualProduct.Description}</div>
                     </div>
                     <div className='hr-line mt-10' />
+                    <div className="productindividual-div-card-body-product-details-button">
+                      <button onClick={() => { setrejectModalOpen(true) }} className="productindividual-div-card-body-product-details-button-reject"><img src={blockfilled} width={14} />Reject</button>
+                      <Text component={Link} to="/addproduct"><button className="productindividual-div-card-body-product-details-button-edit"><img src={editfilled} width={14} />Edit</button></Text>
+                    </div>
                   </div>
                 )
               })
@@ -124,6 +134,35 @@ const ProductIndividual = () => {
           </div>
         </Card>
       </div>
+      <Modal
+        size="md"
+        opened={rejectModalOpen}
+        onClose={() => setrejectModalOpen(false)}
+        title=""
+        centered
+        transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+        className='sellerbalance-edit-modal'
+      >
+        <div className="sellerbalance-edit-modal-header">
+          <h4>Reject</h4>
+        </div>
+        <div className="sellerbalance-edit-modal-body">
+          <div className="sellerbalance-edit-modal-body-content">
+            <div className="sellerbalance-edit-modal-body-content-input">
+            <Textarea
+      placeholder="Reason"
+      radius="xs"
+      size="xs"
+      autosize
+      minRows={4}
+    />
+            </div>
+            <div className="sellerbalance-edit-modal-body-content-button remove-padding">
+              <button onClick={() => setrejectModalOpen(false)}>Submit</button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }

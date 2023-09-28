@@ -63,6 +63,12 @@ import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
 //import Products from pages->admin->product->products
 import Products from './pages/Admin/Product/Products/Products';
 import ProductIndividual from './pages/Admin/Product/ProductIndividual/ProductIndividual';
+import SpecialProducts from './pages/Admin/Product/SpecialProducts/SpecialProducts';
+import PendingProducts from './pages/Admin/Product/PendingProducts/PendingProducts';
+import HiddenProducts from './pages/Admin/Product/HiddenProducts/HiddenProducts';
+import ExpiredProducts from './pages/Admin/Product/ExpiredProducts/ExpiredProducts';
+import SoldProducts from './pages/Admin/Product/SoldProducts/SoldProducts';
+import DeletedProducts from './pages/Admin/Product/DeletedProducts/DeletedProducts';
 
 const AdminRouters = () => {
     window.scrollTo(0, 0)
@@ -96,6 +102,13 @@ const AdminRouters = () => {
         '/addproduct': <AddProduct />,
         '/productsdetails': <Products />,
         '/productsdetails_individual': <ProductIndividual />,
+        '/special_products': <SpecialProducts />,
+        '/pending_products': <PendingProducts />,
+        '/hidden_products': <HiddenProducts />,
+        '/expired_products': <ExpiredProducts />,
+        '/sold_products': <SoldProducts />,
+        '/drafts_products': <SoldProducts />,
+        '/deleted_products': <DeletedProducts />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -105,14 +118,14 @@ const AdminRouters = () => {
     // Navigate to Push 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (sessionStorage.getItem('MogoAdminAccessToken102') && sessionStorage.getItem('MogoAdminAccessToken101')) {
-            dispatch(setLoginStatus(true))
-        }
-        else {
-            window.location.reload(navigate('/admin'))
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (sessionStorage.getItem('MogoAdminAccessToken102') && sessionStorage.getItem('MogoAdminAccessToken101')) {
+    //         dispatch(setLoginStatus(true))
+    //     }
+    //     else {
+    //         window.location.reload(navigate('/admin'))
+    //     }
+    // }, [])
     return (
         <div>
             <div className='admin-sidenav' >
@@ -215,25 +228,25 @@ const AdminRouters = () => {
                                 <Link to="/productsdetails">
                                     <MenuItem component="span"> Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/special_products">
                                     <MenuItem component="span"> Special Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/pending_products">
                                     <MenuItem component="span"> Pending Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/hidden_products">
                                     <MenuItem component="span"> Hidden Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/expired_products">
                                     <MenuItem component="span"> Expired Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/sold_products">
                                     <MenuItem component="span"> Sold Products</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/drafts_products">
                                     <MenuItem component="span"> Drafts</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/deleted_products">
                                     <MenuItem component="span"> Deleted Products</MenuItem>
                                 </Link>
                                 <Link to="/addproduct">

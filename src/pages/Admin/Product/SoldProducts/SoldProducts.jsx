@@ -15,8 +15,8 @@ import { modals } from '@mantine/modals'
 //import react router dom packages
 import { Link } from 'react-router-dom'
 
-//import Products css
-import './Products.css'
+//import SoldProducts css
+import './SoldProducts.css'
 
 import NumericInput from '../../../../components/UI/Input/NumericInput'
 
@@ -29,7 +29,7 @@ import plusfilled from '../../../../assets/admin/table/dropdown/plus-filled.png'
 import minus from '../../../../assets/admin/table/dropdown/minus.png'
 import arrowdown from '../../../../assets/preheader/arrow-down.webp'
 
-const Products = () => {
+const SoldProducts = () => {
 
     const [specialOffers, setSpecialOffers] = useState(false);
     const [featuredOffers, setFeaturedOffers] = useState(false);
@@ -97,7 +97,7 @@ const Products = () => {
                         <button className='table-select-dropdown'>Select an option <img src={anglebottom} alt='anglebottom' width={15} /></button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Text component={Link} to="/productsdetails_individual">
+                        <Text component={Link} to="/soldproductsdetails_individual">
                             <Menu.Item>
                                 <img src={info} alt='info icon' width={15} />&nbsp;&nbsp;View Details
                             </Menu.Item>
@@ -341,15 +341,15 @@ const Products = () => {
 
     return (
         <div>
-            <div className="products-div">
+            <div className="soldproducts-div">
                 <Card>
-                    <div className="products-div-heading">
-                        <h2>Products</h2>
+                    <div className="soldproducts-div-heading">
+                        <h2>Sold Products</h2>
                     </div>
-                    <div className="products-div-table">
+                    <div className="soldproducts-div-table">
                         <div>
-                            <div className='products-filter-container'>
-                                <div className='products-filter-container-div1'>
+                            <div className='soldproducts-filter-container'>
+                                <div className='soldproducts-filter-container-div1'>
                                     <Select
                                         label='Show'
                                         onChange={(e) => setPageSize(Number(e))}
@@ -364,7 +364,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div2'>
+                                <div className='soldproducts-filter-container-div2'>
                                     <Select
                                         label='Category'
                                         onChange={(e) => setSelectedStatus(e)}
@@ -378,7 +378,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div3'>
+                                <div className='soldproducts-filter-container-div3'>
                                     <Select
                                         label='Sub Category'
                                         onChange={(e) => setSelectedSubStatus(e)}
@@ -392,7 +392,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div5'>
+                                <div className='soldproducts-filter-container-div5'>
                                     <Select
                                         label='Stock'
                                         onChange={(e) => setSelectedStockStatus(e)}
@@ -405,7 +405,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div4'>
+                                <div className='soldproducts-filter-container-div4'>
                                     <Input.Wrapper label="Search" maw={320} mx="auto">
                                         <Input value={globalFilter || ''} onChange={(e) => setGlobalFilter(e.target.value)} placeholder='Search Filter' />
                                     </Input.Wrapper>
@@ -528,4 +528,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default SoldProducts

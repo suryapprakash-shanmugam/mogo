@@ -15,34 +15,18 @@ import { modals } from '@mantine/modals'
 //import react router dom packages
 import { Link } from 'react-router-dom'
 
-//import Products css
-import './Products.css'
-
-import NumericInput from '../../../../components/UI/Input/NumericInput'
+//import DeletedProducts css
+import './DeletedProducts.css'
 
 //import icons
 import anglebottom from '../../../../assets/admin/table/anglebottom.webp'
 import info from '../../../../assets/admin/table/dropdown/info.png'
 import trash from '../../../../assets/admin/table/dropdown/trash.png'
 import edit from '../../../../assets/admin/table/dropdown/edit.png'
-import plusfilled from '../../../../assets/admin/table/dropdown/plus-filled.png'
-import minus from '../../../../assets/admin/table/dropdown/minus.png'
+import restore from '../../../../assets/admin/table/dropdown/restore.png'
 import arrowdown from '../../../../assets/preheader/arrow-down.webp'
 
-const Products = () => {
-
-    const [specialOffers, setSpecialOffers] = useState(false);
-    const [featuredOffers, setFeaturedOffers] = useState(false);
-    const [featuredModalOpen, setFeaturedModalOpen] = useState(false)
-    const [maxValue, setMaxValue] = useState('1');
-
-    const handlespecialOffers = () => {
-        setSpecialOffers(!specialOffers);
-    };
-
-    const handlefeaturedOffers = () => {
-        setFeaturedOffers(!featuredOffers);
-    };
+const DeletedProducts = () => {
 
     const openDeleteModal = () =>
         modals.openConfirmModal({
@@ -97,36 +81,19 @@ const Products = () => {
                         <button className='table-select-dropdown'>Select an option <img src={anglebottom} alt='anglebottom' width={15} /></button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Text component={Link} to="/productsdetails_individual">
+                        <Text component={Link} to="/deletedproductsdetails_individual">
+                            <Menu.Item>
+                                <img src={restore} alt='info icon' width={15} />&nbsp;&nbsp;Restore
+                            </Menu.Item>
                             <Menu.Item>
                                 <img src={info} alt='info icon' width={15} />&nbsp;&nbsp;View Details
                             </Menu.Item>
                         </Text>
-                        <Menu.Item onClick={() => { setFeaturedModalOpen(true) }}>
-                            {
-                                featuredOffers ? <><img src={plusfilled} alt='check icon' width={15} />&nbsp;&nbsp;Add to Featured</> : <><img src={minus} alt='check icon' width={15} />&nbsp;&nbsp;Remove From Featured</>
-                            }
-
-                        </Menu.Item>
-                        <Menu.Item onClick={handlespecialOffers}>
-                            {
-                                specialOffers ? <>
-                                    <img src={minus} alt='block icon' width={15} />
-                                    &nbsp;&nbsp;Remove From Special Offers
-                                </> : <>
-                                    <img src={plusfilled} alt='block icon' width={15} />
-                                    &nbsp;&nbsp;Add to Special Offers
-                                </>
-                            }
-                        </Menu.Item>
                         <Text component={Link} to="/addproduct">
                             <Menu.Item>
                                 <img src={edit} alt='block icon' width={15} />&nbsp;&nbsp;Edit
                             </Menu.Item>
                         </Text>
-                        <Menu.Item onClick={openDeleteModal}>
-                            <img src={trash} alt='trash icon' width={15} />&nbsp;&nbsp; Delete
-                        </Menu.Item>
                         <Menu.Item onClick={openDeleteModal}>
                             <img src={trash} alt='trash icon' width={15} />&nbsp;&nbsp; Delete Permanently
                         </Menu.Item>
@@ -341,15 +308,15 @@ const Products = () => {
 
     return (
         <div>
-            <div className="products-div">
+            <div className="deletedproducts-div">
                 <Card>
-                    <div className="products-div-heading">
-                        <h2>Products</h2>
+                    <div className="deletedproducts-div-heading">
+                        <h2>Deleted Products</h2>
                     </div>
-                    <div className="products-div-table">
+                    <div className="deletedproducts-div-table">
                         <div>
-                            <div className='products-filter-container'>
-                                <div className='products-filter-container-div1'>
+                            <div className='deletedproducts-filter-container'>
+                                <div className='deletedproducts-filter-container-div1'>
                                     <Select
                                         label='Show'
                                         onChange={(e) => setPageSize(Number(e))}
@@ -364,7 +331,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div2'>
+                                <div className='deletedproducts-filter-container-div2'>
                                     <Select
                                         label='Category'
                                         onChange={(e) => setSelectedStatus(e)}
@@ -378,7 +345,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div3'>
+                                <div className='deletedproducts-filter-container-div3'>
                                     <Select
                                         label='Sub Category'
                                         onChange={(e) => setSelectedSubStatus(e)}
@@ -392,7 +359,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div5'>
+                                <div className='deletedproducts-filter-container-div5'>
                                     <Select
                                         label='Stock'
                                         onChange={(e) => setSelectedStockStatus(e)}
@@ -405,7 +372,7 @@ const Products = () => {
                                         ]}
                                     />
                                 </div>
-                                <div className='products-filter-container-div4'>
+                                <div className='deletedproducts-filter-container-div4'>
                                     <Input.Wrapper label="Search" maw={320} mx="auto">
                                         <Input value={globalFilter || ''} onChange={(e) => setGlobalFilter(e.target.value)} placeholder='Search Filter' />
                                     </Input.Wrapper>
@@ -496,36 +463,8 @@ const Products = () => {
                     </div>
                 </Card>
             </div>
-
-            <Modal
-                size="md"
-                opened={featuredModalOpen}
-                onClose={() => setFeaturedModalOpen(false)}
-                title=""
-                centered
-                transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
-                className='sellerbalance-edit-modal'
-            >
-                <div className="sellerbalance-edit-modal-header">
-                    <h4>Add to Featured</h4>
-                </div>
-                <div className="sellerbalance-edit-modal-body">
-                    <div className="sellerbalance-edit-modal-body-content">
-                        <div className="sellerbalance-edit-modal-body-content-input">
-                            <NumericInput
-                                value={maxValue}
-                                onChange={setMaxValue}
-                                label="Number of Days"
-                            />
-                        </div>
-                        <div className="sellerbalance-edit-modal-body-content-button">
-                            <button onClick={handlefeaturedOffers}>Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </Modal>
         </div>
     )
 }
 
-export default Products
+export default DeletedProducts

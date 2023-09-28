@@ -1,13 +1,7 @@
 //import mantine packages
 import { MantineProvider } from '@mantine/core';
-<<<<<<< HEAD
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
-=======
-
-//import mantine modals packages
-import { ModalsProvider } from '@mantine/modals';
->>>>>>> origin/main
 
 //import react packages
 import React from 'react';
