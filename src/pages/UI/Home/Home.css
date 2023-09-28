@@ -1,0 +1,179 @@
+.product-category-grid {
+    padding: 0;
+    width: 100%;
+    height: 700px;
+    font-family: 'Open Sans';
+}
+
+.product-category-grid-div {
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem 0rem;
+}
+
+.product-category-grid-div-table {
+    grid-row: span 4;
+    grid-column: span 1;
+    background-color: black;
+    cursor: pointer;
+}
+
+.product-category-grid-div-kitchen {
+    grid-row: span 3;
+    grid-column: 2/span 1;
+    background-color: black;
+    cursor: pointer;
+}
+
+.product-category-grid-div-bath {
+    grid-row: span 2;
+    grid-column: 3/span 1;
+    background-color: black;
+    cursor: pointer;
+}
+
+.product-category-grid-div-bed {
+    grid-row: span 10;
+    grid-column: 3 /span 1;
+    background-color: black;
+    cursor: pointer;
+}
+
+.product-category-grid-div-living {
+    grid-row: span 9;
+    grid-column: span 1;
+    background-color: black;
+    cursor: pointer;
+}
+
+.product-category-grid-div-baby {
+    grid-row: span 8;
+    grid-column: span 1;
+    background-color: black;
+    cursor: pointer;
+}
+
+.product-category-grid-div-table-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-category-grid-div-table-image img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.product-category-grid-div-bath-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-category-grid-div-bath-image img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.product-category-grid-div-kitchen-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-category-grid-div-kitchen-image img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.product-category-grid-div-bed-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-category-grid-div-bed-image img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.product-category-grid-div-living-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-category-grid-div-living-image img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.product-category-grid-div-baby-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-category-grid-div-baby-image img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.product-category-grid-div-image-content {
+    position: absolute;
+    bottom: 0px;
+    background-color: #00000076;
+    color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0rem 2rem;
+    width: fit-content;
+    font-size: 15px;
+}
+
+.home-season-sale {
+    padding: 0;
+}
+
+.home-season-sale-season {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 350px;
+    margin: 0rem 0rem 1rem;
+}
+
+.home-season-sale-season1 {
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.home-season-sale-season2 {
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.home-season-sale-season1-image,
+.home-season-sale-season2-image {
+    width: 100%;
+    height: 100%;
+}
+
+.home-season-sale-season1-image img,
+.home-season-sale-season2-image img {
+    width: 100%;
+    height: 100%;
+}

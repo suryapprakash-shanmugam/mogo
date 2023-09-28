@@ -1,0 +1,10 @@
+.numeric-input-form {
+    display: flex;
+    flex-direction: column;
+}
+.numeric-input-form .numeric-input {
+    width: 100%;
+    border: 1px solid var(--Extra-Light-Gray);
+    height: 2rem;
+    padding-left: 0.3rem;
+}

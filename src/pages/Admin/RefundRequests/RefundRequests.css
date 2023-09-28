@@ -1,0 +1,84 @@
+.refund-requests-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.refund-requests-div .mantine-othpma {
+    padding: 0px;
+}
+
+.refund-requests-div-card-heading {
+    padding: 20px 20px 5px;
+}
+
+.refund-requests-div-card-heading h3 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.refund-requests-div-card-body {
+    padding: 20px;
+}
+
+.refund-requests-div-card-body-table {
+    font-family: "'Source Sans Pro', sans-serif";
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.refund-requests-div-card-body-table td,
+.refund-requests-div-card-body-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.refund-requests-div-card-body-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.refund-requests-div-card-body-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--Logo-Color1);
+    color: white;
+}
+
+.refund-requests-div-card-body-table-button {
+    display: flex;
+    align-items: center;
+}
+
+.refund-requests-div-card-body-table-button-details {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 72px;
+    height: 31px;
+}
+.refund-requests-div-card-body-table-button-approve
+{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 125px;
+    height: 31px;
+}
+.approve-success
+{
+    background-color: green;
+    color: #fff;
+    width: 103px;
+    height: 19px;
+    font-size: 10.5px;
+    margin-left: 2px;
+    border-radius: 3px;
+    cursor: default;
+}

@@ -1,0 +1,122 @@
+.homeblogs-div {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 4rem;
+    font-family: 'Open Sans';
+}
+
+.homeblogs-div-container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.homeblogs-div-container-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.homeblogs-div-container-heading h1 {
+    font-size: 20px;
+}
+
+.homeblogs-div-container-heading p {
+    font-size: 14px;
+}
+
+.homeblogs-div-container-content-slider {
+    width: 100%;
+    height: 100%;
+}
+
+.homeblogs-div-container-content-slider-individual {
+    width: 100%;
+    height: 100%;
+}
+
+.homeblogs-div-container-content-slider-individual-blog {
+    width: 100%;
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-image {
+    width: 100%;
+    height: 300px;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content {
+    width: 100%;
+    height: 130px;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-heading {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-heading h2 {
+    font-size: 18px;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-type-time {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-type-time-type {
+    height: 100%;
+    display: flex;
+    gap: 0.6rem;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-type-time-type-icon {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-type-time-type-icon-content {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-type-time-time {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    gap: 0.6rem;
+}
+
+.homeblogs-div-container-content-slider-individual-blog-content-description {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.homeblogs-div-container-content-slider .mantine-Carousel-controls {
+    opacity: 0;
+}
+
+.homeblogs-div-container-content-slider:hover .mantine-Carousel-controls {
+    opacity: 1;
+}

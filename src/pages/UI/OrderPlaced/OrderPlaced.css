@@ -1,0 +1,50 @@
+.orderplaced-div {
+    width: 100%;
+    font-family: 'Open Sans';
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.orderplaced-div-container {
+    padding: 0;
+}
+
+.orderplaced-div-container-main {
+    padding-top: 120px;
+    width: 450px;
+    margin: auto;
+}
+
+.orderplaced-div-container-main-icon {
+    margin-bottom: 2rem;
+}
+
+.orderplaced-div-container-main-details h1 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.orderplaced-div-container-main-details .order-number-display {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.orderplaced-div-container-main-goback {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.orderplaced-div-container-main-goback button {
+    border: 0;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    width: 200px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.orderplaced-div-container-main-goback button:hover {
+    background-color: var(--Logo-Color2);
+}

@@ -1,0 +1,186 @@
+.checkout-div {
+    width: 100%;
+    font-family: 'Open Sans';
+    padding: 30px 0px;
+}
+
+.checkout-div-container {
+    padding: 0;
+}
+
+.checkout-div-container-main-checkout {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 69% 29%;
+    justify-content: space-between;
+}
+
+.checkout-div-container-main-checkout-shipping {
+    width: 100%;
+}
+
+.checkout-div-container-main-checkout-shipping-heading h1 {
+    font-size: 18px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--Extra-Light-Gray);
+}
+
+.checkout-div-container-main-checkout-summary-heading h1 {
+    font-size: 18px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--Extra-Light-Gray);
+}
+
+.checkout-div-container-main-checkout-shipping-content {
+    /* margin-bottom: 45px; */
+    padding: 0px 15px 45px;
+    border-bottom: 1px solid var(--Extra-Light-Gray);
+}
+
+.checkout-div-container-main-checkout-shipping-guest p {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checkout-div-container-main-checkout-shipping-guest p span {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.checkout-div-container-main-checkout-summary {
+    width: 100%;
+}
+
+.checkout-div-container-main-checkout-shipping-information-head h1 {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.checkout-div-container-main-checkout-shipping-information-head p {
+    font-size: 15px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* .checkout-div-container-main-checkout-shipping-information-form {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+} */
+
+.checkout-div-container-main-checkout-shipping-information-form-group {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-address {
+    margin-bottom: 1rem;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-input {
+    width: 100%;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-input .mantine-1fzet7j {
+    margin-bottom: 0.5rem;
+    font-family: 'Open Sans';
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-input .mantine-gszoqu,
+.mantine-kcpopt {
+    padding: 10px 20px;
+    height: 46px;
+}
+
+.checkout-div-container-main-checkout-summary-content {
+    background-color: var(--Light-Light-Gray);
+    padding: 30px;
+}
+
+.mantine-kegijc {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-return-cart-continue-payment {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-return-cart-continue-payment .paymenmt-method {
+    width: fit-content !important;
+}
+
+.payment {
+    text-align: center !important;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-return-cart {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-continue-payment {
+    width: 245px;
+    height: 41px;
+    border: 0;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.checkout-div-container-main-checkout-shipping-information-form-group-continue-payment:hover {
+    background-color: var(--Logo-Color2);
+}
+
+.checkout-div-container-main-checkout-payment-method-content {
+    margin-top: 30px;
+    margin-bottom: 45px;
+    padding: 0 15px 45px;
+    border-bottom: 1px solid var(--Extra-Light-Gray);
+}
+
+.checkout-div-container-main-checkout-payment-method-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-image {
+    width: 60px;
+    height: 70px;
+    background-color: red;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-product-details {
+    margin-bottom: 30px;
+}
+
+.checkout-div-container-main-checkout-summary-content-order-summary-details-show-product-details h1 {
+    font-size: 14px;
+    font-weight: 600;
+
+}

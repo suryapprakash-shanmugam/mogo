@@ -1,0 +1,9 @@
+.breadcrumb {
+    color: var(--Logo-Color1);
+    font-family: 'Open Sans';
+    font-size: 13px;
+}
+
+.breadcrumb-link {
+    text-decoration: none;
+}

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --Logo-Color1: rgb(51, 50, 94);
+  --Logo-Color2: rgb(222, 154, 120);
+  --Logo-Color3: rgb(83, 82, 120);
+  --Logo-Color4: rgb(83, 82, 120);
+  --Logo-Color5: rgb(42, 96, 105);
+  --Extra-Light-Gray: rgb(222, 222, 222);
+  --Light-Light-Gray: rgb(236, 236, 236);
+  --Para-Color: rgb(168, 147, 135);
+  --Discount-Color: rgb(246, 70, 93);
+}
+
+/* Define styles for the scrollbar track (the empty space) */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
