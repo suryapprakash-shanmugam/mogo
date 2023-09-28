@@ -283,7 +283,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={startDate}
                                                                         onChange={handleStartDateChange}
-                                                                        minDate={new Date()}    
+                                                                        minDate={new Date()} />
                                                                 </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
                                                                     <label></label>
