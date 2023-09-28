@@ -282,7 +282,6 @@ const Individual = () => {
                     label="Status"
                     dropdownPosition="bottom"
                     className='individual-selectbox-style'
-                    // placeholder="Pick one"
                     data={[
                         { value: 'Awaiting Payment', label: 'Awaiting Payment' },
                         { value: 'Payment Received', label: 'Payment Received' },

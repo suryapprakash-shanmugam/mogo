@@ -5,7 +5,6 @@ import './NumericInput.css'
 function NumericInput({ value, onChange, label, placeholder }) {
     const handleInputChange = (event) => {
         let numericValue = event.target.value;
-
         // Ensure that there's only one decimal point
         const parts = numericValue.split('.');
         if (parts.length > 2) {
@@ -14,8 +13,6 @@ function NumericInput({ value, onChange, label, placeholder }) {
             const decimalPart = parts.slice(1).join('');
             numericValue = `${integerPart}.${decimalPart}`;
         }
-
-        // Allow only numeric characters and a single decimal point
         numericValue = numericValue.replace(/[^0-9.]/g, '');
 
         onChange(numericValue);

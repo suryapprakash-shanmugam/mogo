@@ -221,13 +221,11 @@ const Category = () => {
 
     if (foundItem) {
         const categoryValue = foundItem.category;
-
-        // Find the link and value from the 0th array of categoryArray based on categoryValue
         const categoryInfo = categoryArray[0].value.find(item => item.value === categoryValue);
 
         if (categoryInfo) {
             const { value, link } = categoryInfo;
-            items.push({ title: value, href: link }); // Push categoryInfo to items
+            items.push({ title: value, href: link });
         }
 
     }
@@ -235,7 +233,6 @@ const Category = () => {
     if (location.pathname !== '/products') {
         items.push(value[location.pathname])
     }
-
     const categoryZero = categoryArray[0]; // Get the first category object
 
     const foundItemsInCategoryZero = items.filter((item) => {
@@ -448,19 +445,15 @@ const Category = () => {
     const handleInputChange = (event) => {
         const searchText = event.target.value;
         setFilterText(searchText);
-
-        // Filter the brands based on the input
         const filtered = brandArray.filter((brand) =>
             brand.brandname.toLowerCase().includes(searchText.toLowerCase())
         );
 
         setFilteredBrands(filtered);
     };
-    // Function to handle input change
     const handleInputChange1 = (event) => {
         const searchText = event.target.value;
         setFilterText1(searchText);
-
         // Filter the brands based on the input
         const filtered = brandArray1.filter((brand) =>
             brand.brandname.toLowerCase().includes(searchText.toLowerCase())
@@ -537,7 +530,7 @@ const Category = () => {
                                                                         </div>
                                                                     )
                                                                 }
-                                                                return null; // Add this to handle cases where category.category doesn't match
+                                                                return null;
                                                             })
                                                         }
                                                     </>

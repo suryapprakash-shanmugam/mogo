@@ -159,16 +159,13 @@ const Product = ({ category, subcategory, heading }) => {
 
     const [selectedColor, setSelectedColor] = useState('1');
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    // const [currentDisplayImage, setCurrentDisplayImage] = useState(''); // Track the currently displayed image
 
     const handleColorButtonClick = (color) => {
         setSelectedColor(color);
-        setCurrentImageIndex(0); // Reset the image index when a new color is selected
-        // setCurrentDisplayImage(''); // Reset the currently displayed image when changing colors
+        setCurrentImageIndex(0); 
     };
 
     const handleImageClick = (imageSrc, imageIndex) => {
-        // setCurrentDisplayImage(imageSrc);
         setCurrentImageIndex(imageIndex);
     };
 

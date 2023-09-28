@@ -24,7 +24,6 @@ import trash from '../../../../assets/admin/table/dropdown/trash.png'
 
 
 const AddProduct = () => {
-
     const [taxRate, setTaxRate] = useState('')
     const [editorHtml, setEditorHtml] = useState('');
     const [editorShortHtml, setEditorShortHtml] = useState('');
@@ -284,8 +283,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={startDate}
                                                                         onChange={handleStartDateChange}
-                                                                        minDate={new Date()}
-                                                                    />
+                                                                        minDate={new Date()}    
                                                                 </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
                                                                     <label></label>
@@ -293,7 +291,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={endDate}
                                                                         onChange={(date) => setEndDate(date)}
-                                                                        minDate={endDate} // Set the minimum date based on the selected start date
+                                                                        minDate={endDate}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -368,7 +366,7 @@ const AddProduct = () => {
                                                                         value={maxQuantityValue}
                                                                         onChange={setMaxQuantityValue}
                                                                     />
-                                                                </div>
+                                                                </div >
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
@@ -388,7 +386,7 @@ const AddProduct = () => {
                                                                         onChange={setMaxLowStockValue}
                                                                     />
                                                                 </div>
-                                                            </div>
+                                                            </div >
                                                         ) : (
                                                             <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                 <label>Stock status</label>
@@ -424,7 +422,7 @@ const AddProduct = () => {
                                                             onChange={setMaxInitialValue}
                                                         />
                                                     </div> */}
-                                                </Tabs.Panel>
+                                                </Tabs.Panel >
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="shipping">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Weight (kg)</label>
@@ -452,7 +450,7 @@ const AddProduct = () => {
                                                         />
                                                     </div>
                                                 </Tabs.Panel>
-                                            </Tabs>
+                                            </Tabs >
                                         ) : (
                                             <Tabs variant="outline" defaultValue="general" orientation="vertical">
                                                 <Tabs.List>
@@ -487,7 +485,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={startDate}
                                                                         onChange={handleStartDateChange}
-                                                                        minDate={new Date()} // You can set this to restrict selecting past dates
+                                                                        minDate={new Date()}
                                                                     />
                                                                 </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
@@ -496,7 +494,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={endDate}
                                                                         onChange={(date) => setEndDate(date)}
-                                                                        minDate={endDate} // Set the minimum date based on the selected start date
+                                                                        minDate={endDate}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -511,7 +509,7 @@ const AddProduct = () => {
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
                                                             value={taxStatus} // Set the value prop to the selectedType state variable
-                                                            onChange={handleTaxStatusChange} // Call handleTypeChange when the selection changes
+                                                            onChange={handleTaxStatusChange}
                                                         />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
@@ -521,7 +519,7 @@ const AddProduct = () => {
                                                             placeholder="Select Class"
                                                             data={taxClassArray}
                                                             value={taxClass} // Set the value prop to the selectedType state variable
-                                                            onChange={handleTaxClassChange} // Call handleTypeChange when the selection changes
+                                                            onChange={handleTaxClassChange}
                                                         />
                                                     </div>
                                                 </Tabs.Panel>
@@ -779,7 +777,7 @@ const AddProduct = () => {
                                                                                                                 className='datepicker-style'
                                                                                                                 selected={startDateVariation}
                                                                                                                 onChange={handleStartDateChangeVariation}
-                                                                                                                minDate={new Date()} // You can set this to restrict selecting past dates
+                                                                                                                minDate={new Date()}
                                                                                                             />
                                                                                                         </div>
                                                                                                         <div className="variation-field-hide">
@@ -874,9 +872,9 @@ const AddProduct = () => {
                                             </Tabs>
                                         )
                                     }
-                                </div>
-                            </div>
-                        </div>
+                                </div >
+                            </div >
+                        </div >
 
                         <div className="add-product-div-container-left-short-description">
                             <Card className='add-product-div-container-left-short-description-card'>
@@ -890,7 +888,7 @@ const AddProduct = () => {
                             </Card>
                         </div>
 
-                    </div>
+                    </div >
                     <div className="add-product-div-container-right">
                         <div className="add-product-div-container-right-draft-publish">
                             <Card className='add-product-div-container-right-draft-publish-card'>
@@ -1049,9 +1047,9 @@ const AddProduct = () => {
                             </Card>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     )
 }
 

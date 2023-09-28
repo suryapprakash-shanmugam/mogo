@@ -55,8 +55,14 @@ import AddProduct from './pages/Admin/Product/AddProduct/AddProduct';
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
 import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
+
+// State Handler
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
+
+//import Products from pages->admin->product->products
+import Products from './pages/Admin/Product/Products/Products';
+import ProductIndividual from './pages/Admin/Product/ProductIndividual/ProductIndividual';
 
 const AdminRouters = () => {
     window.scrollTo(0, 0)
@@ -74,7 +80,7 @@ const AdminRouters = () => {
             setCollapsed(false)
         }
     }, [adminsidenavmediaquery])
-
+    window.scrollTo(0, 0)
     const location = useLocation();
     const bodyContent = {
         '/admin_dashboard': <Dashboard />,
@@ -88,11 +94,11 @@ const AdminRouters = () => {
         '/refundrequests': <RefundRequests />,
         '/individualrefund': <IndividualRefund />,
         '/addproduct': <AddProduct />,
+        '/productsdetails': <Products />,
+        '/productsdetails_individual': <ProductIndividual />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
-
-
     // Login Status Checking
     const loginStatus = useSelector((state) => state?.loginStatus?.value)
 
@@ -107,7 +113,6 @@ const AdminRouters = () => {
             window.location.reload(navigate('/admin'))
         }
     }, [])
-
     return (
         <div>
             <div className='admin-sidenav' >
@@ -207,7 +212,7 @@ const AdminRouters = () => {
                             disabled={collapsed !== true ? true : false}
                         >
                             <SubMenu label="Products" icon={<i className='fa fa-shopping-basket' />}>
-                                <Link to="">
+                                <Link to="/productsdetails">
                                     <MenuItem component="span"> Products</MenuItem>
                                 </Link>
                                 <Link to="">

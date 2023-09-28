@@ -1,7 +1,13 @@
 //import mantine packages
 import { MantineProvider } from '@mantine/core';
+<<<<<<< HEAD
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
+=======
+
+//import mantine modals packages
+import { ModalsProvider } from '@mantine/modals';
+>>>>>>> origin/main
 
 //import react packages
 import React from 'react';
@@ -18,7 +24,6 @@ import App from './App';
 // Redux State Handler
 import { Provider } from 'react-redux';
 import { store } from './StateHandler/Store/ReduxStore';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

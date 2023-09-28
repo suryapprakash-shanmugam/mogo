@@ -136,7 +136,9 @@ const Wipper = () => {
                 <Route path="/individualrefund" element={<AdminRouters />} />
 
                 <Route path="/addproduct" element={<AdminRouters />} />
+                <Route path="/productsdetails" element={<AdminRouters />} />
 
+                <Route path="/productsdetails_individual" element={<AdminRouters />} />
 
 
 
