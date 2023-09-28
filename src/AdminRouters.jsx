@@ -52,6 +52,10 @@ import IndividualRefund from './pages/Admin/RefundRequests/IndividualRefund/Indi
 //import AddProduct from pages->admin->product->addproduct
 import AddProduct from './pages/Admin/Product/AddProduct/AddProduct';
 
+//import Products from pages->admin->product->products
+import Products from './pages/Admin/Product/Products/Products';
+import ProductIndividual from './pages/Admin/Product/ProductIndividual/ProductIndividual';
+
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
 import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
@@ -83,6 +87,8 @@ const AdminRouters = () => {
         '/refundrequests': <RefundRequests />,
         '/individualrefund': <IndividualRefund />,
         '/addproduct': <AddProduct />,
+        '/productsdetails': <Products />,
+        '/productsdetails_individual': <ProductIndividual />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -186,7 +192,7 @@ const AdminRouters = () => {
                             disabled={collapsed !== true ? true : false}
                         >
                             <SubMenu label="Products" icon={<i className='fa fa-shopping-basket' />}>
-                                <Link to="">
+                                <Link to="/productsdetails">
                                     <MenuItem component="span"> Products</MenuItem>
                                 </Link>
                                 <Link to="">

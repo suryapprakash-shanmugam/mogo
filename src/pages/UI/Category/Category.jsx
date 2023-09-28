@@ -222,12 +222,11 @@ const Category = () => {
     if (foundItem) {
         const categoryValue = foundItem.category;
 
-        // Find the link and value from the 0th array of categoryArray based on categoryValue
         const categoryInfo = categoryArray[0].value.find(item => item.value === categoryValue);
 
         if (categoryInfo) {
             const { value, link } = categoryInfo;
-            items.push({ title: value, href: link }); // Push categoryInfo to items
+            items.push({ title: value, href: link }); 
         }
 
     }
@@ -236,10 +235,9 @@ const Category = () => {
         items.push(value[location.pathname])
     }
 
-    const categoryZero = categoryArray[0]; // Get the first category object
+    const categoryZero = categoryArray[0]; 
 
     const foundItemsInCategoryZero = items.filter((item) => {
-        // Check if the item's href exists in categoryZero's value
         return categoryZero.value.some((categoryItem) => categoryItem.link === item.href);
     });
 
@@ -439,29 +437,25 @@ const Category = () => {
         },
     ]
 
-    const [filterText, setFilterText] = useState(''); // State to store the filter input
-    const [filterText1, setFilterText1] = useState(''); // State to store the filter input
-    const [filteredBrands, setFilteredBrands] = useState(brandArray); // State to store the filtered brands
-    const [filteredBrands1, setFilteredBrands1] = useState(brandArray1); // State to store the filtered brands
+    const [filterText, setFilterText] = useState(''); 
+    const [filterText1, setFilterText1] = useState(''); 
+    const [filteredBrands, setFilteredBrands] = useState(brandArray); 
+    const [filteredBrands1, setFilteredBrands1] = useState(brandArray1); 
 
-    // Function to handle input change
     const handleInputChange = (event) => {
         const searchText = event.target.value;
         setFilterText(searchText);
 
-        // Filter the brands based on the input
         const filtered = brandArray.filter((brand) =>
             brand.brandname.toLowerCase().includes(searchText.toLowerCase())
         );
 
         setFilteredBrands(filtered);
     };
-    // Function to handle input change
     const handleInputChange1 = (event) => {
         const searchText = event.target.value;
         setFilterText1(searchText);
 
-        // Filter the brands based on the input
         const filtered = brandArray1.filter((brand) =>
             brand.brandname.toLowerCase().includes(searchText.toLowerCase())
         );
@@ -537,7 +531,7 @@ const Category = () => {
                                                                         </div>
                                                                     )
                                                                 }
-                                                                return null; // Add this to handle cases where category.category doesn't match
+                                                                return null; 
                                                             })
                                                         }
                                                     </>

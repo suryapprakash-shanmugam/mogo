@@ -91,7 +91,7 @@ const HomeBlogs = ({ header, subheader }) => {
 
                                     const truncatedDescription = truncateText(
                                         homeblogs.blog_description,
-                                        100 // Adjust the maximum length as needed
+                                        100
                                     );
                                     return (
                                         <Carousel.Slide key={index} className='homeblogs-div-container-content-slider-individual'>

@@ -20,7 +20,6 @@ const Individual = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-    // const [Statusopened, { statusopen, statusclose }] = useDisclosure(false);
     const [modalOpen, setModalOpen] = useState(false)
     const ProductOptions = () => (
         <MenuMantine shadow="md" width={200}>
@@ -47,9 +46,8 @@ const Individual = () => {
             Total: '$84.15',
             Status: 'Completed',
             Updated: '5 months ago',
-            Options: <ProductOptions />, // Use the wrapper component here
+            Options: <ProductOptions />, 
         },
-        // ... Add more product details
     ];
 
     const ProductDetailsRows = ProductDetails.map((ProductDetail, index) => (
@@ -282,7 +280,6 @@ const Individual = () => {
                     label="Status"
                     dropdownPosition="bottom"
                     className='individual-selectbox-style'
-                    // placeholder="Pick one"
                     data={[
                         { value: 'Awaiting Payment', label: 'Awaiting Payment' },
                         { value: 'Payment Received', label: 'Payment Received' },

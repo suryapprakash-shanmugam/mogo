@@ -167,16 +167,12 @@ const AddProduct = () => {
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
-        // Calculate the minimum date for the second DatePicker
-        // by adding one day to the selected start date
         const minEndDate = new Date(date);
         minEndDate.setDate(minEndDate.getDate() + 1);
         setEndDate(minEndDate);
     };
     const handleStartDateChangeVariation = (date) => {
         setStartDateVariation(date);
-        // Calculate the minimum date for the second DatePicker
-        // by adding one day to the selected start date
         const minEndDateVariation = new Date(date);
         minEndDateVariation.setDate(minEndDateVariation.getDate() + 1);
         setEndDateVariation(minEndDateVariation);
@@ -251,8 +247,8 @@ const AddProduct = () => {
                                         rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                         placeholder="Select Type"
                                         data={selectTypeArray}
-                                        value={selectedType} // Set the value prop to the selectedType state variable
-                                        onChange={handleTypeChange} // Call handleTypeChange when the selection changes
+                                        value={selectedType} 
+                                        onChange={handleTypeChange} 
                                     />
                                 </div>
                                 <div className="add-product-div-container-left-product-data-card-tab">
@@ -289,7 +285,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={startDate}
                                                                         onChange={handleStartDateChange}
-                                                                        minDate={new Date()} // You can set this to restrict selecting past dates
+                                                                        minDate={new Date()} 
                                                                     />
                                                                 </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
@@ -298,7 +294,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={endDate}
                                                                         onChange={(date) => setEndDate(date)}
-                                                                        minDate={endDate} // Set the minimum date based on the selected start date
+                                                                        minDate={endDate} 
                                                                     />
                                                                 </div>
                                                             </div>
@@ -312,8 +308,8 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
-                                                            value={taxStatus} // Set the value prop to the selectedType state variable
-                                                            onChange={handleTaxStatusChange} // Call handleTypeChange when the selection changes
+                                                            value={taxStatus}
+                                                            onChange={handleTaxStatusChange} 
                                                         />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
@@ -322,8 +318,8 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Class"
                                                             data={taxClassArray}
-                                                            value={taxClass} // Set the value prop to the selectedType state variable
-                                                            onChange={handleTaxClassChange} // Call handleTypeChange when the selection changes
+                                                            value={taxClass}
+                                                            onChange={handleTaxClassChange}
                                                         />
                                                     </div>
                                                 </Tabs.Panel>
@@ -471,7 +467,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={startDate}
                                                                         onChange={handleStartDateChange}
-                                                                        minDate={new Date()} // You can set this to restrict selecting past dates
+                                                                        minDate={new Date()} 
                                                                     />
                                                                 </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
@@ -480,7 +476,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={endDate}
                                                                         onChange={(date) => setEndDate(date)}
-                                                                        minDate={endDate} // Set the minimum date based on the selected start date
+                                                                        minDate={endDate} 
                                                                     />
                                                                 </div>
                                                             </div>
@@ -494,8 +490,8 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
-                                                            value={taxStatus} // Set the value prop to the selectedType state variable
-                                                            onChange={handleTaxStatusChange} // Call handleTypeChange when the selection changes
+                                                            value={taxStatus} 
+                                                            onChange={handleTaxStatusChange} 
                                                         />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
@@ -504,8 +500,8 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Class"
                                                             data={taxClassArray}
-                                                            value={taxClass} // Set the value prop to the selectedType state variable
-                                                            onChange={handleTaxClassChange} // Call handleTypeChange when the selection changes
+                                                            value={taxClass} 
+                                                            onChange={handleTaxClassChange} 
                                                         />
                                                     </div>
                                                 </Tabs.Panel>
@@ -763,7 +759,7 @@ const AddProduct = () => {
                                                                                                                 className='datepicker-style'
                                                                                                                 selected={startDateVariation}
                                                                                                                 onChange={handleStartDateChangeVariation}
-                                                                                                                minDate={new Date()} // You can set this to restrict selecting past dates
+                                                                                                                minDate={new Date()} 
                                                                                                             />
                                                                                                         </div>
                                                                                                         <div className="variation-field-hide">
@@ -772,7 +768,7 @@ const AddProduct = () => {
                                                                                                                 className='datepicker-style'
                                                                                                                 selected={endDateVariation}
                                                                                                                 onChange={(date) => setEndDateVariation(date)}
-                                                                                                                minDate={endDateVariation} // Set the minimum date based on the selected start date
+                                                                                                                minDate={endDateVariation} 
                                                                                                             />
                                                                                                         </div>
                                                                                                     </>
@@ -786,8 +782,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationStockStatusArray}
-                                                                                                value={variationStockClass} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationStockClassChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationStockClass} 
+                                                                                                onChange={handlevariationStockClassChange} 
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -823,8 +819,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationshippingArray}
-                                                                                                value={variationshipping} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationshippingChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationshipping} 
+                                                                                                onChange={handlevariationshippingChange} 
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -833,8 +829,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationtaxclassArray}
-                                                                                                value={variationtaxclass} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationtaxclassChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationtaxclass} 
+                                                                                                onChange={handlevariationtaxclassChange} 
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
