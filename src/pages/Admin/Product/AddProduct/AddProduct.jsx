@@ -1,5 +1,5 @@
 //import react packages
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 //import AddProduct css
 import './AddProduct.css'
@@ -21,9 +21,14 @@ import anglebottom from '../../../../assets/preheader/arrow-down.webp'
 import Quantity from '../../../../components/Admin/Quantity/Quantity';
 import image_icon from '../../../../assets/admin/product/image_icon.png'
 import trash from '../../../../assets/admin/table/dropdown/trash.png'
+import { handleCreateProduct } from '../../../../controller/produuct/ProductController';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import { listAllProduct } from '../../../../config/quries/Products/ProductQuries';
 
 
 const AddProduct = () => {
+    const [productSingleImage, setProductSingleImage] = useState()
     const [taxRate, setTaxRate] = useState('')
     const [editorHtml, setEditorHtml] = useState('');
     const [editorShortHtml, setEditorShortHtml] = useState('');
@@ -51,6 +56,7 @@ const AddProduct = () => {
     const [stockManagement, setStockManagement] = useState(false);
     const [soldIndividual, setSoldIndividual] = useState(false);
     const [addCategory, setAddCategory] = useState(false);
+    const [productdata, setProductData] = useState([])
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -216,8 +222,43 @@ const AddProduct = () => {
         setAccordionVariationItems(updatedItems);
     };
 
+    const handleCreateProductClick = () => {
+        handleCreateProduct(productSingleImage)
+    }
+
+    // Hanlde Product Image Click     
+    const fileInputRef = useRef(null);
+    const handleSetNewProductImage = () => {
+        fileInputRef.current.click();
+    };
+
+    // useReact Query
+    useQuery('Products',
+        listAllProduct,
+        {
+            onSuccess: (res) => {
+                setProductData(res?.data?.data?.result)
+            }
+        }
+    )
+
+
+
     return (
         <div>
+
+            {
+                productdata?.map((result, index) => {
+                    return (
+                        <div key={index}>
+                            {console.log(result.product_image)}
+                            <img
+                            src='E:/Dhiyanesh/Weboney/Modesy/mogoAPI/src/Model/products/Assets/ProductSingleImage/1695983453701_logo.png'/>
+                            {/* <img src={`http://localhost:1002/${result.product_image}`} /> */}
+                        </div>
+                    )
+                })
+            }
             <div className="add-product-div">
                 <div className="add-product-div-container">
                     <div className="add-product-div-container-left">
@@ -897,8 +938,8 @@ const AddProduct = () => {
                                 </div>
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-draft-publish-card-content">
-                                    <button>Save Drafts</button>
-                                    <button>Publish</button>
+                                    <button onClick={handleCreateProductClick}>Save Drafts</button>
+                                    <button onClick={handleCreateProductClick}>Publish</button>
                                 </div>
                             </Card>
                         </div>
@@ -909,12 +950,37 @@ const AddProduct = () => {
                                 </div>
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-product-image-card-content">
-                                    {
+                                    {/* {
                                         productImage === true ? (<div className='add-product-div-container-right-product-image-card-content-image'></div>) : ''
+                                    } */}
+                                    {
+                                        productSingleImage ?
+                                            (<div className='add-product-div-container-right-product-image-card-content-image'>
+                                                <img src={URL.createObjectURL(productSingleImage)} />
+                                            </div>)
+                                            : ''
                                     }
                                     <p onClick={handileProductImage}>
                                         {
-                                            productImage === true ? (<span className='product-remove'>Remove product image</span>) : (<span className='product-add'>Set product image</span>)
+                                            productSingleImage ?
+                                                (<span
+                                                    onClick={() => setProductSingleImage('')}
+                                                    className='product-remove'>
+                                                    Remove product image
+                                                </span>)
+                                                :
+                                                <span
+                                                    onClick={handleSetNewProductImage}
+                                                    className='product-add'>
+                                                    Set product image
+                                                </span>
+                                        }
+                                        {
+                                            <input
+                                                style={{ display: 'none' }}
+                                                onChange={(e) => setProductSingleImage(e.target.files[0])}
+                                                type='file'
+                                                ref={fileInputRef} />
                                         }
                                     </p>
                                 </div>

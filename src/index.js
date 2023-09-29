@@ -18,18 +18,23 @@ import App from './App';
 // Redux State Handler
 import { Provider } from 'react-redux';
 import { store } from './StateHandler/Store/ReduxStore';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <MantineProvider>
-        <ModalsProvider>
-          <Provider store={store}>
-            <Notifications position="top-right" zIndex={12346} autoClose={2200} withBorder />
-            <App />
-          </Provider>
-        </ModalsProvider>
-      </MantineProvider>
+      <QueryClientProvider client={queryClient}>
+        <MantineProvider>
+          <ModalsProvider>
+            <Provider store={store}>
+              <Notifications position="top-right" zIndex={12346} autoClose={2200} withBorder />
+              <App />
+            </Provider>
+          </ModalsProvider>
+        </MantineProvider>
+      </QueryClientProvider>
     </HashRouter>
   </React.StrictMode>
 );

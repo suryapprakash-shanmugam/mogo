@@ -1,5 +1,5 @@
 import axios from "axios"
-import config from "../server/Servers"
+import config from "../../server/Servers"
 
 // Login Admin
 export const loginAdmin = (payload) => {

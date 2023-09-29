@@ -1,5 +1,5 @@
 import { showNotification } from "@mantine/notifications"
-import { loginAdmin } from "../../config/quries/Quries"
+import { loginAdmin } from "../../config/quries/AdminLogin/Quries"
 import { ThemeIcon } from "@mantine/core"
 import { CircleCheck, X } from "tabler-icons-react"
 import { setLoginStatus } from "../../StateHandler/Slice/Login/LoginSlice"
