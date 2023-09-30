@@ -56,6 +56,7 @@ const AddProduct = () => {
     const [maxWeightValue, setMaxWeightValue] = useState('');
     const [schedule, setSchedule] = useState(false);
     const [productImage, setProductImage] = useState(false);
+    const [permaEdit, setPermaEdit] = useState(false);
     const [productGallery, setProductGallery] = useState(false);
     const [scheduleVariation, setScheduleVariation] = useState(false);
     const [stockManagement, setStockManagement] = useState(false);
@@ -68,7 +69,18 @@ const AddProduct = () => {
     const [startDateVariation, setStartDateVariation] = useState(null);
     const [endDateVariation, setEndDateVariation] = useState(null);
 
-
+    const [dataCategory, setDataCategory] = useState([
+        { value: 'react', label: 'React' },
+        { value: 'ng', label: 'Angular' },
+    ]);
+    const [dataSubCategory, setDataSubCategory] = useState([
+        { value: 'react', label: 'React' },
+        { value: 'ng', label: 'Angular' },
+    ]);
+    const [dataChildCategory, setDataChildCategory] = useState([
+        { value: 'react', label: 'React' },
+        { value: 'ng', label: 'Angular' },
+    ]);
 
     const modules = {
         toolbar: [
@@ -127,13 +139,17 @@ const AddProduct = () => {
     };
 
     const handileProductImage = () => {
-        setProductImage((prevProductImage) => !prevProductImage)
+        setProductImage((prevproductImage) => !prevproductImage)
     }
+    const handilePerma = () => {
+        setPermaEdit((prevpermaEdit) => !prevpermaEdit)
+    }
+
     const handileProductGallery = () => {
-        setProductGallery((prevProductGallery) => !prevProductGallery)
+        setProductGallery((prevproductGallery) => !prevproductGallery)
     }
     const handileAddCategory = () => {
-        setAddCategory((prevAddCategory) => !prevAddCategory)
+        setAddCategory((prevaddCategory) => !prevaddCategory)
     }
 
     const handleTaxStatusChange = (value) => {
@@ -159,12 +175,12 @@ const AddProduct = () => {
         setEditorShortHtml(html);
     };
     const handleSchedule = () => {
-        setSchedule((prevSchedule) => !prevSchedule);
+        setSchedule((prevschedule) => !prevschedule);
         setStartDate(null);
         setEndDate(null);
     };
     const handleScheduleVariation = () => {
-        setScheduleVariation((prevScheduleVariation) => !prevScheduleVariation);
+        setScheduleVariation((prevscheduleVariation) => !prevscheduleVariation);
         setStartDateVariation(null);
         setEndDateVariation(null);
     };
@@ -310,7 +326,7 @@ const AddProduct = () => {
         product_name: '',
         product_description: '',
         product_short_description: '',
-        product_type: '',
+        product_type: 'simple',
         actual_price: '',
         sale_price: "",
         sale_price_date: '',
@@ -348,6 +364,13 @@ const AddProduct = () => {
                                     value={productDetails.product_name}
                                 />
                             </Input.Wrapper>
+
+                        </div>
+                        <div className="add-product-div-container-left-product-data-card-tab-panel-grid-link">
+                            <label>Permalink:</label>
+                            <p> https://weboney.in/lebanon/product/</p>
+                            <Input />
+                            <button onClick={handilePerma}>Edit</button>
                         </div>
                         <div className="add-product-div-container-left-product-description">
                             <Card className='add-product-div-container-left-product-description-card'>
@@ -1129,7 +1152,53 @@ const AddProduct = () => {
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-product-category-card-content">
                                     <div className="add-product-div-container-right-product-category-card-content-tabs">
-                                        <Tabs variant="outline" defaultValue="allcategory">
+
+                                        <Select
+                                            label="Category"
+                                            data={dataCategory}
+                                            placeholder="Select Category"
+                                            nothingFound="Nothing found"
+                                            searchable
+                                            creatable
+                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                            getCreateLabel={(query) => `+ Create ${query}`}
+                                            onCreate={(query) => {
+                                                const item = { value: query, label: query };
+                                                setDataCategory((current) => [...current, item]);
+                                                return item;
+                                            }}
+                                        />
+                                        <Select
+                                            label="Sub Category"
+                                            data={dataSubCategory}
+                                            placeholder="Select Sub Category"
+                                            nothingFound="Nothing found"
+                                            searchable
+                                            creatable
+                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                            getCreateLabel={(query) => `+ Create ${query}`}
+                                            onCreate={(query) => {
+                                                const item = { value: query, label: query };
+                                                setDataSubCategory((current) => [...current, item]);
+                                                return item;
+                                            }}
+                                        />
+                                        <Select
+                                            label="Child Category"
+                                            data={dataChildCategory}
+                                            placeholder="Select Child Category"
+                                            nothingFound="Nothing found"
+                                            searchable
+                                            creatable
+                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                            getCreateLabel={(query) => `+ Create ${query}`}
+                                            onCreate={(query) => {
+                                                const item = { value: query, label: query };
+                                                setDataChildCategory((current) => [...current, item]);
+                                                return item;
+                                            }}
+                                        />
+                                        {/* <Tabs variant="outline" defaultValue="allcategory">
                                             <Tabs.List>
                                                 <Tabs.Tab value="allcategory">
                                                     All Categories
@@ -1174,9 +1243,10 @@ const AddProduct = () => {
                                                     size="xs"
                                                 />
                                             </Tabs.Panel>
-                                        </Tabs>
+                                        </Tabs> */}
+
                                     </div>
-                                    <div className="add-product-div-container-right-product-category-card-content-add-category">
+                                    {/* <div className="add-product-div-container-right-product-category-card-content-add-category">
                                         <p onClick={handileAddCategory} className='add-product-div-container-right-product-category-card-content-add-category-btn'>+ Add new category</p>
                                         {
                                             addCategory === true ? (
@@ -1196,7 +1266,7 @@ const AddProduct = () => {
                                                 </div>
                                             ) : ''
                                         }
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

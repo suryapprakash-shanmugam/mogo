@@ -65,4 +65,5 @@
     background-color: var(--Logo-Color1);
     color: #fff;
     border-radius: 3px;
+    cursor: pointer;
 }

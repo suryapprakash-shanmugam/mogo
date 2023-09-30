@@ -13,6 +13,7 @@
   --Logo-Color3: rgb(83, 82, 120);
   --Logo-Color4: rgb(83, 82, 120);
   --Logo-Color5: rgb(42, 96, 105);
+  --Logo-Color6: rgb(104,171,65);
   --Extra-Light-Gray: rgb(222, 222, 222);
   --Light-Light-Gray: rgb(236, 236, 236);
   --Para-Color: rgb(168, 147, 135);
@@ -32,4 +33,72 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+.table-style {
+  margin: 1rem 0rem;
+}
+
+.custum-table-style {
+  font-family: 'Source Sans Pro', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custum-table-style td,
+.custum-table-style th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.custum-table-style tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.custum-table-style tr:hover {
+  background-color: #ddd;
+}
+
+.custum-table-style th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: var(--Logo-Color1);
+  color: white;
+}
+
+.react-table-pagination .mantine-1wc3ure[data-active] {
+  background-color: var(--Logo-Color1);
+}
+
+.react-table-pagination .mantine-1wc3ure[data-active]:not([data-disabled]):hover {
+  background-color: var(--Logo-Color2);
+}
+
+.table-select-dropdown {
+  font-size: 12px;
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  border: 0;
+  background-color: var(--Logo-Color6);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.table-selectbox .mantine-Menu-itemLabel {
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.custum-table-style td {
+  font-size: 14px;
+}
+
+.custum-table-style td:last-child {
+  text-align: -webkit-center;
 }

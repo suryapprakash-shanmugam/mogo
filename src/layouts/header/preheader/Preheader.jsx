@@ -100,6 +100,7 @@ const Preheader = () => {
 
       {/* model starts */}
       <Modal
+        zIndex={12121}
         size="md"
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -127,6 +128,7 @@ const Preheader = () => {
       {/* modal end */}
       {/* Register model starts */}
       <Modal
+        zIndex={12121}
         size="md"
         opened={registermodalOpen}
         onClose={() => setRegisterModalOpen(false)}
@@ -173,6 +175,7 @@ const Preheader = () => {
       {/*Register modal end */}
       {/* Login model starts */}
       <Modal
+        zIndex={12121}
         size="md"
         opened={loginmodalOpen}
         onClose={() => setLoginModalOpen(false)}
@@ -201,6 +204,7 @@ const Preheader = () => {
       {/*Login modal end */}
       {/* Forgot model starts */}
       <Modal
+        zIndex={12121}
         size="md"
         opened={forgotmodalOpen}
         onClose={() => setForgotModalOpen(false)}

@@ -1,0 +1,40 @@
+.blogs-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.blogs-div-card {
+    padding: 0px;
+}
+
+.blogs-div-card-heading {
+    padding: 20px 20px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blogs-div-card-heading h4 {
+    font-weight: 400;
+}
+
+.blogs-div-card-heading button {
+    width: 99px;
+    height: 34px;
+    cursor: pointer;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #fff;
+}
+
+.blogs-div-card-body {
+    padding: 20px;
+}
+
+.padding0 .mantine-kcpopt
+{
+    padding: 0px;
+}
