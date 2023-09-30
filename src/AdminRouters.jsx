@@ -52,6 +52,42 @@ import IndividualRefund from './pages/Admin/RefundRequests/IndividualRefund/Indi
 //import AddProduct from pages->admin->product->addproduct
 import AddProduct from './pages/Admin/Product/AddProduct/AddProduct';
 
+//import Products from pages->admin->product->products
+import Products from './pages/Admin/Product/Products/Products';
+
+//import ProductIndividual from pages->admin->product->ProductIndividual
+import ProductIndividual from './pages/Admin/Product/ProductIndividual/ProductIndividual';
+
+//import SpecialProducts from pages->admin->product->SpecialProducts
+import SpecialProducts from './pages/Admin/Product/SpecialProducts/SpecialProducts';
+
+//import PendingProducts from pages->admin->product->PendingProducts
+import PendingProducts from './pages/Admin/Product/PendingProducts/PendingProducts';
+
+//import HiddenProducts from pages->admin->product->HiddenProducts
+import HiddenProducts from './pages/Admin/Product/HiddenProducts/HiddenProducts';
+
+//import ExpiredProducts from pages->admin->product->ExpiredProducts
+import ExpiredProducts from './pages/Admin/Product/ExpiredProducts/ExpiredProducts';
+
+//import SoldProducts from pages->admin->product->SoldProducts
+import SoldProducts from './pages/Admin/Product/SoldProducts/SoldProducts';
+
+//import DeletedProducts from pages->admin->product->DeletedProducts
+import DeletedProducts from './pages/Admin/Product/DeletedProducts/DeletedProducts';
+
+//import Category from pages->admin->Category
+import Category from './pages/Admin/Category/Category';
+
+//import FeaturedProducts from pages->admin->FeaturedProducts
+import FeaturedProducts from './pages/Admin/FeaturedProducts/FeaturedProducts';
+
+//import QuoteRequests from pages->admin->QuoteRequests
+import QuoteRequests from './pages/Admin/QuoteRequests/QuoteRequests';
+
+//import Blogs from pages->admin->Blogs
+import Blogs from './pages/Admin/Blogs/Blogs';
+
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
 import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
@@ -60,15 +96,6 @@ import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
 
-//import Products from pages->admin->product->products
-import Products from './pages/Admin/Product/Products/Products';
-import ProductIndividual from './pages/Admin/Product/ProductIndividual/ProductIndividual';
-import SpecialProducts from './pages/Admin/Product/SpecialProducts/SpecialProducts';
-import PendingProducts from './pages/Admin/Product/PendingProducts/PendingProducts';
-import HiddenProducts from './pages/Admin/Product/HiddenProducts/HiddenProducts';
-import ExpiredProducts from './pages/Admin/Product/ExpiredProducts/ExpiredProducts';
-import SoldProducts from './pages/Admin/Product/SoldProducts/SoldProducts';
-import DeletedProducts from './pages/Admin/Product/DeletedProducts/DeletedProducts';
 
 const AdminRouters = () => {
     window.scrollTo(0, 0)
@@ -109,6 +136,10 @@ const AdminRouters = () => {
         '/sold_products': <SoldProducts />,
         '/drafts_products': <SoldProducts />,
         '/deleted_products': <DeletedProducts />,
+        '/categorylist': <Category />,
+        '/featuredproducts': <FeaturedProducts />,
+        '/quoterequests': <QuoteRequests />,
+        '/blogs': <Blogs />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -264,17 +295,11 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <SubMenu label="Featured Products" icon={<i className='fa fa-usd' />}>
-                                <Link to="">
-                                    <MenuItem component="span"> Products</MenuItem>
-                                </Link>
-                                <Link to="">
-                                    <MenuItem component="span"> Pricing</MenuItem>
-                                </Link>
-                                <Link to="">
-                                    <MenuItem component="span"> Transactions</MenuItem>
-                                </Link>
-                            </SubMenu>
+                            <Link to="/featuredproducts">
+                                <MenuItem component="span" active icon={<i className='fa fa-usd' />}>
+                                    Featured Products
+                                </MenuItem>
+                            </Link>
                         </Tooltip>
                         <Tooltip
                             label="Quote Requests"
@@ -283,7 +308,7 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <Link to="">
+                            <Link to="/quoterequests">
                                 <MenuItem component="span" active icon={<i className='fa fa-tag' />}>
                                     Quote Requests
                                 </MenuItem>
@@ -296,16 +321,13 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <SubMenu label="Categories" icon={<i className='fa fa-folder-open' />}>
-                                <Link to="">
-                                    <MenuItem component="span"> Categories</MenuItem>
-                                </Link>
-                                <Link to="">
-                                    <MenuItem component="span"> Bulk Category Upload</MenuItem>
-                                </Link>
-                            </SubMenu>
+                            <Link to="/categorylist">
+                                <MenuItem component="span" active icon={<i className='fa fa-folder-open' />}>
+                                    Categories
+                                </MenuItem>
+                            </Link>
                         </Tooltip>
-                        <Tooltip
+                        {/* <Tooltip
                             label="Sub Categories"
                             color="teal"
                             position="bottom-end"
@@ -336,7 +358,7 @@ const AdminRouters = () => {
                                     <MenuItem component="span"> Bulk Child Category Upload</MenuItem>
                                 </Link>
                             </SubMenu>
-                        </Tooltip>
+                        </Tooltip> */}
                         <Tooltip
                             label="Blog"
                             color="teal"
@@ -344,14 +366,19 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <SubMenu label="Blog" icon={<i className='fa fa-file-text' />}>
+                            {/* <SubMenu label="Blog" icon={<i className='fa fa-file-text' />}>
                                 <Link to="">
                                     <MenuItem component="span"> Posts</MenuItem>
                                 </Link>
                                 <Link to="">
                                     <MenuItem component="span"> Categories</MenuItem>
                                 </Link>
-                            </SubMenu>
+                            </SubMenu> */}
+                            <Link to="/blogs">
+                                <MenuItem component="span" active icon={<i className='fa fa-file-text' />}>
+                                    Blogs
+                                </MenuItem>
+                            </Link>
                         </Tooltip>
                         <Tooltip
                             label="Location"
@@ -509,7 +536,7 @@ const AdminRouters = () => {
                         </div>
                     </main>
                 </ScrollArea>
-            </div >
+            </div>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 //import react packages
 import React, { useMemo, useState } from 'react'
 
-
 // React Table
 import { useTable, usePagination, useGlobalFilter } from "react-table"
 
@@ -94,7 +93,7 @@ const Products = () => {
             accessor: (() => <div>
                 <Menu classNames='table-selectbox'>
                     <Menu.Target>
-                        <button className='table-select-dropdown'>Select an option <img src={anglebottom} alt='anglebottom' width={15} /></button>
+                        <button className='table-select-dropdown'><img src={anglebottom} alt='anglebottom' width={15} /></button>
                     </Menu.Target>
                     <Menu.Dropdown>
                         <Text component={Link} to="/productsdetails_individual">
@@ -498,6 +497,7 @@ const Products = () => {
             </div>
 
             <Modal
+                zIndex={12121}
                 size="md"
                 opened={featuredModalOpen}
                 onClose={() => setFeaturedModalOpen(false)}

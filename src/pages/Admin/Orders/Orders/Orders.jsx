@@ -85,7 +85,7 @@ const Orders = () => {
             accessor: (() => <div>
                 <Menu classNames='table-selectbox'>
                     <Menu.Target>
-                        <button className='table-select-dropdown'>Select an option <img src={anglebottom} alt='anglebottom' width={15} /></button>
+                        <button className='table-select-dropdown'><img src={anglebottom} alt='anglebottom' width={15} /></button>
                     </Menu.Target>
                     <Menu.Dropdown>
                         <Text component={Link} to="/individualorder">

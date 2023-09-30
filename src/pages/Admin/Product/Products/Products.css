@@ -2,6 +2,7 @@
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
 }
+
 .products-div {
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -30,63 +31,4 @@
     font-family: 'Source Sans Pro', sans-serif;
     margin-bottom: 5px;
     font-weight: 600 !important;
-}
-
-.table-style {
-    margin: 1rem 0rem;
-}
-
-.custum-table-style {
-    font-family: 'Sorce Sans';
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.custum-table-style td,
-.custum-table-style th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.custum-table-style tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.custum-table-style tr:hover {
-    background-color: #ddd;
-}
-
-.custum-table-style th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: var(--Logo-Color1);
-    color: white;
-}
-
-.react-table-pagination .mantine-1wc3ure[data-active] {
-    background-color: var(--Logo-Color1);
-}
-
-.react-table-pagination .mantine-1wc3ure[data-active]:not([data-disabled]):hover {
-    background-color: var(--Logo-Color2);
-}
-
-.table-select-dropdown {
-    font-size: 12px;
-    font-family: 'Source Sans Pro', sans-serif;
-    width: 110px;
-    height: 25px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-    border: 0;
-    background-color: var(--Logo-Color1);
-    color: #fff;
-    border-radius: 4px;
-}
-
-.table-selectbox .mantine-Menu-itemLabel {
-    font-family: 'Source Sans Pro', sans-serif !important;
 }

@@ -155,6 +155,15 @@ const Wipper = () => {
 
                 <Route path="/deleted_products" element={<AdminRouters />} />
 
+                <Route path="/categorylist" element={<AdminRouters />} />
+
+                <Route path="/featuredproducts" element={<AdminRouters />} />
+
+                <Route path="/blogs" element={<AdminRouters />} />
+
+
+
+
 
 
             </Routes>

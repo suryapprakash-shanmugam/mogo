@@ -25,7 +25,7 @@ const Individual = () => {
     const ProductOptions = () => (
         <MenuMantine shadow="md" width={200}>
             <MenuMantine.Target>
-                <button className='Individual-select-option'>Select an option <i className='fa fa-caret-down'></i></button>
+                <button className='Individual-select-option'><i className='fa fa-caret-down'></i></button>
             </MenuMantine.Target>
             <MenuMantine.Dropdown>
                 <MenuMantine.Item onClick={() => setModalOpen(true)} icon={<i className='fa fa-edit' />}>Update Order Status</MenuMantine.Item>
@@ -273,6 +273,7 @@ const Individual = () => {
 
 
             <Modal
+                zIndex={12121}
                 size={'lg'}
                 opened={modalOpen}
                 onClose={() => setModalOpen(false)}

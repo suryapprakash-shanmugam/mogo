@@ -135,6 +135,7 @@ const ProductIndividual = () => {
         </Card>
       </div>
       <Modal
+        zIndex={12121}
         size="md"
         opened={rejectModalOpen}
         onClose={() => setrejectModalOpen(false)}
@@ -149,13 +150,13 @@ const ProductIndividual = () => {
         <div className="sellerbalance-edit-modal-body">
           <div className="sellerbalance-edit-modal-body-content">
             <div className="sellerbalance-edit-modal-body-content-input">
-            <Textarea
-      placeholder="Reason"
-      radius="xs"
-      size="xs"
-      autosize
-      minRows={4}
-    />
+              <Textarea
+                placeholder="Reason"
+                radius="xs"
+                size="xs"
+                autosize
+                minRows={4}
+              />
             </div>
             <div className="sellerbalance-edit-modal-body-content-button remove-padding">
               <button onClick={() => setrejectModalOpen(false)}>Submit</button>

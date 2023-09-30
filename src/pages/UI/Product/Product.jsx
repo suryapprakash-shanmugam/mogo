@@ -162,7 +162,7 @@ const Product = ({ category, subcategory, heading }) => {
 
     const handleColorButtonClick = (color) => {
         setSelectedColor(color);
-        setCurrentImageIndex(0); 
+        setCurrentImageIndex(0);
     };
 
     const handleImageClick = (imageSrc, imageIndex) => {
@@ -596,6 +596,7 @@ const Product = ({ category, subcategory, heading }) => {
                     <OfferSlider header={likeheader} />
                 </Container>
                 <Modal
+                    zIndex={12121}
                     size="lg"
                     opened={questionModalOpen}
                     onClose={() => setQuestionModalOpen(false)}

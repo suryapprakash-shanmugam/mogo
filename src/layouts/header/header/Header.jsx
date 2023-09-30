@@ -89,6 +89,7 @@ const Header = () => {
 
                 {/* Register model starts */}
                 <Modal
+                    zIndex={12121}
                     size="md"
                     opened={registermodalOpen}
                     onClose={() => setRegisterModalOpen(false)}
@@ -135,6 +136,7 @@ const Header = () => {
                 {/*Register modal end */}
                 {/* Login model starts */}
                 <Modal
+                    zIndex={12121}
                     size="md"
                     opened={loginmodalOpen}
                     onClose={() => setLoginModalOpen(false)}
@@ -163,6 +165,7 @@ const Header = () => {
                 {/*Login modal end */}
                 {/* Forgot model starts */}
                 <Modal
+                    zIndex={12121}
                     size="md"
                     opened={forgotmodalOpen}
                     onClose={() => setForgotModalOpen(false)}
