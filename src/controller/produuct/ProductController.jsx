@@ -1,11 +1,15 @@
-import { async } from "q"
-import { createProductAPI } from "../../config/quries/Products/ProductQuries"
+import { ThemeIcon } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import axios from "axios";
-import config from "../../config/server/Servers"
+import { CircleCheck, X } from "tabler-icons-react";
 
-export const handleCreateProduct = async (productSingleImage) => {
+export const handleCreateProduct = async (productSingleImage, multiProductImage) => {
+    const images = [productSingleImage, ...multiProductImage]
     const formData = new FormData()
-    formData.append('file', productSingleImage)
+    images.forEach((image) => {
+        formData.append(`file`, image);
+    });
+
     axios.post(' http://localhost:1002/products/create',
         formData,
         {
@@ -13,6 +17,22 @@ export const handleCreateProduct = async (productSingleImage) => {
                 'Content-Type': 'multipart/form-data',
             }
         },)
-        .then(res => { })
-        .catch(er => console.log(er))
+        .then(res => {
+            showNotification({
+                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
+                    <CircleCheck color="green" />
+                </ThemeIcon>,
+                message: "Product Saved in draft",
+
+            })
+        })
+        .catch(er => {
+            showNotification({
+                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                    <X color="red" />
+                </ThemeIcon>,
+                message: "Product Saved in draft",
+
+            })
+        })
 }

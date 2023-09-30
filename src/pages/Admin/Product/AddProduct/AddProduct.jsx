@@ -5,14 +5,14 @@ import React, { useRef, useState } from 'react'
 import './AddProduct.css'
 
 //import mantine packages
-import { Accordion, Card, Checkbox, Group, Input, Radio, Select, Tabs, Textarea } from '@mantine/core';
+import { Accordion, Card, Checkbox, Group, Indicator, Input, Radio, Select, Tabs, Textarea, ThemeIcon } from '@mantine/core';
 
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
-import ReactQuill from 'react-quill'; // Import React-Quill
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 
 import NumericInput from '../../../../components/Admin/Input/NumericInput';
 
@@ -22,12 +22,17 @@ import Quantity from '../../../../components/Admin/Quantity/Quantity';
 import image_icon from '../../../../assets/admin/product/image_icon.png'
 import trash from '../../../../assets/admin/table/dropdown/trash.png'
 import { handleCreateProduct } from '../../../../controller/produuct/ProductController';
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import { listAllProduct } from '../../../../config/quries/Products/ProductQuries';
+import { showNotification } from '@mantine/notifications';
+import { CircleCheck, X } from 'tabler-icons-react';
+
+// Convert Image
+import convert from 'image-conversion';
 
 
 const AddProduct = () => {
+    const [multiProductImage, setMultiProductImage] = useState()
     const [productSingleImage, setProductSingleImage] = useState()
     const [taxRate, setTaxRate] = useState('')
     const [editorHtml, setEditorHtml] = useState('');
@@ -223,13 +228,32 @@ const AddProduct = () => {
     };
 
     const handleCreateProductClick = () => {
-        handleCreateProduct(productSingleImage)
+        handleCreateProduct(productSingleImage, multiProductImage)
     }
 
     // Hanlde Product Image Click     
     const fileInputRef = useRef(null);
+    const multifileInputRef = useRef(null)
     const handleSetNewProductImage = () => {
         fileInputRef.current.click();
+    };
+    const handleMultiProductImage = () => {
+        multifileInputRef.current.click()
+    }
+    const handleMultiProductUpload = (e) => {
+        const files = e.target.files;
+        const selectedImagesArray = Array.from(files);
+        if (selectedImagesArray.length > 5) {
+            showNotification({
+                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                    <X color="red" />
+                </ThemeIcon>,
+                message: "Maximum 5 Images Only Allowed",
+            })
+        }
+        else {
+            setMultiProductImage(selectedImagesArray);
+        }
     };
 
     // useReact Query
@@ -242,39 +266,97 @@ const AddProduct = () => {
         }
     )
 
+    // Handle File Upload
+    const handleFileUpload = (e) => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile.size > 40 * 1024) {
+            showNotification({
+                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                    <CircleCheck color="red" />
+                </ThemeIcon>,
+                message: "Image Must Below 40KB",
+            })
+            return
+        }
+        setProductSingleImage(selectedFile);
+    };
 
+
+    // Preview Gallery Image
+    const previewsGalleryProduct = multiProductImage?.map((image, index) => {
+        const imageUrl = URL.createObjectURL(image)
+        return (
+            <Indicator
+                key={index}
+                className='add-product-div-container-right-product-gallery-card-content-gallery-indicator'
+                label={<X onClick={() => removeMultiProductImage(index)} style={{ cursor: 'pointer' }} size={'1rem'} />}
+                size={25} withBorder>
+                <img src={imageUrl} />
+            </Indicator>
+        )
+    });
+
+    // handle Remove Multi Image
+    const removeMultiProductImage = (e) => {
+        const updatedMultiProductImage = multiProductImage.filter(
+            (_, index) => index !== e
+        );
+        setMultiProductImage(updatedMultiProductImage);
+    }
+
+
+    // Product Details 
+    const [productDetails, setProductDetails] = useState({
+        product_name: '',
+        product_description: '',
+        product_short_description: '',
+        product_type: '',
+        actual_price: '',
+        sale_price: "",
+        sale_price_date: '',
+        tax_status: "",
+        tax_type: '',
+        tax_rate: '',
+        SKU: '',
+        shipping: {
+            weight: '',
+            dimensions: {
+                length: '',
+                width: '',
+                height: ''
+            }
+        },
+        inventory: '',
+        product_status: '',
+        product_image: '',
+        product_gallery_image: '',
+        product_category: '',
+    })
+
+    console.log(productDetails);
 
     return (
         <div>
-
-            {
-                productdata?.map((result, index) => {
-                    return (
-                        <div key={index}>
-                            {console.log(result.product_image)}
-                            <img
-                            src='E:/Dhiyanesh/Weboney/Modesy/mogoAPI/src/Model/products/Assets/ProductSingleImage/1695983453701_logo.png'/>
-                            {/* <img src={`http://localhost:1002/${result.product_image}`} /> */}
-                        </div>
-                    )
-                })
-            }
             <div className="add-product-div">
                 <div className="add-product-div-container">
                     <div className="add-product-div-container-left">
                         <div className="add-product-div-container-left-product-name">
                             <Input.Wrapper label="Add new product" description="" error="">
-                                <Input placeholder="Product Name" />
+                                <Input
+                                    onChange={(e) => setProductDetails({ ...productDetails, product_name: e.target.value })}
+                                    placeholder="Product Name"
+                                    value={productDetails.product_name}
+                                />
                             </Input.Wrapper>
                         </div>
                         <div className="add-product-div-container-left-product-description">
                             <Card className='add-product-div-container-left-product-description-card'>
                                 <label>Product description</label>
                                 <ReactQuill
+                                    onChange={(e) => setProductDetails({ ...productDetails, product_description: e })}
                                     className='quill-style'
-                                    value={editorHtml}
-                                    onChange={handleEditorChange}
                                     modules={modules}
+                                    value={productDetails.product_description}
                                 />
                             </Card>
                         </div>
@@ -286,13 +368,13 @@ const AddProduct = () => {
                                         rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                         placeholder="Select Type"
                                         data={selectTypeArray}
-                                        value={selectedType}
-                                        onChange={handleTypeChange}
+                                        value={productDetails.product_type}
+                                        onChange={(e) => setProductDetails({ ...productDetails, product_type: e })}
                                     />
                                 </div>
                                 <div className="add-product-div-container-left-product-data-card-tab">
                                     {
-                                        selectedType === "simple" ? (
+                                        productDetails.product_type === "simple" ? (
                                             <Tabs variant="outline" defaultValue="general" orientation="vertical">
                                                 <Tabs.List>
                                                     <Tabs.Tab value="general">General</Tabs.Tab>
@@ -304,15 +386,15 @@ const AddProduct = () => {
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Regular price (₹)</label>
                                                         <NumericInput
-                                                            value={maxRegularValue}
-                                                            onChange={setMaxRegularValue}
+                                                            value={productDetails.actual_price}
+                                                            onChange={(e) => setProductDetails({ ...productDetails, actual_price: e })}
                                                         />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
                                                         <label>Sale price (₹)</label>
                                                         <NumericInput
-                                                            value={maxSaleValue}
-                                                            onChange={setMaxSaleValue}
+                                                            value={productDetails.sale_price}
+                                                            onChange={(e) => setProductDetails({ ...productDetails, sale_price: e })}
                                                         />
                                                     </div>
                                                     {
@@ -346,33 +428,34 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
-                                                            value={taxStatus}
-                                                            onChange={handleTaxStatusChange}
+                                                            value={productDetails.tax_status}
+                                                            onChange={(e) => setProductDetails({ ...productDetails, tax_status: e })}
                                                         />
                                                     </div>
                                                     {
-                                                        taxStatus == 'taxable' ?
+                                                        productDetails.tax_status == 'taxable' ?
                                                             (
                                                                 <>
                                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                         <label>Tax type</label>
                                                                         <Select
+                                                                            value={productDetails.tax_type}
+                                                                            onChange={(e) => setProductDetails({ ...productDetails, tax_type: e })}
                                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                             placeholder="Select Tax type"
                                                                             data={taxClassArray}
-                                                                            value={taxClass}
-                                                                            onChange={handleTaxClassChange}
                                                                         />
                                                                     </div>
                                                                     {
-                                                                        taxClass ?
+                                                                        productDetails.tax_type ?
                                                                             (
                                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                                     <label>Tax rate (%)</label>
                                                                                     <NumericInput
-                                                                                        value={taxRate}
+
+                                                                                        value={productDetails.tax_rate}
+                                                                                        onChange={(e) => setProductDetails({ ...productDetails, tax_rate: e })}
                                                                                         placeholder='Tax rate in Percentage'
-                                                                                        onChange={(e) => setTaxRate(e)}
                                                                                     />
                                                                                 </div>
                                                                             ) : ''
@@ -385,7 +468,10 @@ const AddProduct = () => {
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="inventory">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>SKU</label>
-                                                        <Input />
+                                                        <Input
+                                                            value={productDetails.SKU}
+                                                            onChange={(e) => setProductDetails({ ...productDetails, SKU: e.target.value })}
+                                                        />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Stock management</label>
@@ -443,50 +529,68 @@ const AddProduct = () => {
                                                             </div>
                                                         )
                                                     }
-                                                    {/* <div className='hr-line mt-10' /> */}
-                                                    {/* <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
-                                                        <label>Sold individually</label>
-                                                        <Checkbox
-                                                            checked={soldIndividual}
-                                                            defaultChecked
-                                                            label="Limit purchases to 1 item per order"
-                                                            radius="xs"
-                                                            size="xs"
-                                                            onChange={handleSoldIndividual}
-                                                        />
-                                                    </div> */}
-                                                    {/* <div className='hr-line mt-10' />
-                                                    <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
-                                                        <label>Initial number in stock</label>
-                                                        <Quantity
-                                                            value={maxInitialValue}
-                                                            onChange={setMaxInitialValue}
-                                                        />
-                                                    </div> */}
                                                 </Tabs.Panel >
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="shipping">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Weight (kg)</label>
                                                         <NumericInput
-                                                            value={maxWeightValue}
-                                                            onChange={setMaxWeightValue}
+                                                            value={productDetails.shipping.weight}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        weight: e
+                                                                    }
+                                                                })
+                                                            }
                                                         />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid-multiple">
                                                         <label>Dimensions (cm)</label>
                                                         <NumericInput
-                                                            value={maxLengthValue}
-                                                            onChange={setMaxLengthValue}
+                                                            value={productDetails.shipping.dimensions.length}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        dimensions: {
+                                                                            ...productDetails.shipping.dimensions, length: e
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
                                                             placeholder="Length"
                                                         />
                                                         <NumericInput
-                                                            value={maxWidthValue}
-                                                            onChange={setMaxWidthValue}
+                                                            value={productDetails.shipping.dimensions.width}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        dimensions: {
+                                                                            ...productDetails.shipping.dimensions, width: e
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
                                                             placeholder="Width"
                                                         />
                                                         <NumericInput
-                                                            value={maxHeightValue}
-                                                            onChange={setMaxHeightValue}
+                                                            value={productDetails.shipping.dimensions.height}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        dimensions: {
+                                                                            ...productDetails.shipping.dimensions, height: e
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
                                                             placeholder="Height"
                                                         />
                                                     </div>
@@ -549,7 +653,7 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
-                                                            value={taxStatus} // Set the value prop to the selectedType state variable
+                                                            value={taxStatus}
                                                             onChange={handleTaxStatusChange}
                                                         />
                                                     </div>
@@ -559,7 +663,7 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Class"
                                                             data={taxClassArray}
-                                                            value={taxClass} // Set the value prop to the selectedType state variable
+                                                            value={taxClass}
                                                             onChange={handleTaxClassChange}
                                                         />
                                                     </div>
@@ -827,7 +931,7 @@ const AddProduct = () => {
                                                                                                                 className='datepicker-style'
                                                                                                                 selected={endDateVariation}
                                                                                                                 onChange={(date) => setEndDateVariation(date)}
-                                                                                                                minDate={endDateVariation} // Set the minimum date based on the selected start date
+                                                                                                                minDate={endDateVariation}
                                                                                                             />
                                                                                                         </div>
                                                                                                     </>
@@ -922,8 +1026,9 @@ const AddProduct = () => {
                                 <label>Product short description</label>
                                 <ReactQuill
                                     className='quill-style'
-                                    value={editorShortHtml}
-                                    onChange={handleEditorShortChange}
+                                    onChange={(e) =>
+                                        setProductDetails({ ...productDetails, product_short_description: e })
+                                    }
                                     modules={modules}
                                 />
                             </Card>
@@ -950,9 +1055,6 @@ const AddProduct = () => {
                                 </div>
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-product-image-card-content">
-                                    {/* {
-                                        productImage === true ? (<div className='add-product-div-container-right-product-image-card-content-image'></div>) : ''
-                                    } */}
                                     {
                                         productSingleImage ?
                                             (<div className='add-product-div-container-right-product-image-card-content-image'>
@@ -977,9 +1079,10 @@ const AddProduct = () => {
                                         }
                                         {
                                             <input
-                                                style={{ display: 'none' }}
-                                                onChange={(e) => setProductSingleImage(e.target.files[0])}
+                                                onChange={handleFileUpload}
+                                                accept="image/*"
                                                 type='file'
+                                                style={{ display: 'none' }}
                                                 ref={fileInputRef} />
                                         }
                                     </p>
@@ -991,21 +1094,30 @@ const AddProduct = () => {
                                 <div className="add-product-div-container-right-product-gallery-card-head">
                                     <h4>Product gallery</h4>
                                 </div>
+                                {
+                                    <input
+                                        style={{ display: 'none' }}
+                                        ref={multifileInputRef}
+                                        type="file"
+                                        accept="image/*"
+                                        name='files'
+                                        multiple
+                                        onChange={handleMultiProductUpload}
+                                    />
+                                }
                                 <div className='hr-line mt-10' />
+                                <div className='add-product-div-container-right-product-gallery-card-content-gallery'>
+                                    {previewsGalleryProduct}
+                                </div>
                                 <div className="add-product-div-container-right-product-gallery-card-content">
-                                    {
-                                        productGallery === true ? (
-                                            <div className='product-gallery-card-content-gallery'>
-                                                <div className='add-product-div-container-right-product-gallery-card-content-gallery'></div>
-                                                <div className='add-product-div-container-right-product-gallery-card-content-gallery'></div>
-                                            </div>
-                                        ) : ''
-                                    }
-                                    <p onClick={handileProductGallery}>
+                                    <span onClick={handleMultiProductImage} className='product-add'>Add product gallery images</span>
+                                    {/* <p onClick={handileProductGallery}>
                                         {
-                                            productGallery === true ? (<span className='product-remove'>Add product gallery images</span>) : (<span className='product-add'>Add product gallery images</span>)
-                                        }
-                                    </p>
+                                            productGallery === true ?
+                                                (<span className='product-remove'>Add product gallery images</span>)
+                                                :
+                                            }
+                                    </p> */}
                                 </div>
                             </Card>
                         </div>
