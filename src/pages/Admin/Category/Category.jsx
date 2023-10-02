@@ -1,8 +1,8 @@
 //import react packages
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //import mantine packages
-import { Accordion, ActionIcon, Card, Input, Modal, Select } from '@mantine/core'
+import { Accordion, ActionIcon, Button, Card, Input, Modal, Select } from '@mantine/core'
 
 //import Category css
 import './Category.css'
@@ -17,6 +17,7 @@ import { categoryListAPI } from '../../../config/quries/Category/CategoryQueries
 
 // Category Controller
 import { createCatrgoryControl } from '../../../controller/category/categoryController'
+import { handleSubCategoryControl } from '../../../controller/subCategory/subCategoryControl'
 
 const Category = () => {
 
@@ -24,14 +25,14 @@ const Category = () => {
     const [subCategoryModalOpen, setSubCategoryModalOpen] = useState(false)
     const [childCategoryModalOpen, setChildCategoryModalOpen] = useState(false)
 
-    const [categoryData, setCategoryData] = useState([
-        { value: 'Dress', label: 'Dress' },
-        { value: 'Cloth', label: 'Cloth' },
-    ]);
-    const [subCategoryData, setSubCategoryData] = useState([
-        { value: 'Dress', label: 'Dress' },
-        { value: 'Cloth', label: 'Cloth' },
-    ]);
+    // const [categoryData, setCategoryData] = useState([
+    //     { value: 'Dress', label: 'Dress' },
+    //     { value: 'Cloth', label: 'Cloth' },
+    // ]);
+    // const [subCategoryData, setSubCategoryData] = useState([
+    //     { value: 'Dress', label: 'Dress' },
+    //     { value: 'Cloth', label: 'Cloth' },
+    // ]);
 
 
     // Array
@@ -57,9 +58,18 @@ const Category = () => {
         childCategory: ''
     })
     const [categoryValidation, setCategoryValidation] = useState({
-        catgeory: '',
+        catgeory: 0,
+        subCategory: 0,
+        childCategory: 0
+    })
+    const [categoryDetails, setCategoryDetails] = useState({
+        category: '',
         subCategory: '',
         childCategory: ''
+    })
+    const [selecgtedCategory, setSelectedCategory] = useState({
+        category: '',
+        subCategory: ''
     })
 
     // Query Fetching
@@ -67,15 +77,38 @@ const Category = () => {
         categoryListAPI,
         {
             onSuccess: (res) => {
-                console.log(res);
+                setCategoryDetails({ ...categoryDetails, category: res.data.data.result })
             }
         }
     )
 
     // Handle Create New Category
     const handleCreateCategory = () => {
-        createCatrgoryControl(categoryList)
+        createCatrgoryControl(categoryList, setCategoryList, categoryValidation, setCategoryValidation, setCategoryModalOpen)
     }
+
+    const handleSubCategory = () => {
+        handleSubCategoryControl(
+            categoryList,
+            selecgtedCategory,
+            categoryValidation,
+            setCategoryList,
+            setSelectedCategory,
+            setCategoryValidation,
+            setSubCategoryModalOpen)
+    }
+
+    useEffect(() => {
+        if (categoryList.catgeory) {
+            setCategoryValidation({ ...categoryValidation, catgeory: 0 })
+        }
+        if (categoryList.subCategory) {
+            setCategoryValidation({ ...categoryValidation, subCategory: 0 })
+        }
+        if (categoryList.childCategory) {
+            setCategoryValidation({ ...categoryValidation, childCategory: 0 })
+        }
+    }, [categoryList])
 
     return (
         <div>
@@ -103,7 +136,7 @@ const Category = () => {
                             <Accordion variant="contained" radius="xs" chevronPosition="left">
                                 <Accordion.Item value="category">
 
-                                    <Accordion.Control className='category-accordion-heading'>
+                                    {/* <Accordion.Control className='category-accordion-heading'>
                                         <div className='category-accordion-heading-left'>
                                             <p>Category</p>
                                         </div>
@@ -142,7 +175,7 @@ const Category = () => {
                                                 </Accordion.Panel>
                                             </Accordion.Item>
                                         </Accordion>
-                                    </Accordion.Panel>
+                                    </Accordion.Panel> */}
                                 </Accordion.Item>
                             </Accordion>
                         </div>
@@ -163,7 +196,11 @@ const Category = () => {
                     </div>
                     <div className="preheader-register-modal-body">
                         <div className="preheader-register-modal-body-content">
-                            <Input.Wrapper label="Category">
+                            <Input.Wrapper
+                                error={`${categoryValidation.catgeory === 1 ? 'Please Enter Category' :
+                                    categoryValidation.catgeory === 2 ? 'Category Name Already Exists' :
+                                        ''}`}
+                                label="Category">
                                 <Input placeholder="Category"
                                     value={categoryList.catgeory}
                                     onChange={(e) => setCategoryList({ ...categoryList, catgeory: e.target.value })}
@@ -191,28 +228,39 @@ const Category = () => {
                     <div className="preheader-register-modal-body">
                         <div className="preheader-register-modal-body-content">
                             <Select
+                                error={`${categoryValidation.catgeory === 1 ? 'Please Select Category' : ''}`}
                                 label="Category"
-                                data={categoryData}
+                                data={
+                                    Array.isArray(categoryDetails?.category) ?
+                                        categoryDetails?.category?.map(data => ({
+                                            value: data._id,
+                                            label: data.name
+                                        })) :
+                                        ''
+                                }
                                 rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
                                 placeholder="Select Category"
                                 nothingFound="Nothing found"
                                 searchable
-                                creatable
-                                getCreateLabel={(query) => `+ Create ${query}`}
-                                onCreate={(query) => {
-                                    const item = { value: query, label: query };
-                                    setCategoryData((current) => [...current, item]);
-                                    return item;
-                                }}
+                                onChange={(e) =>
+                                    setSelectedCategory({ ...selecgtedCategory, category: e })}
                             />
-
-                            <Input.Wrapper label="Sub Category">
+                            <Input.Wrapper
+                                error={`${categoryValidation.subCategory === 1 ? 'Please Fill Input' :
+                                    categoryValidation.subCategory === 2 ? 'Subcategory Name Already Exits' :
+                                        ''
+                                    }`}
+                                label="Sub Category">
                                 <Input placeholder="Sub Category"
+                                    disabled={!selecgtedCategory.category}
                                     value={categoryList.subCategory}
                                     onChange={(e) => setCategoryList({ ...categoryList, subCategory: e.target.value })}
                                 />
                             </Input.Wrapper>
-                            <button>Add Sub Category</button>
+                            <Button
+                                disabled={!categoryList.subCategory}
+                                onClick={handleSubCategory}
+                            >Add Sub Category</Button>
                         </div>
                     </div>
                 </Modal>
@@ -233,33 +281,19 @@ const Category = () => {
                         <div className="preheader-register-modal-body-content">
                             <Select
                                 label="Category"
-                                data={categoryData}
+                                // data={categoryData}
                                 rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
                                 placeholder="Select Category"
                                 nothingFound="Nothing found"
                                 searchable
-                                creatable
-                                getCreateLabel={(query) => `+ Create ${query}`}
-                                onCreate={(query) => {
-                                    const item = { value: query, label: query };
-                                    setCategoryData((current) => [...current, item]);
-                                    return item;
-                                }}
                             />
                             <Select
                                 label="Sub Category"
-                                data={subCategoryData}
+                                // data={subCategoryData}
                                 rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
                                 placeholder="Select Sub Category"
                                 nothingFound="Nothing found"
                                 searchable
-                                creatable
-                                getCreateLabel={(query) => `+ Create ${query}`}
-                                onCreate={(query) => {
-                                    const item = { value: query, label: query };
-                                    setSubCategoryData((current) => [...current, item]);
-                                    return item;
-                                }}
                             />
 
                             <Input.Wrapper label="Child Category">
@@ -272,8 +306,8 @@ const Category = () => {
                         </div>
                     </div>
                 </Modal>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

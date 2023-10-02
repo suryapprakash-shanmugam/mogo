@@ -10,14 +10,14 @@ const commonHeader = {
     },
 }
 
-export const categoryListAPI = () => {
-    return axios.get(`${config.baseUrlApi}/category`,
+export const subCategoryListAPI = () => {
+    return axios.get(`${config.baseUrlApi}/subcategory`,
         commonHeader
     )
 }
 
-export const categoryCreate = (payload) => {
-    return axios.post(`${config.baseUrlApi}/category/addcategory`,
+export const subCategoryCreate = (payload) => {
+    return axios.post(`${config.baseUrlApi}/subcategory/create`,
         payload,
         commonHeader
     )

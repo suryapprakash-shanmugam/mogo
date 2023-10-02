@@ -29,7 +29,7 @@ root.render(
         <MantineProvider>
           <ModalsProvider>
             <Provider store={store}>
-              <Notifications position="top-right" zIndex={12346} autoClose={2200} withBorder />
+              <Notifications position="top-right" zIndex={12345678} autoClose={2200} withBorder />
               <App />
             </Provider>
           </ModalsProvider>
