@@ -11,6 +11,13 @@ import './Category.css'
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
 import { Plus } from 'tabler-icons-react'
 
+// React Query
+import { useQuery } from 'react-query'
+import { categoryListAPI } from '../../../config/quries/Category/CategoryQueries'
+
+// Category Controller
+import { createCatrgoryControl } from '../../../controller/category/categoryController'
+
 const Category = () => {
 
     const [categoryModalOpen, setCategoryModalOpen] = useState(false)
@@ -49,7 +56,26 @@ const Category = () => {
         subCategory: '',
         childCategory: ''
     })
+    const [categoryValidation, setCategoryValidation] = useState({
+        catgeory: '',
+        subCategory: '',
+        childCategory: ''
+    })
 
+    // Query Fetching
+    useQuery('categoryList',
+        categoryListAPI,
+        {
+            onSuccess: (res) => {
+                console.log(res);
+            }
+        }
+    )
+
+    // Handle Create New Category
+    const handleCreateCategory = () => {
+        createCatrgoryControl(categoryList)
+    }
 
     return (
         <div>
@@ -143,7 +169,9 @@ const Category = () => {
                                     onChange={(e) => setCategoryList({ ...categoryList, catgeory: e.target.value })}
                                 />
                             </Input.Wrapper>
-                            <button>Add Category</button>
+                            <button
+                                onClick={handleCreateCategory}
+                            >Add Category</button>
                         </div>
                     </div>
                 </Modal>

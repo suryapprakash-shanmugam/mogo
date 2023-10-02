@@ -58,22 +58,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <HomeSlider /> */}
-      <div className='home-page-banner'>
-        <div className='home-page-banner-content'>
-          <Title className='home-page-banner-content-title'>
-            Buy Nice and Unique
-            <br />
-            Textile Products
-          </Title>
-          <Title className='home-page-banner-content-title'>
-            Discover quality premium basics and trendy essentials at surprisingly affordable prices
-          </Title>
-          <Button className='home-page-banner-content-btn'>
-            Explore More
-          </Button>
-        </div>
-      </div>
+      <HomeSlider />
       <Container className='product-category-grid' size={'82rem'}>
         <div className="product-category-grid-div">
           <div className="product-category-grid-div-table">
