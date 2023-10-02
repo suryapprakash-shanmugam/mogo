@@ -9,6 +9,7 @@ import './Category.css'
 
 //import icons
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
+import { Plus } from 'tabler-icons-react'
 
 const Category = () => {
 
@@ -25,6 +26,31 @@ const Category = () => {
         { value: 'Cloth', label: 'Cloth' },
     ]);
 
+
+    // Array
+    const categoryListArray = [
+        {
+            title: 'Category',
+            handle: () => setCategoryModalOpen(true)
+        },
+        {
+            title: 'Sub Category',
+            handle: () => setSubCategoryModalOpen(true)
+        },
+        {
+            title: 'Child Category',
+            handle: () => setChildCategoryModalOpen(true)
+        },
+    ]
+
+    // CategoryState
+    const [categoryList, setCategoryList] = useState({
+        catgeory: '',
+        subCategory: '',
+        childCategory: ''
+    })
+
+
     return (
         <div>
             <div className="category-div">
@@ -32,9 +58,16 @@ const Category = () => {
                     <div className="category-div-card-head">
                         <h3>Category</h3>
                         <div className="categoey-div-card-head-button">
-                            <button onClick={() => { setCategoryModalOpen(true); }}>Category</button>
-                            <button onClick={() => { setSubCategoryModalOpen(true); }}>Sub Category</button>
-                            <button onClick={() => { setChildCategoryModalOpen(true); }}>Child Category</button>
+                            {
+                                categoryListArray.map((value, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={value.handle}
+                                    >
+                                        <Plus size={'1rem'} /> {value.title}
+                                    </button>
+                                ))
+                            }
                         </div>
                     </div>
                 </Card>
@@ -105,7 +138,10 @@ const Category = () => {
                     <div className="preheader-register-modal-body">
                         <div className="preheader-register-modal-body-content">
                             <Input.Wrapper label="Category">
-                                <Input placeholder="Category" />
+                                <Input placeholder="Category"
+                                    value={categoryList.catgeory}
+                                    onChange={(e) => setCategoryList({ ...categoryList, catgeory: e.target.value })}
+                                />
                             </Input.Wrapper>
                             <button>Add Category</button>
                         </div>
@@ -143,7 +179,10 @@ const Category = () => {
                             />
 
                             <Input.Wrapper label="Sub Category">
-                                <Input placeholder="Sub Category" />
+                                <Input placeholder="Sub Category"
+                                    value={categoryList.subCategory}
+                                    onChange={(e) => setCategoryList({ ...categoryList, subCategory: e.target.value })}
+                                />
                             </Input.Wrapper>
                             <button>Add Sub Category</button>
                         </div>
@@ -196,7 +235,10 @@ const Category = () => {
                             />
 
                             <Input.Wrapper label="Child Category">
-                                <Input placeholder="Child Category" />
+                                <Input
+                                    value={categoryList.childCategory}
+                                    onChange={(e) => setCategoryList({ ...categoryList, childCategory: e.target.value })}
+                                    placeholder="Child Category" />
                             </Input.Wrapper>
                             <button>Add Child Category</button>
                         </div>

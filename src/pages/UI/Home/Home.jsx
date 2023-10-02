@@ -2,7 +2,7 @@
 import React from 'react'
 
 //import mantine packages
-import { Container } from '@mantine/core'
+import { Button, Container, Title } from '@mantine/core'
 
 import { Link } from 'react-router-dom'
 
@@ -58,10 +58,24 @@ const Home = () => {
 
   return (
     <div>
-      <HomeSlider />
+      {/* <HomeSlider /> */}
+      <div className='home-page-banner'>
+        <div className='home-page-banner-content'>
+          <Title className='home-page-banner-content-title'>
+            Buy Nice and Unique
+            <br />
+            Textile Products
+          </Title>
+          <Title className='home-page-banner-content-title'>
+            Discover quality premium basics and trendy essentials at surprisingly affordable prices
+          </Title>
+          <Button className='home-page-banner-content-btn'>
+            Explore More
+          </Button>
+        </div>
+      </div>
       <Container className='product-category-grid' size={'82rem'}>
         <div className="product-category-grid-div">
-
           <div className="product-category-grid-div-table">
             <Link to='/category/tablelinen'>
               <div className="product-category-grid-div-table-image">
@@ -70,7 +84,6 @@ const Home = () => {
               </div>
             </Link>
           </div>
-
           <div className="product-category-grid-div-kitchen">
             <Link to='/category/kitchenlinen'>
               <div className="product-category-grid-div-kitchen-image">
@@ -159,8 +172,8 @@ const Home = () => {
           </div>
         </div>
       </Container>
-      <OfferSlider header={clothingheader} />
-      <OfferSlider header={jewelryheader} />
+      {/* <OfferSlider header={clothingheader} />
+      <OfferSlider header={jewelryheader} /> */}
       <HomeBlogs header={blogheader} subheader={blogsubheader} />
     </div>
   )

@@ -132,7 +132,7 @@
 .product-category-grid-div-image-content {
     position: absolute;
     bottom: 0px;
-    background-color: #00000076;
+    background-color: rgba(51, 50, 94, 0.692);
     color: white;
     height: 40px;
     display: flex;
@@ -176,4 +176,46 @@
 .home-season-sale-season2-image img {
     width: 100%;
     height: 100%;
+}
+
+.home-page-banner {
+    width: 100%;
+    height: 76vh;
+    display: flex;
+    align-items: center;
+    background-image: url("../../../assets/Banner/mogobg2.jpg");
+    padding: 2rem 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.home-page-banner-content {
+    margin-left: 12rem;
+    width: 600px;
+    display: grid;
+    gap: 1rem;
+}
+
+.home-page-banner-content-title:nth-child(1) {
+    font: normal 600 3rem 'Poppins';
+    font-family: "Open Sans",
+        Helvetica,
+        sans-serif;
+    color: white;
+}
+
+.home-page-banner-content-title:nth-child(2) {
+    font: normal 500 20px 'Poppins';
+    color: rgba(255, 255, 255, 0.568);
+}
+
+.home-page-banner-content-btn {
+    background-color: var(--Logo-Color6);
+    transition: all 300ms ease-in-out;
+    width: fit-content;
+}
+
+.home-page-banner-content-btn:hover {
+    background-color: var(--Logo-Color1);
 }

@@ -45,6 +45,9 @@
 
 .homeslider .swiper-button-prev {
     left: 75px;
+    width: 2vw;
+    height: 6vh;
+    padding: 1.3rem;
     background-color: var(--Extra-Light-Gray);
 }
 
@@ -55,6 +58,9 @@
 
 .homeslider .swiper-button-next {
     right: 75px;
+    width: 2vw;
+    height: 6vh;
+    padding: 1.3rem;
     background-color: var(--Extra-Light-Gray);
 }
 
@@ -67,7 +73,12 @@
 .homeslider .swiper-button-prev,
 .homeslider .swiper-button-next {
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: all 0.3s ease-in-out;
+}
+
+.homeslider .swiper-button-prev:hover,
+.homeslider .swiper-button-next:hover {
+    background-color: rgb(222, 222, 222);
 }
 
 /* Show navigation buttons on hover */
@@ -78,6 +89,7 @@
 
 .homeslider-slide {
     position: relative;
+    background-color: red;
 }
 
 /* Apply the animation to the button */
@@ -87,10 +99,11 @@
 
 .homeslider-slide-content {
     position: absolute;
-    width: 100%;
+    width: fit-content;
     height: 50%;
-    top: 30px;
-    /* top: 100px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,9 +123,7 @@
     border-radius: 4px;
     color: #fff;
     transform: translateY(-100px);
-    /* Start with the button off-screen */
     opacity: 0;
-    /* Start with opacity 0 to make it fade in */
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     cursor: pointer;
 }

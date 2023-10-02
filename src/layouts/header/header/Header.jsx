@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import mantine packages
-import { Button, Checkbox, Container, Input, Modal, Paper, PasswordInput, Select, Text } from '@mantine/core'
+import { Button, Checkbox, Container, Flex, Image, Input, Modal, Paper, PasswordInput, Select, Text } from '@mantine/core'
 
 //import react router dom packages
 import { Link } from 'react-router-dom'
@@ -16,6 +16,7 @@ import arrowdown from '../../../assets/preheader/arrow-down.webp'
 import search from '../../../assets/header/search.webp'
 import cart from '../../../assets/header/cart.webp'
 import wishlist from '../../../assets/header/wishlist.webp'
+import { Heart, ShoppingCart } from 'tabler-icons-react'
 
 //select category array in search
 const searchCategoryArray = [
@@ -41,51 +42,103 @@ const Header = () => {
     return (
         <div>
             <div className="header-div">
-                <Container size={'82rem'} className='header-div-container'>
-                    <Text className="header-div-container-logo" component={Link} to='/'>
-                        <img src={logo} alt="logo" />
-                    </Text>
-                    <div className="header-div-container-search">
-                        <Paper className="header-div-container-search-paper">
-                            <Select
-                                rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
-                                className="header-div-container-search-category-select"
-                                defaultValue={searchCategoryArray[0].value}
-                                data={searchCategoryArray}
+                <Flex pt={'0.3rem'} pb={'1rem'} pl={'2rem'} pr={'2rem'} align={'center'} justify={'space-around'}>
+                    <Flex align={'center'} gap={'2rem'}>
+                        <Image component={Link} to='/' width={'160px'} src={logo} alt="logo" />
+                        <div className="header-div-container-search">
+                            <Paper className="header-div-container-search-paper">
+                                <Select
+                                    rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
+                                    className="header-div-container-search-category-select"
+                                    defaultValue={searchCategoryArray[0].value}
+                                    data={searchCategoryArray}
+                                />
+                                <Input
+                                    className='header-div-container-search-input'
+                                    placeholder="Enter text"
+                                />
+                                <Button className='header-div-container-search-button'><img src={search} width="20px" alt="search-icon" /></Button>
+                            </Paper>
+                        </div>
+                    </Flex>
+                    <Flex gap={'1.5rem'} className='search-engine-right' align={'center'}>
+                        <Flex gap={3} align={'center'}>
+                            <ShoppingCart
+                                strokeWidth={1}
+                                size={'2rem'}
                             />
-                            <Input
-                                className='header-div-container-search-input'
-                                placeholder="Enter text"
+                            <p>
+                                Cart
+                            </p>
+                        </Flex>
+                        <Flex gap={3} align={'center'}>
+                            <Heart
+                                strokeWidth={1}
+                                size={'2rem'}
                             />
-                            <Button className='header-div-container-search-button'><img src={search} width="20px" alt="search-icon" /></Button>
-                        </Paper>
-                    </div>
-                    <div className="header-div-container-cart-wishlist-sell-now">
-                        <Text component={Link} to='/cart'>
-                            <div className="header-div-container-cart-wishlist-sell-now-cart">
-                                <div className="header-div-container-cart-wishlist-sell-now-cart-image">
-                                    <img src={cart} alt="carticon" />
-                                </div>
-                                <div className="header-div-container-cart-wishlist-sell-now-cart-content">
-                                    <p>Cart</p>
-                                </div>
-                            </div>
+                            <p>
+                                Wishlist
+                            </p>
+                        </Flex>
+                        <Button
+                            className='header-div-container-cart-wishlist-sell-now-sellnow-button'
+                            onClick={() => setLoginModalOpen(true)}>
+                            Sell Now
+                        </Button>
+
+                    </Flex>
+                </Flex>
+
+
+                {/* <Container size={'82rem'} className='header-div-container-mantine '>
+                    <div  className='header-div-container'>
+                        <Text className="header-div-container-logo" component={Link} to='/'>
+                            <img src={logo} alt="logo" />
                         </Text>
-                        <Text component={Link} to='/wishlist'>
-                            <div className="header-div-container-cart-wishlist-sell-now-wishlist">
-                                <div className="header-div-container-cart-wishlist-sell-now-wishlist-image">
-                                    <img src={wishlist} alt="heart-icon" />
-                                </div>
-                                <div className="header-div-container-cart-wishlist-sell-now-wishlist-content">
-                                    <p>Wishlist</p>
-                                </div>
-                            </div>
-                        </Text>
-                        <div className="header-div-container-cart-wishlist-sell-now-sellnow">
-                            <button onClick={() => setLoginModalOpen(true)}>Sell Now</button>
+                        <div className="header-div-container-search">
+                            <Paper className="header-div-container-search-paper">
+                                <Select
+                                    rightSection={<img src={arrowdown} alt="arrowdown" width='10px' />}
+                                    className="header-div-container-search-category-select"
+                                    defaultValue={searchCategoryArray[0].value}
+                                    data={searchCategoryArray}
+                                />
+                                <Input
+                                    className='header-div-container-search-input'
+                                    placeholder="Enter text"
+                                />
+                                <Button className='header-div-container-search-button'><img src={search} width="20px" alt="search-icon" /></Button>
+                            </Paper>
                         </div>
                     </div>
-                </Container>
+                    <div >
+                        <div className="header-div-container-cart-wishlist-sell-now">
+                            <Text component={Link} to='/cart'>
+                                <div className="header-div-container-cart-wishlist-sell-now-cart">
+                                    <div className="header-div-container-cart-wishlist-sell-now-cart-image">
+                                        <img src={cart} alt="carticon" />
+                                    </div>
+                                    <div className="header-div-container-cart-wishlist-sell-now-cart-content">
+                                        <p>Cart</p>
+                                    </div>
+                                </div>
+                            </Text>
+                            <Text component={Link} to='/wishlist'>
+                                <div className="header-div-container-cart-wishlist-sell-now-wishlist">
+                                    <div className="header-div-container-cart-wishlist-sell-now-wishlist-image">
+                                        <img src={wishlist} alt="heart-icon" />
+                                    </div>
+                                    <div className="header-div-container-cart-wishlist-sell-now-wishlist-content">
+                                        <p>Wishlist</p>
+                                    </div>
+                                </div>
+                            </Text>
+                            <div className="header-div-container-cart-wishlist-sell-now-sellnow">
+                                <button onClick={() => setLoginModalOpen(true)}>Sell Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </Container> */}
 
                 {/* Register model starts */}
                 <Modal

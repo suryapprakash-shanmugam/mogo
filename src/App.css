@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
   margin: 0;
@@ -13,11 +14,15 @@
   --Logo-Color3: rgb(83, 82, 120);
   --Logo-Color4: rgb(83, 82, 120);
   --Logo-Color5: rgb(42, 96, 105);
-  --Logo-Color6: rgb(104,171,65);
-  --Extra-Light-Gray: rgb(222, 222, 222);
+  --Logo-Color6: rgb(104, 171, 65);
+  --Extra-Light-Gray: rgba(222, 222, 222, 0.459);
   --Light-Light-Gray: rgb(236, 236, 236);
   --Para-Color: rgb(168, 147, 135);
   --Discount-Color: rgb(246, 70, 93);
+}
+
+.para_color {
+  color: var(--Para-Color);
 }
 
 /* Define styles for the scrollbar track (the empty space) */

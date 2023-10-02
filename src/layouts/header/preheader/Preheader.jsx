@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import manitine packages
-import { Checkbox, Container, Input, Modal, PasswordInput, Select, Text } from '@mantine/core'
+import { Avatar, Checkbox, Container, Flex, Group, Input, Modal, PasswordInput, Select, Text } from '@mantine/core'
 
 
 //import react router dom packages
@@ -15,6 +15,10 @@ import './Preheader.css'
 import map from '../../../assets/preheader/map.webp'
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
 import user from '../../../assets/preheader/user.webp'
+import { ChevronDown, MapPin } from 'tabler-icons-react'
+
+// Flags
+import Flag from "react-country-flag"
 
 const Preheader = () => {
 
@@ -44,6 +48,36 @@ const Preheader = () => {
   //usestate for open login modal
   const [forgotmodalOpen, setForgotModalOpen] = useState(false)
 
+  // Langage
+  const languageState = [
+    {
+      value: 'india',
+      label: 'English',
+
+    },
+    {
+      value: 'tamil',
+      label: 'Tamil',
+    },
+  ]
+
+  const [valueIcon, setValueIcon] = useState('india')
+
+  const filterData = languageState.filter(language => language.value === valueIcon)
+
+  //Language Select Items
+  const SelectItem = React.forwardRef(
+    ({ icon, label, value, ...others }, ref) => (
+      <div ref={ref} {...others}>
+        <Group noWrap style={{ display: "flex", alignItems: "center" }}>
+          {icon}
+          <div>
+            <Text size="sm">{label}</Text>
+          </div>
+        </Group>
+      </div>
+    )
+  );
   return (
     <div>
       <div className="preheader">
@@ -62,23 +96,43 @@ const Preheader = () => {
           </div>
           <div className="preheader-container-location-currency-user">
             <div onClick={() => setModalOpen(true)} className="preheader-container-location-currency-user-location">
-              <div className="preheader-container-location-currency-user-location-image">
+              {/* <div className="preheader-container-location-currency-user-location-image">
                 <img src={map} alt="Loaction" />
-              </div>
+              </div> */}
               <div className="preheader-container-location-currency-user-location-text">
+                <MapPin strokeWidth={1} size={'1.1rem'}/>
                 <p>Location</p>
               </div>
             </div>
+            <Select
+              zIndex={'12346'}
+              defaultValue="india"
+              itemComponent={SelectItem}
+              value={languageState.label}
+              className='lang-select'
+              rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
+              onChange={(e) => setValueIcon(e)}
+              icon={filterData[0].icon}
+              data={languageState}
+              transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
+            />
             <div className="preheader-container-location-currency-user-currency">
               <Select
                 defaultValue={currencyArray[0].value}
-                rightSection={<img height={'10px'} alt="arrowdown" src={arrowdown} />}
+                rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
                 data={currencyArray}
               />
             </div>
+            <Flex align={'center'} gap={'0.4rem'}>
+              <Avatar size={'2rem'} radius="lg" />
+              <p className='para_color'>
+                Login
+              </p>
+              <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />
+            </Flex >
             <div className="preheader-container-location-currency-user-user">
               <div className="preheader-container-location-currency-user-user-image">
-                <img src={user} alt="user-icon" />
+                {/* <img src={user} alt="user-icon" /> */}
               </div>
               <div className="preheader-container-location-currency-user-user-dropdown">
                 <div className="preheader-container-location-currency-user-user-dropdown-signin">
