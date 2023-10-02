@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react'
 import { useTable, usePagination, useGlobalFilter } from "react-table"
 
 //import mantine packages
-import { Card, Menu, Text, Group, Input, Pagination, Select, Modal, Textarea } from '@mantine/core'
+import { Card, Menu, Text, Group, Input, Pagination, Select, Modal, Textarea, FileInput, TagsInput } from '@mantine/core'
 
 //import mantine models
 import { modals } from '@mantine/modals'
@@ -18,10 +18,12 @@ import plus from '../../../assets/admin/addpayout/plus.png'
 import trash from '../../../assets/admin/table/dropdown/trash.png'
 import edit from '../../../assets/admin/table/dropdown/edit.png'
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
+import ReactQuill from 'react-quill'
 
 const Blogs = () => {
 
     const [blogsModalOpen, setBlogsModalOpen] = useState(false)
+    const [editorHtml, setEditorHtml] = useState('');
 
     const [dataCategory, setDataCategory] = useState([
         { value: 'react', label: 'React' },
@@ -35,6 +37,22 @@ const Blogs = () => {
         { value: 'react', label: 'React' },
         { value: 'ng', label: 'Angular' },
     ]);
+
+    const handleEditorChange = (html) => {
+        setEditorHtml(html);
+    };
+    const modules = {
+        toolbar: [
+            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            ['link', 'image'],
+            [{ 'align': [] }],
+            ['blockquote', 'code-block'],
+            ['clean'],
+        ],
+    };
 
     const openDeleteModal = () =>
         modals.openConfirmModal({
@@ -379,7 +397,7 @@ const Blogs = () => {
                                 nothingFound="Nothing found"
                                 searchable
                                 creatable
-                                rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                rightSection={<img src={arrowdown} alt="arrowdown icon" width={14} />}
                                 getCreateLabel={(query) => `+ Create ${query}`}
                                 onCreate={(query) => {
                                     const item = { value: query, label: query };
@@ -387,6 +405,9 @@ const Blogs = () => {
                                     return item;
                                 }}
                             />
+
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-input padding0">
                             <Select
                                 label="Sub Category"
                                 data={dataSubCategory}
@@ -394,7 +415,7 @@ const Blogs = () => {
                                 nothingFound="Nothing found"
                                 searchable
                                 creatable
-                                rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                rightSection={<img src={arrowdown} alt="arrowdown icon" width={14} />}
                                 getCreateLabel={(query) => `+ Create ${query}`}
                                 onCreate={(query) => {
                                     const item = { value: query, label: query };
@@ -402,6 +423,9 @@ const Blogs = () => {
                                     return item;
                                 }}
                             />
+
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-input padding0">
                             <Select
                                 label="Child Category"
                                 data={dataChildCategory}
@@ -409,7 +433,7 @@ const Blogs = () => {
                                 nothingFound="Nothing found"
                                 searchable
                                 creatable
-                                rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                rightSection={<img src={arrowdown} alt="arrowdown icon" width={14} />}
                                 getCreateLabel={(query) => `+ Create ${query}`}
                                 onCreate={(query) => {
                                     const item = { value: query, label: query };
@@ -418,7 +442,25 @@ const Blogs = () => {
                                 }}
                             />
                         </div>
-                        <div className="sellerbalance-edit-modal-body-content-button">
+                        {/* <div className="sellerbalance-edit-modal-body-content-input">
+                            <TagsInput label="Tags" placeholder="Enter tag" />
+                        </div> */}
+                        <div className="sellerbalance-edit-modal-body-content-input">
+                            <FileInput
+                                label="Image"
+                                placeholder='Click To Upload'
+                            />
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-input">
+                            <label>Product description</label>
+                            <ReactQuill
+                                className='quill-style'
+                                value={editorHtml}
+                                onChange={handleEditorChange}
+                                modules={modules}
+                            />
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-button ht-20">
                             <button>Submit</button>
                         </div>
                     </div>
