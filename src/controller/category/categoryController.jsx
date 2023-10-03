@@ -3,7 +3,7 @@ import { categoryCreate } from "../../config/quries/Category/CategoryQueries"
 import { ThemeIcon } from "@mantine/core"
 import { CircleCheck, X } from "tabler-icons-react"
 
-export const createCatrgoryControl = async (categoryList, setCategoryList, categoryValidation, setCategoryValidation, setCategoryModalOpen) => {
+export const createCatrgoryControl = async (categoryList, setCategoryList, categoryValidation, setCategoryValidation, setCategoryModalOpen,queryClient) => {
     const { catgeory } = categoryList
     const payload = {
         name: catgeory.trim()
@@ -30,6 +30,7 @@ export const createCatrgoryControl = async (categoryList, setCategoryList, categ
                     })
                     setCategoryList({ ...categoryList, catgeory: '' })
                     setCategoryModalOpen(false)
+                    queryClient.invalidateQueries('categoryList')
                 }
             })
             .catch(() => {

@@ -10,15 +10,22 @@ const commonHeader = {
     },
 }
 
-export const subCategoryListAPI = () => {
+export const childCategoryListAPI = () => {
     return axios.get(`${config.baseUrlApi}/childcategory`,
         commonHeader
     )
 }
 
-export const subCategoryCreate = (payload) => {
+export const childCategoryCreate = (payload) => {
     return axios.post(`${config.baseUrlApi}/childcategory/create`,
         payload,
+        commonHeader
+    )
+}
+
+export const listChildCategoryBySubCategory = ({ queryKey }) => {
+    const [_, id] = queryKey
+    return axios.get(`${config.baseUrlApi}/childcategory/listbySubCategory/${id}`,
         commonHeader
     )
 }

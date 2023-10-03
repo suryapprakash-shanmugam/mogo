@@ -6,16 +6,17 @@ import { subCategoryCreate } from "../../config/quries/SubCategory/SubCategoryQu
 
 export const handleSubCategoryControl = async (
     categoryList,
-    selecgtedCategory,
+    selectedCategory,
     categoryValidation,
     setCategoryList,
     setSelectedCategory,
     setCategoryValidation,
-    setSubCategoryModalOpen) => {
+    setSubCategoryModalOpen,
+    queryClient) => {
     const { subCategory } = categoryList
     const payload = {
         name: subCategory.trim(),
-        category_id: selecgtedCategory.category
+        category_id: selectedCategory.category
     }
     if (subCategory.trim()) {
         await subCategoryCreate(payload)
@@ -39,7 +40,8 @@ export const handleSubCategoryControl = async (
 
                     setCategoryList({ ...categoryList, subCategory: '' })
                     setSubCategoryModalOpen(false)
-                    setSelectedCategory({ ...selecgtedCategory, category: '' })
+                    setSelectedCategory({ ...selectedCategory, category: '' })
+                    queryClient.invalidateQueries('subCategoryList')
                 }
             })
             .catch(() => {
