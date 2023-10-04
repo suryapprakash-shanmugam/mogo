@@ -646,7 +646,7 @@ const AddProduct = () => {
                                                                     >
                                                                         <Quantity
                                                                             value={maxQuantityValue}
-                                                                            onChange={setMaxQuantityValue}
+                                                                            onChange={(e) => {setProductDetails({ ...productDetails, initial_quantity: e });setMaxQuantityValue(e)}}
                                                                         />
                                                                     </Input.Wrapper>
                                                                 </div>
@@ -654,6 +654,7 @@ const AddProduct = () => {
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
+                                                                        onChange={(e) => {setProductDetails({ ...productDetails, allow_backorders: e })}}
                                                                     >
                                                                         {
                                                                             validateProductField.allow_backorders === 1 ?
@@ -679,6 +680,7 @@ const AddProduct = () => {
                                                                 <label>Stock status</label>
                                                                 <Radio.Group
                                                                     name="favoriteFramework"
+                                                                    onChange={(e) => {setProductDetails({ ...productDetails, stock_status: e })}}
                                                                 >
                                                                     <Group mt="xs">
                                                                         <Radio value="In stock" label="In stock" />
@@ -840,6 +842,7 @@ const AddProduct = () => {
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
+                                                                        onChange={(e) => {setProductDetails({ ...productDetails, allow_backorders: e })}}
                                                                     >
                                                                         <Group mt="xs">
                                                                             <Radio value="Do not allow" label="Do not allow" />
@@ -861,9 +864,10 @@ const AddProduct = () => {
                                                                 <label>Stock status</label>
                                                                 <Radio.Group
                                                                     name="favoriteFramework"
-                                                                    onChange={() =>
+                                                                    onChange={(e) =>
                                                                         setProductDetails({
                                                                             ...productDetails,
+                                                                            stock_status:e
 
                                                                         })
                                                                     }

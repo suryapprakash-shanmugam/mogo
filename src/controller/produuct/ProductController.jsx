@@ -34,7 +34,7 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
         admin_id,
     } = productDetails
 
-    console.log(status);
+    console.log(allow_backorders);
 
     // const formData = new FormData()
     // formData.append(`name`, product_name)
