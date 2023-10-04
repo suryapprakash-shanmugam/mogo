@@ -635,7 +635,6 @@ const AddProduct = () => {
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Stock management</label>
-                                                        {console.log(productDetails.inventory.stock_management.status)}
                                                         <Input.Wrapper
                                                             error={`${validateProductField.inventory.stock_management.status === 1 ?
                                                                 "Stock Management is Compulsory" : ''
@@ -897,10 +896,10 @@ const AddProduct = () => {
                                                                 <label>Stock status</label>
                                                                 <Radio.Group
                                                                     name="favoriteFramework"
-                                                                    onChange={()=>
+                                                                    onChange={() =>
                                                                         setProductDetails({
                                                                             ...productDetails,
-                                                                            
+
                                                                         })
                                                                     }
                                                                 >
@@ -1354,8 +1353,8 @@ const AddProduct = () => {
                                                     <Select
                                                         label="Sub Category"
                                                         data={
-                                                            Array.isArray(categoryDetails.category) ?
-                                                                categoryDetails.category.map(data => ({
+                                                            Array.isArray(categoryDetails.subCategory) ?
+                                                                categoryDetails.subCategory.map(data => ({
                                                                     value: data._id,
                                                                     label: data.name
                                                                 })) : ''

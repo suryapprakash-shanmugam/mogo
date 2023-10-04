@@ -41,18 +41,21 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
         product_subcategory,
         admin_id,
     } = productDetails
-    const formData = new FormData()
-    formData.append(`name`, product_name)
-    formData.append(`description`, product_description)
-    formData.append(`short_description`, product_short_description)
-    formData.append(`product_type`, product_type)
-    formData.append(`actual_price`, actual_price)
-    formData.append(`sale_price`, sale_price)
-    formData.append(`tax_status`, tax_status)
-    formData.append(`tax_type`, tax_type)
-    formData.append(`tax_rate`, tax_rate)
-    formData.append(`SKU`, SKU)
-    formData.append(`actual_price`, actual_price)
+
+    console.log(product_type);
+
+    // const formData = new FormData()
+    // formData.append(`name`, product_name)
+    // formData.append(`description`, product_description)
+    // formData.append(`short_description`, product_short_description)
+    // formData.append(`product_type`, product_type)
+    // formData.append(`actual_price`, actual_price)
+    // formData.append(`sale_price`, sale_price)
+    // formData.append(`tax_status`, tax_status)
+    // formData.append(`tax_type`, tax_type)
+    // formData.append(`tax_rate`, tax_rate)
+    // formData.append(`SKU`, SKU)
+    // formData.append(`actual_price`, actual_price)
     // images.forEach((image) => {
     //     formData.append(`file`, image);
     // });
