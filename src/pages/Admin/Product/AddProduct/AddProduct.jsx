@@ -335,24 +335,16 @@ const AddProduct = () => {
         tax_status: "none",
         tax_type: '',
         tax_rate: '',
-        shipping: {
-            weight: '',
-            dimensions: {
-                length: '',
-                width: '',
-                height: ''
-            }
-        },
-        inventory: {
-            SKU: '',
-            stock_management: {
-                status: stockManagement,
-                initial_quantity: '',
-                allow_backorders: '',
-                low_stock_threshold: '',
-            },
-            stock_status: ''
-        },
+        weight: '',
+        length: '',
+        width: '',
+        height: '',
+        SKU: '',
+        status: stockManagement,
+        initial_quantity: '',
+        allow_backorders: '',
+        low_stock_threshold: '',
+        stock_status: '',
         product_status: '',
         product_image: '',
         product_gallery_image: '',
@@ -375,24 +367,16 @@ const AddProduct = () => {
         tax_status: 0,
         tax_type: 0,
         tax_rate: 0,
-        shipping: {
-            weight: 0,
-            dimensions: {
-                length: 0,
-                width: 0,
-                height: 0
-            }
-        },
-        inventory: {
-            SKU: '',
-            stock_management: {
-                status: 0,
-                initial_quantity: 0,
-                allow_backorders: 0,
-                low_stock_threshold: 0,
-            },
-            stock_status: ''
-        },
+        weight: 0,
+        length: 0,
+        width: 0,
+        height: 0,
+        SKU: '',
+        status: 0,
+        initial_quantity: 0,
+        allow_backorders: 0,
+        low_stock_threshold: 0,
+        stock_status: '',
         product_status: 0,
         product_image: 0,
         product_gallery_image: 0,
@@ -621,7 +605,7 @@ const AddProduct = () => {
                                                         <label>SKU</label>
                                                         <Input.Wrapper
                                                             error={
-                                                                `${validateProductField.inventory.SKU === 1 ?
+                                                                `${validateProductField.SKU === 1 ?
                                                                     'Product SKU is Compulsory' :
                                                                     ''
                                                                 }`
@@ -636,7 +620,7 @@ const AddProduct = () => {
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Stock management</label>
                                                         <Input.Wrapper
-                                                            error={`${validateProductField.inventory.stock_management.status === 1 ?
+                                                            error={`${validateProductField.status === 1 ?
                                                                 "Stock Management is Compulsory" : ''
                                                                 }`}
                                                         >
@@ -646,7 +630,7 @@ const AddProduct = () => {
                                                                 label="Track stock quantity for this product"
                                                                 radius="xs"
                                                                 size="xs"
-                                                                onChange={handleStockManagement}
+                                                                onChange={(e) => setStockManagement(e.currentTarget.checked)}
                                                             />
                                                         </Input.Wrapper>
                                                     </div>
@@ -656,7 +640,7 @@ const AddProduct = () => {
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                     <label>Initial Quantity</label>
                                                                     <Input.Wrapper
-                                                                        error={`${validateProductField.inventory.stock_management.initial_quantity === 1 ?
+                                                                        error={`${validateProductField.initial_quantity === 1 ?
                                                                             'Initial Quantity is Compulsory' :
                                                                             ''
                                                                             }`}
@@ -666,14 +650,14 @@ const AddProduct = () => {
                                                                             onChange={setMaxQuantityValue}
                                                                         />
                                                                     </Input.Wrapper>
-                                                                </div >
+                                                                </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
                                                                     >
                                                                         {
-                                                                            validateProductField.inventory.stock_management.allow_backorders === 1 ?
+                                                                            validateProductField.allow_backorders === 1 ?
                                                                                 'Back Orders are Compulsory' : ''
                                                                         }
                                                                         <Group mt="xs">
@@ -690,7 +674,7 @@ const AddProduct = () => {
                                                                         onChange={setMaxLowStockValue}
                                                                     />
                                                                 </div>
-                                                            </div >
+                                                            </div>
                                                         ) : (
                                                             <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                 <label>Stock status</label>
@@ -706,19 +690,16 @@ const AddProduct = () => {
                                                             </div>
                                                         )
                                                     }
-                                                </Tabs.Panel >
+                                                </Tabs.Panel>
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="shipping">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Weight (kg)</label>
                                                         <NumericInput
-                                                            value={productDetails.shipping.weight}
+                                                            value={productDetails.weight}
                                                             onChange={(e) =>
                                                                 setProductDetails({
                                                                     ...productDetails,
-                                                                    shipping: {
-                                                                        ...productDetails.shipping,
-                                                                        weight: e
-                                                                    }
+                                                                    weight: e
                                                                 })
                                                             }
                                                         />
@@ -726,53 +707,38 @@ const AddProduct = () => {
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid-multiple">
                                                         <label>Dimensions (cm)</label>
                                                         <NumericInput
-                                                            value={productDetails.shipping.dimensions.length}
+                                                            value={productDetails.length}
                                                             onChange={(e) =>
                                                                 setProductDetails({
                                                                     ...productDetails,
-                                                                    shipping: {
-                                                                        ...productDetails.shipping,
-                                                                        dimensions: {
-                                                                            ...productDetails.shipping.dimensions, length: e
-                                                                        }
-                                                                    }
+                                                                    length: e
                                                                 })
                                                             }
                                                             placeholder="Length"
                                                         />
                                                         <NumericInput
-                                                            value={productDetails.shipping.dimensions.width}
+                                                            value={productDetails.width}
                                                             onChange={(e) =>
                                                                 setProductDetails({
                                                                     ...productDetails,
-                                                                    shipping: {
-                                                                        ...productDetails.shipping,
-                                                                        dimensions: {
-                                                                            ...productDetails.shipping.dimensions, width: e
-                                                                        }
-                                                                    }
+                                                                    width: e
                                                                 })
                                                             }
                                                             placeholder="Width"
                                                         />
                                                         <NumericInput
-                                                            value={productDetails.shipping.dimensions.height}
+                                                            value={productDetails.height}
                                                             onChange={(e) =>
                                                                 setProductDetails({
                                                                     ...productDetails,
-                                                                    shipping: {
-                                                                        ...productDetails.shipping,
-                                                                        dimensions: {
-                                                                            ...productDetails.shipping.dimensions, height: e
-                                                                        }
-                                                                    }
+                                                                    height: e
                                                                 })
                                                             }
                                                             placeholder="Height"
                                                         />
                                                     </div>
                                                 </Tabs.Panel>
-                                            </Tabs >
+                                            </Tabs>
                                         ) : (
                                             <Tabs variant="outline" defaultValue="general" orientation="vertical">
                                                 <Tabs.List>
@@ -858,8 +824,9 @@ const AddProduct = () => {
                                                             label="Track stock quantity for this product"
                                                             radius="xs"
                                                             size="xs"
-                                                            onChange={() => setStockManagement(true)}
+                                                            onChange={(event) => setStockManagement(event.currentTarget.checked)}
                                                         />
+                                                        {console.log(stockManagement)}
                                                     </div>
                                                     {
                                                         stockManagement === true ? (
@@ -921,7 +888,7 @@ const AddProduct = () => {
                                                             label="Limit purchases to 1 item per order"
                                                             radius="xs"
                                                             size="xs"
-                                                            onChange={handleSoldIndividual}
+                                                            onChange={(event) => setSoldIndividual(event.currentTarget.checked)}
                                                         />
                                                     </div>
                                                     <div className='hr-line mt-10' />
@@ -1200,9 +1167,9 @@ const AddProduct = () => {
                                             </Tabs>
                                         )
                                     }
-                                </div >
-                            </div >
-                        </div >
+                                </div>
+                            </div>
+                        </div>
 
                         <div className="add-product-div-container-left-short-description">
                             <Card className='add-product-div-container-left-short-description-card'>
@@ -1217,7 +1184,7 @@ const AddProduct = () => {
                             </Card>
                         </div>
 
-                    </div >
+                    </div>
                     <div className="add-product-div-container-right">
                         <div className="add-product-div-container-right-draft-publish">
                             <Card className='add-product-div-container-right-draft-publish-card'>
@@ -1464,9 +1431,9 @@ const AddProduct = () => {
                             </Card>
                         </div>
                     </div>
-                </div >
-            </div >
-        </div >
+                </div>
+            </div>
+        </div>
     )
 }
 

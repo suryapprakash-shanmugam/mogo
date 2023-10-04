@@ -16,24 +16,16 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
         tax_status,
         tax_type,
         tax_rate,
-        shipping: {
-            weight,
-            dimensions: {
-                length,
-                width,
-                height,
-            }
-        },
+        weight,
+        length,
+        width,
+        height,
         SKU,
-        inventory: {
-            stock_management: {
-                status,
-                initial_quantity,
-                allow_backorders,
-                low_stock_threshold,
-            },
-            stock_status,
-        },
+        status,
+        initial_quantity,
+        allow_backorders,
+        low_stock_threshold,
+        stock_status,
         product_status,
         product_image,
         product_gallery_image,
@@ -42,7 +34,7 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
         admin_id,
     } = productDetails
 
-    console.log(actual_price);
+    console.log(status);
 
     // const formData = new FormData()
     // formData.append(`name`, product_name)
