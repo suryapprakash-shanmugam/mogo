@@ -16,14 +16,18 @@
     flex-direction: column;
     gap: 0.2rem;
     margin-bottom: 0.8rem;
+    text-align: center;
+    padding: 1rem;
 }
 
 .homeblogs-div-container-heading h1 {
     font-size: 20px;
+    color: var(--Logo-Color1);
 }
 
 .homeblogs-div-container-heading p {
     font-size: 14px;
+    color: var(--Logo-Color2);
 }
 
 .homeblogs-div-container-content-slider {

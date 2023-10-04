@@ -1,18 +1,18 @@
 //import react packages
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 //import AddProduct css
 import './AddProduct.css'
 
 //import mantine packages
-import { Accordion, Card, Checkbox, Group, Input, Radio, Select, Tabs, Textarea } from '@mantine/core';
+import { Accordion, Card, Checkbox, Group, Indicator, Input, Radio, Select, Space, Tabs, Textarea, ThemeIcon } from '@mantine/core';
 
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
-import ReactQuill from 'react-quill'; // Import React-Quill
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 
 import NumericInput from '../../../../components/Admin/Input/NumericInput';
 
@@ -21,9 +21,21 @@ import anglebottom from '../../../../assets/preheader/arrow-down.webp'
 import Quantity from '../../../../components/Admin/Quantity/Quantity';
 import image_icon from '../../../../assets/admin/product/image_icon.png'
 import trash from '../../../../assets/admin/table/dropdown/trash.png'
+import { handleCreateProduct } from '../../../../controller/produuct/ProductController';
+import { useQuery } from 'react-query';
+import { listAllProduct } from '../../../../config/quries/Products/ProductQuries';
+import { showNotification } from '@mantine/notifications';
+import { CircleCheck, X } from 'tabler-icons-react';
+
+// Convert Image
+import convert from 'image-conversion';
+import { categoryListAPI } from '../../../../config/quries/Category/CategoryQueries';
+import { subCategoryListByCategoryID } from '../../../../config/quries/SubCategory/SubCategoryQuries';
 
 
 const AddProduct = () => {
+    const [multiProductImage, setMultiProductImage] = useState()
+    const [productSingleImage, setProductSingleImage] = useState()
     const [taxRate, setTaxRate] = useState('')
     const [editorHtml, setEditorHtml] = useState('');
     const [editorShortHtml, setEditorShortHtml] = useState('');
@@ -52,6 +64,7 @@ const AddProduct = () => {
     const [stockManagement, setStockManagement] = useState(false);
     const [soldIndividual, setSoldIndividual] = useState(false);
     const [addCategory, setAddCategory] = useState(false);
+    const [productdata, setProductData] = useState([])
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -232,31 +245,239 @@ const AddProduct = () => {
         setAccordionVariationItems(updatedItems);
     };
 
+    const handleCreateProductClick = () => {
+        handleCreateProduct(productSingleImage, multiProductImage, productDetails)
+    }
+
+    // Hanlde Product Image Click     
+    const fileInputRef = useRef(null);
+    const multifileInputRef = useRef(null)
+    const handleSetNewProductImage = () => {
+        fileInputRef.current.click();
+    };
+    const handleMultiProductImage = () => {
+        multifileInputRef.current.click()
+    }
+    const handleMultiProductUpload = (e) => {
+        const files = e.target.files;
+        const selectedImagesArray = Array.from(files);
+        if (selectedImagesArray.length > 5) {
+            showNotification({
+                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                    <X color="red" />
+                </ThemeIcon>,
+                message: "Maximum 5 Images Only Allowed",
+            })
+        }
+        else {
+            setMultiProductImage(selectedImagesArray);
+        }
+    };
+
+    // useReact Query
+    useQuery('Products',
+        listAllProduct,
+        {
+            onSuccess: (res) => {
+                setProductData(res?.data?.data?.result)
+            }
+        }
+    )
+
+    // Handle File Upload
+    const handleFileUpload = (e) => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile.size > 40 * 1024) {
+            showNotification({
+                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                    <CircleCheck color="red" />
+                </ThemeIcon>,
+                message: "Image Must Below 40KB",
+            })
+            return
+        }
+        setProductSingleImage(selectedFile);
+    };
+
+
+    // Preview Gallery Image
+    const previewsGalleryProduct = multiProductImage?.map((image, index) => {
+        const imageUrl = URL.createObjectURL(image)
+        return (
+            <Indicator
+                key={index}
+                className='add-product-div-container-right-product-gallery-card-content-gallery-indicator'
+                label={<X onClick={() => removeMultiProductImage(index)} style={{ cursor: 'pointer' }} size={'1rem'} />}
+                size={25} withBorder>
+                <img src={imageUrl} />
+            </Indicator>
+        )
+    });
+
+    // handle Remove Multi Image
+    const removeMultiProductImage = (e) => {
+        const updatedMultiProductImage = multiProductImage.filter(
+            (_, index) => index !== e
+        );
+        setMultiProductImage(updatedMultiProductImage);
+    }
+
+
+    // Product Details 
+    const [productDetails, setProductDetails] = useState({
+        product_name: '',
+        product_description: '',
+        product_short_description: '',
+        product_type: 'simple',
+        actual_price: '',
+        sale_price: "",
+        sale_price_date: '',
+        tax_status: "none",
+        tax_type: '',
+        tax_rate: '',
+        shipping: {
+            weight: '',
+            dimensions: {
+                length: '',
+                width: '',
+                height: ''
+            }
+        },
+        inventory: {
+            SKU: '',
+            stock_management: {
+                status: stockManagement,
+                initial_quantity: '',
+                allow_backorders: '',
+                low_stock_threshold: '',
+            },
+            stock_status: ''
+        },
+        product_status: '',
+        product_image: '',
+        product_gallery_image: '',
+        product_category: '',
+        product_subcategory: '',
+        admin_id: sessionStorage.getItem('MogoAdminAccessToken101'),
+        SKU: ''
+    })
+
+
+    // Validation
+    const [validateProductField, setValidateProductField] = useState({
+        product_name: 0,
+        product_description: 0,
+        product_short_description: 0,
+        product_type: 0,
+        actual_price: 0,
+        sale_price: 0,
+        sale_price_date: 0,
+        tax_status: 0,
+        tax_type: 0,
+        tax_rate: 0,
+        shipping: {
+            weight: 0,
+            dimensions: {
+                length: 0,
+                width: 0,
+                height: 0
+            }
+        },
+        inventory: {
+            SKU: '',
+            stock_management: {
+                status: 0,
+                initial_quantity: 0,
+                allow_backorders: 0,
+                low_stock_threshold: 0,
+            },
+            stock_status: ''
+        },
+        product_status: 0,
+        product_image: 0,
+        product_gallery_image: 0,
+        product_category: 0,
+    })
+
+    useEffect(() => {
+        if (productDetails.actual_price < productDetails.sale_price) {
+
+        }
+    }, [productDetails.actual_price, productDetails.sale_price])
+
+
+    const [categoryDetails, setCategoryDetails] = useState({
+        category: '',
+        subCategory: ''
+    })
+
+    // Query Fetching
+    useQuery('categoryList',
+        categoryListAPI,
+        {
+            onSuccess: (res) => {
+                setCategoryDetails({ ...categoryDetails, category: res.data.data.result })
+            }
+        }
+    )
+
+    useQuery(
+        [
+            'subCategoryList',
+            productDetails.product_category
+        ],
+        subCategoryListByCategoryID,
+        {
+            enabled: !!productDetails.product_category,
+            onSuccess: (res) => {
+                setCategoryDetails({ ...categoryDetails, subCategory: res.data.data.result })
+            }
+        }
+    )
+
     return (
         <div>
             <div className="add-product-div">
                 <div className="add-product-div-container">
                     <div className="add-product-div-container-left">
                         <div className="add-product-div-container-left-product-name">
-                            <Input.Wrapper label="Add new product" description="" error="">
-                                <Input placeholder="Product Name" />
+                            <Input.Wrapper
+                                error={`${validateProductField.product_name === 1 ?
+                                    'Please Enter Product Name' :
+                                    ''
+                                    }`}
+                                label="Add new product" description="">
+                                <Input
+                                    onChange={(e) => setProductDetails({ ...productDetails, product_name: e.target.value })}
+                                    placeholder="Product Name"
+                                    value={productDetails.product_name}
+                                />
                             </Input.Wrapper>
 
                         </div>
-                        <div className="add-product-div-container-left-product-data-card-tab-panel-grid-link">
+                        {/* <div className="add-product-div-container-left-product-data-card-tab-panel-grid-link">
                             <label>Permalink:</label>
                             <p> https://weboney.in/lebanon/product/</p>
                             <Input />
                             <button onClick={handilePerma}>Edit</button>
-                        </div>
+                        </div> */}
                         <div className="add-product-div-container-left-product-description">
                             <Card className='add-product-div-container-left-product-description-card'>
-                                <label>Product description</label>
+                                <label>Product description
+                                </label>
+                                <Space w={'lg'} />
+                                <span style={{ color: 'red' }}>
+                                    {
+                                        validateProductField.product_description === 1 ?
+                                            "Description is Compulsory" :
+                                            ''
+                                    }
+                                </span>
                                 <ReactQuill
+                                    onChange={(e) => setProductDetails({ ...productDetails, product_description: e })}
                                     className='quill-style'
-                                    value={editorHtml}
-                                    onChange={handleEditorChange}
                                     modules={modules}
+                                    value={productDetails.product_description}
                                 />
                             </Card>
                         </div>
@@ -268,13 +489,13 @@ const AddProduct = () => {
                                         rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                         placeholder="Select Type"
                                         data={selectTypeArray}
-                                        value={selectedType}
-                                        onChange={handleTypeChange}
+                                        value={productDetails.product_type}
+                                        onChange={(e) => setProductDetails({ ...productDetails, product_type: e })}
                                     />
                                 </div>
                                 <div className="add-product-div-container-left-product-data-card-tab">
                                     {
-                                        selectedType === "simple" ? (
+                                        productDetails.product_type === "simple" ? (
                                             <Tabs variant="outline" defaultValue="general" orientation="vertical">
                                                 <Tabs.List>
                                                     <Tabs.Tab value="general">General</Tabs.Tab>
@@ -285,19 +506,37 @@ const AddProduct = () => {
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="general">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Regular price (₹)</label>
-                                                        <NumericInput
-                                                            value={maxRegularValue}
-                                                            onChange={setMaxRegularValue}
-                                                        />
+                                                        <Input.Wrapper
+                                                            error={`${validateProductField.actual_price === 1 ?
+                                                                'Please Enter Regular Price' :
+                                                                validateProductField.actual_price === 2 ?
+                                                                    'Regular Price Must be Greater than Sale Price' :
+                                                                    ''
+                                                                }`}
+                                                        >
+                                                            <NumericInput
+                                                                value={productDetails.actual_price}
+                                                                onChange={(e) => setProductDetails({ ...productDetails, actual_price: e })}
+                                                            />
+                                                        </Input.Wrapper>
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
                                                         <label>Sale price (₹)</label>
-                                                        <NumericInput
-                                                            value={maxSaleValue}
-                                                            onChange={setMaxSaleValue}
-                                                        />
+                                                        <Input.Wrapper
+                                                            error={`${validateProductField.sale_price === 1 ?
+                                                                'Please Enter Sale Price' :
+                                                                validateProductField.sale_price === 2 ?
+                                                                    'Sale Price Must be Less than Regular Price' :
+                                                                    ''
+                                                                }`}
+                                                        >
+                                                            <NumericInput
+                                                                value={productDetails.sale_price}
+                                                                onChange={(e) => setProductDetails({ ...productDetails, sale_price: e })}
+                                                            />
+                                                        </Input.Wrapper>
                                                     </div>
-                                                    {
+                                                    {/* {
                                                         schedule === true ? (
                                                             <div className="add-product-div-container-left-product-data-card-tab-panel-grid-sale">
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
@@ -306,8 +545,7 @@ const AddProduct = () => {
                                                                         className='datepicker-style'
                                                                         selected={startDate}
                                                                         onChange={handleStartDateChange}
-                                                                        minDate={new Date()}
-                                                                    />
+                                                                        minDate={new Date()} />
                                                                 </div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid grid-last">
                                                                     <label></label>
@@ -320,8 +558,8 @@ const AddProduct = () => {
                                                                 </div>
                                                             </div>
                                                         ) : ''
-                                                    }
-                                                    <p onClick={handleSchedule} className='add-product-div-container-left-product-data-card-tab-panel-grid-schedule'>{schedule === true ? 'Cancel' : 'Schedule'}</p>
+                                                    } */}
+                                                    {/* <p onClick={handleSchedule} className='add-product-div-container-left-product-data-card-tab-panel-grid-schedule'>{schedule === true ? 'Cancel' : 'Schedule'}</p> */}
                                                     <div className='hr-line mt-10' />
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Tax status</label>
@@ -329,34 +567,47 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
-                                                            value={taxStatus}
-                                                            onChange={handleTaxStatusChange}
+                                                            value={productDetails.tax_status}
+                                                            onChange={(e) => setProductDetails({ ...productDetails, tax_status: e })}
                                                         />
                                                     </div>
                                                     {
-                                                        taxStatus == 'taxable' ?
+                                                        productDetails.tax_status == 'taxable' ?
                                                             (
                                                                 <>
                                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                         <label>Tax type</label>
-                                                                        <Select
-                                                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
-                                                                            placeholder="Select Tax type"
-                                                                            data={taxClassArray}
-                                                                            value={taxClass}
-                                                                            onChange={handleTaxClassChange}
-                                                                        />
+                                                                        <Input.Wrapper
+                                                                            error={`${validateProductField.tax_type === 1 ?
+                                                                                'Tax Type is compulsory' : ''
+                                                                                }`}
+                                                                        >
+                                                                            <Select
+                                                                                value={productDetails.tax_type}
+                                                                                onChange={(e) => setProductDetails({ ...productDetails, tax_type: e })}
+                                                                                rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                                                                placeholder="Select Tax type"
+                                                                                data={taxClassArray}
+                                                                            />
+                                                                        </Input.Wrapper>
                                                                     </div>
                                                                     {
-                                                                        taxClass ?
+                                                                        productDetails.tax_type ?
                                                                             (
                                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                                     <label>Tax rate (%)</label>
-                                                                                    <NumericInput
-                                                                                        value={taxRate}
-                                                                                        placeholder='Tax rate in Percentage'
-                                                                                        onChange={(e) => setTaxRate(e)}
-                                                                                    />
+                                                                                    <Input.Wrapper
+                                                                                        error={`${validateProductField.tax_rate === 1 ?
+                                                                                            'Tax Rate is compulsory' : ''
+                                                                                            }`}
+                                                                                    >
+                                                                                        <NumericInput
+
+                                                                                            value={productDetails.tax_rate}
+                                                                                            onChange={(e) => setProductDetails({ ...productDetails, tax_rate: e })}
+                                                                                            placeholder='Tax rate in Percentage'
+                                                                                        />
+                                                                                    </Input.Wrapper>
                                                                                 </div>
                                                                             ) : ''
                                                                     }
@@ -368,34 +619,63 @@ const AddProduct = () => {
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="inventory">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>SKU</label>
-                                                        <Input />
+                                                        <Input.Wrapper
+                                                            error={
+                                                                `${validateProductField.inventory.SKU === 1 ?
+                                                                    'Product SKU is Compulsory' :
+                                                                    ''
+                                                                }`
+                                                            }
+                                                        >
+                                                            <Input
+                                                                value={productDetails.SKU}
+                                                                onChange={(e) => setProductDetails({ ...productDetails, SKU: e.target.value })}
+                                                            />
+                                                        </Input.Wrapper>
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Stock management</label>
-                                                        <Checkbox
-                                                            checked={stockManagement}
-                                                            defaultChecked
-                                                            label="Track stock quantity for this product"
-                                                            radius="xs"
-                                                            size="xs"
-                                                            onChange={handleStockManagement}
-                                                        />
+                                                        <Input.Wrapper
+                                                            error={`${validateProductField.inventory.stock_management.status === 1 ?
+                                                                "Stock Management is Compulsory" : ''
+                                                                }`}
+                                                        >
+                                                            <Checkbox
+                                                                checked={stockManagement}
+                                                                defaultChecked
+                                                                label="Track stock quantity for this product"
+                                                                radius="xs"
+                                                                size="xs"
+                                                                onChange={handleStockManagement}
+                                                            />
+                                                        </Input.Wrapper>
                                                     </div>
                                                     {
                                                         stockManagement === true ? (
                                                             <div>
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                     <label>Initial Quantity</label>
-                                                                    <Quantity
-                                                                        value={maxQuantityValue}
-                                                                        onChange={setMaxQuantityValue}
-                                                                    />
+                                                                    <Input.Wrapper
+                                                                        error={`${validateProductField.inventory.stock_management.initial_quantity === 1 ?
+                                                                            'Initial Quantity is Compulsory' :
+                                                                            ''
+                                                                            }`}
+                                                                    >
+                                                                        <Quantity
+                                                                            value={maxQuantityValue}
+                                                                            onChange={setMaxQuantityValue}
+                                                                        />
+                                                                    </Input.Wrapper>
                                                                 </div >
                                                                 <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
                                                                     >
+                                                                        {
+                                                                            validateProductField.inventory.stock_management.allow_backorders === 1 ?
+                                                                                'Back Orders are Compulsory' : ''
+                                                                        }
                                                                         <Group mt="xs">
                                                                             <Radio value="Do not allow" label="Do not allow" />
                                                                             <Radio value="Allow, but notify customer" label="Allow, but notify customer" />
@@ -426,50 +706,68 @@ const AddProduct = () => {
                                                             </div>
                                                         )
                                                     }
-                                                    {/* <div className='hr-line mt-10' /> */}
-                                                    {/* <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
-                                                        <label>Sold individually</label>
-                                                        <Checkbox
-                                                            checked={soldIndividual}
-                                                            defaultChecked
-                                                            label="Limit purchases to 1 item per order"
-                                                            radius="xs"
-                                                            size="xs"
-                                                            onChange={handleSoldIndividual}
-                                                        />
-                                                    </div> */}
-                                                    {/* <div className='hr-line mt-10' />
-                                                    <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
-                                                        <label>Initial number in stock</label>
-                                                        <Quantity
-                                                            value={maxInitialValue}
-                                                            onChange={setMaxInitialValue}
-                                                        />
-                                                    </div> */}
                                                 </Tabs.Panel >
                                                 <Tabs.Panel className='add-product-div-container-left-product-data-card-tab-panel' value="shipping">
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid">
                                                         <label>Weight (kg)</label>
                                                         <NumericInput
-                                                            value={maxWeightValue}
-                                                            onChange={setMaxWeightValue}
+                                                            value={productDetails.shipping.weight}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        weight: e
+                                                                    }
+                                                                })
+                                                            }
                                                         />
                                                     </div>
                                                     <div className="add-product-div-container-left-product-data-card-tab-panel-grid-multiple">
                                                         <label>Dimensions (cm)</label>
                                                         <NumericInput
-                                                            value={maxLengthValue}
-                                                            onChange={setMaxLengthValue}
+                                                            value={productDetails.shipping.dimensions.length}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        dimensions: {
+                                                                            ...productDetails.shipping.dimensions, length: e
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
                                                             placeholder="Length"
                                                         />
                                                         <NumericInput
-                                                            value={maxWidthValue}
-                                                            onChange={setMaxWidthValue}
+                                                            value={productDetails.shipping.dimensions.width}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        dimensions: {
+                                                                            ...productDetails.shipping.dimensions, width: e
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
                                                             placeholder="Width"
                                                         />
                                                         <NumericInput
-                                                            value={maxHeightValue}
-                                                            onChange={setMaxHeightValue}
+                                                            value={productDetails.shipping.dimensions.height}
+                                                            onChange={(e) =>
+                                                                setProductDetails({
+                                                                    ...productDetails,
+                                                                    shipping: {
+                                                                        ...productDetails.shipping,
+                                                                        dimensions: {
+                                                                            ...productDetails.shipping.dimensions, height: e
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
                                                             placeholder="Height"
                                                         />
                                                     </div>
@@ -532,7 +830,7 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Type"
                                                             data={taxStatusArray}
-                                                            value={taxStatus} // Set the value prop to the selectedType state variable
+                                                            value={taxStatus}
                                                             onChange={handleTaxStatusChange}
                                                         />
                                                     </div>
@@ -542,7 +840,7 @@ const AddProduct = () => {
                                                             rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                             placeholder="Select Class"
                                                             data={taxClassArray}
-                                                            value={taxClass} // Set the value prop to the selectedType state variable
+                                                            value={taxClass}
                                                             onChange={handleTaxClassChange}
                                                         />
                                                     </div>
@@ -560,7 +858,7 @@ const AddProduct = () => {
                                                             label="Track stock quantity for this product"
                                                             radius="xs"
                                                             size="xs"
-                                                            onChange={handleStockManagement}
+                                                            onChange={() => setStockManagement(true)}
                                                         />
                                                     </div>
                                                     {
@@ -598,6 +896,12 @@ const AddProduct = () => {
                                                                 <label>Stock status</label>
                                                                 <Radio.Group
                                                                     name="favoriteFramework"
+                                                                    onChange={() =>
+                                                                        setProductDetails({
+                                                                            ...productDetails,
+
+                                                                        })
+                                                                    }
                                                                 >
                                                                     <Group mt="xs">
                                                                         <Radio value="In stock" label="In stock" />
@@ -810,7 +1114,7 @@ const AddProduct = () => {
                                                                                                                 className='datepicker-style'
                                                                                                                 selected={endDateVariation}
                                                                                                                 onChange={(date) => setEndDateVariation(date)}
-                                                                                                                minDate={endDateVariation} // Set the minimum date based on the selected start date
+                                                                                                                minDate={endDateVariation}
                                                                                                             />
                                                                                                         </div>
                                                                                                     </>
@@ -905,8 +1209,9 @@ const AddProduct = () => {
                                 <label>Product short description</label>
                                 <ReactQuill
                                     className='quill-style'
-                                    value={editorShortHtml}
-                                    onChange={handleEditorShortChange}
+                                    onChange={(e) =>
+                                        setProductDetails({ ...productDetails, product_short_description: e })
+                                    }
                                     modules={modules}
                                 />
                             </Card>
@@ -921,8 +1226,20 @@ const AddProduct = () => {
                                 </div>
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-draft-publish-card-content">
-                                    <button>Save Drafts</button>
-                                    <button>Publish</button>
+                                    <button onClick={() => {
+                                        setProductDetails({
+                                            ...productDetails,
+                                            product_status: 'draft'
+                                        });
+                                        handleCreateProductClick()
+                                    }}>Save Drafts</button>
+                                    <button onClick={() => {
+                                        setProductDetails({
+                                            ...productDetails,
+                                            product_status: 'publish'
+                                        });
+                                        handleCreateProductClick()
+                                    }}>Publish</button>
                                 </div>
                             </Card>
                         </div>
@@ -934,11 +1251,34 @@ const AddProduct = () => {
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-product-image-card-content">
                                     {
-                                        productImage === true ? (<div className='add-product-div-container-right-product-image-card-content-image'></div>) : ''
+                                        productSingleImage ?
+                                            (<div className='add-product-div-container-right-product-image-card-content-image'>
+                                                <img src={URL.createObjectURL(productSingleImage)} />
+                                            </div>)
+                                            : ''
                                     }
                                     <p onClick={handileProductImage}>
                                         {
-                                            productImage === true ? (<span className='product-remove'>Remove product image</span>) : (<span className='product-add'>Set product image</span>)
+                                            productSingleImage ?
+                                                (<span
+                                                    onClick={() => setProductSingleImage('')}
+                                                    className='product-remove'>
+                                                    Remove product image
+                                                </span>)
+                                                :
+                                                <span
+                                                    onClick={handleSetNewProductImage}
+                                                    className='product-add'>
+                                                    Set product image
+                                                </span>
+                                        }
+                                        {
+                                            <input
+                                                onChange={handleFileUpload}
+                                                accept="image/*"
+                                                type='file'
+                                                style={{ display: 'none' }}
+                                                ref={fileInputRef} />
                                         }
                                     </p>
                                 </div>
@@ -949,21 +1289,30 @@ const AddProduct = () => {
                                 <div className="add-product-div-container-right-product-gallery-card-head">
                                     <h4>Product gallery</h4>
                                 </div>
+                                {
+                                    <input
+                                        style={{ display: 'none' }}
+                                        ref={multifileInputRef}
+                                        type="file"
+                                        accept="image/*"
+                                        name='files'
+                                        multiple
+                                        onChange={handleMultiProductUpload}
+                                    />
+                                }
                                 <div className='hr-line mt-10' />
+                                <div className='add-product-div-container-right-product-gallery-card-content-gallery'>
+                                    {previewsGalleryProduct}
+                                </div>
                                 <div className="add-product-div-container-right-product-gallery-card-content">
-                                    {
-                                        productGallery === true ? (
-                                            <div className='product-gallery-card-content-gallery'>
-                                                <div className='add-product-div-container-right-product-gallery-card-content-gallery'></div>
-                                                <div className='add-product-div-container-right-product-gallery-card-content-gallery'></div>
-                                            </div>
-                                        ) : ''
-                                    }
-                                    <p onClick={handileProductGallery}>
+                                    <span onClick={handleMultiProductImage} className='product-add'>Add product gallery images</span>
+                                    {/* <p onClick={handileProductGallery}>
                                         {
-                                            productGallery === true ? (<span className='product-remove'>Add product gallery images</span>) : (<span className='product-add'>Add product gallery images</span>)
-                                        }
-                                    </p>
+                                            productGallery === true ?
+                                                (<span className='product-remove'>Add product gallery images</span>)
+                                                :
+                                            }
+                                    </p> */}
                                 </div>
                             </Card>
                         </div>
@@ -975,52 +1324,49 @@ const AddProduct = () => {
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-product-category-card-content">
                                     <div className="add-product-div-container-right-product-category-card-content-tabs">
+                                        {
+                                            categoryDetails.category.length > 1 ?
+                                                <Select
+                                                    label="Category"
+                                                    onChange={(e) =>
+                                                        setProductDetails({
+                                                            ...productDetails,
+                                                            product_category: e
+                                                        })}
+                                                    data={
+                                                        Array.isArray(categoryDetails.category) ?
+                                                            categoryDetails.category.map(data => ({
+                                                                value: data._id,
+                                                                label: data.name
+                                                            })) : ''
+                                                    }
+                                                    placeholder="Select Category"
+                                                    nothingFound="Nothing found"
+                                                    searchable
+                                                    rightSection={<img src={anglebottom}
+                                                        alt="anglebottom icon" width={14} />}
+                                                /> : ''
+                                        }
+                                        {
+                                            productDetails.product_category ?
+                                                categoryDetails.subCategory.length > 0 ?
+                                                    <Select
+                                                        label="Sub Category"
+                                                        data={
+                                                            Array.isArray(categoryDetails.subCategory) ?
+                                                                categoryDetails.subCategory.map(data => ({
+                                                                    value: data._id,
+                                                                    label: data.name
+                                                                })) : ''
+                                                        }
+                                                        placeholder="Select Sub Category"
+                                                        nothingFound="Nothing found"
+                                                        searchable
+                                                        rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
+                                                    /> : '' : ''
+                                        }
 
-                                        <Select
-                                            label="Category"
-                                            data={dataCategory}
-                                            placeholder="Select Category"
-                                            nothingFound="Nothing found"
-                                            searchable
-                                            creatable
-                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
-                                            getCreateLabel={(query) => `+ Create ${query}`}
-                                            onCreate={(query) => {
-                                                const item = { value: query, label: query };
-                                                setDataCategory((current) => [...current, item]);
-                                                return item;
-                                            }}
-                                        />
-                                        <Select
-                                            label="Sub Category"
-                                            data={dataSubCategory}
-                                            placeholder="Select Sub Category"
-                                            nothingFound="Nothing found"
-                                            searchable
-                                            creatable
-                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
-                                            getCreateLabel={(query) => `+ Create ${query}`}
-                                            onCreate={(query) => {
-                                                const item = { value: query, label: query };
-                                                setDataSubCategory((current) => [...current, item]);
-                                                return item;
-                                            }}
-                                        />
-                                        <Select
-                                            label="Child Category"
-                                            data={dataChildCategory}
-                                            placeholder="Select Child Category"
-                                            nothingFound="Nothing found"
-                                            searchable
-                                            creatable
-                                            rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
-                                            getCreateLabel={(query) => `+ Create ${query}`}
-                                            onCreate={(query) => {
-                                                const item = { value: query, label: query };
-                                                setDataChildCategory((current) => [...current, item]);
-                                                return item;
-                                            }}
-                                        />
+
                                         {/* <Tabs variant="outline" defaultValue="allcategory">
                                             <Tabs.List>
                                                 <Tabs.Tab value="allcategory">

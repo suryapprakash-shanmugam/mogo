@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 
 //import mantine packages
-import { Container } from '@mantine/core'
+import { Center, Container } from '@mantine/core'
 
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -17,11 +17,11 @@ import living_linen from '../../../assets/home/grid-category/living_linen.webp'
 import folder from '../../../assets/home/home-blogs/folder.webp'
 import time from '../../../assets/home/home-blogs/time.webp'
 
-const HomeBlogs = ({ header, subheader }) => {
+const HomeBlogs = ({ header, subheader, header2 }) => {
 
     const autoplay = useRef(Autoplay({ delay: 2000 }));
 
-//function used to slice after certain words in blog description
+    //function used to slice after certain words in blog description
     function truncateText(text, maxLength) {
         if (text.length > maxLength) {
             return text.slice(0, maxLength) + '...';
@@ -68,10 +68,18 @@ const HomeBlogs = ({ header, subheader }) => {
         <div>
             <div className="homeblogs-div">
                 <Container size={'82rem'} className='homeblogs-div-container'>
-                    <div className="homeblogs-div-container-heading">
-                        <h1>{header}</h1>
-                        <p>{subheader}</p>
-                    </div>
+                    <Center>
+                        <div className="homeblogs-div-container-heading">
+                            <h1>
+                                {header}
+                                &nbsp;
+                                <span className='second-header-color'>
+                                    {header2}
+                                </span>
+                            </h1>
+                            <p>{subheader}</p>
+                        </div>
+                    </Center>
                     <div className="homeblogs-div-container-content">
                         <Carousel
                             align="start"

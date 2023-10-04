@@ -4,14 +4,21 @@
     font-family: 'Open Sans';
 }
 
+.header-div-container-mantine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: red;
+    width: 100%;
+}
+
 .header-div-container {
-    padding: 0;
+    padding: 0 3rem;
     margin-top: 1rem;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     font-family: 'Open Sans';
 }
 
@@ -26,10 +33,12 @@
 }
 
 .header-div-container-search-paper {
+    background-color: #F6F6F6;
     display: flex;
     align-items: center;
-    border-radius: 0;
-    border: 1px solid var(--Extra-Light-Gray);
+    border-radius: 3px;
+    outline: none;
+    border: 0.4px solid var(--Extra-Light-Gray);
 }
 
 .header-div-container-search-category-select .mantine-1cn2mlo {
@@ -41,15 +50,17 @@
     width: 175px;
     height: 40px;
     color: var(--Para-Color);
+    background-color: transparent;
     font-family: 'Open Sans';
     font-size: 13px;
 }
 
 .header-div-container-search-input .mantine-gszoqu {
-    width: 600px;
+    width: 400px;
     border: 0;
     color: var(--Para-Color);
     font-family: 'Open Sans';
+    background-color: transparent;
 }
 
 .header-div-container-search-button {
@@ -118,17 +129,25 @@
     align-items: center;
 }
 
-.header-div-container-cart-wishlist-sell-now-sellnow button {
-    width: 100%;
-    height: 100%;
+.header-div-container-cart-wishlist-sell-now-sellnow-button {
     border: 0;
     color: white;
-    background-color: var(--Logo-Color1);
+    background-color: var(--Logo-Color6);
     cursor: pointer;
     font-size: 14px;
     /* font-family: 'Open Sans'; */
 }
 
-.header-div-container-cart-wishlist-sell-now-sellnow button:hover {
-    background-color: var(--Logo-Color2);
+.header-div-container-cart-wishlist-sell-now-sellnow-button:hover {
+    background-color: var(--Logo-Color1);
+}
+
+
+/* 
+
+ */
+
+.search-engine-right p {
+    font-size: 17px;
+    color: #666 !important;
 }

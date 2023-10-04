@@ -9,14 +9,18 @@
 }
 
 .homeproductlist-div-container-heading {
-    width: 100%;
+    width: fit-content;
     margin-bottom: 15px;
+    text-align: center;
 }
+
 .homeproductlist-div-container-heading h1 {
-font-size: 20px;
+    color: var(--Logo-Color1);
 }
+
 .homeproductlist-div-container-heading p {
-font-size: 14px;
+    font-size: 14px;
+    color: var(--Logo-Color2);
 }
 
 .homeproductlist-div-container-content {
@@ -203,6 +207,7 @@ font-size: 14px;
 .homeproductlist-div-container-content-product-wishlist-cart-wishlist:hover {
     background-color: var(--Logo-Color3);
 }
+
 .homeproductlist-div-container-content-product-wishlist-cart-cart:hover {
     background-color: var(--Logo-Color3);
 }

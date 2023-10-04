@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 
 //import mantine components
-import { Container, Rating } from '@mantine/core'
+import { Container, Rating, Center, Space } from '@mantine/core'
 
 //import OfferSlider css
 import './OfferSlider.css'
@@ -20,10 +20,10 @@ import bath_linen from '../../../assets/home/grid-category/bath_linen.webp'
 import wishlist from '../../../assets/header/wishlist.webp'
 import cart from '../../../assets/header/cart.webp'
 
-const OfferSlider = ({ header }) => {
-    
+const OfferSlider = ({ header, header2 }) => {
+
     const autoplay = useRef(Autoplay({ delay: 2000 }));
-    
+
     //offerslider array
     const offerSliderArray = [
         {
@@ -38,7 +38,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '25',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -52,7 +52,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '29',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -66,7 +66,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '25',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -80,7 +80,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '25',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -94,7 +94,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '25',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -108,7 +108,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '25',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -122,7 +122,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '25',
             link: '/products',
-            like:'0',
+            like: '0',
         },
         {
             offer: '10%',
@@ -136,7 +136,7 @@ const OfferSlider = ({ header }) => {
             currencysymbol: '$',
             productnewprice: '26',
             link: '/products',
-            like:'0',
+            like: '0',
         },
     ]
     // const totalSlides = offerSliderArray.length;
@@ -148,7 +148,15 @@ const OfferSlider = ({ header }) => {
         <div>
             <div className='offerslider-div'>
                 <Container size={'82rem'} className='offerslider-div-container'>
-                    <h2 className='offerslider-div-container-heading'>{header}</h2>
+                    <Center>
+                        <h1 className='offerslider-div-container-heading'>
+                            {header}
+                            &nbsp;
+                            <span className='second-header-color'>
+                                {header2}
+                            </span>
+                        </h1>
+                    </Center>
                     <Carousel
                         align="start"
                         controlsOffset="md"
