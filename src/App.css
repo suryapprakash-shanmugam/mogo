@@ -25,6 +25,10 @@
   color: var(--Para-Color);
 }
 
+.second-header-color {
+  color: var(--Logo-Color6);
+}
+
 /* Define styles for the scrollbar track (the empty space) */
 ::-webkit-scrollbar {
   width: 5px;

@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import mantine packages
-import { Container, Rating } from '@mantine/core'
+import { Center, Container, Rating } from '@mantine/core'
 
 //import react-router-dom packages
 import { Link } from 'react-router-dom'
@@ -20,7 +20,7 @@ import cart from '../../../assets/header/cart.webp'
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
 
 
-const HomeProductsList = ({ header, subheader }) => {
+const HomeProductsList = ({ header, subheader, header2 }) => {
 
     const initialItemsToShow = 5; // Number of items to show initially
     const [itemsToShow, setItemsToShow] = useState(initialItemsToShow);
@@ -192,10 +192,18 @@ const HomeProductsList = ({ header, subheader }) => {
         <div>
             <div className="homeproductlist-div">
                 <Container size={'82rem'} className='homeproductlist-div-container'>
-                    <div className="homeproductlist-div-container-heading">
-                        <h1>{header}</h1>
-                        <p>{subheader}</p>
-                    </div>
+                    <Center>
+                        <div className="homeproductlist-div-container-heading">
+                            <h1>
+                                {header}
+                                &nbsp;
+                                <span className='second-header-color'>
+                                    {header2}
+                                </span>
+                            </h1>
+                            <p>{subheader}</p>
+                        </div>
+                    </Center>
                     <div className="homeproductlist-div-container-content">
                         {
                             homeProductListArray.slice(0, itemsToShow).map((homeProductList, index) => {
@@ -248,11 +256,11 @@ const HomeProductsList = ({ header, subheader }) => {
                             })
                         }
                     </div>
-                    {itemsToShow < homeProductListArray.length && (
+                    {/* {itemsToShow < homeProductListArray.length && (
                         <div className="homeproductlist-div-container-content-product-content-show-more">
                             <button onClick={handleShowMoreClick} className=''>Load More <img src={arrowdown} width={10} alt="" /></button>
                         </div>
-                    )}
+                    )} */}
                 </Container>
             </div>
         </div>

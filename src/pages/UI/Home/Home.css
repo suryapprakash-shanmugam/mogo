@@ -219,3 +219,39 @@
 .home-page-banner-content-btn:hover {
     background-color: var(--Logo-Color1);
 }
+
+
+.home-page-product-flex {
+    margin: 2rem 1rem 2rem 1rem;
+    cursor: pointer;
+    display: flex;
+}
+
+.home-page-product-flex-image {
+    width: 80px;
+    margin: auto;
+    height: 8vh;
+}
+
+.home-page-product-flex-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.home-page-product-flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.home-page-product-flex-card {
+    background-color: var(--Logo-Color6);
+    color: white;
+    transition: all 300ms ease-in-out;
+}
+
+.home-page-product-flex-card:hover {
+    background-color: var(--Logo-Color1);
+    color: white;
+    transform: scale(1.2);
+}

@@ -9,12 +9,12 @@
 }
 
 .homeproductlist-div-container-heading {
-    width: 100%;
+    width: fit-content;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .homeproductlist-div-container-heading h1 {
-    font-size: 20px;
     color: var(--Logo-Color1);
 }
 

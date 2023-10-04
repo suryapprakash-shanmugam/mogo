@@ -16,6 +16,8 @@
     flex-direction: column;
     gap: 0.2rem;
     margin-bottom: 0.8rem;
+    text-align: center;
+    padding: 1rem;
 }
 
 .homeblogs-div-container-heading h1 {

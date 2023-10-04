@@ -2,7 +2,7 @@
 import React from 'react'
 
 //import mantine packages
-import { Button, Container, Title } from '@mantine/core'
+import { Button, Card, Center, Container, Space, Title } from '@mantine/core'
 
 import { Link } from 'react-router-dom'
 
@@ -23,12 +23,12 @@ import HomeBlogs from '../../../components/UI/HomeBlogs/HomeBlogs'
 
 //import images for category grid
 
-import table_linen from '../../../assets/home/grid-category/table_linen.webp'
-import bath_linen from '../../../assets/home/grid-category/bath_linen.webp'
-import kitchen_linen from '../../../assets/home/grid-category/kitchen_linen.webp'
-import bed_linen from '../../../assets/home/grid-category/bed_linen.webp'
-import living_linen from '../../../assets/home/grid-category/living_linen.webp'
-import baby_linen from '../../../assets/home/grid-category/baby_linen.webp'
+import table_linen from '../../../assets/IconWebp/tablelinen.webp'
+import bath_linen from '../../../assets/IconWebp/bathlinen.webp'
+import kitchen_linen from '../../../assets/IconWebp/kitchenlinen.webp'
+import bed_linen from '../../../assets/IconWebp/bedlinen.webp'
+import living_linen from '../../../assets/IconWebp/livinglinen.webp'
+import baby_linen from '../../../assets/IconWebp/babylinen.webp'
 
 //import images for season sale
 
@@ -38,28 +38,92 @@ import season2 from '../../../assets/home/season/season2.webp'
 const Home = () => {
 
   //send heading Special Offers
-  const specialheader = 'Special Offers';
+  const specialheader = 'Special';
+  const specialheader2 = 'Offers'
   //send heading Clothing
   const clothingheader = 'Clothing';
   //send heading Special Offers
   const jewelryheader = 'Jewelry & Accessories';
 
   //send heading and sub heading to Featured products
-  const featuredheader = 'Featured Products';
+  const featuredheader = 'Featured';
+  const featuredheader2 = 'Products';
   const featuredsubheader = 'Last added featured products';
 
   //send heading and sub heading to new Arrivals products
-  const newarrivalheader = 'New Arrivals';
+  const newarrivalheader = 'New';
+  const newarrivalheader2 = 'Arrivals';
   const newarrivalsubheader = 'Last added products';
 
   //send heading and sub heading to blogs
-  const blogheader = 'Latest Blog Posts';
+  const blogheader = 'Latest';
+  const blogheader2 = 'Blog Posts';
   const blogsubheader = 'Last added blog posts';
+
+  // Product Array
+  const flexProductDetails = [
+    {
+      image: living_linen,
+      title: 'Living Linen',
+      path: '/category/babylinen'
+    },
+    {
+      image: table_linen,
+      title: 'Table Linen',
+      path: '/category/tablelinen'
+    },
+    {
+      image: kitchen_linen,
+      title: 'Kitchen Linen',
+      path: '/category/kitchenlinen'
+    },
+    {
+      image: bath_linen,
+      title: 'Bath Linen',
+      path: '/category/bathlinen'
+    },
+    {
+      image: bed_linen,
+      title: 'Bed Linen',
+      path: '/category/bedlinen'
+    },
+    {
+      image: baby_linen,
+      title: 'Baby Linen',
+      path: '/category/livinglinen'
+    },
+  ]
 
   return (
     <div>
       <HomeSlider />
-      <Container className='product-category-grid' size={'82rem'}>
+      <div className='home-page-product-flex-container'>
+        {
+          flexProductDetails.map((value, index) => (
+            <div key={index} className='home-page-product-flex'>
+              <Card
+                className='home-page-product-flex-card'
+                miw={'150px'}
+                p={'1rem'}
+                component={Link}
+                to={value.path}
+                withBorder shadow="sm" radius="md">
+                <div className='home-page-product-flex-image'>
+                  <img
+                    src={value.image} />
+                </div>
+                <Space h={'1rem'} />
+                <Center>
+                  <Title order={5}>
+                    {value.title}
+                  </Title>
+                </Center>
+              </Card>
+            </div>
+          ))
+        }
+      </div>
+      {/* <Container className='product-category-grid' size={'82rem'}>
         <div className="product-category-grid-div">
           <div className="product-category-grid-div-table">
             <Link to='/category/tablelinen'>
@@ -86,32 +150,32 @@ const Home = () => {
             </Link>
           </div>
           <div className="product-category-grid-div-bed">
-            <Link to='/category/bedlinen'>
-              <div className="product-category-grid-div-bed-image">
-                <img src={bed_linen} alt="bed linen" />
-                <div className="product-category-grid-div-image-content">Bed Linen</div>
+          <Link to='/category/bedlinen'>
+          <div className="product-category-grid-div-bed-image">
+          <img src={bed_linen} alt="bed linen" />
+          <div className="product-category-grid-div-image-content">Bed Linen</div>
               </div>
             </Link>
           </div>
           <div className="product-category-grid-div-living">
+          <div className="product-category-grid-div-image-content">Baby Linen</div>
             <Link to='/category/livinglinen'>
               <div className="product-category-grid-div-living-image">
                 <img src={baby_linen} alt="baby linen" />
-                <div className="product-category-grid-div-image-content">Baby Linen</div>
               </div>
             </Link>
           </div>
           <div className="product-category-grid-div-baby">
+          <div className="product-category-grid-div-image-content">Living Linen</div>
             <Link to='/category/babylinen'>
               <div className="product-category-grid-div-baby-image">
                 <img src={living_linen} alt="baby linen" />
-                <div className="product-category-grid-div-image-content">Living Linen</div>
               </div>
             </Link>
           </div>
         </div>
-      </Container>
-      <OfferSlider header={specialheader} />
+      </Container> */}
+      <OfferSlider header={specialheader} header2={specialheader2} />
       <Container size={'82rem'} className='home-season-sale'>
         <div className="home-season-sale-season">
           <div className="home-season-sale-season1">
@@ -130,8 +194,8 @@ const Home = () => {
           </div>
         </div>
       </Container>
-      <HomeProductsList header={featuredheader} subheader={featuredsubheader} />
-      <HomeProductsList header={newarrivalheader} subheader={newarrivalsubheader} />
+      <HomeProductsList header={featuredheader} header2={featuredheader2} subheader={featuredsubheader} />
+      <HomeProductsList header={newarrivalheader} header2={newarrivalheader2} subheader={newarrivalsubheader} />
       <Container size={'82rem'} className='home-season-sale'>
         <div className="home-season-sale-season">
           <div className="home-season-sale-season1">
@@ -159,7 +223,7 @@ const Home = () => {
       </Container>
       {/* <OfferSlider header={clothingheader} />
       <OfferSlider header={jewelryheader} /> */}
-      <HomeBlogs header={blogheader} subheader={blogsubheader} />
+      <HomeBlogs header={blogheader} header2={blogheader2} subheader={blogsubheader} />
     </div>
   )
 }

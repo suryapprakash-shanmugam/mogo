@@ -13,7 +13,8 @@
 
 .offerslider-div-container-heading {
     margin-bottom: 1rem;
-    font-size: 20px;
+    padding-bottom: 0.5rem;
+    font-weight: bolder;
     color: var(--Logo-Color1);
 }
 
