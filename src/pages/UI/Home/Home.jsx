@@ -107,7 +107,7 @@ const Home = () => {
                 p={'1rem'}
                 component={Link}
                 to={value.path}
-                withBorder shadow="sm" radius="md">
+                withBorder shadow="sm" radius="lg">
                 <div className='home-page-product-flex-image'>
                   <img
                     src={value.image} />

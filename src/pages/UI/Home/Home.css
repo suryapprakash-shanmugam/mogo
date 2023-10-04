@@ -236,6 +236,7 @@
 .home-page-product-flex-image img {
     width: 100%;
     height: 100%;
+    margin-top: 0.5rem;
     object-fit: contain;
 }
 
@@ -244,14 +245,28 @@
     justify-content: center;
 }
 
-.home-page-product-flex-card {
+.home-page-product-flex:nth-child(even) .home-page-product-flex-card {
     background-color: var(--Logo-Color6);
     color: white;
     transition: all 300ms ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.home-page-product-flex-card:hover {
+.home-page-product-flex:nth-child(odd) .home-page-product-flex-card {
     background-color: var(--Logo-Color1);
+    color: white;
+    transition: all 300ms ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.home-page-product-flex:nth-child(even) .home-page-product-flex-card:hover {
+    background-color: var(--Logo-Color1);
+    color: white;
+    transform: scale(1.2);
+}
+
+.home-page-product-flex:nth-child(odd) .home-page-product-flex-card:hover {
+    background-color: var(--Logo-Color6);
     color: white;
     transform: scale(1.2);
 }

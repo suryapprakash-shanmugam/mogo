@@ -111,3 +111,14 @@
 .custum-table-style td:last-child {
   text-align: -webkit-center;
 }
+
+.home-navbar-sticky-shadow {
+  border-bottom: 1px solid var(--Extra-Light-Gray);
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 123456;
+  background-color: white;
+}

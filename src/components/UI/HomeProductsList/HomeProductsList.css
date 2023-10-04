@@ -12,6 +12,7 @@
     width: fit-content;
     margin-bottom: 15px;
     text-align: center;
+    padding-bottom: 1rem;
 }
 
 .homeproductlist-div-container-heading h1 {
@@ -20,7 +21,7 @@
 
 .homeproductlist-div-container-heading p {
     font-size: 14px;
-    color: var(--Logo-Color2);
+    color: black;
 }
 
 .homeproductlist-div-container-content {

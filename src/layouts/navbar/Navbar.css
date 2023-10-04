@@ -31,6 +31,7 @@
     align-items: center;
     gap: 2.15rem;
     list-style-type: none;
+    margin-left: 1.6rem;
 }
 
 .navbar-div-container-ul li {

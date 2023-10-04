@@ -38,6 +38,7 @@
     align-items: center;
     border-radius: 3px;
     outline: none;
+    margin-left: 3.3rem;
     border: 0.4px solid var(--Extra-Light-Gray);
 }
 

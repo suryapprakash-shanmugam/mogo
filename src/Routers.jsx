@@ -182,10 +182,12 @@ const Routers = () => {
 
     return (
         <div>
-            <div>
-                <Preheader />
+            <Preheader />
+            <div className='sticky-header'>
                 <Header />
-                <Navbar />
+                <div className='home-navbar-sticky-shadow'>
+                    <Navbar />
+                </div>
             </div>
             <div>{renderBodyData}</div>
             <div>
