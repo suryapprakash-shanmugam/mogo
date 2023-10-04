@@ -70,7 +70,6 @@ const AddProduct = () => {
     const [endDate, setEndDate] = useState(null);
     const [startDateVariation, setStartDateVariation] = useState(null);
     const [endDateVariation, setEndDateVariation] = useState(null);
-
     const [dataCategory, setDataCategory] = useState([
         { value: 'react', label: 'React' },
         { value: 'ng', label: 'Angular' },
@@ -186,12 +185,12 @@ const AddProduct = () => {
         setStartDateVariation(null);
         setEndDateVariation(null);
     };
-    const handleStockManagement = () => {
-        setStockManagement((stockManagement) => !stockManagement);
-    };
-    const handleSoldIndividual = () => {
-        setSoldIndividual((soldIndividual) => !soldIndividual);
-    };
+    // const handleStockManagement = () => {
+    //     setStockManagement((stockManagement) => !stockManagement);
+    // };
+    // const handleSoldIndividual = () => {
+    //     setSoldIndividual((soldIndividual) => !soldIndividual);
+    // };
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -630,7 +629,7 @@ const AddProduct = () => {
                                                                 label="Track stock quantity for this product"
                                                                 radius="xs"
                                                                 size="xs"
-                                                                onChange={(e) => setStockManagement(e.currentTarget.checked)}
+                                                                onChange={(e) => {setProductDetails({ ...productDetails, status: e });setStockManagement(e.currentTarget.checked)}}
                                                             />
                                                         </Input.Wrapper>
                                                     </div>
@@ -824,9 +823,8 @@ const AddProduct = () => {
                                                             label="Track stock quantity for this product"
                                                             radius="xs"
                                                             size="xs"
-                                                            onChange={(event) => setStockManagement(event.currentTarget.checked)}
+                                                            onChange={(e) => {setProductDetails({ ...productDetails, status: e });setStockManagement(e.currentTarget.checked)}}
                                                         />
-                                                        {console.log(stockManagement)}
                                                     </div>
                                                     {
                                                         stockManagement === true ? (
