@@ -10,8 +10,11 @@ import CustumRouters from './Routers'
 //import login page for admin login (pages->admin->login)
 import Login from './pages/Admin/Login/Login'
 
+import VendorLogin from './pages/Vendor/Login/Login'
+
 //import AdminROuters for backend
 import AdminRouters from './AdminRouters'
+import VendorRouters from './VendorRouters'
 
 const Wipper = () => {
     return (
@@ -161,9 +164,47 @@ const Wipper = () => {
 
                 <Route path="/blogs" element={<AdminRouters />} />
 
+                <Route path="/quoterequests" element={<AdminRouters />} />
 
+                <Route path="/location" element={<AdminRouters />} />
 
+                <Route path="/users" element={<AdminRouters />} />
 
+                <Route path="/reviews" element={<AdminRouters />} />
+
+                <Route path="/pending_product_comments" element={<AdminRouters />} />
+
+                <Route path="/approved_product_comments" element={<AdminRouters />} />
+
+                <Route path="/pending_blog_comments" element={<AdminRouters />} />
+
+                <Route path="/approved_blog_comments" element={<AdminRouters />} />
+
+                <Route path="/general_settings" element={<AdminRouters />} />
+
+                <Route path="/vendor" element={<VendorLogin />} />
+
+                <Route path="/vendor_dashboard" element={<VendorRouters />} />
+
+                <Route path="/vendor_addproduct" element={<VendorRouters />} />
+
+                <Route path="/vendor_productsdetails_individual" element={<VendorRouters />} />
+
+                <Route path="/vendor_productsdetails" element={<VendorRouters />} />
+
+                <Route path="/vendor_pending_products" element={<VendorRouters />} />
+
+                <Route path="/vendor_hidden_products" element={<VendorRouters />} />
+
+                <Route path="/vendor_expired_products" element={<VendorRouters />} />
+
+                <Route path="/vendor_sold_products" element={<VendorRouters />} />
+
+                <Route path="/vendor_drafts_products" element={<VendorRouters />} />
+
+                <Route path="/vendor_quoterequests" element={<VendorRouters />} />
+
+                <Route path="/vendor_refundrequests" element={<VendorRouters />} />
 
 
             </Routes>
