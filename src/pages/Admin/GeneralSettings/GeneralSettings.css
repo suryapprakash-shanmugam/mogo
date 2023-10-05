@@ -1,0 +1,74 @@
+.general-setting-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.general-setting-div-card {
+    padding: 0px;
+}
+
+.general-setting-div-card-tabs-individual {
+    padding: 15px;
+}
+
+.general-setting-div-card-tabs-individual .input-size .mantine-1fzet7j {
+    margin-bottom: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.general-setting-div-card-tabs-individual .input-size label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.general-setting-div-card-tabs-individual .input-size .mantine-gszoqu {
+    height: 36px;
+    border-radius: 3px;
+}
+
+.general-setting-div-card-maintance-content .input-size label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.general-setting-div-card-maintance-content .input-size .mantine-gszoqu {
+    height: 36px;
+    border-radius: 3px;
+}
+
+.general-setting-div-card-tabs-individual-button {
+    margin-top: 40px;
+    height: 65px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.general-setting-div-card-tabs-individual-button button {
+    width: 106px;
+    height: 34px;
+    background-color: var(--Logo-Color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 0px;
+}
+
+.general-setting-div-card-maintance {
+    width: 50%;
+    margin: 20px 0px;
+    padding: 0px;
+}
+
+.general-setting-div-card-maintance-heading {
+    padding: 20px 20px 5px;
+}
+
+.general-setting-div-card-maintance-heading h4 {
+    font-weight: 400;
+}
+
+.general-setting-div-card-maintance-content {
+    padding: 20px;
+}

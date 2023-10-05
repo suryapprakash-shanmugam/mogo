@@ -168,6 +168,20 @@ const Wipper = () => {
 
                 <Route path="/location" element={<AdminRouters />} />
 
+                <Route path="/users" element={<AdminRouters />} />
+
+                <Route path="/reviews" element={<AdminRouters />} />
+
+                <Route path="/pending_product_comments" element={<AdminRouters />} />
+
+                <Route path="/approved_product_comments" element={<AdminRouters />} />
+
+                <Route path="/pending_blog_comments" element={<AdminRouters />} />
+
+                <Route path="/approved_blog_comments" element={<AdminRouters />} />
+
+                <Route path="/general_settings" element={<AdminRouters />} />
+
                 <Route path="/vendor" element={<VendorLogin />} />
 
                 <Route path="/vendor_dashboard" element={<VendorRouters />} />

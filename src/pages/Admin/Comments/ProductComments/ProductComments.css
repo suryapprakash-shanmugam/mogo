@@ -1,0 +1,38 @@
+.product-comments-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.product-comments-div h3 {
+    padding: 20px 0px;
+}
+
+.product-comments-div-card {
+    padding: 0px;
+}
+
+.product-comments-div-card-heading {
+    padding: 20px 20px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-comments-div-card-heading h4 {
+    font-weight: 400;
+}
+
+.product-comments-div-card-heading button {
+    width: 171px;
+    height: 34px;
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    align-items: center;
+}
+
+.product-comments-div-card-content {
+    padding: 20px;
+}

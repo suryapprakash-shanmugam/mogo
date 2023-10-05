@@ -87,6 +87,12 @@ import FeaturedProducts from './pages/Admin/FeaturedProducts/FeaturedProducts';
 //import QuoteRequests from pages->admin->QuoteRequests
 import QuoteRequests from './pages/Admin/QuoteRequests/QuoteRequests';
 
+import ApprovedProductComments from './pages/Admin/Comments/ProductComments/ApprovedProductComments';
+import PendingProductComments from './pages/Admin/Comments/ProductComments/PendingProductComments';
+import ApprovedBlogComments from './pages/Admin/Comments/BlogComments/ApprovedBlogComments';
+import PendingBlogComments from './pages/Admin/Comments/BlogComments/PendingBlogComments';
+import GeneralSettings from './pages/Admin/GeneralSettings/GeneralSettings';
+
 //import Blogs from pages->admin->Blogs
 import Blogs from './pages/Admin/Blogs/Blogs';
 
@@ -98,6 +104,8 @@ import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
 import Location from './pages/Admin/Location/Location';
+import Users from './pages/Admin/Users/Users';
+import Reviews from './pages/Admin/Reviews/Reviews';
 
 
 const AdminRouters = () => {
@@ -144,6 +152,13 @@ const AdminRouters = () => {
         '/quoterequests': <QuoteRequests />,
         '/blogs': <Blogs />,
         '/location': <Location />,
+        '/users': <Users />,
+        '/reviews': <Reviews />,
+        '/pending_product_comments': <PendingProductComments />,
+        '/approved_product_comments': <ApprovedProductComments />,
+        '/pending_blog_comments': <PendingBlogComments />,
+        '/approved_blog_comments': <ApprovedBlogComments />,
+        '/general_settings': <GeneralSettings />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -415,7 +430,7 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <SubMenu label="Users" icon={<i className='fa fa-users' />}>
+                            {/* <SubMenu label="Users" icon={<i className='fa fa-users' />}>
                                 <Link to="">
                                     <MenuItem component="span"> Admin</MenuItem>
                                 </Link>
@@ -425,7 +440,12 @@ const AdminRouters = () => {
                                 <Link to="">
                                     <MenuItem component="span"> Users</MenuItem>
                                 </Link>
-                            </SubMenu>
+                            </SubMenu> */}
+                            <Link to="/users">
+                                <MenuItem component="span" active icon={<i className='fa fa-users' />}>
+                                    Users
+                                </MenuItem>
+                            </Link>
                         </Tooltip>
                         <Tooltip
                             label="Reviews"
@@ -434,7 +454,7 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <Link to="">
+                            <Link to="/reviews">
                                 <MenuItem component="span" active icon={<i className='fa fa-star' />}>
                                     Reviews
                                 </MenuItem>
@@ -448,10 +468,10 @@ const AdminRouters = () => {
                             disabled={collapsed !== true ? true : false}
                         >
                             <SubMenu label="Comments" icon={<i className='fa fa-comments' />}>
-                                <Link to="">
+                                <Link to="/pending_product_comments">
                                     <MenuItem component="span"> Product Comments</MenuItem>
                                 </Link>
-                                <Link to="">
+                                <Link to="/pending_blog_comments">
                                     <MenuItem component="span"> Blog Comments</MenuItem>
                                 </Link>
                             </SubMenu>
@@ -476,7 +496,7 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <SubMenu label="General Settings" icon={<i className='fa fa-cog' />}>
+                            {/* <SubMenu label="General Settings" icon={<i className='fa fa-cog' />}>
                                 <Link to="">
                                     <MenuItem component="span"> General Settings</MenuItem>
                                 </Link>
@@ -486,7 +506,12 @@ const AdminRouters = () => {
                                 <Link to="">
                                     <MenuItem component="span"> Social Login</MenuItem>
                                 </Link>
-                            </SubMenu>
+                            </SubMenu> */}
+                            <Link to="/general_settings">
+                                <MenuItem component="span" active icon={<i className='fa fa-cog' />}>
+                                    General Settings
+                                </MenuItem>
+                            </Link>
                         </Tooltip>
                         <Tooltip
                             label="Payment Settings"
