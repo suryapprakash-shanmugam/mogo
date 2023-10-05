@@ -103,6 +103,8 @@ import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
 // State Handler
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
+import { useQuery } from 'react-query';
+import { getAdminByID } from './config/quries/AdminLogin/Quries';
 import Location from './pages/Admin/Location/Location';
 import Users from './pages/Admin/Users/Users';
 import Reviews from './pages/Admin/Reviews/Reviews';
@@ -167,15 +169,36 @@ const AdminRouters = () => {
 
     // Navigate to Push 
     const navigate = useNavigate()
+    const adminId = sessionStorage.getItem('MogoAdminAccessToken101')
+    const { data } = useQuery(
+        ['adminData', adminId],
+        getAdminByID,
+        {
+            enabled: !!adminId,
+        }
+    )
 
-    // useEffect(() => {
-    //     if (sessionStorage.getItem('MogoAdminAccessToken102') && sessionStorage.getItem('MogoAdminAccessToken101')) {
-    //         dispatch(setLoginStatus(true))
-    //     }
-    //     else {
-    //         window.location.reload(navigate('/admin'))
-    //     }
-    // }, [])
+    // Login status Checking
+    useEffect(() => {
+        if (sessionStorage.getItem('MogoAdminAccessToken102') && sessionStorage.getItem('MogoAdminAccessToken101')) {
+            dispatch(setLoginStatus(true))
+            // if (data?.data?.data?.email) {
+            // }
+            // else {
+            //     window.location.reload(navigate('/admin'))
+            // }
+        }
+        else {
+            window.location.reload(navigate('/admin'))
+        }
+    }, [sessionStorage.getItem('MogoAdminAccessToken102'), sessionStorage.getItem('MogoAdminAccessToken101')])
+
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('MogoAdminAccessToken101')
+        sessionStorage.removeItem('MogoAdminAccessToken102')
+    }
+
     return (
         <div>
             <div className='admin-sidenav' >
@@ -560,7 +583,9 @@ const AdminRouters = () => {
                                         <MenuMantine.Item icon={<i className='fa fa-cog' />}>Update Profile</MenuMantine.Item>
                                         <MenuMantine.Item icon={<i className='fa fa-user' />}>Change Password</MenuMantine.Item>
                                         <MenuMantine.Divider />
-                                        <MenuMantine.Item icon={<i className='fa fa-sign-out' />}>Logout</MenuMantine.Item>
+                                        <MenuMantine.Item
+                                            onClick={handleLogout}
+                                            icon={<i className='fa fa-sign-out' />}>Logout</MenuMantine.Item>
                                     </MenuMantine.Dropdown>
                                 </MenuMantine>
                             </div>

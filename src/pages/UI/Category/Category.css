@@ -100,6 +100,9 @@
     overflow: hidden;
     /* overflow-y: scroll; */
 }
+.category-div-container-main-filter-main-category-content {
+    padding: 0.5rem 0;
+}
 
 .category-div-container-main-filter-main-category-content-link {
     color: var(--Logo-Color1);
@@ -114,8 +117,8 @@
 .category-div-container-main-filter-main-category-content div {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    gap: 1rem;
+    padding: 0.5rem 0;
 }
 
 .category-div-container-main-filter-main-category-head {
@@ -231,6 +234,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-bottom: 0.7rem;
 }
 
 .category-div-container-main-filter-main-price-form-button button {
@@ -285,8 +289,7 @@
     opacity: 0;
 }
 
-.category-div-container-main-product-product_display-individual-content
-{
+.category-div-container-main-product-product_display-individual-content {
     padding-top: 10px;
 }
 
@@ -308,8 +311,8 @@
     display: flex;
     align-items: center;
 }
-.category-div-container-main-product-product_display-individual-image-featured p
-{
+
+.category-div-container-main-product-product_display-individual-image-featured p {
     font-size: 12px;
 }
 
@@ -382,7 +385,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--Extra-Light-Gray);
+    background-color: var(--Logo-Color1);
     cursor: pointer;
 }
 
@@ -393,7 +396,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--Extra-Light-Gray);
+    background-color: var(--Logo-Color1);
     cursor: pointer;
 }
 
@@ -408,11 +411,11 @@
 }
 
 .category-div-container-main-product-product_display-individual-image-cart-wishlist-cart:hover {
-    background-color: var(--Logo-Color1);
+    background-color: var(--Logo-Color3);
 }
 
 .category-div-container-main-product-product_display-individual-image-cart-wishlist-wishlist:hover {
-    background-color: var(--Logo-Color1);
+    background-color: var(--Logo-Color3);
 }
 
 .category-div-container-main-product-product_display-individual:hover .category-div-container-main-product-product_display-individual-image-cart-wishlist,
@@ -471,6 +474,7 @@
     align-items: center;
     width: fit-content;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .pagination li:last-child a {
@@ -481,4 +485,8 @@
 .pagination-container .pagination li:last-child:hover a {
     background-color: transparent !important;
     border: 0;
+}
+
+.pagination-container .pagination li:last-child {
+    margin-left: 0.8rem;
 }

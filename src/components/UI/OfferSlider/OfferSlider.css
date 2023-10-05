@@ -74,7 +74,7 @@
 #offerslider-div-container-slider-individual-wishlist-cart-wishlist {
     width: 100%;
     height: 40px;
-    background-color: var(--Extra-Light-Gray);
+    background-color: var(--Logo-Color1);
     clip-path: circle();
     display: flex;
     align-items: center;
@@ -86,7 +86,7 @@
 #offerslider-div-container-slider-individual-wishlist-cart-cart {
     width: 100%;
     height: 40px;
-    background-color: var(--Extra-Light-Gray);
+    background-color: var(--Logo-Color1);
     clip-path: circle();
     display: flex;
     align-items: center;

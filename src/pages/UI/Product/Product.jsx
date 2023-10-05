@@ -154,8 +154,10 @@ const Product = ({ category, subcategory, heading }) => {
     };
 
     //send heading Clothing
-    const moreheader = 'More from Mogo';
-    const likeheader = 'You May Also Like';
+    const moreheader = 'Related';
+    const moreheader2 = ' Products';
+    const likeheader = 'You May Also';
+    const likeheader2 = 'Like';
 
     const [selectedColor, setSelectedColor] = useState('1');
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -592,8 +594,8 @@ const Product = ({ category, subcategory, heading }) => {
                             </Tabs>
                         </div>
                     </div>
-                    <OfferSlider header={moreheader} />
-                    <OfferSlider header={likeheader} />
+                    <OfferSlider header={moreheader} header2={moreheader2} />
+                    <OfferSlider header={likeheader} header2={likeheader2} />
                 </Container>
                 <Modal
                     zIndex={12121}
