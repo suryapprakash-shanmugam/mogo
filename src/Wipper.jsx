@@ -206,6 +206,17 @@ const Wipper = () => {
 
                 <Route path="/vendor_refundrequests" element={<VendorRouters />} />
 
+                <Route path="/vendor_categorylist" element={<VendorRouters />} />
+
+                <Route path="/vendor_earnings" element={<VendorRouters />} />
+
+                <Route path="/vendor_active_sales" element={<VendorRouters />} />
+
+                <Route path="/vendor_completed_sales" element={<VendorRouters />} />
+
+                <Route path="/vendor_cancelled_sales" element={<VendorRouters />} />
+
+                <Route path="/vendor_individual_order" element={<VendorRouters />} />
 
             </Routes>
         </div>

@@ -31,6 +31,15 @@ import HiddenProducts from './pages/Vendor/Product/HiddenProducts/HiddenProducts
 import ExpiredProducts from './pages/Vendor/Product/ExpiredProducts/ExpiredProducts';
 import SoldProducts from './pages/Vendor/Product/SoldProducts/SoldProducts';
 import Drafts from './pages/Vendor/Product/Drafts/Drafts';
+import QuoteRequests from './pages/Vendor/QuoteRequests/QuoteRequests';
+import RefundRequests from './pages/Vendor/RefundRequests/RefundRequests';
+import IndividualRefund from './pages/Vendor/RefundRequests/IndividualRefund/IndividualRefund';
+import Category from './pages/Vendor/Category/Category';
+import Earnings from './pages/Vendor/Earnings/Earnings';
+import ActiveSales from './pages/Vendor/Sales/ActiveSales/ActiveSales';
+import CancelledSales from './pages/Vendor/Sales/CancelledSales/CancelledSales';
+import CompletedSales from './pages/Vendor/Sales/CompletedSales/CompletedSales';
+import IndividualOrder from './pages/Vendor/IndividualOrder/Individual';
 
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
@@ -39,9 +48,6 @@ import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
 // State Handler
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
-import QuoteRequests from './pages/Vendor/QuoteRequests/QuoteRequests';
-import RefundRequests from './pages/Vendor/RefundRequests/RefundRequests';
-import IndividualRefund from './pages/Vendor/RefundRequests/IndividualRefund/IndividualRefund';
 
 
 const VendorRouters = () => {
@@ -75,7 +81,13 @@ const VendorRouters = () => {
         '/vendor_quoterequests': <QuoteRequests />,
         '/vendor_refundrequests': <RefundRequests />,
         '/vendor_individualrefund': <IndividualRefund />,
-        
+        '/vendor_categorylist': <Category />,
+        '/vendor_earnings': <Earnings />,
+        '/vendor_active_sales': <ActiveSales />,
+        '/vendor_completed_sales': <CompletedSales />,
+        '/vendor_cancelled_sales': <CancelledSales />,
+        '/vendor_individual_order': <IndividualOrder />,
+
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -165,6 +177,41 @@ const VendorRouters = () => {
                             </SubMenu>
                         </Tooltip>
                         <Tooltip
+                            label="Sales"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <SubMenu label="Sales" icon={<i className='fa fa-shopping-cart' />}>
+                                <Link to="/vendor_active_sales">
+                                    <MenuItem component="span">Active Sales</MenuItem>
+                                </Link>
+                                <Link to="/vendor_completed_sales">
+                                    <MenuItem component="span"> Completed Sales</MenuItem>
+                                </Link>
+                                <Link to="/vendor_cancelled_sales">
+                                    <MenuItem component="span"> Cancelled Sales</MenuItem>
+                                </Link>
+                                {/* <Link to="">
+                                    <MenuItem component="span"> Bulk Product Upload</MenuItem>
+                                </Link> */}
+                            </SubMenu>
+                        </Tooltip>
+                        <Tooltip
+                            label="Earnings"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_earnings">
+                                <MenuItem component="span" active icon={<i className='fa fa-money' />}>
+                                    Earnings
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
+                        <Tooltip
                             label="Quote Requests"
                             color="teal"
                             position="bottom-end"
@@ -190,6 +237,21 @@ const VendorRouters = () => {
                                 </MenuItem>
                             </Link>
                         </Tooltip>
+                        <Tooltip
+                            label="Categories"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_categorylist">
+                                <MenuItem component="span" active icon={<i className='fa fa-folder-open' />}>
+                                    Categories
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
+
+
                     </Menu>
                 </Sidebar>
                 <ScrollArea w={"100%"}>
@@ -209,7 +271,7 @@ const VendorRouters = () => {
                                             </div>
                                             <div className="admin-user-profile-dropdown-button-content">
                                                 <p>
-                                                    Admin
+                                                    Vendor
                                                 </p>
                                             </div>
                                         </div>
