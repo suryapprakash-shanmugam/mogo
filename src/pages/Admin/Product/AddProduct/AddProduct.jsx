@@ -350,8 +350,10 @@ const AddProduct = () => {
         product_category: '',
         product_subcategory: '',
         admin_id: sessionStorage.getItem('MogoAdminAccessToken101'),
-        SKU: ''
+        SKU: '',
+        product_tags: ''
     })
+
 
 
     // Validation
@@ -629,7 +631,7 @@ const AddProduct = () => {
                                                                 label="Track stock quantity for this product"
                                                                 radius="xs"
                                                                 size="xs"
-                                                                onChange={(e) => {setProductDetails({ ...productDetails, status: e });setStockManagement(e.currentTarget.checked)}}
+                                                                onChange={(e) => { setProductDetails({ ...productDetails, status: e }); setStockManagement(e.currentTarget.checked) }}
                                                             />
                                                         </Input.Wrapper>
                                                     </div>
@@ -646,7 +648,7 @@ const AddProduct = () => {
                                                                     >
                                                                         <Quantity
                                                                             value={maxQuantityValue}
-                                                                            onChange={(e) => {setProductDetails({ ...productDetails, initial_quantity: e });setMaxQuantityValue(e)}}
+                                                                            onChange={(e) => { setProductDetails({ ...productDetails, initial_quantity: e }); setMaxQuantityValue(e) }}
                                                                         />
                                                                     </Input.Wrapper>
                                                                 </div>
@@ -654,7 +656,7 @@ const AddProduct = () => {
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
-                                                                        onChange={(e) => {setProductDetails({ ...productDetails, allow_backorders: e })}}
+                                                                        onChange={(e) => { setProductDetails({ ...productDetails, allow_backorders: e }) }}
                                                                     >
                                                                         {
                                                                             validateProductField.allow_backorders === 1 ?
@@ -671,7 +673,10 @@ const AddProduct = () => {
                                                                     <label>Low stock threshold</label>
                                                                     <Quantity
                                                                         value={maxLowStockValue}
-                                                                        onChange={setMaxLowStockValue}
+                                                                        onChange={(e) => {
+                                                                            setProductDetails({ ...productDetails, low_stock_threshold: e });
+                                                                            setMaxLowStockValue(e)
+                                                                        }}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -680,7 +685,7 @@ const AddProduct = () => {
                                                                 <label>Stock status</label>
                                                                 <Radio.Group
                                                                     name="favoriteFramework"
-                                                                    onChange={(e) => {setProductDetails({ ...productDetails, stock_status: e })}}
+                                                                    onChange={(e) => { setProductDetails({ ...productDetails, stock_status: e }) }}
                                                                 >
                                                                     <Group mt="xs">
                                                                         <Radio value="In stock" label="In stock" />
@@ -825,7 +830,7 @@ const AddProduct = () => {
                                                             label="Track stock quantity for this product"
                                                             radius="xs"
                                                             size="xs"
-                                                            onChange={(e) => {setProductDetails({ ...productDetails, status: e });setStockManagement(e.currentTarget.checked)}}
+                                                            onChange={(e) => { setProductDetails({ ...productDetails, status: e }); setStockManagement(e.currentTarget.checked) }}
                                                         />
                                                     </div>
                                                     {
@@ -842,7 +847,7 @@ const AddProduct = () => {
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
-                                                                        onChange={(e) => {setProductDetails({ ...productDetails, allow_backorders: e })}}
+                                                                        onChange={(e) => { setProductDetails({ ...productDetails, allow_backorders: e }) }}
                                                                     >
                                                                         <Group mt="xs">
                                                                             <Radio value="Do not allow" label="Do not allow" />
@@ -867,7 +872,7 @@ const AddProduct = () => {
                                                                     onChange={(e) =>
                                                                         setProductDetails({
                                                                             ...productDetails,
-                                                                            stock_status:e
+                                                                            stock_status: e
 
                                                                         })
                                                                     }
@@ -1320,6 +1325,11 @@ const AddProduct = () => {
                                             productDetails.product_category ?
                                                 categoryDetails.subCategory.length > 0 ?
                                                     <Select
+                                                        onChange={(e) =>
+                                                            setProductDetails({
+                                                                ...productDetails,
+                                                                product_subcategory: e
+                                                            })}
                                                         label="Sub Category"
                                                         data={
                                                             Array.isArray(categoryDetails.subCategory) ?
@@ -1416,18 +1426,24 @@ const AddProduct = () => {
                                 <div className='hr-line mt-10' />
                                 <div className="add-product-div-container-right-product-tags-card-content">
                                     <div className="add-product-div-container-right-product-tags-card-content-form">
-                                        <Input />
+                                        <Input
+                                            onChange={
+                                                (e) =>
+                                                    setProductDetails(
+                                                        { ...productDetails, product_tags: e.target.value }
+                                                    )}
+                                        />
                                         <button>Add</button>
                                     </div>
                                     <p className='add-product-div-container-right-product-tags-card-content-para'>Separate tags with commas</p>
                                     <div className="add-product-div-container-right-product-tags-card-content-details">
-                                        {
+                                        {/* {
                                             showProductTagsArray.map((producttag, index) => {
                                                 return (
                                                     <p key={index} className='add-product-div-container-right-product-tags-card-content-details-individual'><img src={trash} alt="trash icon" width={11} /> {producttag.tags}</p>
                                                 )
                                             })
-                                        }
+                                        } */}
                                     </div>
                                 </div>
                             </Card>
