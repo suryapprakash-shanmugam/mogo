@@ -73,6 +73,8 @@ import ExpiredProducts from './pages/Admin/Product/ExpiredProducts/ExpiredProduc
 //import SoldProducts from pages->admin->product->SoldProducts
 import SoldProducts from './pages/Admin/Product/SoldProducts/SoldProducts';
 
+import Drafts from './pages/Admin/Product/Drafts/Drafts';
+
 //import DeletedProducts from pages->admin->product->DeletedProducts
 import DeletedProducts from './pages/Admin/Product/DeletedProducts/DeletedProducts';
 
@@ -95,6 +97,7 @@ import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
 // State Handler
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
+import Location from './pages/Admin/Location/Location';
 
 
 const AdminRouters = () => {
@@ -134,12 +137,13 @@ const AdminRouters = () => {
         '/hidden_products': <HiddenProducts />,
         '/expired_products': <ExpiredProducts />,
         '/sold_products': <SoldProducts />,
-        '/drafts_products': <SoldProducts />,
+        '/drafts_products': <Drafts />,
         '/deleted_products': <DeletedProducts />,
         '/categorylist': <Category />,
         '/featuredproducts': <FeaturedProducts />,
         '/quoterequests': <QuoteRequests />,
         '/blogs': <Blogs />,
+        '/location': <Location />,
     }
 
     const renderBodyData = bodyContent[location.pathname] || null
@@ -387,7 +391,7 @@ const AdminRouters = () => {
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <SubMenu label="Location" icon={<i className='fa fa-map-marker' />}>
+                            {/* <SubMenu label="Location" icon={<i className='fa fa-map-marker' />}>
                                 <Link to="">
                                     <MenuItem component="span"> Countries</MenuItem>
                                 </Link>
@@ -397,7 +401,12 @@ const AdminRouters = () => {
                                 <Link to="">
                                     <MenuItem component="span"> Cities</MenuItem>
                                 </Link>
-                            </SubMenu>
+                            </SubMenu> */}
+                            <Link to="/location">
+                                <MenuItem component="span" active icon={<i className='fa fa-map-marker' />}>
+                                    Location
+                                </MenuItem>
+                            </Link>
                         </Tooltip>
                         <Tooltip
                             label="Users"

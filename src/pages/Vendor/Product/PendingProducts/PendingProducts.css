@@ -1,0 +1,34 @@
+.mantine-eby8v3 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+}
+
+.pendingproducts-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.pendingproducts-filter-container {
+    display: grid;
+    grid-template-columns: 7% 10% 10% 10% auto;
+    gap: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.pendingproducts-filter-container-div4 {
+    width: 100%;
+}
+
+.pendingproducts-filter-container-div4 .mantine-ydg8wd {
+    margin: 0px;
+    max-width: 250px;
+}
+
+.pendingproducts-filter-container-div4 .mantine-1fzet7j,
+.pendingproducts-filter-container-div5 .mantine-1fzet7j,
+.pendingproducts-filter-container-div3 .mantine-1fzet7j,
+.pendingproducts-filter-container-div2 .mantine-1fzet7j,
+.pendingproducts-filter-container-div1 .mantine-1fzet7j {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-bottom: 5px;
+    font-weight: 600 !important;
+}

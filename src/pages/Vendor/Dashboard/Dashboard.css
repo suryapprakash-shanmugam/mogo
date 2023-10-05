@@ -1,0 +1,250 @@
+.admin-dashboard {
+    padding: 0rem 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.admin-dashboard-show-count-main-div {
+    display: grid;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    gap: 1rem;
+}
+
+.admin-dashboard-show-count-orders,
+.admin-dashboard-show-count-products,
+.admin-dashboard-show-count-pending-products,
+.admin-dashboard-show-count-deleted-products,
+.admin-dashboard-show-count-expired-products,
+.admin-dashboard-show-count-vendors,
+.admin-dashboard-show-count-users,
+.admin-dashboard-show-count-blogs,
+.admin-dashboard-show-count-sales-amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    height: 125px;
+    border-radius: 20px;
+    /* border-radius: 8px; */
+}
+.style-accortion
+{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.admin-dashboard-show-count-orders {
+    background-color: var(--Logo-Color1);
+}
+
+.admin-dashboard-show-count-orders:hover i {
+    font-size: 60px;
+}
+
+.admin-dashboard-show-count-products {
+    background-color: var(--Logo-Color2);
+}
+
+.admin-dashboard-show-count-products:hover i {
+    font-size: 60px;
+}
+
+.admin-dashboard-show-count-products:hover .admin-dashboard-show-count-tabler-icons {
+    transform: scale(2);
+    transition: all 300ms ease-in-out;
+}
+
+.admin-dashboard-show-count-vendors:hover i {
+    font-size: 60px;
+}
+
+.admin-dashboard-show-count-users {
+
+    background-color: var(--Logo-Color3);
+}
+
+.admin-dashboard-show-count-users:hover i {
+    font-size: 60px;
+}
+.admin-dashboard-show-count-vendors {
+
+    background-color: var(--Logo-Color5);
+}
+
+.admin-dashboard-show-count-vendors:hover i {
+    font-size: 60px;
+}
+
+.admin-dashboard-show-count-blogs:hover i {
+    font-size: 60px;
+}
+
+.admin-dashboard-show-count-sales-amount {
+    background-color: var(--Logo-Color5);
+}
+
+.admin-dashboard-show-count-sales-amount:hover i {
+    font-size: 60px;
+}
+
+.admin-dashboard-show-count-orders-left,
+.admin-dashboard-show-count-products-left,
+.admin-dashboard-show-count-users-left,
+.admin-dashboard-show-count-vendors-left,
+.admin-dashboard-show-count-sales-amount-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-between;
+    text-align: center;
+    color: #fff;
+}
+.admin-dashboard-show-count-orders-left h1,
+.admin-dashboard-show-count-products-left h1,
+.admin-dashboard-show-count-users-left h1,
+.admin-dashboard-show-count-vendors-left h1,
+.admin-dashboard-show-count-sales-amount-left h1 {
+    font-size: 38px;
+}
+.admin-dashboard-show-count-orders-left p,
+.admin-dashboard-show-count-products-left p,
+.admin-dashboard-show-count-users-left p,
+.admin-dashboard-show-count-vendors-left p,
+.admin-dashboard-show-count-sales-amount-left p {
+    font-size: 15px;
+}
+
+.admin-dashboard-show-count-orders-right i,
+.admin-dashboard-show-count-products-right i,
+.admin-dashboard-show-count-pending-products-right i,
+.admin-dashboard-show-count-deleted-products-right i,
+.admin-dashboard-show-count-expired-products-right i,
+.admin-dashboard-show-count-vendors-right i,
+.admin-dashboard-show-count-users-right i,
+.admin-dashboard-show-count-vendors-right i,
+.admin-dashboard-show-count-blogs-right i,
+.admin-dashboard-show-count-sales-amount-right i {
+    font-size: 35px;
+    opacity: 0.8;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+}
+
+.admin-dashboard-show-count-tabler-icons {
+    opacity: 0.5;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.admin-dashboard-show-latest {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.8rem;
+    margin: 1rem 0rem;
+}
+
+.admin-dashboard-details-link {
+    background-color: var(--Logo-Color1);
+    color: white !important;
+    padding: 1px 5px;
+    width: 46px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.admin-dashboard-show-latest-table-td tr td {
+    font-size: 11px !important;
+}
+
+.admin-dashboard-show-latest-table-th tr th {
+    font-size: 12px !important;
+}
+
+.admin-dashboard-show-latest-show-more {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    font-size: 12px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #f4f4f4;
+    color: #a79487;
+    justify-content: center;
+}
+.admin-dashboard-show-latest-show-more-main
+{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 0px;
+}
+/* .admin-dashboard-show-latest-show-more a {
+    
+    padding: 8px;
+    border-radius: 2px;
+    font-size: 14px;
+
+} */
+
+.LatestProducts-Table-td-style {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.LatestProducts-Table-tr-style {
+    vertical-align: top;
+}
+
+.LatestProducts-Table-td-style-image {
+    width: 100px;
+    height: auto;
+}
+
+.LatestProducts-Table-td-style-image img {
+    width: 100%;
+}
+
+.LatestProducts-Table-td-style-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.LatestProducts-Table-td-style-title p {
+    color: #55606e;
+    font-size: 14px;
+}
+
+.LatestProducts-Table-td-style-title span {
+    color: #999999;
+    font-size: 12px;
+}
+
+.latestmembers-container {
+    padding: 1rem 0rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.latestmembers-content {
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.3rem; */
+    align-items: center;
+}
+
+.latestmembers-content-image {
+    width: 100px;
+    height: auto;
+    clip-path: circle();
+}
+
+.latestmembers-content-image img {
+    width: 100%;
+}

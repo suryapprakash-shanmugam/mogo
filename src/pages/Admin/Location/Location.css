@@ -1,0 +1,107 @@
+.category-div {
+    font-family: 'Source Sans Pro', sans-serif;
+    position: relative;
+}
+
+.category-div-card {
+    padding: 0px;
+}
+
+.category-div-card-head {
+    align-items: center;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-div-card-head h3 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.categoey-div-card-head-button {
+    display: flex;
+    gap: 1rem;
+}
+
+.categoey-div-card-head-button button {
+    border: 0px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border-radius: 3px;
+}
+
+.category-div-accordition-display {
+    margin: 20px 0px;
+}
+
+.category-div-accordition-display-card {
+    padding: 0px;
+}
+
+.category-div-accordition-display-card-display {
+    padding: 20px;
+}
+
+.child-categoey-card {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.category-accordion-heading {
+    position: relative;
+}
+
+.category-accordion-heading-right {
+    position: absolute;
+    right: 15px;
+    top: 25%;
+}
+
+.category-accordion-heading-right button {
+    cursor: pointer;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.subcategory-accordion-heading {
+    position: relative;
+}
+
+.subcategory-accordion-heading-right {
+    position: absolute;
+    right: 15px;
+    top: 25%;
+}
+
+.subcategory-accordion-heading-right button {
+    cursor: pointer;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.childcategory-accordion-heading-right {
+    position: absolute;
+    right: 15px;
+    top: 25%;
+}
+
+.childcategory-accordion-heading-right button {
+    cursor: pointer;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+}
