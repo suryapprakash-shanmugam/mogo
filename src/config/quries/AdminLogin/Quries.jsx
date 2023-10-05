@@ -7,3 +7,9 @@ export const loginAdmin = (payload) => {
         payload
     )
 }
+
+export const getAdminByID = ({ queryKey }) => {
+    const [_, id] = queryKey
+    return axios.get(`${config.baseUrlApi}/admin/${id}`,
+    )
+}
