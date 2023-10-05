@@ -40,6 +40,8 @@ import ActiveSales from './pages/Vendor/Sales/ActiveSales/ActiveSales';
 import CancelledSales from './pages/Vendor/Sales/CancelledSales/CancelledSales';
 import CompletedSales from './pages/Vendor/Sales/CompletedSales/CompletedSales';
 import IndividualOrder from './pages/Vendor/IndividualOrder/Individual';
+import Coupons from './pages/Vendor/Coupons/Coupons';
+import AddCoupon from './pages/Vendor/Coupons/AddCoupon/AddCoupon';
 
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
@@ -87,6 +89,8 @@ const VendorRouters = () => {
         '/vendor_completed_sales': <CompletedSales />,
         '/vendor_cancelled_sales': <CancelledSales />,
         '/vendor_individual_order': <IndividualOrder />,
+        '/vendor_coupons': <Coupons />,
+        '/vendor_addcoupon': <AddCoupon />,
 
     }
 
@@ -247,6 +251,19 @@ const VendorRouters = () => {
                             <Link to="/vendor_categorylist">
                                 <MenuItem component="span" active icon={<i className='fa fa-folder-open' />}>
                                     Categories
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
+                        <Tooltip
+                            label="Coupons"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_coupons">
+                                <MenuItem component="span" active icon={<i className='fa fa-ticket' />}>
+                                    Coupons
                                 </MenuItem>
                             </Link>
                         </Tooltip>

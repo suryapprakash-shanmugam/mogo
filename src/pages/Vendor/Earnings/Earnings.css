@@ -15,3 +15,21 @@
     margin-bottom: 5px;
     font-weight: 600 !important;
 }
+
+.earnings-count {
+    padding: 20px;
+    margin-bottom: 1.5rem;
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.earnings-count-left p {
+    color: var(--Para-Color);
+}
+.earnings-count-right
+{
+    font-size: 45px;
+    color: rgb(220, 220, 220);
+}

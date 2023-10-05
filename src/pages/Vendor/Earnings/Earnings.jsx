@@ -6,7 +6,7 @@ import React, { useMemo, useState } from 'react'
 import { useTable, usePagination, useGlobalFilter } from "react-table"
 
 //import mantine packages
-import { Card, Menu, Text, Group, Input, Pagination, Select } from '@mantine/core'
+import { Card, Text, Group, Input, Pagination, Select } from '@mantine/core'
 
 //import mantine models
 import { modals } from '@mantine/modals'
@@ -158,6 +158,15 @@ const Earnings = () => {
     return (
         <div>
             <div className="earnings-div">
+                <Card className='earnings-count'>
+                    <div className="earnings-count-left">
+                        <h2>$200.99</h2>
+                        <p>Balance</p>
+                    </div>
+                    <div className="earnings-count-right">
+                        <i className='fa fa-money' />
+                    </div>
+                </Card>
                 <Card>
                     <div className="earnings-div-heading">
                         <h2>Earnings</h2>

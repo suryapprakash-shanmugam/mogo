@@ -1,0 +1,30 @@
+.coupons-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.coupons-div-card {
+    padding: 0px;
+}
+
+.coupons-div-card-heading {
+    padding: 20px 20px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.coupons-div-card-heading button{
+width: 130px;
+height: 36px;
+cursor: pointer;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+border: 0px;
+color: #fff;
+background-color: var(--Logo-Color1);
+border-radius: 3px;
+}
+.coupons-div-card-content
+{
+    padding: 20px;
+}
