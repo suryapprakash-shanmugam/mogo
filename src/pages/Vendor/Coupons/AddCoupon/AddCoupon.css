@@ -33,3 +33,53 @@
 .addcoupon-div-card-content-input {
     margin: 1rem 0rem;
 }
+
+.datepicker-style-addcoupon {
+    border: 1px solid var(--Extra-Light-Gray);
+    width: 50%;
+}
+
+.addcoupon-div-card-content-datepicker-style {
+    width: 100%;
+    border: 0px;
+    height: 2rem;
+    padding-left: 0.3rem;
+}
+
+.addcoupon-div-card-content-input {
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.addcoupon-div-card-content-input-checkbox {
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.subcategory-checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 0rem 1.5rem;
+}
+
+.addcoupon-div-card-button {
+    width: 100%;
+    margin: 1.5rem 0rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addcoupon-div-card-button button {
+    width: 138px;
+    height: 36px;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}

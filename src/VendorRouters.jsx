@@ -42,6 +42,7 @@ import CompletedSales from './pages/Vendor/Sales/CompletedSales/CompletedSales';
 import IndividualOrder from './pages/Vendor/IndividualOrder/Individual';
 import Coupons from './pages/Vendor/Coupons/Coupons';
 import AddCoupon from './pages/Vendor/Coupons/AddCoupon/AddCoupon';
+import Reviews from './pages/Vendor/Reviews/Reviews';
 
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
@@ -91,6 +92,7 @@ const VendorRouters = () => {
         '/vendor_individual_order': <IndividualOrder />,
         '/vendor_coupons': <Coupons />,
         '/vendor_addcoupon': <AddCoupon />,
+        '/vendor_reviews': <Reviews />,
 
     }
 
@@ -267,7 +269,19 @@ const VendorRouters = () => {
                                 </MenuItem>
                             </Link>
                         </Tooltip>
-
+                        <Tooltip
+                            label="Reviews"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_reviews">
+                                <MenuItem component="span" active icon={<i className='fa fa-star' />}>
+                                    Reviews
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
 
                     </Menu>
                 </Sidebar>
