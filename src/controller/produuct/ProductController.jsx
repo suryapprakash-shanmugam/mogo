@@ -2,6 +2,7 @@ import { ThemeIcon } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import { CircleCheck, X } from "tabler-icons-react";
+import config from "../../config/server/Servers"
 
 export const handleCreateProduct = async (productSingleImage, multiProductImage, productDetails) => {
     const images = [productSingleImage, ...multiProductImage]
@@ -64,7 +65,7 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
         formData.append(`file`, image);
     });
 
-    axios.post(' http://localhost:1002/products/create',
+    axios.post(`${config.baseUrlApi}/products/create`,
         formData,
         {
             headers: {
@@ -82,7 +83,6 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
             })
         })
         .catch(er => {
-            console.log(er);
             showNotification({
                 icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
                     <X color="red" />

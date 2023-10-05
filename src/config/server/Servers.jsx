@@ -3,7 +3,7 @@ const local = {
 }
 
 const staging = {
-    baseUrlApi: ''
+    baseUrlApi: 'https://mogo-appi.onrender.com/'
 }
 
 const config = {
