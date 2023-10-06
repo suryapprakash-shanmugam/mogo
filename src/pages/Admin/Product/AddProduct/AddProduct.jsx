@@ -1102,8 +1102,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationStockStatusArray}
-                                                                                                value={variationStockClass} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationStockClassChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationStockClass}
+                                                                                                onChange={handlevariationStockClassChange}
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1139,8 +1139,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationshippingArray}
-                                                                                                value={variationshipping} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationshippingChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationshipping}
+                                                                                                onChange={handlevariationshippingChange}
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1149,8 +1149,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationtaxclassArray}
-                                                                                                value={variationtaxclass} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationtaxclassChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationtaxclass}
+                                                                                                onChange={handlevariationtaxclassChange}
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1302,11 +1302,16 @@ const AddProduct = () => {
                                             categoryDetails.category.length > 1 ?
                                                 <Select
                                                     label="Category"
-                                                    onChange={(e) =>
+                                                    onChange={(e) => {
                                                         setProductDetails({
                                                             ...productDetails,
                                                             product_category: e
-                                                        })}
+                                                        });
+                                                        setProductDetails({
+                                                            ...productDetails,
+                                                            product_subcategory: ''
+                                                        })
+                                                    }}
                                                     data={
                                                         Array.isArray(categoryDetails.category) ?
                                                             categoryDetails.category.map(data => ({
@@ -1314,6 +1319,7 @@ const AddProduct = () => {
                                                                 label: data.name
                                                             })) : ''
                                                     }
+                                                    value={productDetails.product_category}
                                                     placeholder="Select Category"
                                                     nothingFound="Nothing found"
                                                     searchable
@@ -1325,11 +1331,17 @@ const AddProduct = () => {
                                             productDetails.product_category ?
                                                 categoryDetails.subCategory.length > 0 ?
                                                     <Select
-                                                        onChange={(e) =>
+                                                        onChange={e => {
                                                             setProductDetails({
                                                                 ...productDetails,
                                                                 product_subcategory: e
-                                                            })}
+                                                            });
+                                                            setProductDetails({
+                                                                ...productDetails,
+                                                                product_childcategory: ''
+                                                            })
+                                                        }}
+                                                        value={productDetails.product_subcategory}
                                                         label="Sub Category"
                                                         data={
                                                             Array.isArray(categoryDetails.subCategory) ?

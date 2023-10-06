@@ -91,10 +91,6 @@
     overflow: visible;
 }
 
-.preheader-container-location-currency-user-user:hover .preheader-container-location-currency-user-user-dropdown {
-    animation: righttoLeft 500ms ease-in-out;
-}
-
 @keyframes righttoLeft {
     from {
         left: -250px;
@@ -110,7 +106,6 @@
     width: 220px;
     height: fit-content;
     background-color: white;
-    top: 25px;
     left: -100px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: flex;
@@ -118,7 +113,6 @@
     border-radius: 8px;
     transition: all 500ms ease-in-out;
     font-family: 'Open Sans';
-    z-index: 9;
 }
 
 .preheader-container-location-currency-user-user-dropdown-signin {
@@ -130,7 +124,7 @@
     padding: 1rem;
 }
 
-.preheader-container-location-currency-user-user-dropdown-signin button {
+.preheader-container-location-currency-user-user-dropdown-signin-button {
     width: 60px;
     display: flex;
     border: none;
@@ -143,15 +137,15 @@
     color: white;
 }
 
-.preheader-container-location-currency-user-user-dropdown-signin button:hover {
+.preheader-container-location-currency-user-user-dropdown-signin-button:hover {
     background-color: var(--Logo-Color2);
 }
 
-.preheader-container-location-currency-user-user-dropdown-signin p {
+.preheader-container-location-currency-user-user-dropdown-signin-p {
     cursor: pointer;
 }
 
-.preheader-container-location-currency-user-user-dropdown-signin p span {
+.preheader-container-location-currency-user-user-dropdown-signin-p span {
     color: var(--Logo-Color2);
 }
 

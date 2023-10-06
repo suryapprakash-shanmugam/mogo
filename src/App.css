@@ -29,7 +29,7 @@
   color: var(--Logo-Color6);
 }
 
-/* Define styles for the scrollbar track (the empty space) */
+
 ::-webkit-scrollbar {
   width: 5px;
   background-color: #f1f1f1;

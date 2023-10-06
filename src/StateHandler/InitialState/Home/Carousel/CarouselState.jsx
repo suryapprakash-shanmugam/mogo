@@ -1,5 +1,5 @@
-import Banner1 from "../../../../assets/Banner/mogobg.jpg"
-import Banner2 from "../../../../assets/Banner/mogobg2.jpg"
+import Banner1 from "../../../../assets/Banner/Mogo-1.png"
+import Banner2 from "../../../../assets/Banner/Mogo-2.png"
 
 export const carouselState = {
     value: [

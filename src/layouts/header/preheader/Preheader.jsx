@@ -1,8 +1,8 @@
 //import react package
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //import manitine packages
-import { Avatar, Checkbox, Container, Flex, Group, Input, Modal, PasswordInput, Select, Text } from '@mantine/core'
+import { Avatar, Button, Checkbox, Container, Flex, Group, Input, Menu, Modal, PasswordInput, Select, Text } from '@mantine/core'
 
 
 //import react router dom packages
@@ -19,6 +19,7 @@ import { ChevronDown, MapPin } from 'tabler-icons-react'
 
 // Flags
 import Flag from "react-country-flag"
+import { handleRegisterControl } from '../../../controller/loginAuth/userLogin/userLoginAuth'
 
 const Preheader = () => {
 
@@ -78,6 +79,59 @@ const Preheader = () => {
       </div>
     )
   );
+
+
+  // Register User Values 
+  const [userRegisterValue, setUserRegisterValue] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: "",
+    conform_password: ''
+  })
+
+  // Validation For Register Values
+  const [validateUserRegisterValue, setValidateUserRegisterValue] = useState({
+    first_name: 0,
+    last_name: 0,
+    email: 0,
+    password: 0,
+    conform_password: 0,
+    check_box: ''
+  })
+
+
+  // Handle Event 
+  const handleRegisterClick = () => {
+    handleRegisterControl(
+      userRegisterValue,
+      setUserRegisterValue,
+      validateUserRegisterValue,
+      setValidateUserRegisterValue
+    )
+  }
+
+
+  // Validating Input Fields
+  useEffect(() => {
+    if (userRegisterValue.first_name.trim()) {
+      setValidateUserRegisterValue({ ...validateUserRegisterValue, first_name: 0 })
+    }
+    if (userRegisterValue.last_name.trim()) {
+      setValidateUserRegisterValue({ ...validateUserRegisterValue, last_name: 0 })
+    }
+    if (userRegisterValue.email.trim()) {
+      setValidateUserRegisterValue({ ...validateUserRegisterValue, email: 0 })
+    }
+    if (userRegisterValue.password.trim()) {
+      setValidateUserRegisterValue({ ...validateUserRegisterValue, password: 0 })
+    }
+    if (userRegisterValue.conform_password.trim()) {
+      setValidateUserRegisterValue({ ...validateUserRegisterValue, conform_password: 0 })
+    }
+  }, [userRegisterValue])
+
+
   return (
     <div>
       <div className="preheader">
@@ -100,12 +154,12 @@ const Preheader = () => {
                 <img src={map} alt="Loaction" />
               </div> */}
               <div className="preheader-container-location-currency-user-location-text">
-                <MapPin strokeWidth={1} size={'1.1rem'}/>
+                <MapPin strokeWidth={1} size={'1.1rem'} />
                 <p>Location</p>
               </div>
             </div>
             <Select
-              zIndex={'12346'}
+              zIndex={1234568}
               defaultValue="india"
               itemComponent={SelectItem}
               value={languageState.label}
@@ -118,21 +172,72 @@ const Preheader = () => {
             />
             <div className="preheader-container-location-currency-user-currency">
               <Select
-                defaultValue={currencyArray[0].value}
+                zIndex={1234568} defaultValue={currencyArray[0].value}
                 rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
                 data={currencyArray}
               />
             </div>
-            <Flex align={'center'} gap={'0.4rem'}>
-              <Avatar size={'2rem'} radius="lg" />
-              <p className='para_color'>
-                Login
-              </p>
-              <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />
-            </Flex >
-            <div className="preheader-container-location-currency-user-user">
+            <Menu zIndex={1234568}>
+              <Menu.Target>
+                <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
+                  <Avatar size={'2rem'} radius="lg" />
+                  <p className='para_color'>
+                    Login
+                  </p>
+                  <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />
+                </Flex >
+              </Menu.Target>
+              <Menu.Dropdown>
+                <div className="preheader-container-location-currency-user-user-dropdown">
+                  <div className="preheader-container-location-currency-user-user-dropdown-signin">
+                    <Menu.Item
+                      className='preheader-container-location-currency-user-user-dropdown-signin-button'
+                      onClick={() => setLoginModalOpen(true)}
+                    >
+                      Signin
+                    </Menu.Item>
+                    <p onClick={() => setRegisterModalOpen(true)}>
+                      <Menu.Item
+                        p={0}
+                        className='preheader-container-location-currency-user-user-dropdown-signin-p'
+                      >
+                        New Customer ?
+                        &nbsp;
+                        <span>
+                          Start here
+                        </span>
+                      </Menu.Item>
+                    </p>
+                  </div>
+                  <hr />
+                  <div className="preheader-container-location-currency-user-user-dropdown-extra">
+                    <p>
+                      <Menu.Item>
+                        Your Account
+                      </Menu.Item>
+                    </p>
+                    <p>
+                      <Menu.Item>
+                        Your Orders
+                      </Menu.Item>
+                    </p>
+                    <p>
+                      <Menu.Item>
+                        Seller Account
+                      </Menu.Item>
+                    </p>
+                    <p>
+                      <Menu.Item>
+                        Become Seller
+                      </Menu.Item>
+                    </p>
+                  </div>
+                </div>
+              </Menu.Dropdown>
+            </Menu>
+            {/* <div className="preheader-container-location-currency-user-user">
               <div className="preheader-container-location-currency-user-user-image">
-                {/* <img src={user} alt="user-icon" /> */}
+                <img src={user} alt="user-icon" />
               </div>
               <div className="preheader-container-location-currency-user-user-dropdown">
                 <div className="preheader-container-location-currency-user-user-dropdown-signin">
@@ -147,14 +252,14 @@ const Preheader = () => {
                   <p>Become Seller</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </Container>
       </div>
 
       {/* model starts */}
       <Modal
-        zIndex={12121}
+        zIndex={1234569}
         size="md"
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -182,8 +287,9 @@ const Preheader = () => {
       {/* modal end */}
       {/* Register model starts */}
       <Modal
-        zIndex={12121}
+        zIndex={1234569}
         size="md"
+        centered
         opened={registermodalOpen}
         onClose={() => setRegisterModalOpen(false)}
         title=""
@@ -195,24 +301,68 @@ const Preheader = () => {
         </div>
         <div className="preheader-register-modal-body">
           <div className="preheader-register-modal-body-content">
-            <Input
-              placeholder="First Name"
-            />
-            <Input
-              placeholder="Last Name"
-            />
-            <Input
-              placeholder="Email Address"
-            />
-            <PasswordInput
-              placeholder="Password"
-              className='preheader-register-model-password-show-hide-btn'
-            />
-            <PasswordInput
-              placeholder="Confirm Password"
-              className='preheader-register-model-password-show-hide-btn'
-            />
+            <Input.Wrapper label="First Name"
+              error={`${validateUserRegisterValue.first_name === 1 ? 'Please Enter First Name' : ''
+                }`}
+            >
+              <Input
+                value={userRegisterValue.first_name}
+                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, first_name: e.target.value })}
+                placeholder="First Name"
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label='Last Name'
+              error={`${validateUserRegisterValue.last_name === 1 ? 'Please Enter Last Name' : ''
+                }`}
+            >
+              <Input
+                value={userRegisterValue.last_name}
+                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, last_name: e.target.value })}
+                placeholder="Last Name"
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label='Email '
+              error={`${validateUserRegisterValue.email === 1 ? 'Please Enter Email' :
+                validateUserRegisterValue.email === 2 ? 'Please Enter Valid Email Address' :
+                  ''
+                }`}
+            >
+              <Input
+                value={userRegisterValue.email}
+                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, email: e.target.value })}
+                placeholder="Email Address"
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label='Password '
+              error={`${validateUserRegisterValue.password === 1 ? 'Please Enter Password' : ''
+                }`}
+            >
+              <PasswordInput
+                value={userRegisterValue.password}
+                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, password: e.target.value })}
+                placeholder="Password"
+                className='preheader-register-model-password-show-hide-btn'
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label='Email '
+              error={`${validateUserRegisterValue.conform_password === 1 ? 'Please Enter Conform Password' :
+                validateUserRegisterValue.conform_password === 2 ? `Conform password doesn't match with password ` :
+                  ''
+                }`}
+            >
+              <PasswordInput
+                value={userRegisterValue.conform_password}
+                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, conform_password: e.target.value })}
+                placeholder="Confirm Password"
+                className='preheader-register-model-password-show-hide-btn'
+              />
+            </Input.Wrapper>
             <Checkbox
+              onChange={(e) => setValidateUserRegisterValue({ ...validateUserRegisterValue, check_box: e.currentTarget.checked })}
               className='preheader-register-model-checkbox'
               label={
                 <>
@@ -221,16 +371,22 @@ const Preheader = () => {
                 </>
               }
             />
-            <button>Register</button>
+            <Button
+              disabled={!validateUserRegisterValue.check_box}
+              onClick={handleRegisterClick}
+            >
+              Register
+            </Button>
             <p className='preheader-register-model-goto-login'>Have an account? <span onClick={() => { setRegisterModalOpen(false); setLoginModalOpen(true); }}>Login</span></p>
           </div>
         </div>
-      </Modal>
+      </Modal >
       {/*Register modal end */}
       {/* Login model starts */}
       <Modal
-        zIndex={12121}
+        zIndex={1234569}
         size="md"
+        centered
         opened={loginmodalOpen}
         onClose={() => setLoginModalOpen(false)}
         title=""
@@ -260,6 +416,7 @@ const Preheader = () => {
       <Modal
         zIndex={12121}
         size="md"
+        centered
         opened={forgotmodalOpen}
         onClose={() => setForgotModalOpen(false)}
         title=""
@@ -283,7 +440,7 @@ const Preheader = () => {
         </div>
       </Modal>
       {/*Forgot modal end */}
-    </div>
+    </div >
   )
 }
 
