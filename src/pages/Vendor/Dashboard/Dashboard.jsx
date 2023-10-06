@@ -166,6 +166,17 @@ const Dashboard = () => {
                             </Link>
                         </div>
                     </div>
+                    <div className="admin-dashboard-show-count-users">
+                        <div className="admin-dashboard-show-count-users-left">
+                            <h1>5</h1>
+                            <p>Balance</p>
+                        </div>
+                        <div className="admin-dashboard-show-count-users-right">
+                            <Link to="/admindashboard/users_users">
+                                <i className='fa fa-money'></i>
+                            </Link>
+                        </div>
+                    </div>
                     <div className="admin-dashboard-show-count-products">
                         <div className="admin-dashboard-show-count-products-left">
                             <h1>5</h1>
@@ -184,7 +195,7 @@ const Dashboard = () => {
                     <div className="admin-dashboard-show-count-sales-amount">
                         <div className="admin-dashboard-show-count-sales-amount-left">
                             <h1>5</h1>
-                            <p>Sales Amount</p>
+                            <p>Pending Products</p>
                         </div>
                         <div className="admin-dashboard-show-count-sales-amount-right">
                             <Link to="/admindashboard/transactions">
@@ -192,28 +203,7 @@ const Dashboard = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="admin-dashboard-show-count-users">
-                        <div className="admin-dashboard-show-count-users-left">
-                            <h1>5</h1>
-                            <p>Users</p>
-                        </div>
-                        <div className="admin-dashboard-show-count-users-right">
-                            <Link to="/admindashboard/users_users">
-                                <i className='fa fa-users'></i>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="admin-dashboard-show-count-vendors">
-                        <div className="admin-dashboard-show-count-vendors-left">
-                            <h1>5</h1>
-                            <p>Vendors</p>
-                        </div>
-                        <div className="admin-dashboard-show-count-vendors-right">
-                            <Link to="/admindashboard/users_users">
-                                <i className='fa fa-users'></i>
-                            </Link>
-                        </div>
-                    </div>
+
                 </div>
                 <div className="admin-dashboard-show-latest">
                     <Accordion

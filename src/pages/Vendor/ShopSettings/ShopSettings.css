@@ -1,22 +1,25 @@
 .shopsettings-div {
     font-family: 'Source Sans Pro', sans-serif;
     display: grid;
-    grid-template-columns: 75% 24%;
+    grid-template-columns: 65% 34%;
     justify-content: space-between;
 }
 
-.shopsettings-div-card1,
 .shopsettings-div-card1 {
     padding: 0px;
 }
+.shopsettings-div-card2 {
+    padding: 0px;
+    height: 175px;
+}
 
 .shopsettings-div-card1-heading,
-.shopsettings-div-card1-heading {
+.shopsettings-div-card2-heading {
     padding: 20px 20px 0px;
 }
 
 .shopsettings-div-card1-content,
-.shopsettings-div-card1-content {
+.shopsettings-div-card2-content {
     padding: 20px;
 }
 
@@ -49,3 +52,34 @@
 .shopsettings-div .select-div .mantine-1ejqehl:nth-child(3) {
     margin-top: 1.70rem;
 }
+
+.shopsettings-div .mapouter {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    height: 400px;
+  }
+  .shopsettings-div .gmap_canvas {
+    overflow: hidden;
+    background: none!important;
+    width: 100%;
+    height: 400px;
+  }
+  .shopsettings-div .gmap_iframe {
+    height: 400px!important;
+  }
+  .shopsettings-btn
+  {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .shopsettings-btn button
+  {
+    width: 120px;
+    height: 36px;
+    cursor: pointer;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    border-radius: 3px;
+  }

@@ -62,10 +62,6 @@ const DeletedProducts = () => {
             accessor: 'Category',
         },
         {
-            Header: 'User',
-            accessor: 'User',
-        },
-        {
             Header: 'Stock',
             accessor: 'Stock',
         },
@@ -111,7 +107,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Nikola",
             "Stock": "In Stock",
             "Date": "7/21/2023"
         }, {
@@ -119,7 +114,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Scarfs",
-            "User": "Rand",
             "Stock": "Out of Stock",
             "Date": "2/2/2023"
         }, {
@@ -127,7 +121,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Shawn",
             "Stock": "In Stock",
             "Date": "5/2/2023"
         }, {
@@ -135,7 +128,6 @@ const DeletedProducts = () => {
             "Product": "Navy polka dot dress",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Rubin",
             "Stock": "In Stock",
             "Date": "7/25/2023"
         }, {
@@ -143,7 +135,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Boots",
-            "User": "Elwood",
             "Stock": "Out of Stock",
             "Date": "5/8/2023"
         }, {
@@ -151,7 +142,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Dresses",
-            "User": "Chris",
             "Stock": "In Stock",
             "Date": "9/18/2023"
         }, {
@@ -159,7 +149,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Myron",
             "Stock": "In Stock",
             "Date": "3/7/2023"
         }, {
@@ -167,7 +156,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Dresses",
-            "User": "Ferguson",
             "Stock": "Out of Stock",
             "Date": "8/27/2023"
         }, {
@@ -175,7 +163,6 @@ const DeletedProducts = () => {
             "Product": "Navy polka dot dress",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Sullivan",
             "Stock": "In Stock",
             "Date": "6/14/2023"
         }, {
@@ -183,7 +170,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Boots",
-            "User": "Land",
             "Stock": "In Stock",
             "Date": "7/2/2023"
         }, {
@@ -191,7 +177,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Scarfs",
-            "User": "Robinson",
             "Stock": "In Stock",
             "Date": "2/22/2023"
         }, {
@@ -199,7 +184,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Boots",
-            "User": "Ulises",
             "Stock": "In Stock",
             "Date": "12/22/2022"
         }, {
@@ -207,7 +191,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Myles",
             "Stock": "In Stock",
             "Date": "6/22/2023"
         }, {
@@ -215,7 +198,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Scarfs",
-            "User": "Vick",
             "Stock": "Out of Stock",
             "Date": "11/19/2022"
         }, {
@@ -223,7 +205,6 @@ const DeletedProducts = () => {
             "Product": "Navy polka dot dress",
             "SKU": "G251A129I7",
             "Category": "Boots",
-            "User": "Elden",
             "Stock": "In Stock",
             "Date": "7/9/2023"
         }, {
@@ -231,7 +212,6 @@ const DeletedProducts = () => {
             "Product": "Navy polka dot dress",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Nelson",
             "Stock": "In Stock",
             "Date": "9/30/2022"
         }, {
@@ -239,7 +219,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Boots",
-            "User": "Kimbell",
             "Stock": "In Stock",
             "Date": "12/16/2022"
         }, {
@@ -247,7 +226,6 @@ const DeletedProducts = () => {
             "Product": "Navy polka dot dress",
             "SKU": "G251A129I7",
             "Category": "Scarfs",
-            "User": "Demetri",
             "Stock": "Out of Stock",
             "Date": "11/27/2022"
         }, {
@@ -255,7 +233,6 @@ const DeletedProducts = () => {
             "Product": "Colorful women scarfs",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Banky",
             "Stock": "In Stock",
             "Date": "5/28/2023"
         }, {
@@ -263,7 +240,6 @@ const DeletedProducts = () => {
             "Product": "Women's ankle boot with different colors",
             "SKU": "G251A129I7",
             "Category": "Backpacks",
-            "User": "Giavani",
             "Stock": "In Stock",
             "Date": "6/3/2023"
         }
