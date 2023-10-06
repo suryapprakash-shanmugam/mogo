@@ -29,8 +29,8 @@
     border-radius: 20px;
     /* border-radius: 8px; */
 }
-.style-accortion
-{
+
+.style-accortion {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -67,6 +67,7 @@
 .admin-dashboard-show-count-users:hover i {
     font-size: 60px;
 }
+
 .admin-dashboard-show-count-vendors {
 
     background-color: var(--Logo-Color5);
@@ -100,6 +101,7 @@
     text-align: center;
     color: #fff;
 }
+
 .admin-dashboard-show-count-orders-left h1,
 .admin-dashboard-show-count-products-left h1,
 .admin-dashboard-show-count-users-left h1,
@@ -107,6 +109,7 @@
 .admin-dashboard-show-count-sales-amount-left h1 {
     font-size: 38px;
 }
+
 .admin-dashboard-show-count-orders-left p,
 .admin-dashboard-show-count-products-left p,
 .admin-dashboard-show-count-users-left p,
@@ -176,13 +179,14 @@
     color: #a79487;
     justify-content: center;
 }
-.admin-dashboard-show-latest-show-more-main
-{
+
+.admin-dashboard-show-latest-show-more-main {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     padding: 20px 0px;
 }
+
 /* .admin-dashboard-show-latest-show-more a {
     
     padding: 8px;
@@ -247,4 +251,11 @@
 
 .latestmembers-content-image img {
     width: 100%;
+}
+
+.vendor-dashboard-chart {
+    display: grid;
+    grid-template-columns: 30% 68%;
+    justify-content: space-between;
+    margin: 1.5rem 0rem;
 }

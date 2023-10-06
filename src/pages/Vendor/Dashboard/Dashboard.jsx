@@ -13,7 +13,10 @@ import { Basket, Plus } from 'tabler-icons-react';
 
 
 // Mantine Core
-import { Accordion, Table } from '@mantine/core';
+import { Accordion, Card, Table } from '@mantine/core';
+
+import PieChart from '../../../components/Vendor/PieChart/PieChart'
+import LineChart from '../../../components/Vendor/LineChart/LineChart'
 
 
 // Images
@@ -205,6 +208,14 @@ const Dashboard = () => {
                     </div>
 
                 </div>
+                <div className="vendor-dashboard-chart">
+                    <Card className='vendor-dashboard-chart-pie-chart'>
+                        <PieChart />
+                    </Card>
+                    <Card className='vendor-dashboard-chart-line-chart' style={{ height: '400px' }}>
+                        <LineChart />
+                    </Card>
+                </div>
                 <div className="admin-dashboard-show-latest">
                     <Accordion
                         radius="lg"
@@ -244,154 +255,9 @@ const Dashboard = () => {
                             </Accordion.Panel>
                         </Accordion.Item>
                     </Accordion>
-                    <Accordion
-                        radius="lg"
-                        variant="separated"
-                        transitionDuration={1000}
-                        defaultValue="Latest Transactions"
-                        chevron={<Plus size="1rem" />}
-                        styles={{
-                            chevron: {
-                                '&[data-rotate]': {
-                                    transform: 'rotate(45deg)',
-                                },
-                            },
-                        }}
-                    >
-                        <Accordion.Item
-                            value="Latest Transactions"
-                        >
-                            <Accordion.Control>Latest Transactions</Accordion.Control>
-                            <Accordion.Panel>
-                                <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Order</th>
-                                            <th>Payment Amount</th>
-                                            <th>Payment Method</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestTransactionsrows}</tbody>
-                                </Table>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
-                                        <Link to="/admindashboard/transactions">View All</Link>
-                                    </div>
-                                </div>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
-                    <Accordion
-                        radius="lg"
-                        variant="separated"
-                        transitionDuration={1000}
-                        defaultValue="Latest Products"
-                        chevron={<Plus size="1rem" />}
-                        styles={{
-                            chevron: {
-                                '&[data-rotate]': {
-                                    transform: 'rotate(45deg)',
-                                },
-                            },
-                        }}
-                    >
-                        <Accordion.Item
-                            value="Latest Products"
-                        >
-                            <Accordion.Control>Latest Products</Accordion.Control>
-                            <Accordion.Panel>
-                                <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestProductsrows}</tbody>
-                                </Table>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
-                                        <Link to="/admindashboard/transactions">View All</Link>
-                                    </div>
-                                </div>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
-                    <Accordion
-                        radius="lg"
-                        variant="separated"
-                        transitionDuration={1000}
-                        defaultValue="Latest Pending Products"
-                        chevron={<Plus size="1rem" />}
-                        styles={{
-                            chevron: {
-                                '&[data-rotate]': {
-                                    transform: 'rotate(45deg)',
-                                },
-                            },
-                        }}
-                    >
-                        <Accordion.Item
-                            value="Latest Pending Products"
-                        >
-                            <Accordion.Control>Latest Pending Products</Accordion.Control>
-                            <Accordion.Panel>
-                                <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestPendingProductsrows}</tbody>
-                                </Table>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
-                    <Accordion
-                        radius="lg"
-                        variant="separated"
-                        transitionDuration={1000}
-                        defaultValue="Latest Transactions (Featured Products)"
-                        chevron={<Plus size="1rem" />}
-                        styles={{
-                            chevron: {
-                                '&[data-rotate]': {
-                                    transform: 'rotate(45deg)',
-                                },
-                            },
-                        }}
-                    >
-                        <Accordion.Item
-                            value="Latest Transactions (Featured Products)"
-                        >
-                            <Accordion.Control>Latest Transactions <span>(Featured Products)</span></Accordion.Control>
-                            <Accordion.Panel>
-                                <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Payment Method</th>
-                                            <th>Payment Amount</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestTransactionsFeaturedrows}</tbody>
-                                </Table>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
-                                        <Link to="/admindashboard/featured_products_transactions">View All</Link>
-                                    </div>
-                                </div>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
+
+
+
                     <Accordion
                         radius="lg"
                         variant="separated"
@@ -461,50 +327,6 @@ const Dashboard = () => {
                                 <div className="admin-dashboard-show-latest-show-more-main">
                                     <div className="admin-dashboard-show-latest-show-more">
                                         <Link to="/admindashboard/product_comments">View All</Link>
-                                    </div>
-                                </div>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
-                    <Accordion
-                        radius="lg"
-                        variant="separated"
-                        transitionDuration={1000}
-                        defaultValue="Latest Members"
-                        chevron={<Plus size="1rem" />}
-                        styles={{
-                            chevron: {
-                                '&[data-rotate]': {
-                                    transform: 'rotate(45deg)',
-                                },
-                            },
-                        }}
-                    >
-                        <Accordion.Item
-                            value="Latest Members"
-                        >
-                            <Accordion.Control>Latest Members</Accordion.Control>
-                            <Accordion.Panel>
-                                <div className="latestmembers-container">
-                                    {
-                                        LatestMembers.map(
-                                            (Latestmember, index) => {
-                                                return (
-                                                    <div key={index} className="latestmembers-content">
-                                                        <div className="latestmembers-content-image">
-                                                            <img src={Latestmember.userimage} alt="" />
-                                                        </div>
-                                                        <h4>{Latestmember.username}</h4>
-                                                        <p>{Latestmember.userlastlogin}</p>
-                                                    </div>
-                                                )
-                                            }
-                                        )
-                                    }
-                                </div>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
-                                        <Link to="/admindashboard/users_users">View All</Link>
                                     </div>
                                 </div>
                             </Accordion.Panel>
