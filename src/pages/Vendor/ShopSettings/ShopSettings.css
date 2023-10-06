@@ -1,0 +1,51 @@
+.shopsettings-div {
+    font-family: 'Source Sans Pro', sans-serif;
+    display: grid;
+    grid-template-columns: 75% 24%;
+    justify-content: space-between;
+}
+
+.shopsettings-div-card1,
+.shopsettings-div-card1 {
+    padding: 0px;
+}
+
+.shopsettings-div-card1-heading,
+.shopsettings-div-card1-heading {
+    padding: 20px 20px 0px;
+}
+
+.shopsettings-div-card1-content,
+.shopsettings-div-card1-content {
+    padding: 20px;
+}
+
+.shopsettings-div-card-content-input {
+    margin: 1rem 0rem;
+}
+
+.shopsettings-div-card-content-input .mantine-1fzet7j {
+    margin-bottom: 0.3rem;
+}
+
+.shopsettings-div .select-div {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: space-between;
+}
+
+.shopsettings-div .select-div2 {
+    display: grid;
+    grid-template-columns: 75% 23%;
+    justify-content: space-between;
+}
+
+.shopsettings-div .select-div .mantine-1ejqehl:nth-child(2) .mantine-1fzet7j,
+.shopsettings-div .select-div .mantine-1ejqehl:nth-child(3) .mantine-1fzet7j {
+    display: none;
+}
+
+.shopsettings-div .select-div .mantine-1ejqehl:nth-child(2),
+.shopsettings-div .select-div .mantine-1ejqehl:nth-child(3) {
+    margin-top: 1.70rem;
+}

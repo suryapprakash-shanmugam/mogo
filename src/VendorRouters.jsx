@@ -51,6 +51,8 @@ import Logo_favicon from '../src/assets/Mogo-Logo-Favicon.png'
 // State Handler
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginStatus } from './StateHandler/Slice/Login/LoginSlice';
+import Comments from './pages/Vendor/Comments/Comments';
+import ShopSettings from './pages/Vendor/ShopSettings/ShopSettings';
 
 
 const VendorRouters = () => {
@@ -93,6 +95,8 @@ const VendorRouters = () => {
         '/vendor_coupons': <Coupons />,
         '/vendor_addcoupon': <AddCoupon />,
         '/vendor_reviews': <Reviews />,
+        '/vendor_comments': <Comments />,
+        '/vendor_shopsettings': <ShopSettings />,
 
     }
 
@@ -231,6 +235,19 @@ const VendorRouters = () => {
                             </Link>
                         </Tooltip>
                         <Tooltip
+                            label="Coupons"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_coupons">
+                                <MenuItem component="span" active icon={<i className='fa fa-ticket' />}>
+                                    Coupons
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
+                        <Tooltip
                             label="Refund Requests"
                             color="teal"
                             position="bottom-end"
@@ -257,15 +274,15 @@ const VendorRouters = () => {
                             </Link>
                         </Tooltip>
                         <Tooltip
-                            label="Coupons"
+                            label="Comments"
                             color="teal"
                             position="bottom-end"
                             withArrow
                             disabled={collapsed !== true ? true : false}
                         >
-                            <Link to="/vendor_coupons">
-                                <MenuItem component="span" active icon={<i className='fa fa-ticket' />}>
-                                    Coupons
+                            <Link to="/vendor_comments">
+                                <MenuItem component="span" active icon={<i className='fa fa-comments' />}>
+                                    Comments
                                 </MenuItem>
                             </Link>
                         </Tooltip>
@@ -279,6 +296,19 @@ const VendorRouters = () => {
                             <Link to="/vendor_reviews">
                                 <MenuItem component="span" active icon={<i className='fa fa-star' />}>
                                     Reviews
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
+                        <Tooltip
+                            label="Shop Settings"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_shopsettings">
+                                <MenuItem component="span" active icon={<i className='fa fa-cog' />}>
+                                    Shop Settings
                                 </MenuItem>
                             </Link>
                         </Tooltip>
