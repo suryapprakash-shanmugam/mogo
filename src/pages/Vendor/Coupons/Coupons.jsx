@@ -46,17 +46,9 @@ const Coupons = () => {
             Header: 'Discount Rate',
             accessor: 'Discount Rate'
         },
-        // {
-        //     Header: 'Number of Coupons',
-        //     accessor: 'Number of Coupons'
-        // },
-        // {
-        //     Header: 'Used',
-        //     accessor: 'Used'
-        // },
         {
-            Header: 'Number of Coupons and Used', // Combine the column headers
-            accessor: ({ 'Number of Coupons': numCoupons, Used }) => `${numCoupons} (Used: ${Used})`, // Combine the values
+            Header: 'Number of Coupons and Used', 
+            accessor: ({ 'Number of Coupons': numCoupons, Used }) => `${numCoupons} (Used: ${Used})`, 
         },
         {
             Header: 'Expiry Date',
@@ -214,8 +206,8 @@ const Coupons = () => {
         pageCount
     }
         = useTable({
-            columns: useMemo(() => COLUMN, []), // Wrap COLUMN in useMemo
-            data: useMemo(() => tableData, []), // Wrap tableData in useMemo
+            columns: useMemo(() => COLUMN, []), 
+            data: useMemo(() => tableData, []), 
         },
             useGlobalFilter,
             usePagination

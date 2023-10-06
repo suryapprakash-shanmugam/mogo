@@ -139,7 +139,6 @@ const OfferSlider = ({ header, header2 }) => {
             like: '0',
         },
     ]
-    // const totalSlides = offerSliderArray.length;
     const slidesToShow = 5;
     const calculatedSlideSize = `${100 / slidesToShow}%`;
 
@@ -161,7 +160,7 @@ const OfferSlider = ({ header, header2 }) => {
                         align="start"
                         controlsOffset="md"
                         loop
-                        slideSize={calculatedSlideSize} // Set the calculated slide size
+                        slideSize={calculatedSlideSize} 
                         slideGap="xs"
                         controlSize={36}
                         className='offerslider-div-container-slider'

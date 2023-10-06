@@ -4,7 +4,6 @@ import './NumericInput.css'
 
 function NumericInput({ value, onChange, label }) {
     const handleInputChange = (event) => {
-        // Allow only numeric characters or an empty string
         const numericValue = event.target.value === '' ? '' : event.target.value.replace(/[^0-9]/g, '');
         onChange(numericValue);
     };

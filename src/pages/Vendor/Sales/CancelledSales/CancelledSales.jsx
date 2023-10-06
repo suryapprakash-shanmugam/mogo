@@ -157,8 +157,8 @@ const CancelledSales = () => {
     pageCount
   }
     = useTable({
-      columns: useMemo(() => COLUMN, []), // Wrap COLUMN in useMemo
-      data: useMemo(() => tableData, []), // Wrap tableData in useMemo
+      columns: useMemo(() => COLUMN, []),
+      data: useMemo(() => tableData, []),
     },
       useGlobalFilter,
       usePagination

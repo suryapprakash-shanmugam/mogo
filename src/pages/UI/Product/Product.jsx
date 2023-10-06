@@ -144,7 +144,6 @@ const Product = ({ category, subcategory, heading }) => {
         if (quantityValue <= 0) {
             setQuantityValue(1)
         }
-        // setTotalPrice(quantityValue * 999)
     }, [quantityValue])
 
     const [isWishlist, setIsWishlist] = useState(true);

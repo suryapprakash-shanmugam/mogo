@@ -20,7 +20,6 @@ const Individual = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-    // const [Statusopened, { statusopen, statusclose }] = useDisclosure(false);
     const [modalOpen, setModalOpen] = useState(false)
     const ProductOptions = () => (
         <MenuMantine shadow="md" width={200}>

@@ -185,12 +185,6 @@ const AddProduct = () => {
         setStartDateVariation(null);
         setEndDateVariation(null);
     };
-    // const handleStockManagement = () => {
-    //     setStockManagement((stockManagement) => !stockManagement);
-    // };
-    // const handleSoldIndividual = () => {
-    //     setSoldIndividual((soldIndividual) => !soldIndividual);
-    // };
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -1097,8 +1091,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationStockStatusArray}
-                                                                                                value={variationStockClass} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationStockClassChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationStockClass} 
+                                                                                                onChange={handlevariationStockClassChange} 
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1134,8 +1128,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationshippingArray}
-                                                                                                value={variationshipping} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationshippingChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationshipping} 
+                                                                                                onChange={handlevariationshippingChange} 
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1144,8 +1138,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationtaxclassArray}
-                                                                                                value={variationtaxclass} // Set the value prop to the selectedType state variable
-                                                                                                onChange={handlevariationtaxclassChange} // Call handleTypeChange when the selection changes
+                                                                                                value={variationtaxclass} 
+                                                                                                onChange={handlevariationtaxclassChange} 
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">

@@ -22,11 +22,10 @@ import arrowdown from '../../../assets/preheader/arrow-down.webp'
 
 const HomeProductsList = ({ header, subheader, header2 }) => {
 
-    const initialItemsToShow = 5; // Number of items to show initially
+    const initialItemsToShow = 5; 
     const [itemsToShow, setItemsToShow] = useState(initialItemsToShow);
 
     const handleShowMoreClick = () => {
-        // Increase the number of items to show when the button is clicked
         setItemsToShow(itemsToShow + initialItemsToShow);
     };
 

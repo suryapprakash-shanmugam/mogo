@@ -47,9 +47,8 @@ const Individual = () => {
             Total: '$84.15',
             Status: 'Completed',
             Updated: '5 months ago',
-            Options: <ProductOptions />, // Use the wrapper component here
+            Options: <ProductOptions />, 
         },
-        // ... Add more product details
     ];
 
     const ProductDetailsRows = ProductDetails.map((ProductDetail, index) => (

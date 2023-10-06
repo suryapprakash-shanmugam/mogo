@@ -29,14 +29,6 @@ const Category = () => {
     const [subCategoryModalOpen, setSubCategoryModalOpen] = useState(false)
     const [childCategoryModalOpen, setChildCategoryModalOpen] = useState(false)
 
-    // const [categoryData, setCategoryData] = useState([
-    //     { value: 'Dress', label: 'Dress' },
-    //     { value: 'Cloth', label: 'Cloth' },
-    // ]);
-    // const [subCategoryData, setSubCategoryData] = useState([
-    //     { value: 'Dress', label: 'Dress' },
-    //     { value: 'Cloth', label: 'Cloth' },
-    // ]);
 
 
     // Array

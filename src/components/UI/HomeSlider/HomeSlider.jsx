@@ -18,7 +18,6 @@ import { EffectFade, Autoplay, Navigation } from 'swiper/modules';
 
 // import slider images for slider
 
-// import slider1 from '../../../assets/home/slider/slider1.webp'
 import slider1 from '../../../assets/Banner/DemoBanner.jpg'
 import slider2 from '../../../assets/home/slider/slider2.webp'
 import slider3 from '../../../assets/home/slider/slider3.webp'
@@ -57,10 +56,6 @@ const HomeSlider = () => {
             <div className="homeslider">
                 <Swiper
                     slidesPerView={1}
-                    // autoplay={{
-                    //     delay: 3500,
-                    //     disableOnInteraction: false,
-                    // }}
                     spaceBetween={30}
                     effect={'fade'}
                     loop={true}
