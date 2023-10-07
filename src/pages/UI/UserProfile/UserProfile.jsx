@@ -7,6 +7,7 @@ import edit from '../../../assets/admin/table/dropdown/edit.png'
 import trash from '../../../assets/admin/table/dropdown/trash.png'
 import plus from '../../../assets/admin/table/dropdown/plus-filled.png'
 import anglebottom from '../../../assets/preheader/arrow-down.webp'
+import user_profile from '../../../assets/user/user_profile.png'
 
 const UserProfile = () => {
 
@@ -76,7 +77,7 @@ const UserProfile = () => {
                             <Tabs.Panel className='user-profile-div-container-content-tabs-panel' value="profile" pl="xs">
                                 <div className="user-profile-container">
                                     <div className="user-profile-div-container-content-tabs-panel-profile-image">
-                                        <img />
+                                        <img src={user_profile} />
                                     </div>
                                     <div className="user-profile-div-container-content-tabs-panel-profile-image-icon">
                                         <Camera
