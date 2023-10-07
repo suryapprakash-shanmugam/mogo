@@ -185,12 +185,6 @@ const AddProduct = () => {
         setStartDateVariation(null);
         setEndDateVariation(null);
     };
-    // const handleStockManagement = () => {
-    //     setStockManagement((stockManagement) => !stockManagement);
-    // };
-    // const handleSoldIndividual = () => {
-    //     setSoldIndividual((soldIndividual) => !soldIndividual);
-    // };
 
     const handleStartDateChange = (date) => {
         setStartDate(date);

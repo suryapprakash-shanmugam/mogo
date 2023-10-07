@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 
 //import manitine packages
-import { Avatar, Button, Checkbox, Container, Flex, Group, Input, Menu, Modal, PasswordInput, Select, Text } from '@mantine/core'
+import { Avatar, Button, Center, Checkbox, Container, Flex, Group, Input, Menu, Modal, PasswordInput, Select, Text } from '@mantine/core'
 
 
 //import react router dom packages
@@ -19,7 +19,11 @@ import { ChevronDown, MapPin } from 'tabler-icons-react'
 
 // Flags
 import Flag from "react-country-flag"
-import { handleRegisterControl } from '../../../controller/loginAuth/userLogin/userLoginAuth'
+import { handleLoginControl, handleRegisterControl } from '../../../controller/loginAuth/userLogin/userLoginAuth'
+import { useDispatch, useSelector } from 'react-redux'
+import { useQuery } from 'react-query'
+import { findUserByid } from '../../../config/quries/users/usersQuery'
+import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData'
 
 const Preheader = () => {
 
@@ -89,6 +93,16 @@ const Preheader = () => {
     password: "",
     conform_password: ''
   })
+  const [userLogin, setuserLogin] = useState({
+    email: '',
+    password: ''
+  })
+
+  // Validate Login User
+  const [userLoginValidation, setUserLoginValidation] = useState({
+    email: 0,
+    password: 0
+  })
 
   // Validation For Register Values
   const [validateUserRegisterValue, setValidateUserRegisterValue] = useState({
@@ -107,10 +121,10 @@ const Preheader = () => {
       userRegisterValue,
       setUserRegisterValue,
       validateUserRegisterValue,
-      setValidateUserRegisterValue
+      setValidateUserRegisterValue,
+      setRegisterModalOpen
     )
   }
-
 
   // Validating Input Fields
   useEffect(() => {
@@ -131,6 +145,38 @@ const Preheader = () => {
     }
   }, [userRegisterValue])
 
+
+  const userData = useSelector((state) => state.userData.value)
+  const dispatch = useDispatch()
+
+  // Fetching User By ID
+  useQuery(
+    ['userData', sessionStorage.getItem('MogoUserAccessToken101')],
+    findUserByid,
+    {
+      enabled: !!sessionStorage.getItem('MogoUserAccessToken101'),
+      onSuccess: (res) => {
+        dispatch(setUserData(res?.data?.data))
+      },
+    }
+  )
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('MogoUserAccessToken102')
+    sessionStorage.removeItem('MogoUserAccessToken101')
+    dispatch(setUserData(''))
+    window.location.reload()
+  }
+
+  const handleLogin = () => {
+    handleLoginControl(
+      userLogin,
+      setuserLogin,
+      userLoginValidation,
+      setUserLoginValidation,
+      setLoginModalOpen
+    )
+  }
 
   return (
     <div>
@@ -182,33 +228,45 @@ const Preheader = () => {
                 <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
                   <Avatar size={'2rem'} radius="lg" />
                   <p className='para_color'>
-                    Login
+                    {
+                      userData.first_name ?
+                        userData.first_name :
+                        ' Login'
+                    }
                   </p>
                   <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />
                 </Flex >
               </Menu.Target>
               <Menu.Dropdown>
                 <div className="preheader-container-location-currency-user-user-dropdown">
-                  <div className="preheader-container-location-currency-user-user-dropdown-signin">
-                    <Menu.Item
-                      className='preheader-container-location-currency-user-user-dropdown-signin-button'
-                      onClick={() => setLoginModalOpen(true)}
-                    >
-                      Signin
-                    </Menu.Item>
-                    <p onClick={() => setRegisterModalOpen(true)}>
-                      <Menu.Item
-                        p={0}
-                        className='preheader-container-location-currency-user-user-dropdown-signin-p'
-                      >
-                        New Customer ?
-                        &nbsp;
-                        <span>
-                          Start here
-                        </span>
-                      </Menu.Item>
-                    </p>
-                  </div>
+                  {
+                    userData.first_name ?
+                      <p>
+                        <Center p='lg'>
+                          {userData.first_name} {userData.last_name}
+                        </Center>
+                      </p>
+                      : <div className="preheader-container-location-currency-user-user-dropdown-signin">
+                        <Menu.Item
+                          className='preheader-container-location-currency-user-user-dropdown-signin-button'
+                          onClick={() => setLoginModalOpen(true)}
+                        >
+                          Signin
+                        </Menu.Item>
+                        <p onClick={() => setRegisterModalOpen(true)}>
+                          <Menu.Item
+                            p={0}
+                            className='preheader-container-location-currency-user-user-dropdown-signin-p'
+                          >
+                            New Customer ?
+                            &nbsp;
+                            <span>
+                              Start here
+                            </span>
+                          </Menu.Item>
+                        </p>
+                      </div>
+                  }
                   <hr />
                   <div className="preheader-container-location-currency-user-user-dropdown-extra">
                     <p>
@@ -231,6 +289,15 @@ const Preheader = () => {
                         Become Seller
                       </Menu.Item>
                     </p>
+                    {
+                      userData.first_name &&
+                      <p onClick={handleLogout}>
+                        <Menu.Item>
+                          Log out
+                        </Menu.Item>
+                      </p>
+                    }
+
                   </div>
                 </div>
               </Menu.Dropdown>
@@ -348,7 +415,7 @@ const Preheader = () => {
               />
             </Input.Wrapper>
             <Input.Wrapper
-              label='Email '
+              label='Conform Password '
               error={`${validateUserRegisterValue.conform_password === 1 ? 'Please Enter Conform Password' :
                 validateUserRegisterValue.conform_password === 2 ? `Conform password doesn't match with password ` :
                   ''
@@ -398,15 +465,42 @@ const Preheader = () => {
         </div>
         <div className="preheader-login-modal-body">
           <div className="preheader-login-modal-body-content">
-            <Input
-              placeholder="Email Address"
-            />
-            <PasswordInput
-              placeholder="Password"
-              className='preheader-login-model-password-show-hide-btn'
-            />
+            <Input.Wrapper
+              label="Email Id"
+              error={`${userLoginValidation.email === 1 ?
+                'Please Enter Email id' :
+                userLoginValidation.email === 2 ?
+                  'Please Enter Valid Email id' :
+                  userLoginValidation.email === 3 ?
+                    'Email not found' : ''
+                }`}
+            >
+              <Input
+                placeholder="Email Address"
+                value={userLogin.email}
+                onChange={(e) => setuserLogin({ ...userLogin, email: e.target.value })}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label="Password"
+              error={`${userLoginValidation.password === 1 ?
+                'Please Enter Password' :
+                userLoginValidation.password === 2 ?
+                  'Incorrect Password' : ''
+                }`}
+            >
+              <PasswordInput
+                placeholder="Password"
+                className='preheader-login-model-password-show-hide-btn'
+                value={userLogin.password}
+                onChange={(e) => setuserLogin({ ...userLogin, password: e.target.value })}
+              />
+            </Input.Wrapper>
             <p className='preheader-login-model-goto-forgot-password' onClick={() => { setForgotModalOpen(true); setLoginModalOpen(false); }}>Forgot Password?</p>
-            <button>Login</button>
+            <button
+              onClick={handleLogin}
+            >
+              Login</button>
             <p className='preheader-login-model-goto-login'>Don't have an account? <span onClick={() => { setRegisterModalOpen(true); setLoginModalOpen(false); }}>Register</span></p>
           </div>
         </div>

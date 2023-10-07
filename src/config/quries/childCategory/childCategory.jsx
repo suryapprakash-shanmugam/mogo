@@ -1,7 +1,6 @@
 import axios from "axios"
 import config from "../../server/Servers"
 
-// Access Token Commom Header
 const token = sessionStorage.getItem('MogoAdminAccessToken102')
 const commonHeader = {
     headers: {

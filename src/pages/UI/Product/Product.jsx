@@ -45,6 +45,10 @@ import image8 from '../../../assets/home/season/season2.webp'
 
 //import react router dom packages
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from 'react-query';
+import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice';
+import { listAllProduct } from '../../../config/quries/Products/ProductQuries';
 
 //array for product
 const productArray = [
@@ -144,7 +148,6 @@ const Product = ({ category, subcategory, heading }) => {
         if (quantityValue <= 0) {
             setQuantityValue(1)
         }
-        // setTotalPrice(quantityValue * 999)
     }, [quantityValue])
 
     const [isWishlist, setIsWishlist] = useState(true);
@@ -219,6 +222,19 @@ const Product = ({ category, subcategory, heading }) => {
         }
         return null;
     };
+
+    // ProductList
+    const productList = useSelector((state)=>state.productList.value)
+    const dispatch = useDispatch()
+    // const productList = 
+    useQuery('productList',
+        listAllProduct,
+        {
+            onSuccess: (res) => {
+                dispatch(setProductList(res?.data?.data?.result))
+            },
+        }
+    )
 
     return (
         <div>

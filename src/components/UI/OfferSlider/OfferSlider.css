@@ -157,6 +157,12 @@
     font-size: 14px;
 }
 
+.offerslider-div-container-slider-content-seller p {
+    height: 6vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .offerslider-div-container-slider-content-rating-wishlist {
     display: flex;
     justify-content: space-around;

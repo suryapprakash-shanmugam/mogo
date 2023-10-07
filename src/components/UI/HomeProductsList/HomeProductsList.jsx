@@ -1,5 +1,5 @@
 //import react packages
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //import mantine packages
 import { Center, Container, Rating } from '@mantine/core'
@@ -18,15 +18,20 @@ import wishlist from '../../../assets/header/wishlist.webp'
 import cart from '../../../assets/header/cart.webp'
 
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
+import { useDispatch, useSelector } from 'react-redux'
+import { useQuery } from 'react-query'
+import { listAllProduct } from '../../../config/quries/Products/ProductQuries'
+import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice'
+
+import config from "../../../config/server/Servers"
 
 
 const HomeProductsList = ({ header, subheader, header2 }) => {
 
-    const initialItemsToShow = 5; // Number of items to show initially
+    const initialItemsToShow = 5;
     const [itemsToShow, setItemsToShow] = useState(initialItemsToShow);
 
     const handleShowMoreClick = () => {
-        // Increase the number of items to show when the button is clicked
         setItemsToShow(itemsToShow + initialItemsToShow);
     };
 
@@ -188,6 +193,34 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
         },
     ]
 
+    const productList = useSelector((state) => state.productList.value)
+    const dispatch = useDispatch()
+
+    // const productList = 
+    useQuery('productList',
+        listAllProduct,
+        {
+            onSuccess: (res) => {
+                dispatch(setProductList(res?.data?.data?.result))
+            },
+        }
+    )
+
+    const [shuffledProducts, setShuffledProducts] = useState([]);
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+    useEffect(() => {
+        const shuffled = shuffleArray(productList);
+        setShuffledProducts(shuffled);
+    }, [productList]);
+
+
     return (
         <div>
             <div className="homeproductlist-div">
@@ -206,6 +239,61 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
                     </Center>
                     <div className="homeproductlist-div-container-content">
                         {
+                            shuffledProducts.slice(0, itemsToShow).map((homeProductList, index) => {
+                                return (
+                                    <div key={index} className="homeproductlist-div-container-content-product">
+                                        <Link
+                                        // to={homeProductList.link}
+                                        >
+                                            <div className="homeproductlist-div-container-content-product-image">
+                                                <div className="homeproductlist-div-container-content-product-image-img">
+                                                    <img src={`${config.baseUrlApi}/assets/productImages/${homeProductList.product_image}`} alt="" />
+                                                    <img src={`${config.baseUrlApi}/assets/productImages/${homeProductList.product_gallery_image[1]}`} alt="" id='second-image' />
+                                                    <div className="homeproductlist-div-container-content-product-wishlist-cart">
+                                                        <div className="homeproductlist-div-container-content-product-wishlist-cart-wishlist">
+                                                            <div className="homeproductlist-div-container-content-product-wishlist-cart-wishlist-image">
+                                                                <img src={wishlist} alt="" />
+                                                            </div>
+                                                        </div>
+                                                        <div className="homeproductlist-div-container-content-product-wishlist-cart-cart">
+                                                            <div className="homeproductlist-div-container-content-product-wishlist-cart-cart-image">
+                                                                <img src={cart} alt="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                        <div className="homeproductlist-div-container-content-product-content">
+                                            <div className="homeproductlist-div-container-content-product-content-header">
+                                                <p>{homeProductList.name}</p>
+                                            </div>
+                                            <div className="homeproductlist-div-container-content-product-content-shop-name">
+                                                <p>
+                                                    Mogo
+                                                    {/* {homeProductList.shopname} */}
+                                                </p>
+                                            </div>
+                                            <div className="homeproductlist-div-container-content-product-content-rating-like">
+                                                <div className="homeproductlist-div-container-content-product-content-rating-like-rating">
+                                                    <Rating value={5} readOnly />
+                                                </div>
+                                                <div className="homeproductlist-div-container-content-product-content-rating-like-like">
+                                                    <div className="homeproductlist-div-container-content-product-content-rating-like-like-image">
+                                                        <img src={wishlist} alt="" width={10} />
+                                                    </div>
+                                                    {homeProductList.like}
+                                                </div>
+                                            </div>
+                                            <div className="homeproductlist-div-container-content-product-content-price">
+                                                <h1>₹{`${homeProductList.sale_price ? homeProductList.sale_price : 199}`}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                        {/* {
                             homeProductListArray.slice(0, itemsToShow).map((homeProductList, index) => {
                                 return (
                                     <div key={index} className="homeproductlist-div-container-content-product">
@@ -254,7 +342,7 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
                                     </div>
                                 )
                             })
-                        }
+                        } */}
                     </div>
                     {/* {itemsToShow < homeProductListArray.length && (
                         <div className="homeproductlist-div-container-content-product-content-show-more">

@@ -12,7 +12,7 @@ function BottomToTopButton() {
 
     const handleScroll = () => {
         const scrollY = window.scrollY;
-        setIsVisible(scrollY > 100); // Adjust the threshold as needed
+        setIsVisible(scrollY > 100); 
     };
 
     useEffect(() => {
@@ -25,17 +25,11 @@ function BottomToTopButton() {
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth', // For smooth scrolling
+            behavior: 'smooth', 
         });
     };
 
     return (
-        // <button
-        //     className={`bottom-to-top-button ${isVisible ? 'visible' : ''}`}
-        //     onClick={scrollToTop}
-        // >
-        //     Scroll to Top
-        // </button>
         <img src={uparrow} alt="bottom to top" className={`bottom-to-top-button ${isVisible ? 'visible' : ''}`}
             onClick={scrollToTop} />
     );

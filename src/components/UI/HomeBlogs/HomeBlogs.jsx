@@ -21,7 +21,6 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
 
     const autoplay = useRef(Autoplay({ delay: 2000 }));
 
-    //function used to slice after certain words in blog description
     function truncateText(text, maxLength) {
         if (text.length > maxLength) {
             return text.slice(0, maxLength) + '...';
@@ -85,7 +84,7 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
                             align="start"
                             controlsOffset="md"
                             loop
-                            slideSize={calculatedSlideSize} // Set the calculated slide size
+                            slideSize={calculatedSlideSize}
                             slideGap="xs"
                             controlSize={36}
                             className='homeblogs-div-container-content-slider'
@@ -99,7 +98,7 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
 
                                     const truncatedDescription = truncateText(
                                         homeblogs.blog_description,
-                                        100 // Adjust the maximum length as needed
+                                        100
                                     );
                                     return (
                                         <Carousel.Slide key={index} className='homeblogs-div-container-content-slider-individual'>

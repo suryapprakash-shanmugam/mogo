@@ -34,6 +34,10 @@ import baby_linen from '../../../assets/IconWebp/babylinen.webp'
 
 import season1 from '../../../assets/home/season/season1.webp'
 import season2 from '../../../assets/home/season/season2.webp'
+import { useQuery } from 'react-query'
+import { listAllProduct } from '../../../config/quries/Products/ProductQuries'
+import { useDispatch, useSelector } from 'react-redux'
+import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice'
 
 const Home = () => {
 
@@ -93,6 +97,22 @@ const Home = () => {
       path: '/category/livinglinen'
     },
   ]
+
+  // State Handler
+  const productList = useSelector((state) => state.productList.value)
+  const dispatch = useDispatch()
+
+  // const productList = 
+  useQuery('productList',
+    listAllProduct,
+    {
+      onSuccess: (res) => {
+        console.log(res);
+        dispatch(setProductList(res?.data?.data?.result))
+      },
+    }
+  )
+
 
   return (
     <div>

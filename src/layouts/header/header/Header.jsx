@@ -39,6 +39,12 @@ const Header = () => {
     //usestate for open login modal
     const [forgotmodalOpen, setForgotModalOpen] = useState(false)
 
+
+    // Handle Register 
+    // const handleRegister = () => {
+    //     handleRegisterControl()
+    // }
+
     return (
         <div>
             <div className="header-div">
@@ -181,7 +187,9 @@ const Header = () => {
                                     </>
                                 }
                             />
-                            <button>Register</button>
+                            <button
+                                // onClick={handleRegister}
+                            >Register</button>
                             <p className='preheader-register-model-goto-login'>Have an account? <span onClick={() => { setRegisterModalOpen(false); setLoginModalOpen(true); }}>Login</span></p>
                         </div>
                     </div>

@@ -31,7 +31,6 @@ const Cart = () => {
         if (quantityValue <= 0) {
             setQuantityValue(1)
         }
-        // setTotalPrice(quantityValue * 999)
     }, [quantityValue])
 
     return (

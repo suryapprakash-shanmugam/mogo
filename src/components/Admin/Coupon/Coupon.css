@@ -1,0 +1,29 @@
+.coupon-component-div {
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.coupon-component-div-form {
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+
+.coupon-component-div-form input {
+    border: 1px solid #dfe0e6;
+    outline: none !important;
+    color: #494949;
+    height: 2rem;
+    line-height: 18px;
+    padding: 8px 16px;
+    box-shadow: none;
+    border-radius: 2px;
+    border-right: 0px;
+}
+.coupon-component-div-form button {
+    cursor: pointer;
+    border: 0px;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+}

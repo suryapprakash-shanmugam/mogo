@@ -5,10 +5,8 @@ import './NumericInput.css'
 function NumericInput({ value, onChange, label, placeholder }) {
     const handleInputChange = (event) => {
         let numericValue = event.target.value;
-        // Ensure that there's only one decimal point
         const parts = numericValue.split('.');
         if (parts.length > 2) {
-            // If there are more than one decimal points, remove extras
             const integerPart = parts[0];
             const decimalPart = parts.slice(1).join('');
             numericValue = `${integerPart}.${decimalPart}`;

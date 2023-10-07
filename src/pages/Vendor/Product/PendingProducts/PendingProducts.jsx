@@ -78,10 +78,6 @@ const PendingProducts = () => {
             accessor: 'Category',
         },
         {
-            Header: 'User',
-            accessor: 'User',
-        },
-        {
             Header: 'Stock',
             accessor: 'Stock',
         },
@@ -102,23 +98,6 @@ const PendingProducts = () => {
                                 <img src={info} alt='info icon' width={15} />&nbsp;&nbsp;View Details
                             </Menu.Item>
                         </Text>
-                        <Menu.Item onClick={() => { setFeaturedModalOpen(true) }}>
-                            {
-                                featuredOffers ? <><img src={plusfilled} alt='check icon' width={15} />&nbsp;&nbsp;Add to Featured</> : <><img src={minus} alt='check icon' width={15} />&nbsp;&nbsp;Remove From Featured</>
-                            }
-
-                        </Menu.Item>
-                        <Menu.Item onClick={handlespecialOffers}>
-                            {
-                                specialOffers ? <>
-                                    <img src={minus} alt='block icon' width={15} />
-                                    &nbsp;&nbsp;Remove From Special Offers
-                                </> : <>
-                                    <img src={plusfilled} alt='block icon' width={15} />
-                                    &nbsp;&nbsp;Add to Special Offers
-                                </>
-                            }
-                        </Menu.Item>
                         <Text component={Link} to="/vendor_addproduct">
                             <Menu.Item>
                                 <img src={edit} alt='block icon' width={15} />&nbsp;&nbsp;Edit
@@ -126,9 +105,6 @@ const PendingProducts = () => {
                         </Text>
                         <Menu.Item onClick={openDeleteModal}>
                             <img src={trash} alt='trash icon' width={15} />&nbsp;&nbsp; Delete
-                        </Menu.Item>
-                        <Menu.Item onClick={openDeleteModal}>
-                            <img src={trash} alt='trash icon' width={15} />&nbsp;&nbsp; Delete Permanently
                         </Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
@@ -321,8 +297,8 @@ const PendingProducts = () => {
         pageCount
     }
         = useTable({
-            columns: useMemo(() => COLUMN, []), // Wrap COLUMN in useMemo
-            data: useMemo(() => tableData, []), // Wrap tableData in useMemo
+            columns: useMemo(() => COLUMN, []), 
+            data: useMemo(() => tableData, []), 
         },
             useGlobalFilter,
             usePagination
