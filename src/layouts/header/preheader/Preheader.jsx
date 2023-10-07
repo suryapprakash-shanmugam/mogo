@@ -447,7 +447,7 @@ const Preheader = () => {
             <p className='preheader-register-model-goto-login'>Have an account? <span onClick={() => { setRegisterModalOpen(false); setLoginModalOpen(true); }}>Login</span></p>
           </div>
         </div>
-      </Modal >
+      </Modal>
       {/*Register modal end */}
       {/* Login model starts */}
       <Modal
@@ -534,7 +534,7 @@ const Preheader = () => {
         </div>
       </Modal>
       {/*Forgot modal end */}
-    </div >
+    </div>
   )
 }
 

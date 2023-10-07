@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 
 //import mantine packages
-import { Checkbox, Container, Input, Radio, Select, Text } from '@mantine/core'
+import { Button, Checkbox, Container, Input, Modal, PasswordInput, Radio, Select, Text } from '@mantine/core'
 
 //import icons
 import arrowdown from '../../../assets/preheader/arrow-down.webp'
+
+import image1 from '../../../assets/home/grid-category/baby_linen.webp'
 
 //import Checkout css file
 import './Checkout.css'
@@ -13,7 +15,62 @@ import './Checkout.css'
 //import react router dom packages
 import { Link } from 'react-router-dom';
 
+import { handleLoginControl, handleRegisterControl } from '../../../controller/loginAuth/userLogin/userLoginAuth'
+import { findUserByid } from '../../../config/quries/users/usersQuery'
+import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData'
+
 const Checkout = () => {
+
+    // Register User Values 
+    const [userRegisterValue, setUserRegisterValue] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: "",
+        conform_password: ''
+    })
+    const [userLogin, setuserLogin] = useState({
+        email: '',
+        password: ''
+    })
+
+    // Validate Login User
+    const [userLoginValidation, setUserLoginValidation] = useState({
+        email: 0,
+        password: 0
+    })
+
+    // Validation For Register Values
+    const [validateUserRegisterValue, setValidateUserRegisterValue] = useState({
+        first_name: 0,
+        last_name: 0,
+        email: 0,
+        password: 0,
+        conform_password: 0,
+        check_box: ''
+    })
+
+    const handleLogin = () => {
+        handleLoginControl(
+          userLogin,
+          setuserLogin,
+          userLoginValidation,
+          setUserLoginValidation,
+          setLoginModalOpen
+        )
+      }
+
+
+    // Handle Event 
+    const handleRegisterClick = () => {
+        handleRegisterControl(
+            userRegisterValue,
+            setUserRegisterValue,
+            validateUserRegisterValue,
+            setValidateUserRegisterValue,
+            setRegisterModalOpen
+        )
+    }
 
     const countryArray = [
         { value: 'react', label: 'React' },
@@ -24,6 +81,13 @@ const Checkout = () => {
     const handleRadioChange = (option) => {
         setSelectedOption(option);
     };
+
+    const [registermodalOpen, setRegisterModalOpen] = useState(false)
+    //usestate for open login modal
+    const [loginmodalOpen, setLoginModalOpen] = useState(false)
+
+    //usestate for open login modal
+    const [forgotmodalOpen, setForgotModalOpen] = useState(false)
 
     return (
         <div>
@@ -37,7 +101,7 @@ const Checkout = () => {
                                 </div>
                                 <div className="checkout-div-container-main-checkout-shipping-content">
                                     <div className="checkout-div-container-main-checkout-shipping-guest">
-                                        <p>You are checking out as a guest. Have an account? &nbsp;<span>Login</span></p>
+                                        <p>You are checking out as a guest. Have an account? &nbsp;<span onClick={() => setLoginModalOpen(true)}>Login</span></p>
                                     </div>
                                     <div className="checkout-div-container-main-checkout-shipping-information-head">
                                         <h1>1. Shipping Information</h1>
@@ -208,7 +272,7 @@ const Checkout = () => {
                                 <div className="checkout-div-container-main-checkout-summary-content">
                                     <div className="checkout-div-container-main-checkout-summary-content-order-summary-details">
                                         <div className="checkout-div-container-main-checkout-summary-content-order-summary-details-show-image">
-
+                                            <img src={image1} />
                                         </div>
                                         <div className="checkout-div-container-main-checkout-summary-content-order-summary-details-show-product-details">
                                             <h1>Floral women sundress (Color: Dark, Size: S)</h1>
@@ -266,7 +330,189 @@ const Checkout = () => {
                     </div>
                 </Container>
             </div>
-        </div >
+            {/* Register model starts */}
+            <Modal
+                zIndex={1234569}
+                size="md"
+                centered
+                opened={registermodalOpen}
+                onClose={() => setRegisterModalOpen(false)}
+                title=""
+                transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+                className='preheader-register-modal'
+            >
+                <div className="preheader-register-modal-header">
+                    <h1>Register</h1>
+                </div>
+                <div className="preheader-register-modal-body">
+                    <div className="preheader-register-modal-body-content">
+                        <Input.Wrapper label="First Name"
+                            error={`${validateUserRegisterValue.first_name === 1 ? 'Please Enter First Name' : ''
+                                }`}
+                        >
+                            <Input
+                                value={userRegisterValue.first_name}
+                                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, first_name: e.target.value })}
+                                placeholder="First Name"
+                            />
+                        </Input.Wrapper>
+                        <Input.Wrapper
+                            label='Last Name'
+                            error={`${validateUserRegisterValue.last_name === 1 ? 'Please Enter Last Name' : ''
+                                }`}
+                        >
+                            <Input
+                                value={userRegisterValue.last_name}
+                                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, last_name: e.target.value })}
+                                placeholder="Last Name"
+                            />
+                        </Input.Wrapper>
+                        <Input.Wrapper
+                            label='Email '
+                            error={`${validateUserRegisterValue.email === 1 ? 'Please Enter Email' :
+                                validateUserRegisterValue.email === 2 ? 'Please Enter Valid Email Address' :
+                                    ''
+                                }`}
+                        >
+                            <Input
+                                value={userRegisterValue.email}
+                                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, email: e.target.value })}
+                                placeholder="Email Address"
+                            />
+                        </Input.Wrapper>
+                        <Input.Wrapper
+                            label='Password '
+                            error={`${validateUserRegisterValue.password === 1 ? 'Please Enter Password' : ''
+                                }`}
+                        >
+                            <PasswordInput
+                                value={userRegisterValue.password}
+                                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, password: e.target.value })}
+                                placeholder="Password"
+                                className='preheader-register-model-password-show-hide-btn'
+                            />
+                        </Input.Wrapper>
+                        <Input.Wrapper
+                            label='Conform Password '
+                            error={`${validateUserRegisterValue.conform_password === 1 ? 'Please Enter Conform Password' :
+                                validateUserRegisterValue.conform_password === 2 ? `Conform password doesn't match with password ` :
+                                    ''
+                                }`}
+                        >
+                            <PasswordInput
+                                value={userRegisterValue.conform_password}
+                                onChange={(e) => setUserRegisterValue({ ...userRegisterValue, conform_password: e.target.value })}
+                                placeholder="Confirm Password"
+                                className='preheader-register-model-password-show-hide-btn'
+                            />
+                        </Input.Wrapper>
+                        <Checkbox
+                            onChange={(e) => setValidateUserRegisterValue({ ...validateUserRegisterValue, check_box: e.currentTarget.checked })}
+                            className='preheader-register-model-checkbox'
+                            label={
+                                <>
+                                    I have read and agree to the{' '}
+                                    <Link onClick={() => setRegisterModalOpen(false)} to="/terms-and-conditions" className='preheader-register-model-tearms-and-conditions-link'>Terms & Conditions</Link>
+                                </>
+                            }
+                        />
+                        <Button
+                            disabled={!validateUserRegisterValue.check_box}
+                            onClick={handleRegisterClick}
+                        >
+                            Register
+                        </Button>
+                        <p className='preheader-register-model-goto-login'>Have an account? <span onClick={() => { setRegisterModalOpen(false); setLoginModalOpen(true); }}>Login</span></p>
+                    </div>
+                </div>
+            </Modal>
+            {/*Register modal end */}
+            {/* Login model starts */}
+            <Modal
+                zIndex={1234569}
+                size="md"
+                centered
+                opened={loginmodalOpen}
+                onClose={() => setLoginModalOpen(false)}
+                title=""
+                transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+                className='preheader-login-modal'
+            >
+                <div className="preheader-login-modal-header">
+                    <h1>Login</h1>
+                </div>
+                <div className="preheader-login-modal-body">
+                    <div className="preheader-login-modal-body-content">
+                        <Input.Wrapper
+                            label="Email Id"
+                            error={`${userLoginValidation.email === 1 ?
+                                'Please Enter Email id' :
+                                userLoginValidation.email === 2 ?
+                                    'Please Enter Valid Email id' :
+                                    userLoginValidation.email === 3 ?
+                                        'Email not found' : ''
+                                }`}
+                        >
+                            <Input
+                                placeholder="Email Address"
+                                value={userLogin.email}
+                                onChange={(e) => setuserLogin({ ...userLogin, email: e.target.value })}
+                            />
+                        </Input.Wrapper>
+                        <Input.Wrapper
+                            label="Password"
+                            error={`${userLoginValidation.password === 1 ?
+                                'Please Enter Password' :
+                                userLoginValidation.password === 2 ?
+                                    'Incorrect Password' : ''
+                                }`}
+                        >
+                            <PasswordInput
+                                placeholder="Password"
+                                className='preheader-login-model-password-show-hide-btn'
+                                value={userLogin.password}
+                                onChange={(e) => setuserLogin({ ...userLogin, password: e.target.value })}
+                            />
+                        </Input.Wrapper>
+                        <p className='preheader-login-model-goto-forgot-password' onClick={() => { setForgotModalOpen(true); setLoginModalOpen(false); }}>Forgot Password?</p>
+                        <button
+                            onClick={handleLogin}
+                        >
+                            Login</button>
+                        <p className='preheader-login-model-goto-login'>Don't have an account? <span onClick={() => { setRegisterModalOpen(true); setLoginModalOpen(false); }}>Register</span></p>
+                    </div>
+                </div>
+            </Modal>
+            {/*Login modal end */}
+            {/* Forgot model starts */}
+            <Modal
+                zIndex={12121}
+                size="md"
+                centered
+                opened={forgotmodalOpen}
+                onClose={() => setForgotModalOpen(false)}
+                title=""
+                transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+                className='preheader-login-modal'
+            >
+                <div className="preheader-login-modal-header">
+                    <h1>Reset Password</h1>
+                </div>
+                <div className="preheader-login-modal-body">
+                    <div className="preheader-login-modal-body-content">
+                        <p className='preheader-forgot-model-sub-heading'>Enter your email address</p>
+                        <Input
+                            placeholder="Email Address"
+                        />
+                        <Input
+                            placeholder="OTP In Email"
+                        />
+                        <button>Submit</button>
+                    </div>
+                </div>
+            </Modal>
+            {/*Forgot modal end */}
+        </div>
     )
 }
 

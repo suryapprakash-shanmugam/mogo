@@ -11,6 +11,8 @@ import './Cart.css'
 import close from '../../../assets/cart/close.webp'
 import arrowleft from '../../../assets/cart/arrowleft.webp'
 
+import image1 from '../../../assets/home/grid-category/baby_linen.webp'
+
 //import images
 import amex from '../../../assets/footer/copyright/amex.webp'
 import discover from '../../../assets/footer/copyright/discover.webp'
@@ -46,7 +48,7 @@ const Cart = () => {
                                 <div className="cart-div-container-main-cart-products">
                                     <div className="cart-div-container-main-cart-products-image">
                                         <div className="cart-div-container-main-cart-products-image-img">
-
+                                            <img src={image1} />
                                         </div>
                                     </div>
                                     <div className="cart-div-container-main-cart-products-content">
