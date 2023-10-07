@@ -116,6 +116,8 @@ const Wipper = () => {
 
                 <Route path="/about" element={<CustumRouters />} />
 
+                <Route path="/your_account" element={<CustumRouters />} />
+
                 <Route path="/admin" element={<Login />} />
 
                 <Route path="/admin_dashboard" element={<AdminRouters />} />

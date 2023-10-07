@@ -235,7 +235,7 @@ const Preheader = () => {
                     }
                   </p>
                   <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />
-                </Flex >
+                </Flex>
               </Menu.Target>
               <Menu.Dropdown>
                 <div className="preheader-container-location-currency-user-user-dropdown">
@@ -270,7 +270,7 @@ const Preheader = () => {
                   <hr />
                   <div className="preheader-container-location-currency-user-user-dropdown-extra">
                     <p>
-                      <Menu.Item>
+                      <Menu.Item component={Link} to="/your_account" className="navbar-link">
                         Your Account
                       </Menu.Item>
                     </p>

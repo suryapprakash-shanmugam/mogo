@@ -51,6 +51,7 @@ import Contact from './pages/UI/Contact/Contact';
 
 //import about from src->pages->about
 import About from './pages/UI/About/About';
+import UserProfile from './pages/UI/UserProfile/UserProfile';
 
 const Routers = () => {
     const location = useLocation();
@@ -164,7 +165,8 @@ const Routers = () => {
         '/contact': <Contact />,
 
         '/about': <About />,
-
+        
+        '/your_account': <UserProfile />,
 
 
     }

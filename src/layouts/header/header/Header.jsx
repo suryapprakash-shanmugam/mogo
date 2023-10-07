@@ -68,7 +68,7 @@ const Header = () => {
                         </div>
                     </Flex>
                     <Flex gap={'1.5rem'} className='search-engine-right' align={'center'}>
-                        <Flex gap={3} align={'center'}>
+                        <Flex component={Link} to="/cart" className="navbar-link" gap={3} align={'center'}>
                             <ShoppingCart
                                 strokeWidth={1}
                                 size={'2rem'}
@@ -77,7 +77,7 @@ const Header = () => {
                                 Cart
                             </p>
                         </Flex>
-                        <Flex gap={3} align={'center'}>
+                        <Flex component={Link} to="/wishlist" className="navbar-link" gap={3} align={'center'}>
                             <Heart
                                 strokeWidth={1}
                                 size={'2rem'}
@@ -188,7 +188,7 @@ const Header = () => {
                                 }
                             />
                             <button
-                                // onClick={handleRegister}
+                            // onClick={handleRegister}
                             >Register</button>
                             <p className='preheader-register-model-goto-login'>Have an account? <span onClick={() => { setRegisterModalOpen(false); setLoginModalOpen(true); }}>Login</span></p>
                         </div>
@@ -197,11 +197,12 @@ const Header = () => {
                 {/*Register modal end */}
                 {/* Login model starts */}
                 <Modal
-                    zIndex={12121}
+                    zIndex={12121212}
                     size="md"
                     opened={loginmodalOpen}
                     onClose={() => setLoginModalOpen(false)}
                     title=""
+                    centered
                     transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
                     className='preheader-login-modal'
                 >

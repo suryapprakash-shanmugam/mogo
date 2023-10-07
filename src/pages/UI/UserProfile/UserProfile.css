@@ -1,0 +1,139 @@
+.user-profile-div {
+    width: 100%;
+    padding: 30px 0px;
+    font-family: 'Open Sans';
+}
+
+.user-profile-div-container {
+    width: 100%;
+    padding: 0px 120px;
+}
+
+.user-profile-div-container-heading {
+    padding: 20px 0px;
+}
+
+.user-profile-div-container-content {
+    padding: 20px 0px;
+}
+
+.user-profile-div-container-content-tabs-panel {
+    padding: 0px 20px;
+}
+
+.user-profile-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.user-profile-div-container-content-tabs-panel-profile-image {
+    width: 200px;
+    background-color: red;
+    height: 200px;
+    clip-path: circle();
+}
+
+.user-profile-div-container-content-tabs-panel-profile-image-icon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    clip-path: circle();
+    bottom: 10px;
+    left: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-profile-div-container-content-tabs-panel-profile-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-profile-form-input {
+    margin: 10px 0px;
+}
+
+.user-profile-form-input .mantine-1fzet7j {
+    margin-bottom: 8px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+}
+
+.user-profile-form-input .mantine-gszoqu,
+.user-profile-form-input .mantine-1cn2mlo {
+    height: 2.5rem;
+    border-radius: 0px;
+}
+
+.user-profile-form-input-button {
+    margin: 20px 0px;
+}
+
+.user-profile-form-input-button button {
+    width: 131px;
+    height: 41px;
+    border: 0px;
+    background-color: var(--Logo-Color2);
+    color: #fff;
+}
+
+.user-profile-div-container-content-tabs .mantine-13mk8k4[data-active] {
+    background-color: var(--Logo-Color1);
+}
+
+.user-profile-div-container-content-tabs-panel-shipping {
+    display: grid;
+    grid-template-columns: 40% 40% auto;
+    justify-content: space-evenly;
+}
+
+.user-profile-div-container-content-tabs-panel-shipping-address {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid var(--Light-Light-Gray);
+    padding: 20px;
+}
+
+.user-profile-div-container-content-tabs-panel-shipping-address-button {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.user-profile-div-container-content-tabs-panel-shipping-address-button button {
+    width: 55px;
+    height: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+
+.shipping-address-add-button {
+    margin: 2rem 0rem;
+}
+
+.shipping-address-add-button button {
+    cursor: pointer;
+    border: 0px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.3rem;
+}
+.shipping-address-model-form-input
+{
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+}
