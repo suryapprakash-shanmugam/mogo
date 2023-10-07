@@ -1,5 +1,5 @@
 //import react packages
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 //import mantine packages
 import { Checkbox, Container, Input, Rating, ScrollArea, Select } from '@mantine/core'
@@ -28,6 +28,13 @@ import arrowdown from '../../../assets/preheader/arrow-down.webp'
 import baby_linen from '../../../assets/home/grid-category/baby_linen.webp'
 import bath_linen from '../../../assets/home/grid-category/bath_linen.webp'
 import NumericInput from '../../../components/UI/Input/NumericInput'
+
+
+import { useDispatch, useSelector } from 'react-redux';
+import { listAllProduct } from '../../../config/quries/Products/ProductQuries';
+import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice';
+import { useQuery } from 'react-query';
+import config from "../../../config/server/Servers"
 
 const Category = () => {
 
@@ -233,7 +240,7 @@ const Category = () => {
     if (location.pathname !== '/products') {
         items.push(value[location.pathname])
     }
-    const categoryZero = categoryArray[0]; 
+    const categoryZero = categoryArray[0];
 
     const foundItemsInCategoryZero = items.filter((item) => {
         return categoryZero.value.some((categoryItem) => categoryItem.link === item.href);
@@ -436,9 +443,9 @@ const Category = () => {
     ]
 
     const [filterText, setFilterText] = useState('');
-    const [filterText1, setFilterText1] = useState(''); 
-    const [filteredBrands, setFilteredBrands] = useState(brandArray); 
-    const [filteredBrands1, setFilteredBrands1] = useState(brandArray1); 
+    const [filterText1, setFilterText1] = useState('');
+    const [filteredBrands, setFilteredBrands] = useState(brandArray);
+    const [filteredBrands1, setFilteredBrands1] = useState(brandArray1);
 
     // Function to handle input change
     const handleInputChange = (event) => {
@@ -476,6 +483,34 @@ const Category = () => {
     const subcategory = 'Table_Napkins';
     const heading = 'This_is_a_heading';
 
+
+    // State Handler
+    const productList = useSelector((state) => state.productList.value)
+    const dispatch = useDispatch()
+
+    // const productList = 
+    useQuery('productList',
+        listAllProduct,
+        {
+            onSuccess: (res) => {
+                dispatch(setProductList(res?.data?.data?.result))
+            },
+        }
+    )
+
+    const [shuffledProducts, setShuffledProducts] = useState([]);
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+    useEffect(() => {
+        const shuffled = shuffleArray(productList);
+        setShuffledProducts(shuffled);
+    }, [productList]);
 
 
     return (
@@ -659,17 +694,20 @@ const Category = () => {
 
                             <div className="category-div-container-main-product-product_display">
                                 {
-                                    displayedItems.map((productDetails, index) => {
+                                    shuffledProducts.map((productDetails, index) => {
                                         return (
                                             <div key={index} className="category-div-container-main-product-product_display-individual">
-                                                <Link to={`${productDetails.link}/${category}/${subcategory}/${heading}`}>
+                                                <Link
+                                                    to={`${productDetails.link}/${category}/${subcategory}/${heading}`}
+                                                >
                                                     <div className="category-div-container-main-product-product_display-individual-image">
-                                                        <img src={productDetails.image} alt="first product" />
-                                                        <img src={productDetails.secondimage} id="category_second_image" alt="second product" />
+                                                        <img src={`${config.baseUrlApi}/assets/productImages/${productDetails.product_image}`} alt="first product" />
+                                                        <img src={`${config.baseUrlApi}/assets/productImages/${productDetails.product_gallery_image[1]}`} id="category_second_image" alt="second product" />
                                                         {
                                                             productDetails.featured !== '' ?
                                                                 <div className="category-div-container-main-product-product_display-individual-image-featured">
-                                                                    <p>{productDetails.featured}</p>
+                                                                    <p>{`${productDetails.featured ? productDetails.featured :
+                                                                        '34%'}`}</p>
                                                                 </div> : ''
                                                         }
                                                         <div className="category-div-container-main-product-product_display-individual-image-cart-wishlist">
@@ -684,26 +722,33 @@ const Category = () => {
                                                 </Link>
                                                 <div className="category-div-container-main-product-product_display-individual-content">
                                                     <div className="category-div-container-main-product-product_display-individual-heading">
-                                                        <p>{productDetails.heading}</p>
+                                                        <p>{productDetails.name}</p>
                                                     </div>
                                                     <div className="category-div-container-main-product-product_display-individual-shop-name">
-                                                        <p>{productDetails.seller}</p>
+                                                        <p>
+                                                            Mogo
+                                                            {/* {productDetails.seller} */}
+                                                        </p>
                                                     </div>
                                                     <div className="category-div-container-main-product-product_display-individual-rating-heart">
                                                         <div className="category-div-container-main-product-product_display-individual-rating-heart-rating">
-                                                            <Rating value={productDetails.rating} readOnly />
+                                                            <Rating value={5} readOnly />
                                                         </div>
                                                         <div className="category-div-container-main-product-product_display-individual-rating-heart-heart">
                                                             <div><img src={wishlist} width={14} alt="" /></div>
-                                                            <div>{productDetails.like}</div>
+                                                            {/* <div>{productDetails.like}</div> */}
                                                         </div>
 
                                                     </div>
                                                     <div className="category-div-container-main-product-product_display-individual-price">
                                                         {
-                                                            productDetails.oldprice !== '' ? <p className='oldprice'>{`${productDetails.currencysymbol}${productDetails.oldprice}`}</p> : ''
+                                                            productDetails.oldprice !== '' ?
+                                                                <p className='oldprice'>
+                                                                    ₹{`${productDetails.actual_price ?
+                                                                        productDetails.actual_price : 299}`}
+                                                                </p> : ''
                                                         }
-                                                        <p>{`${productDetails.currencysymbol}${productDetails.newprice}`}</p>
+                                                        <p> ₹{`${productDetails.sale_price ? productDetails.sale_price : 199}`}</p>
                                                     </div>
                                                 </div>
                                             </div>

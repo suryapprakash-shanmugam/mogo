@@ -1,8 +1,10 @@
 import { showNotification } from "@mantine/notifications"
-import { userLoginAPI, userRegisterAPI } from "../../../config/quries/users/usersQuery"
+import { updateUserAPI, userLoginAPI, userRegisterAPI } from "../../../config/quries/users/usersQuery"
 import { ThemeIcon } from "@mantine/core"
 import { CircleCheck, X } from "tabler-icons-react"
 import { setUserData } from "../../../StateHandler/Slice/UserSlice/UserSliceData"
+import axios from "axios"
+import config from "../../../config/server/Servers"
 
 export const handleRegisterControl = async (
     userRegisterValue,
@@ -156,5 +158,74 @@ export const handleLoginControl = async (
     }
     else {
         setUserLoginValidation({ ...userLoginValidation, email: 1 })
+    }
+}
+
+
+export const handleUpdateUserControl = async (
+    updateUser,
+    setUpdateUser,
+    validateUser,
+    setValidateUser,
+    queryClient
+) => {
+    const {
+        email,
+        first_name,
+        last_name,
+        number,
+        profile_image
+    } = updateUser
+
+    const formData = new FormData()
+    formData.append('first_name', first_name.trim())
+    formData.append('last_name', last_name.trim())
+    formData.append('mobile_number', number.trim())
+    formData.append('file', profile_image)
+
+    const payload = {
+        id: sessionStorage.getItem('MogoUserAccessToken101'),
+        body: formData
+    }
+    if (first_name) {
+        if (last_name) {
+            if (number) {
+                await axios.post(`${config.baseUrlApi}/users/updateuser/${sessionStorage.getItem('MogoUserAccessToken101')}`,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            "Authorization": `Bearer ${sessionStorage.getItem('MogoUserAccessToken102')}`
+                        }
+                    }
+                )
+                    .then(() => {
+                        showNotification({
+                            icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
+                                <CircleCheck color="green" />
+                            </ThemeIcon>,
+                            message: "Profile Updated Successfully",
+                        })
+                        queryClient.invalidateQueries('userData')
+                    })
+                    .catch(() => {
+                        showNotification({
+                            icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                                <X color="red" />
+                            </ThemeIcon>,
+                            message: "Error Updating Profile",
+                        })
+                    })
+            }
+            else {
+                setValidateUser({ ...validateUser, number: 1 })
+            }
+        }
+        else {
+            setValidateUser({ ...validateUser, last_name: 1 })
+        }
+    }
+    else {
+        setValidateUser({ ...validateUser, first_name: 1 })
     }
 }

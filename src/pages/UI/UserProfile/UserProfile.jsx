@@ -1,5 +1,6 @@
 import { Input, Modal, PasswordInput, Select, Tabs } from '@mantine/core';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Camera } from 'tabler-icons-react';
 import Breadcrumb from '../../../components/UI/Breadcrumb/Breadcrumb'
 import './UserProfile.css'
@@ -8,8 +9,16 @@ import trash from '../../../assets/admin/table/dropdown/trash.png'
 import plus from '../../../assets/admin/table/dropdown/plus-filled.png'
 import anglebottom from '../../../assets/preheader/arrow-down.webp'
 import user_profile from '../../../assets/user/user_profile.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { handleUpdateUserControl } from '../../../controller/loginAuth/userLogin/userLoginAuth';
+import { useQuery, useQueryClient } from 'react-query';
+import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData';
+import { findUserByid } from '../../../config/quries/users/usersQuery';
+import config from "../../../config/server/Servers"
 
 const UserProfile = () => {
+
+    const loaction = useNavigate()
 
     // array for breadcrumb
     const items = [
@@ -56,6 +65,90 @@ const UserProfile = () => {
         setShopState(selectedValue)
     }
 
+    useEffect(() => {
+        if (!sessionStorage.getItem('MogoUserAccessToken102') &&
+            !sessionStorage.getItem('MogoUserAccessToken101')
+        ) {
+            window.location.reload(loaction('/'))
+        }
+    })
+
+
+    // Query
+    const userData = useSelector((state) => state.userData.value)
+
+    // Update User Data 
+    const [updateUser, setUpdateUser] = useState({
+        email: userData.email,
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        number: userData.mobile_number ? userData.mobile_number : '',
+        profile_image: userData.profile_image ? userData.profile_image : ''
+    })
+
+    // validate update user
+    const [validateUser, setValidateUser] = useState({
+        email: 0,
+        first_name: 0,
+        last_name: 0,
+        number: 0
+    })
+
+    useEffect(() => {
+        if (userData.profile_image) {
+            setUpdateUser({ ...updateUser, profile_image: userData.profile_image })
+        }
+        if (userData.email) {
+            setUpdateUser({ ...updateUser, email: userData.email })
+        }
+        if (userData.first_name) {
+            setUpdateUser({ ...updateUser, first_name: userData.first_name })
+        }
+        if (userData.last_name) {
+            setUpdateUser({ ...updateUser, last_name: userData.last_name })
+        }
+        if (userData.mobile_number) {
+            setUpdateUser({ ...updateUser, mobile_number: userData.mobile_number })
+        }
+    })
+
+    const queryClient = useQueryClient()
+
+    // Handle Controler
+    const handleUpdateUser = () => {
+        handleUpdateUserControl(
+            updateUser,
+            setUpdateUser,
+            validateUser,
+            setValidateUser,
+            queryClient
+        )
+    }
+
+    // Profile Image Upload
+    const fileInputRef = useRef(null);
+    const handleUpdateProfileImage = () => {
+        fileInputRef.current.click();
+        setUpdateUser({ ...updateUser, profile_image: '' })
+    };
+    const handleFileUpload = (e) => {
+        const selectedFile = e.target.files[0];
+        setUpdateUser({ ...updateUser, profile_image: selectedFile });
+    };
+
+    const dispatch = useDispatch()
+
+    // Fetching User By ID
+    useQuery(
+        ['userData', sessionStorage.getItem('MogoUserAccessToken101')],
+        findUserByid,
+        {
+            onSuccess: (res) => {
+                dispatch(setUserData(res?.data?.data))
+            },
+        }
+    )
+
     return (
         <div>
             <div className="user-profile-div">
@@ -73,51 +166,113 @@ const UserProfile = () => {
                                 <Tabs.Tab value="shipaddress">Shipping Address</Tabs.Tab>
                                 <Tabs.Tab value="changepassword">Change Password</Tabs.Tab>
                             </Tabs.List>
-
+                            {
+                                console.log(updateUser.profile_image)
+                            }
                             <Tabs.Panel className='user-profile-div-container-content-tabs-panel' value="profile" pl="xs">
                                 <div className="user-profile-container">
                                     <div className="user-profile-div-container-content-tabs-panel-profile-image">
-                                        <img src={user_profile} />
+
+                                        {
+                                            updateUser.profile_image.file ?
+                                                <img src={
+                                                    URL.createObjectURL(updateUser.profile_image)
+                                                } alt='User_Profile' /> :
+                                                <img src={
+                                                    `
+                                                   ${`${config.baseUrlApi}/assets/userprofile/${updateUser.profile_image}`
+                                                    }
+                                                   `}
+                                                    alt='User_Profile'
+                                                />
+
+                                        }
                                     </div>
                                     <div className="user-profile-div-container-content-tabs-panel-profile-image-icon">
                                         <Camera
+                                            onClick={handleUpdateProfileImage}
                                             size={32}
                                             strokeWidth={1.5}
                                             color={'#fff'}
-                                        />;
+                                        />
+                                        <input
+                                            onChange={handleFileUpload}
+                                            accept="image/*"
+                                            type='file'
+                                            style={{ display: 'none' }}
+                                            ref={fileInputRef} />
                                     </div>
                                 </div>
                                 <div className="user-profile-form">
                                     <div className="user-profile-form-input">
                                         <Input.Wrapper
                                             label="Email Address"
+
                                         >
-                                            <Input placeholder="Your email" value={emailinput} onChange={(e) => setEmailInput(e.target.value)} />
+                                            <Input
+                                                disabled
+                                                placeholder="Your email"
+                                                value={updateUser.email}
+                                                onChange={(e) => setUpdateUser({ ...updateUser, email: e.target.value })} />
                                         </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input">
                                         <Input.Wrapper
                                             label="First Name"
+                                            error={
+                                                `${validateUser.first_name === 1 ?
+                                                    'Please Enter First Name' :
+                                                    ''
+                                                }`
+                                            }
                                         >
-                                            <Input placeholder="First Name" value={firstNameinput} onChange={(e) => setfirstNameInput(e.target.value)} />
+                                            <Input
+                                                placeholder="First Name"
+                                                value={updateUser.first_name}
+                                                onChange={(e) => setUpdateUser({ ...updateUser, first_name: e.target.value })}
+                                            />
                                         </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input">
                                         <Input.Wrapper
                                             label="Last Name"
+                                            error={
+                                                `${validateUser.last_name === 1 ?
+                                                    'Please Enter Last Name' :
+                                                    ''
+                                                }`
+                                            }
                                         >
-                                            <Input placeholder="Last Name" value={lastNameinput} onChange={(e) => setlastNameInput(e.target.value)} />
+                                            <Input
+                                                placeholder="Last Name"
+                                                value={updateUser.last_name}
+                                                onChange={(e) => setUpdateUser({ ...updateUser, last_name: e.target.value })}
+                                            />
                                         </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input">
                                         <Input.Wrapper
                                             label="Phone Number"
+                                            error={
+                                                `${validateUser.number === 1 ?
+                                                    'Please Enter Phone Number' :
+                                                    validateUser.number === 2 ?
+                                                        'Please Enter Valid Number' : ''
+                                                }`
+                                            }
                                         >
-                                            <Input placeholder="Phone Number" value={phoneinput} onChange={(e) => setphoneInput(e.target.value)} />
+                                            <Input
+                                                placeholder="Phone Number"
+                                                value={updateUser.number}
+                                                onChange={(e) => setUpdateUser({ ...updateUser, number: e.target.value })}
+                                            />
                                         </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input-button">
-                                        <button>Save Changes</button>
+                                        <button
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={handleUpdateUser}
+                                        >Save Changes</button>
                                     </div>
                                 </div>
                             </Tabs.Panel>
