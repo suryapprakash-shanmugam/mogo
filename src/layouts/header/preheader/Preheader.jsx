@@ -275,7 +275,7 @@ const Preheader = () => {
                       </Menu.Item>
                     </p>
                     <p>
-                      <Menu.Item>
+                      <Menu.Item component={Link} to="/your_orders">
                         Your Orders
                       </Menu.Item>
                     </p>

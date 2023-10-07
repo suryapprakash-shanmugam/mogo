@@ -1,0 +1,37 @@
+.user-orders-individual-div {
+    width: 100%;
+    padding: 30px 0px;
+    font-family: 'Open Sans';
+}
+
+.user-orders-individual-div-container {
+    padding: 0px 120px;
+}
+
+.user-orders-individual-div-container-heading {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-orders-individual-div-container-content {
+    padding: 20px 0px;
+}
+.user-rating-div
+{
+    display: flex;
+    gap: 1rem;
+    font-size: 16px;
+    font-family: 'Open Sans';
+    align-items: center;
+    font-weight: 600;
+}
+.user-review-model-button
+{
+    gap: 1rem;
+}
+.user-review-model-button .user-review-model-button-close
+{
+    background-color: var(--Discount-Color) !important;
+}

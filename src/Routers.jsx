@@ -52,6 +52,8 @@ import Contact from './pages/UI/Contact/Contact';
 //import about from src->pages->about
 import About from './pages/UI/About/About';
 import UserProfile from './pages/UI/UserProfile/UserProfile';
+import UserOrders from './pages/UI/UserOrders/UserOrders';
+import UserOrdersIndividual from './pages/UI/UserOrdersIndividual/UserOrdersIndividual';
 
 const Routers = () => {
     const location = useLocation();
@@ -165,10 +167,12 @@ const Routers = () => {
         '/contact': <Contact />,
 
         '/about': <About />,
-        
+
         '/your_account': <UserProfile />,
 
+        '/your_orders': <UserOrders />,
 
+        '/user_order_individual': <UserOrdersIndividual />,
     }
 
     const renderBodyData =

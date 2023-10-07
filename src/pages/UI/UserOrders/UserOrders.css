@@ -1,0 +1,22 @@
+.user-orders-div {
+    width: 100%;
+    padding: 30px 0px;
+    font-family: 'Open Sans';
+}
+
+.user-orders-div-container {
+    padding: 0px 120px;
+}
+
+.user-orders-div-container-heading {
+    padding: 20px 0px;
+}
+
+.user-orders-div-container-content {
+    padding: 20px 0px;
+}
+.user-orders-button-style
+{
+    background-color: var(--Logo-Color2);
+    color: #fff;
+}
