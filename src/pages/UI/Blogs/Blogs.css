@@ -1,1 +1,22 @@
-/* sdafedsf */
+.blogs-div {
+    font-family: 'Open Sans';
+    padding: 20px 0px;
+}
+.blogs-div-container {
+    padding: 0px 120px;
+}
+.blogs-div-container-heading
+{
+    padding: 20px 0px;
+}
+.blogs-div-container-content
+{
+    padding: 10px 0px;
+}
+.blogs-div-container-content-main
+{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    gap: 1.2rem;
+    justify-content: space-between;
+}

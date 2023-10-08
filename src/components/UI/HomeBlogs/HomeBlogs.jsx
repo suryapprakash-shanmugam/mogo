@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 
 //import mantine packages
-import { Center, Container } from '@mantine/core'
+import { Center, Container, Text } from '@mantine/core'
 
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -16,6 +16,7 @@ import living_linen from '../../../assets/home/grid-category/living_linen.webp'
 //import images for icons 
 import folder from '../../../assets/home/home-blogs/folder.webp'
 import time from '../../../assets/home/home-blogs/time.webp'
+import { Link } from 'react-router-dom';
 
 const HomeBlogs = ({ header, subheader, header2 }) => {
 
@@ -33,6 +34,7 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
         {
             image: living_linen,
             blog_head: 'Living Linen is a heading',
+            blog_link: '/ui_blogs_individual',
             type: 'lifestyle',
             uploadedtime: '2 weeks ago',
             blog_description: 'The Living Linen Project was set up in 1995 as an oral archive of the knowledge of the Irish linen industry still available within a nucleus of people who were formerly working in the industry in Ulster.'
@@ -40,6 +42,7 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
         {
             image: living_linen,
             blog_head: 'Living Linen is a heading',
+            blog_link: '/ui_blogs_individual',
             type: 'lifestyle',
             uploadedtime: '2 weeks ago',
             blog_description: 'The Living Linen Project was set up in 1995 as an oral archive of the knowledge of the Irish linen industry still available within a nucleus of people who were formerly working in the industry in Ulster.'
@@ -47,6 +50,7 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
         {
             image: living_linen,
             blog_head: 'Living Linen is a heading',
+            blog_link: '/ui_blogs_individual',
             type: 'lifestyle',
             uploadedtime: '2 weeks ago',
             blog_description: 'The Living Linen Project was set up in 1995 as an oral archive of the knowledge of the Irish linen industry still available within a nucleus of people who were formerly working in the industry in Ulster.'
@@ -54,6 +58,7 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
         {
             image: living_linen,
             blog_head: 'Living Linen is a heading',
+            blog_link: '/ui_blogs_individual',
             type: 'lifestyle',
             uploadedtime: '2 weeks ago',
             blog_description: 'The Living Linen Project was set up in 1995 as an oral archive of the knowledge of the Irish linen industry still available within a nucleus of people who were formerly working in the industry in Ulster.'
@@ -70,11 +75,13 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
                     <Center>
                         <div className="homeblogs-div-container-heading">
                             <h1>
+                            <Text className='blogs-links' component={Link} to='/ui_blogs'>
                                 {header}
                                 &nbsp;
                                 <span className='second-header-color'>
                                     {header2}
                                 </span>
+                            </Text>
                             </h1>
                             <p>{subheader}</p>
                         </div>
@@ -104,11 +111,11 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
                                         <Carousel.Slide key={index} className='homeblogs-div-container-content-slider-individual'>
                                             <div className="homeblogs-div-container-content-slider-individual-blog">
                                                 <div className="homeblogs-div-container-content-slider-individual-blog-image">
-                                                    <img src={homeblogs.image} alt="" />
+                                                    <Text component={Link} to={homeblogs.blog_link}><img src={homeblogs.image} alt="" /></Text>
                                                 </div>
                                                 <div className="homeblogs-div-container-content-slider-individual-blog-content">
                                                     <div className="homeblogs-div-container-content-slider-individual-blog-content-heading">
-                                                        <h2>{homeblogs.blog_head}</h2>
+                                                        <Text className='blogs-links' component={Link} to={homeblogs.blog_link}><h2>{homeblogs.blog_head}</h2></Text>
                                                     </div>
                                                     <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time">
                                                         <div className="homeblogs-div-container-content-slider-individual-blog-content-type-time-type">

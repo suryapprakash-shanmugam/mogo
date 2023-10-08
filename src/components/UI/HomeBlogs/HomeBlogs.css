@@ -123,3 +123,8 @@
 .homeblogs-div-container-content-slider:hover .mantine-Carousel-controls {
     opacity: 1;
 }
+
+.blogs-links
+{
+    font-family: 'Open Sans';
+}
