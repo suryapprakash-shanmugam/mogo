@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useQuery } from 'react-query'
 import { findUserByid } from '../../../config/quries/users/usersQuery'
 import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData'
+import config from "../../../config/server/Servers"
 
 const Preheader = () => {
 
@@ -178,6 +179,13 @@ const Preheader = () => {
     )
   }
 
+
+  // Handle Your Account
+  const handleYourAccount = () => {
+    setLoginModalOpen(true)
+  }
+
+
   return (
     <div>
       <div className="preheader">
@@ -226,7 +234,13 @@ const Preheader = () => {
             <Menu zIndex={1234568}>
               <Menu.Target>
                 <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
-                  <Avatar size={'2rem'} radius="lg" />
+                  <Avatar size={'2rem'} radius="lg"
+                    src={
+                      userData.profile_image
+                        ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
+                        : ''
+                    }
+                  />
                   <p className='para_color'>
                     {
                       userData.first_name ?
@@ -270,12 +284,21 @@ const Preheader = () => {
                   <hr />
                   <div className="preheader-container-location-currency-user-user-dropdown-extra">
                     <p>
-                      <Menu.Item component={Link} to="/your_account" className="navbar-link">
+                      <Menu.Item
+                        onClick={!sessionStorage.getItem('MogoUserAccessToken101') && handleYourAccount}
+                        component={Link} to={`${sessionStorage.getItem('MogoUserAccessToken101') ?
+                          '/your_account' : '/'
+                          }`} className="navbar-link">
                         Your Account
                       </Menu.Item>
                     </p>
                     <p>
-                      <Menu.Item component={Link} to="/your_orders">
+                      <Menu.Item
+                        onClick={!sessionStorage.getItem('MogoUserAccessToken101') && handleYourAccount}
+                        component={Link} to={`${sessionStorage.getItem('MogoUserAccessToken101') ?
+                          '/your_orders' : '/'
+                          }`}
+                      >
                         Your Orders
                       </Menu.Item>
                     </p>

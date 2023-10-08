@@ -15,7 +15,8 @@ import { useQuery, useQueryClient } from 'react-query';
 import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData';
 import { findUserByid } from '../../../config/quries/users/usersQuery';
 import config from "../../../config/server/Servers"
-
+import { addressCountries, selectedListStates } from '../../../StateHandler/InitialState/Address/AddressState';
+import { hanldeCreateUserAddressControl } from "../../../controller/userAddress/userAddress"
 const UserProfile = () => {
 
     const loaction = useNavigate()
@@ -76,6 +77,7 @@ const UserProfile = () => {
 
     // Query
     const userData = useSelector((state) => state.userData.value)
+    const [selectedImage, setSelectedImage] = useState(null)
 
     // Update User Data 
     const [updateUser, setUpdateUser] = useState({
@@ -92,24 +94,6 @@ const UserProfile = () => {
         first_name: 0,
         last_name: 0,
         number: 0
-    })
-
-    useEffect(() => {
-        if (userData.profile_image) {
-            setUpdateUser({ ...updateUser, profile_image: userData.profile_image })
-        }
-        if (userData.email) {
-            setUpdateUser({ ...updateUser, email: userData.email })
-        }
-        if (userData.first_name) {
-            setUpdateUser({ ...updateUser, first_name: userData.first_name })
-        }
-        if (userData.last_name) {
-            setUpdateUser({ ...updateUser, last_name: userData.last_name })
-        }
-        if (userData.mobile_number) {
-            setUpdateUser({ ...updateUser, mobile_number: userData.mobile_number })
-        }
     })
 
     const queryClient = useQueryClient()
@@ -133,6 +117,7 @@ const UserProfile = () => {
     };
     const handleFileUpload = (e) => {
         const selectedFile = e.target.files[0];
+        setSelectedImage(selectedFile)
         setUpdateUser({ ...updateUser, profile_image: selectedFile });
     };
 
@@ -145,9 +130,89 @@ const UserProfile = () => {
         {
             onSuccess: (res) => {
                 dispatch(setUserData(res?.data?.data))
+                setUpdateUser({
+                    ...updateUser,
+                    email: res.data.data.email,
+                    first_name: res.data.data.first_name,
+                    last_name: res.data.data.last_name,
+                    number: res.data.data.mobile_number,
+                    profile_image: res.data.data.profile_image
+                })
             },
         }
     )
+
+
+    // User Address Details 
+    const [userAddress, setUserAddress] = useState({
+        address_type: '',
+        first_name: '',
+        last_name: '',
+        email: "",
+        number: '',
+        address: '',
+        country: '',
+        state: '',
+        city: '',
+        zip_code: ''
+    })
+
+    const [validateUserAddress, setValidateUserAddress] = useState({
+        address_type: 0,
+        first_name: 0,
+        last_name: 0,
+        email: 0,
+        number: 0,
+        address: 0,
+        country: 0,
+        state: 0,
+        city: 0,
+        zip_code: 0
+    })
+
+    // handle User Address
+    const handleCreateUserAddress = () => {
+        hanldeCreateUserAddressControl(
+            userAddress,
+            setUserAddress,
+            validateUserAddress,
+            setValidateUserAddress
+        )
+    }
+
+    // Validate User Address
+    useEffect(() => {
+        if (userAddress.address_type) {
+            setValidateUserAddress({ ...validateUserAddress, address_type: 0 })
+        }
+        if (userAddress.first_name) {
+            setValidateUserAddress({ ...validateUserAddress, first_name: 0 })
+        }
+        if (userAddress.last_name) {
+            setValidateUserAddress({ ...validateUserAddress, last_name: 0 })
+        }
+        if (userAddress.email) {
+            setValidateUserAddress({ ...validateUserAddress, email: 0 })
+        }
+        if (userAddress.number) {
+            setValidateUserAddress({ ...validateUserAddress, number: 0 })
+        }
+        if (userAddress.address) {
+            setValidateUserAddress({ ...validateUserAddress, address: 0 })
+        }
+        if (userAddress.country) {
+            setValidateUserAddress({ ...validateUserAddress, country: 0 })
+        }
+        if (userAddress.state) {
+            setValidateUserAddress({ ...validateUserAddress, state: 0 })
+        }
+        if (userAddress.city) {
+            setValidateUserAddress({ ...validateUserAddress, city: 0 })
+        }
+        if (userAddress.zip_code) {
+            setValidateUserAddress({ ...validateUserAddress, zip_code: 0 })
+        }
+    }, [userAddress])
 
     return (
         <div>
@@ -166,17 +231,13 @@ const UserProfile = () => {
                                 <Tabs.Tab value="shipaddress">Shipping Address</Tabs.Tab>
                                 <Tabs.Tab value="changepassword">Change Password</Tabs.Tab>
                             </Tabs.List>
-                            {
-                                console.log(updateUser.profile_image)
-                            }
                             <Tabs.Panel className='user-profile-div-container-content-tabs-panel' value="profile" pl="xs">
                                 <div className="user-profile-container">
                                     <div className="user-profile-div-container-content-tabs-panel-profile-image">
-
                                         {
-                                            updateUser.profile_image.file ?
+                                            selectedImage ?
                                                 <img src={
-                                                    URL.createObjectURL(updateUser.profile_image)
+                                                    URL.createObjectURL(selectedImage)
                                                 } alt='User_Profile' /> :
                                                 <img src={
                                                     `
@@ -352,86 +413,189 @@ const UserProfile = () => {
                     <div className="sellerbalance-edit-modal-body-content">
                         <div className="user-profile-form-input">
                             <Input.Wrapper
+                                error={`${validateUserAddress.address_type === 1 ?
+                                    'Address Type is Compulsory' : ''
+                                    }`}
                                 label="Addres Title"
                             >
-                                <Input placeholder="Addres Title" value={addresstitleinput} onChange={(e) => setaddresstitleInput(e.target.value)} />
+                                <Input
+                                    placeholder="Addres Title"
+                                    value={userAddress.address_type}
+                                    onChange={(e) => setUserAddress({
+                                        ...userAddress,
+                                        address_type: e.target.value
+                                    })}
+                                />
                             </Input.Wrapper>
                         </div>
                         <div className="shipping-address-model-form-input">
-
-
                             <div className="user-profile-form-input">
                                 <Input.Wrapper
+                                    error={`${validateUserAddress.first_name === 1 ?
+                                        'First Name is Compulsory' : ''
+                                        }`}
                                     label="First Name"
                                 >
-                                    <Input placeholder="First Name" value={addfirstnameinput} onChange={(e) => setaddfirstnameInput(e.target.value)} />
+                                    <Input
+                                        placeholder="First Name"
+                                        value={userAddress.first_name}
+                                        onChange={(e) => setUserAddress({
+                                            ...userAddress,
+                                            first_name: e.target.value
+                                        })}
+                                    />
                                 </Input.Wrapper>
                             </div>
                             <div className="user-profile-form-input">
                                 <Input.Wrapper
+                                    error={`${validateUserAddress.last_name === 1 ?
+                                        'Last Name is Compulsory' : ''
+                                        }`}
                                     label="Last Name"
                                 >
-                                    <Input placeholder="Last Name" value={addlastnameinput} onChange={(e) => setaddlastnameInput(e.target.value)} />
+                                    <Input
+                                        placeholder="Last Name"
+                                        value={userAddress.last_name}
+                                        onChange={(e) => setUserAddress({
+                                            ...userAddress,
+                                            last_name: e.target.value
+                                        })}
+                                    />
                                 </Input.Wrapper>
                             </div>
                             <div className="user-profile-form-input">
                                 <Input.Wrapper
                                     label="Email Address"
+                                    error={`${validateUserAddress.email === 1 ?
+                                        'Email is Compulsory' :
+                                        validateUserAddress.email === 2 ?
+                                            'Please Enter Valid email Address' : ''
+                                        }`}
                                 >
-                                    <Input placeholder="Your email" value={addemailinput} onChange={(e) => setaddemailInput(e.target.value)} />
+                                    <Input
+                                        placeholder="Your email"
+                                        value={userAddress.email}
+                                        onChange={(e) => setUserAddress({
+                                            ...userAddress,
+                                            email: e.target.value
+                                        })}
+                                    />
                                 </Input.Wrapper>
                             </div>
                             <div className="user-profile-form-input">
                                 <Input.Wrapper
                                     label="Phone Number"
+                                    error={`${validateUserAddress.number === 1 ?
+                                        'Mobile Number is Compulsory' :
+                                        validateUserAddress.number === 2 ?
+                                            'Please Enter Valid Mobile Number' : ''
+                                        }`}
                                 >
-                                    <Input placeholder="Phone Number" value={addphoneinput} onChange={(e) => setaddphoneInput(e.target.value)} />
+                                    <Input
+                                        placeholder="Phone Number"
+                                        value={userAddress.number}
+                                        onChange={(e) => setUserAddress({
+                                            ...userAddress,
+                                            number: e.target.value
+                                        })}
+                                    />
                                 </Input.Wrapper>
                             </div>
                         </div>
                         <div className="user-profile-form-input">
                             <Input.Wrapper
                                 label="Address"
+                                error={`${validateUserAddress.address === 1 ?
+                                    'Address is Compulsory' : ''
+                                    }`}
                             >
-                                <Input placeholder="Address" value={addaddressinput} onChange={(e) => setaddaddressInput(e.target.value)} />
+                                <Input
+                                    placeholder="Address"
+                                    value={userAddress.address}
+                                    onChange={(e) => setUserAddress({
+                                        ...userAddress,
+                                        address: e.target.value
+                                    })}
+                                />
                             </Input.Wrapper>
                         </div>
                         <div className="shipping-address-model-form-input">
                             <div className="user-profile-form-input">
                                 <Select
+                                    error={`${validateUserAddress.country === 1 ?
+                                        'Country is Compulsory' : ''
+                                        }`}
                                     label="Country"
                                     placeholder="Country"
                                     rightSection={<img src={anglebottom} width={11} />}
-                                    data={country}
-                                    value={shopCountry} onChange={handileShopCountry}
+                                    data={addressCountries?.map(data => ({
+                                        value: data,
+                                        label: data
+                                    }))}
+                                    value={userAddress.country}
+                                    onChange={
+                                        (e) => setUserAddress({ ...userAddress, country: e })
+                                    }
                                 />
                             </div>
                             <div className="user-profile-form-input">
                                 <Select
+                                    error={`${validateUserAddress.state === 1 ?
+                                        'State is Compulsory' : ''
+                                        }`}
                                     label="State"
                                     placeholder="State"
                                     rightSection={<img src={anglebottom} width={11} />}
-                                    data={state}
-                                    value={shopState} onChange={handileShopState}
+                                    data={
+                                        selectedListStates[userAddress.country ? userAddress.country : 'India']?.map(data => ({
+                                            value: data,
+                                            label: data
+                                        }))
+                                    }
+                                    value={userAddress.state}
+                                    onChange={
+                                        (e) => setUserAddress({ ...userAddress, state: e })
+                                    }
                                 />
                             </div>
                             <div className="user-profile-form-input">
                                 <Input.Wrapper
                                     label="City"
+                                    error={`${validateUserAddress.city === 1 ?
+                                        'City is Compulsory' : ''
+                                        }`}
                                 >
-                                    <Input placeholder="City" value={shopCity} onChange={(e) => setShopCity(e.target.value)} />
+                                    <Input
+                                        placeholder="City"
+                                        value={userAddress.city}
+                                        onChange={(e) => setUserAddress({
+                                            ...userAddress,
+                                            city: e.target.value
+                                        })}
+                                    />
                                 </Input.Wrapper>
                             </div>
                             <div className="user-profile-form-input">
                                 <Input.Wrapper
+                                    error={`${validateUserAddress.zip_code === 1 ?
+                                        'Zip Code is Compulsory' : ''
+                                        }`}
                                     label="Zip Code"
                                 >
-                                    <Input placeholder="Zip Code" value={shopZIpcode} onChange={(e) => setShopZIpcode(e.target.value)} />
+                                    <Input placeholder="Zip Code"
+                                        value={userAddress.zip_code}
+                                        onChange={(e) => setUserAddress({
+                                            ...userAddress,
+                                            zip_code: e.target.value
+                                        })}
+                                    />
                                 </Input.Wrapper>
                             </div>
                         </div>
                         <div className="sellerbalance-edit-modal-body-content-button ht-20">
-                            <button>Submit</button>
+                            <button
+                                onClick={handleCreateUserAddress}
+                            >Submit</button>
                         </div>
                     </div>
                 </div>
