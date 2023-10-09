@@ -29,6 +29,14 @@
   color: var(--Logo-Color6);
 }
 
+.poppins-font-family {
+  font-family: 'Poppins';
+}
+
+.open-sanserif {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 
 ::-webkit-scrollbar {
   width: 5px;

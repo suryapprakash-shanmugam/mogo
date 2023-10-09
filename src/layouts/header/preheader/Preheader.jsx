@@ -65,6 +65,10 @@ const Preheader = () => {
       value: 'tamil',
       label: 'Tamil',
     },
+    {
+      value: 'hindi',
+      label: 'Hindi',
+    },
   ]
 
   const [valueIcon, setValueIcon] = useState('india')
@@ -218,7 +222,7 @@ const Preheader = () => {
               itemComponent={SelectItem}
               value={languageState.label}
               className='lang-select'
-              rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
+              rightSection={<ChevronDown color='white' strokeWidth={1} size="1.2rem" />}
               onChange={(e) => setValueIcon(e)}
               icon={filterData[0].icon}
               data={languageState}
@@ -227,7 +231,7 @@ const Preheader = () => {
             <div className="preheader-container-location-currency-user-currency">
               <Select
                 zIndex={1234568} defaultValue={currencyArray[0].value}
-                rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
+                rightSection={<ChevronDown color='white' strokeWidth={1} size="1.2rem" />}
                 data={currencyArray}
               />
             </div>
@@ -241,7 +245,7 @@ const Preheader = () => {
                         : ''
                     }
                   />
-                  <p className='para_color'>
+                  <p>
                     {
                       userData.first_name ?
                         userData.first_name :
@@ -256,7 +260,7 @@ const Preheader = () => {
                   {
                     userData.first_name ?
                       <p>
-                        <Center p='lg'>
+                        <Center color='black' p='lg'>
                           {userData.first_name} {userData.last_name}
                         </Center>
                       </p>
