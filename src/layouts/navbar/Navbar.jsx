@@ -1,5 +1,6 @@
 //import react packages
 import { Container } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,6 +8,11 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
+
+    const header1060MediaQuery = useMediaQuery('(max-width:1061px)')
+    const header786MediaQuery = useMediaQuery('(max-width:787px)')
+    const header500MediaQuery = useMediaQuery('(max-width:501px)')
+
     return (
         <div>
             <div className="navbar-div">

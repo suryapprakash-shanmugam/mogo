@@ -118,3 +118,37 @@
     justify-content: space-around;
     gap: 2rem;
 }
+
+@media(max-width:787px) {
+    .navbar-div-container-ul
+    {
+        justify-content: center;
+    }
+    .navbar-div-container-ul-dropdown {
+    padding: 1rem;
+    }
+    .navbar-div-container-ul-dropdown-content
+    {
+        gap: 0.5rem;
+        justify-content: unset;
+    }
+}
+@media(max-width:501px) {
+    .navbar-div-container-ul
+    {
+        justify-content: flex-start;
+    }
+    .navbar-div-container-ul2
+    {
+        gap: 0.8rem;
+        font-size: 12px;
+    }
+    .navbar-div-container-ul-dropdown {
+    padding: 1rem;
+    }
+    .navbar-div-container-ul-dropdown-content
+    {
+        gap: 0.5rem;
+        justify-content: unset;
+    }
+}

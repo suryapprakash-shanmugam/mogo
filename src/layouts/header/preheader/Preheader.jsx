@@ -25,6 +25,7 @@ import { useQuery } from 'react-query'
 import { findUserByid } from '../../../config/quries/users/usersQuery'
 import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData'
 import config from "../../../config/server/Servers"
+import { useMediaQuery } from '@mantine/hooks'
 
 const Preheader = () => {
 
@@ -185,6 +186,8 @@ const Preheader = () => {
     setLoginModalOpen(true)
   }
 
+  const preheaderMediaQuery = useMediaQuery('(max-width:501px)')
+
 
   return (
     <div>
@@ -208,7 +211,10 @@ const Preheader = () => {
                 <img src={map} alt="Loaction" />
               </div> */}
               <div className="preheader-container-location-currency-user-location-text">
-                <MapPin strokeWidth={1} size={'1.1rem'} />
+                {
+                  preheaderMediaQuery ? <MapPin strokeWidth={1} size={'0.8rem'} /> : <MapPin strokeWidth={1} size={'1.1rem'} />
+                }
+
                 <p>Location</p>
               </div>
             </div>
@@ -218,7 +224,7 @@ const Preheader = () => {
               itemComponent={SelectItem}
               value={languageState.label}
               className='lang-select'
-              rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
+              rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
               onChange={(e) => setValueIcon(e)}
               icon={filterData[0].icon}
               data={languageState}
@@ -227,14 +233,14 @@ const Preheader = () => {
             <div className="preheader-container-location-currency-user-currency">
               <Select
                 zIndex={1234568} defaultValue={currencyArray[0].value}
-                rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />}
+                rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
                 data={currencyArray}
               />
             </div>
             <Menu zIndex={1234568}>
               <Menu.Target>
                 <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
-                  <Avatar size={'2rem'} radius="lg"
+                  <Avatar size={preheaderMediaQuery ? "1.5rem" : "2rem"} radius="lg"
                     src={
                       userData.profile_image
                         ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
@@ -248,7 +254,7 @@ const Preheader = () => {
                         ' Login'
                     }
                   </p>
-                  <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size="1.2rem" />
+                  <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />
                 </Flex>
               </Menu.Target>
               <Menu.Dropdown>
@@ -288,7 +294,7 @@ const Preheader = () => {
                         onClick={!sessionStorage.getItem('MogoUserAccessToken101') && handleYourAccount}
                         component={Link} to={`${sessionStorage.getItem('MogoUserAccessToken101') ?
                           '/your_account' : '/'
-                          }`} className="navbar-link">
+                          }`} className="navbar-link user-dropdown-link">
                         Your Account
                       </Menu.Item>
                     </p>
@@ -297,25 +303,25 @@ const Preheader = () => {
                         onClick={!sessionStorage.getItem('MogoUserAccessToken101') && handleYourAccount}
                         component={Link} to={`${sessionStorage.getItem('MogoUserAccessToken101') ?
                           '/your_orders' : '/'
-                          }`}
+                          }`}  className="navbar-link user-dropdown-link"
                       >
                         Your Orders
                       </Menu.Item>
                     </p>
                     <p>
-                      <Menu.Item>
+                      <Menu.Item className="navbar-link user-dropdown-link">
                         Seller Account
                       </Menu.Item>
                     </p>
                     <p>
-                      <Menu.Item>
+                      <Menu.Item className="navbar-link user-dropdown-link">
                         Become Seller
                       </Menu.Item>
                     </p>
                     {
                       userData.first_name &&
                       <p onClick={handleLogout}>
-                        <Menu.Item>
+                        <Menu.Item className="navbar-link user-dropdown-link">
                           Log out
                         </Menu.Item>
                       </p>

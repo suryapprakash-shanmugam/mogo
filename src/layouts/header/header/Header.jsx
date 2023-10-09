@@ -17,6 +17,7 @@ import search from '../../../assets/header/search.webp'
 import cart from '../../../assets/header/cart.webp'
 import wishlist from '../../../assets/header/wishlist.webp'
 import { Heart, ShoppingCart } from 'tabler-icons-react'
+import { useMediaQuery } from '@mantine/hooks'
 
 //select category array in search
 const searchCategoryArray = [
@@ -44,12 +45,14 @@ const Header = () => {
     // const handleRegister = () => {
     //     handleRegisterControl()
     // }
-
+    const header1060MediaQuery = useMediaQuery('(max-width:1061px)')
+    const header786MediaQuery = useMediaQuery('(max-width:787px)')
+    const header500MediaQuery = useMediaQuery('(max-width:501px)')
     return (
         <div>
             <div className="header-div">
                 <Flex pt={'0.3rem'} pb={'1rem'} pl={'2rem'} pr={'2rem'} align={'center'} justify={'space-around'}>
-                    <Flex align={'center'} gap={'2rem'}>
+                    <Flex align={'center'} gap={header1060MediaQuery ? '0.5rem' : '2rem'}>
                         <Image component={Link} to='/' width={'160px'} src={logo} alt="logo" />
                         <div className="header-div-container-search">
                             <Paper className="header-div-container-search-paper">
