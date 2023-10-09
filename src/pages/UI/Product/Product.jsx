@@ -1,6 +1,10 @@
 //import react packages
 import React, { useEffect, useState } from 'react'
 
+import config from "../../../config/server/Servers"
+
+import { useParams } from 'react-router-dom';
+
 //import mantine packages
 import { Container, Input, Modal, Rating, ScrollArea, Select, Tabs, Text, Textarea } from '@mantine/core'
 
@@ -13,6 +17,9 @@ import { categoryArray } from './ProductArray';
 
 //import Product css
 import './Product.css'
+
+
+import ReactHtmlParser from 'react-html-parser';
 
 //import icons
 import eye from '../../../assets/product/eye.webp'
@@ -48,59 +55,38 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from 'react-query';
 import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice';
-import { listAllProduct } from '../../../config/quries/Products/ProductQuries';
+import { getProductByID, listAllProduct } from '../../../config/quries/Products/ProductQuries';
 
-//array for product
-const productArray = [
-    {
-        color: '1',
-        image: [
-            {
-                image: image1,
-            },
-            {
-                image: image2,
-            }
-        ]
-    },
-    {
-        color: '2',
-        image: [
-            {
-                image: image3,
-            },
-            {
-                image: image4,
-            },
-            {
-                image: image5,
-            }
-        ]
-    },
-    {
-        color: '3',
-        image: [
-            {
-                image: image6,
-            },
-            {
-                image: image7,
-            },
-            {
-                image: image8,
-            }
-        ]
-    },
-]
 
-// array for breadcrumb
 
 const Product = ({ category, subcategory, heading }) => {
+    window.scrollTo(0, 0)
+
+    // Path Id 
+    const location = useParams()
+
+    const [individualProduct, setIndividialProduct] = useState('')
     const convertedString = category.replace(/_/g, ' ');
     const convertedString1 = subcategory.replace(/_/g, ' ');
     const convertedString2 = heading.replace(/_/g, ' ');
 
     const categoryItems = [];
+    //array for product
+    const productArray = [
+        {
+            color: '1',
+            image: [
+                {
+                    image: image1,
+                },
+                {
+                    image: image2,
+                }
+            ]
+        }
+    ]
+
+    // array for breadcrumb
 
     categoryArray
         .flatMap(category => category.value)
@@ -124,14 +110,6 @@ const Product = ({ category, subcategory, heading }) => {
     const subcategoryvalue = result1[0].value
     const subcategorylink = result1[0].link
     const productheading = convertedString2
-
-    const items = [
-        { title: 'Home', href: '/' },
-        { title: 'Products', href: '/products' },
-        { title: categoryvaluesvalue, href: categoryvalueslink },
-        { title: subcategoryvalue, href: subcategorylink },
-        { title: productheading, href: '/' },
-    ];
 
     const [questionModalOpen, setQuestionModalOpen] = useState(false)
     const [questionSubject, setQuestionSubject] = useState(convertedString2)
@@ -224,7 +202,7 @@ const Product = ({ category, subcategory, heading }) => {
     };
 
     // ProductList
-    const productList = useSelector((state)=>state.productList.value)
+    const productList = useSelector((state) => state.productList.value)
     const dispatch = useDispatch()
     // const productList = 
     useQuery('productList',
@@ -235,6 +213,29 @@ const Product = ({ category, subcategory, heading }) => {
             },
         }
     )
+
+
+
+    useQuery(
+        ['individualProduct', location.heading],
+        getProductByID,
+        {
+            onSuccess: (res) => {
+                setIndividialProduct(res?.data?.data?.result)
+            }
+        }
+    )
+
+    const items = [
+        { title: 'Home', href: '/' },
+        { title: 'Products', href: '/products' },
+        { title: categoryvaluesvalue, href: categoryvalueslink },
+        { title: subcategoryvalue, href: subcategorylink },
+        { title: individualProduct?.name, href: '/' },
+    ];
+
+    const [productImage, setProductImage] = useState()
+
 
     return (
         <div>
@@ -250,7 +251,7 @@ const Product = ({ category, subcategory, heading }) => {
                                     <div className="product-div-container-main-product-display-image-container-images">
                                         {selectedColor && (
                                             <div className="product-div-container-main-product-display-image-container-images-div">
-                                                {productArray
+                                                {/* {productArray
                                                     .find((product) => product.color === selectedColor)
                                                     .image.map((img, index) => (
                                                         <img
@@ -259,14 +260,33 @@ const Product = ({ category, subcategory, heading }) => {
                                                             alt={`product ${index}`}
                                                             onClick={() => handleImageClick(img.image, index)}
                                                         />
-                                                    ))}
+                                                    ))} */}
+
+                                                {
+                                                    individualProduct?.product_gallery_image?.map((value, index) => (
+                                                        <img
+                                                            key={index}
+                                                            // src={img.image}
+                                                            src={`${config.baseUrlApi}/assets/productImages/${value}`}
+                                                            alt={`product ${index}`}
+                                                            // onClick={() => handleImageClick(value, index)}
+                                                            onClick={() => setProductImage(value)}
+                                                        />
+                                                    ))
+                                                }
                                             </div>
                                         )}
                                     </div>
                                     {selectedColor && (
                                         <div className="product-div-container-main-product-display-image-container-mainimage">
                                             <img
-                                                src={getCurrentImage()}
+                                                src={
+                                                    productImage ?
+                                                        `${config.baseUrlApi}/assets/productImages/${productImage}`
+                                                        :
+                                                        `${config.baseUrlApi}/assets/productImages/${individualProduct.product_image}
+                                                    `
+                                                }
                                                 alt={`First product of Selected Color`}
                                             />
                                             <div className="product-div-container-main-product-display-image-container-prev-next">
@@ -279,11 +299,14 @@ const Product = ({ category, subcategory, heading }) => {
                             </div>
                             <div className="product-div-container-main-product-display-content">
                                 <div className="product-div-container-main-product-display-content-heading">
-                                    <h1>dfewf</h1>
+                                    <h1>{individualProduct?.name}</h1>
                                 </div>
                                 <div className="product-div-container-main-product-display-content-shoper">
                                     <div className="product-div-container-main-product-display-content-shoper-by-rating">
-                                        <p>By <span>Admin</span></p>
+                                        <p>By <span>
+                                            {individualProduct?.admin_id ?
+                                                'Admin' : individualProduct?.vendor_id ? 'Vendor' : ''}
+                                        </span></p>
                                         <div className="product-div-container-main-product-display-content-shoper-by-rating-rating">
                                             <Rating value={5} readOnly />
                                             <p>{'(1)'}</p>
@@ -321,11 +344,24 @@ const Product = ({ category, subcategory, heading }) => {
                                 <div className="product-div-container-main-product-display-content-price-askquestion">
                                     <div className="product-div-container-main-product-display-content-price-askquestion-price">
                                         <div className="product-div-container-main-product-display-content-price-askquestion-price-price">
-                                            <p className='old-price'>₹89</p>
-                                            <p className='current-price'>₹80.10</p>
+
+                                            <p className='old-price'>
+                                                {individualProduct?.actual_price
+                                                    ?
+                                                    '₹' + individualProduct?.actual_price :
+                                                    '₹ 299'
+                                                }
+                                            </p>
+                                            <p className='current-price'>
+                                                {individualProduct?.sale_price
+                                                    ?
+                                                    '₹' + individualProduct?.sale_price :
+                                                    '₹ 199'
+                                                }
+                                            </p>
                                         </div>
                                         <div className="product-div-container-main-product-display-content-price-askquestion-price-discount">
-                                            <p>-10%</p>
+                                            <p>34%</p>
                                         </div>
                                     </div>
                                     <div className="product-div-container-main-product-display-content-price-askquestion-askquestion">
@@ -351,12 +387,16 @@ const Product = ({ category, subcategory, heading }) => {
                                             <p>SKU</p>
                                         </div>
                                         <div className="product-div-container-main-product-display-content-sku-sku">
-                                            <p>QYJHUBIUHOI9967</p>
+                                            <p>
+                                                {
+                                                    individualProduct?.SKU
+                                                }
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="product-div-container-main-product-display-content-variation-size">
-                                    <div className="product-div-container-main-product-display-content-variation">
+                                    {/* <div className="product-div-container-main-product-display-content-variation">
                                         <div className="product-div-container-main-product-display-content-variation-heading">
                                             <p>Color</p>
                                         </div>
@@ -372,8 +412,8 @@ const Product = ({ category, subcategory, heading }) => {
                                                 ))}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="product-div-container-main-product-display-content-size">
+                                    </div> */}
+                                    {/* <div className="product-div-container-main-product-display-content-size">
                                         <div className="product-div-container-main-product-display-content-size-heading">
                                             <p>Size</p>
                                         </div>
@@ -384,7 +424,7 @@ const Product = ({ category, subcategory, heading }) => {
                                                 <button></button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="product-div-container-main-product-display-content-counter-cart-wishlist">
                                     <div className='product-div-container-main-product-display-content-counter-cart-wishlist-counter'>
@@ -462,10 +502,14 @@ const Product = ({ category, subcategory, heading }) => {
 
                                 <Tabs.Panel value="description" pt="xs">
                                     <div className="product-div-container-main-product-details-tab-description">
-                                        <h2>Women sun dress</h2>
-                                        <p>Many scholars believe, however, that the first crude garments and ornaments worn by humans were designed not for utilitarian but for religious or ritual purposes. Other basic functions of dress include identifying the wearer and making the wearer appear more attractive.</p>
+                                        <h2>
+                                            {individualProduct.name}
+                                        </h2>
+
+                                        {ReactHtmlParser(individualProduct.description)}
+                                        {/* <p>Many scholars believe, however, that the first crude garments and ornaments worn by humans were designed not for utilitarian but for religious or ritual purposes. Other basic functions of dress include identifying the wearer and making the wearer appear more attractive.</p>
                                         <p>Although it is clear why such uses of dress developed and remain significant, it can often be difficult to determine how they are achieved. Some garments thought of as beautiful offer no protection whatsoever and may in fact even injure the wearer. Items that definitely identify one wearer can lose their meaning in another time and place.</p>
-                                        <p>There are no simple answers to such questions, of course, and any one reason is influenced by a multitude of others, but certainly one of the most prevalent theories is that fashion evolved in conjunction with capitalism and the development of modern socioeconomic classes. Thus, in relatively static societies with limited movement between classes, as in many parts of Asia until modern times or in Europe before the Middle Ages, styles did not undergo a pattern of change. In contrast, when lower classes have the ability to copy upper classes, the upper classes quickly instigate fashion changes that demonstrate their authority and high position. During the 20th century, for example, improved communication and manufacturing technology enabled new styles to trickle down from the elite to the masses at ever faster speeds, with the result that fashion change accelerated.</p>
+                                        <p>There are no simple answers to such questions, of course, and any one reason is influenced by a multitude of others, but certainly one of the most prevalent theories is that fashion evolved in conjunction with capitalism and the development of modern socioeconomic classes. Thus, in relatively static societies with limited movement between classes, as in many parts of Asia until modern times or in Europe before the Middle Ages, styles did not undergo a pattern of change. In contrast, when lower classes have the ability to copy upper classes, the upper classes quickly instigate fashion changes that demonstrate their authority and high position. During the 20th century, for example, improved communication and manufacturing technology enabled new styles to trickle down from the elite to the masses at ever faster speeds, with the result that fashion change accelerated.</p> */}
                                     </div>
                                 </Tabs.Panel>
 

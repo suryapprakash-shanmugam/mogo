@@ -35,6 +35,7 @@ import { listAllProduct } from '../../../config/quries/Products/ProductQuries';
 import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice';
 import { useQuery } from 'react-query';
 import config from "../../../config/server/Servers"
+import { getCartByUser } from '../../../config/quries/cart/CartQuries'
 
 const Category = () => {
 
@@ -511,6 +512,8 @@ const Category = () => {
         const shuffled = shuffleArray(productList);
         setShuffledProducts(shuffled);
     }, [productList]);
+
+    const [userCart, setUserCart] = useState()
 
 
     return (

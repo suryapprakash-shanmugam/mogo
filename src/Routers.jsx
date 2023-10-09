@@ -146,7 +146,7 @@ const Routers = () => {
         '/babylinen/apron': <Category />,
         '/babylinen/bumper': <Category />,
 
-        '/product/:category/:subcategory/:heading': (
+        '/product/:category/:subcategory/:id': (
             <Product
                 category={category}
                 subcategory={subcategory}

@@ -22,6 +22,9 @@ import visa from '../../../assets/footer/copyright/visa.webp'
 
 //import react router dom packages
 import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { getCartByUser } from '../../../config/quries/cart/CartQuries'
+import { getProductByID } from '../../../config/quries/Products/ProductQuries'
 
 const Cart = () => {
 
@@ -34,6 +37,22 @@ const Cart = () => {
             setQuantityValue(1)
         }
     }, [quantityValue])
+
+
+    const [cartProduct, setCartProduct] = useState([])
+
+
+    useQuery(
+        ['userCart', sessionStorage.getItem('MogoUserAccessToken101')],
+        getCartByUser,
+        {
+            onSuccess: (res) => {
+                setCartProduct(res?.data?.data)
+            },
+        }
+    )
+
+    console.log(cartProduct);
 
     return (
         <div>

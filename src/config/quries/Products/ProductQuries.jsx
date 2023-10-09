@@ -22,3 +22,9 @@ export const createProductAPI = (formData) => {
 export const listAllProduct = () => {
     return axios.get(`${config.baseUrlApi}/products`)
 }
+
+// Get By id
+export const getProductByID = ({ queryKey }) => {
+    const [_, id] = queryKey
+    return axios.get(`${config.baseUrlApi}/products/getbyid/${id}`)
+}
