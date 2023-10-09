@@ -207,6 +207,7 @@ const OfferSlider = ({ header, header2 }) => {
                     >
                         {
                             shuffledProducts.map((product, index) => {
+                                console.log(product)
                                 return (
                                     <Carousel.Slide key={index} className='offerslider-div-container-slider-individual'>
                                         <Link
@@ -214,7 +215,7 @@ const OfferSlider = ({ header, header2 }) => {
                                         >
                                             <div className="offerslider-div-container-slider-image">
                                                 <img src={`${config.baseUrlApi}/assets/productImages/${product.product_image}`} alt="" />
-                                                <img className="second-image"  src={`${config.baseUrlApi}/assets/productImages/${product.product_gallery_image[1]}`} alt="" />
+                                                <img className="second-image" src={`${config.baseUrlApi}/assets/productImages/${product.product_gallery_image[1]}`} alt="" />
                                                 {/* <img src={offerSlider.secondImage} alt="" /> */}
                                                 <div className="offerslider-div-container-slider-individual-wishlist-cart">
                                                     <div id="offerslider-div-container-slider-individual-wishlist-cart-wishlist">

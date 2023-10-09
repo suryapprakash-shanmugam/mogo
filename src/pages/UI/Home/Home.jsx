@@ -107,7 +107,6 @@ const Home = () => {
     listAllProduct,
     {
       onSuccess: (res) => {
-        console.log(res);
         dispatch(setProductList(res?.data?.data?.result))
       },
     }

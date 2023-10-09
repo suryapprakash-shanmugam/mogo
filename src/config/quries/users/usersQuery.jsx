@@ -26,3 +26,11 @@ export const userLoginAPI = (payload) => {
         payload
     )
 }
+
+export const updateUserAPI = (payload) => {
+    const { id, body } = payload
+    return axios.post(`${config.baseUrlApi}/users/updateuser/${id}`,
+        body,
+        commonHeader
+    )
+}
