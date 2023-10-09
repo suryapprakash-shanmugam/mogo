@@ -61,21 +61,21 @@ const SellerBalances = () => {
     ]
 
     const tableData = [
-        { "User_Id": 1, "User": "Rosco", "Number_of_total_sales": 69, "Balance": "$590.13" },
-        { "User_Id": 2, "User": "Tremain", "Number_of_total_sales": 85, "Balance": "$994.54" },
-        { "User_Id": 3, "User": "Mace", "Number_of_total_sales": 43, "Balance": "$633.45" },
-        { "User_Id": 4, "User": "Reid", "Number_of_total_sales": 1, "Balance": "$660.64" },
-        { "User_Id": 5, "User": "Jaye", "Number_of_total_sales": 46, "Balance": "$798.23" },
-        { "User_Id": 6, "User": "Brody", "Number_of_total_sales": 40, "Balance": "$594.29" },
-        { "User_Id": 7, "User": "Nealon", "Number_of_total_sales": 43, "Balance": "$405.40" },
-        { "User_Id": 8, "User": "Chaddie", "Number_of_total_sales": 70, "Balance": "$512.13" },
-        { "User_Id": 9, "User": "Mano", "Number_of_total_sales": 38, "Balance": "$988.95" },
-        { "User_Id": 10, "User": "Samuel", "Number_of_total_sales": 63, "Balance": "$161.65" },
-        { "User_Id": 11, "User": "Reinold", "Number_of_total_sales": 14, "Balance": "$929.16" },
-        { "User_Id": 12, "User": "Roland", "Number_of_total_sales": 67, "Balance": "$919.50" },
-        { "User_Id": 13, "User": "Dana", "Number_of_total_sales": 19, "Balance": "$441.05" },
-        { "User_Id": 14, "User": "Shep", "Number_of_total_sales": 61, "Balance": "$905.20" },
-        { "User_Id": 15, "User": "Erroll", "Number_of_total_sales": 99, "Balance": "$205.87" }
+        { "User_Id": 1, "User": "Rosco", "Number_of_total_sales": 69, "Balance": "₹590.13" },
+        { "User_Id": 2, "User": "Tremain", "Number_of_total_sales": 85, "Balance": "₹994.54" },
+        { "User_Id": 3, "User": "Mace", "Number_of_total_sales": 43, "Balance": "₹633.45" },
+        { "User_Id": 4, "User": "Reid", "Number_of_total_sales": 1, "Balance": "₹660.64" },
+        { "User_Id": 5, "User": "Jaye", "Number_of_total_sales": 46, "Balance": "₹798.23" },
+        { "User_Id": 6, "User": "Brody", "Number_of_total_sales": 40, "Balance": "₹594.29" },
+        { "User_Id": 7, "User": "Nealon", "Number_of_total_sales": 43, "Balance": "₹405.40" },
+        { "User_Id": 8, "User": "Chaddie", "Number_of_total_sales": 70, "Balance": "₹512.13" },
+        { "User_Id": 9, "User": "Mano", "Number_of_total_sales": 38, "Balance": "₹988.95" },
+        { "User_Id": 10, "User": "Samuel", "Number_of_total_sales": 63, "Balance": "₹161.65" },
+        { "User_Id": 11, "User": "Reinold", "Number_of_total_sales": 14, "Balance": "₹929.16" },
+        { "User_Id": 12, "User": "Roland", "Number_of_total_sales": 67, "Balance": "₹919.50" },
+        { "User_Id": 13, "User": "Dana", "Number_of_total_sales": 19, "Balance": "₹441.05" },
+        { "User_Id": 14, "User": "Shep", "Number_of_total_sales": 61, "Balance": "₹905.20" },
+        { "User_Id": 15, "User": "Erroll", "Number_of_total_sales": 99, "Balance": "₹205.87" }
     ]
 
     // React Table
