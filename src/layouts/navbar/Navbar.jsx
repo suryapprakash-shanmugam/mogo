@@ -1,12 +1,27 @@
 //import react packages
 import { Container } from '@mantine/core'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //import Navbar css
 import './Navbar.css'
+import { useQuery } from 'react-query'
+import { categoryListAPI } from '../../config/quries/Category/CategoryQueries'
 
 const Navbar = () => {
+
+    // Category
+    const [categoryList, setCategoryList] = useState()
+
+    useQuery(
+        'categoryList',
+        categoryListAPI,
+        {
+            onSuccess: (res) => {
+                setCategoryList(res?.data?.data?.result)
+            }
+        }
+    )
     return (
         <div>
             <div className="navbar-div">
@@ -16,12 +31,21 @@ const Navbar = () => {
                         <ul className='navbar-div-container-ul'>
                             {/* <li><Link to='/' className='navbar-link'>Home</Link></li> */}
                             <ul className='product-dropdown-hover navbar-div-container-ul2'>
-                                <li>Home Linen</li>
-                                <li>Bed Linen</li>
+                                {
+                                    Array.isArray(categoryList) ?
+                                        categoryList?.map((value, index) => (
+                                            <li>
+                                                {
+                                                    value.name
+                                                }
+                                            </li>
+                                        )) : ''
+                                }
+                                {/* <li>Bed Linen</li>
                                 <li>Kitchen Linen</li>
                                 <li>Table Linen</li>
                                 <li>Bath Linen</li>
-                                <li>Baby Linen</li>
+                                <li>Baby Linen</li> */}
                                 <div className="navbar-div-container-ul-dropdown">
                                     <div className="navbar-div-container-ul-dropdown-content">
                                         <div className="navbar-div-container-ul-dropdown-content-table">

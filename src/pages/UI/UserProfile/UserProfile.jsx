@@ -221,8 +221,6 @@ const UserProfile = () => {
         listAddressByUserID,
     )
 
-    console.log(userAddressDetails);
-
     return (
         <div>
             <div className="user-profile-div">

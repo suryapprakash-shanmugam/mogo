@@ -1,5 +1,6 @@
 //import react packages
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 //import mantine components
 import { Container, Rating, Center, Space } from '@mantine/core'
@@ -25,8 +26,12 @@ import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlic
 import { useQuery } from 'react-query';
 import config from "../../../config/server/Servers"
 import ReactHtmlParser from 'react-html-parser';
+import { categoryById } from '../../../config/quries/Category/CategoryQueries';
+import { subCategorById } from '../../../config/quries/SubCategory/SubCategoryQuries';
+import { handleAddtoCartControl } from '../../../controller/cart/cartController';
 
 const OfferSlider = ({ header, header2 }) => {
+    const navigate = useNavigate()
 
     const autoplay = useRef(Autoplay({ delay: 2000 }));
 
@@ -177,7 +182,46 @@ const OfferSlider = ({ header, header2 }) => {
         setShuffledProducts(shuffled);
     }, [productList]);
 
+    const [categoryId, setCategoryId] = useState('')
+    const [categoryName, setCategoryName] = useState('')
+    const [subCategoryId, setSubCategoryId] = useState('')
+    const [subCategoryName, setSubCategoryName] = useState('')
+
     // handle Add to cart
+
+    // Category 
+    useQuery(
+        ['categoryByid', categoryId],
+        categoryById,
+        {
+            onSuccess: (res) => {
+                const filter = res.data?.data?.result?.name.replace(' ', "_")
+                setCategoryName(filter)
+            }
+        }
+    )
+
+    useQuery(
+        ['subcategoryByid', subCategoryId],
+        subCategorById,
+        {
+            onSuccess: (res) => {
+                const filter = res.data?.data?.result?.name.replace(' ', "_")
+                setSubCategoryName(filter)
+            }
+        }
+    )
+
+    const [productId, setProductId] = useState()
+
+    const handleAddtoCart = (id) => {
+        const payload = {
+            product_id: id,
+            user_id: sessionStorage.getItem('MogoUserAccessToken101')
+        }
+        handleAddtoCartControl(payload)
+        navigate('/')
+    }
 
     return (
         <div>
@@ -207,11 +251,18 @@ const OfferSlider = ({ header, header2 }) => {
                     >
                         {
                             shuffledProducts.map((product, index) => {
-                                console.log(product)
                                 return (
                                     <Carousel.Slide key={index} className='offerslider-div-container-slider-individual'>
                                         <Link
-                                        // to={offerSlider.link}
+                                            onMouseOver={() => {
+                                                setCategoryId(product.product_category);
+                                                setSubCategoryId(product.product_subcategory)
+                                            }}
+                                            onClick={() => {
+                                                setCategoryId(product.product_category);
+                                                setSubCategoryId(product.product_subcategory)
+                                            }}
+                                            to={`/product/${categoryName}/${subCategoryName}/${product._id}`}
                                         >
                                             <div className="offerslider-div-container-slider-image">
                                                 <img src={`${config.baseUrlApi}/assets/productImages/${product.product_image}`} alt="" />
@@ -221,7 +272,11 @@ const OfferSlider = ({ header, header2 }) => {
                                                     <div id="offerslider-div-container-slider-individual-wishlist-cart-wishlist">
                                                         <img src={wishlist} width='10' alt="" />
                                                     </div>
-                                                    <div id="offerslider-div-container-slider-individual-wishlist-cart-cart">
+                                                    <div
+                                                        onClick={() => {
+                                                            handleAddtoCart(product._id);
+                                                        }}
+                                                        id="offerslider-div-container-slider-individual-wishlist-cart-cart">
                                                         <img src={cart} width='10' alt="" />
                                                     </div>
                                                 </div>

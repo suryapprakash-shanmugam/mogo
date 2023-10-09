@@ -24,6 +24,8 @@ import { listAllProduct } from '../../../config/quries/Products/ProductQuries'
 import { setProductList } from '../../../StateHandler/Slice/Products/ProductSlice'
 
 import config from "../../../config/server/Servers"
+import { categoryById } from '../../../config/quries/Category/CategoryQueries'
+import { subCategorById } from '../../../config/quries/SubCategory/SubCategoryQuries'
 
 
 const HomeProductsList = ({ header, subheader, header2 }) => {
@@ -220,6 +222,36 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
         setShuffledProducts(shuffled);
     }, [productList]);
 
+    const [categoryId, setCategoryId] = useState('')
+    const [categoryName, setCategoryName] = useState('')
+    const [subCategoryId, setSubCategoryId] = useState('')
+    const [subCategoryName, setSubCategoryName] = useState('')
+
+    // handle Add to cart
+
+    // Category 
+    useQuery(
+        ['categoryByid', categoryId],
+        categoryById,
+        {
+            onSuccess: (res) => {
+                const filter = res.data?.data?.result?.name.replace(' ', "_")
+                setCategoryName(filter)
+            }
+        }
+    )
+
+    useQuery(
+        ['subcategoryByid', subCategoryId],
+        subCategorById,
+        {
+            onSuccess: (res) => {
+                const filter = res.data?.data?.result?.name.replace(' ', "_")
+                setSubCategoryName(filter)
+            }
+        }
+    )
+
 
     return (
         <div>
@@ -243,6 +275,15 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
                                 return (
                                     <div key={index} className="homeproductlist-div-container-content-product">
                                         <Link
+                                            onMouseOver={() => {
+                                                setCategoryId(homeProductList.product_category);
+                                                setSubCategoryId(homeProductList.product_subcategory)
+                                            }}
+                                            onClick={() => {
+                                                setCategoryId(homeProductList.product_category);
+                                                setSubCategoryId(homeProductList.product_subcategory)
+                                            }}
+                                            to={`/product/${categoryName}/${subCategoryName}/${homeProductList._id}`}
                                         // to={homeProductList.link}
                                         >
                                             <div className="homeproductlist-div-container-content-product-image">
