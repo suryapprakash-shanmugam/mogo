@@ -1,0 +1,109 @@
+.blogs-individual-div {
+    font-family: 'Open Sans';
+    padding: 20px 0px;
+}
+
+.blogs-individual-div-container {
+    font-family: 'Open Sans';
+    padding: 0px 120px;
+}
+
+.blogs-individual-div-container-heading {
+    padding: 20px 0px;
+}
+
+.blog-flex-main {
+    padding: 20px 0px 0px;
+}
+
+.blog-flex {
+    display: flex;
+    align-items: center;
+}
+
+.blogs-individual-div-container-content-blog-display {
+    display: grid;
+    grid-template-columns: 74% 24%;
+    justify-content: space-between;
+}
+
+.blogs-individual-div-container-content-blog-display-right-content-blog {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 1.5rem;
+}
+
+.blogs-individual-div-container-content-blog-display-right-content-blog .individual-blog-image {
+    height: 191px !important;
+}
+
+.blogs-individual-div-container-content-blog-display-right-content-blog .individual-blog-div {
+    height: 315px;
+}
+
+.tag-head {
+    margin: 1rem 0rem;
+}
+
+.display-tags-in-blog {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 1rem;
+}
+
+.display-tags-in-blog button {
+    border: 0px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.blogs-individual-div-container-content-blog-display-left-image {
+    width: 100%;
+    height: 600px;
+}
+
+.blogs-individual-div-container-content-blog-display-left-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.blogs-individual-div-container-content-blog-display-left-blog-content {
+    padding: 10px 0px;
+    display: grid;
+    gap: 2rem;
+}
+
+.blog-share-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.blog-share-buttons button {
+    border: 0px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background-color: var(--Logo-Color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: circle();
+}
+
+.blogs-comment-section-form button {
+    margin: 1rem 0rem;
+    cursor: pointer;
+    border: 0px;
+    width: 88px;
+    height: 42px;
+    background-color: var(--Logo-Color2);
+    color: #fff;
+    border-radius: 3px;
+}
+.blogs-comment-section-show
+{
+    display: flex;
+    flex-direction: column;
+}

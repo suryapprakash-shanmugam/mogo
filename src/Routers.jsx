@@ -54,6 +54,8 @@ import About from './pages/UI/About/About';
 import UserProfile from './pages/UI/UserProfile/UserProfile';
 import UserOrders from './pages/UI/UserOrders/UserOrders';
 import UserOrdersIndividual from './pages/UI/UserOrdersIndividual/UserOrdersIndividual';
+import Blogs from './pages/UI/Blogs/Blogs';
+import BlogsIndividual from './pages/UI/Blogs/BlogsIndividual/BlogsIndividual';
 
 const Routers = () => {
     const location = useLocation();
@@ -173,6 +175,10 @@ const Routers = () => {
         '/your_orders': <UserOrders />,
 
         '/user_order_individual': <UserOrdersIndividual />,
+
+        '/ui_blogs': <Blogs />,
+
+        '/ui_blogs_individual': <BlogsIndividual />,
     }
 
     const renderBodyData =
