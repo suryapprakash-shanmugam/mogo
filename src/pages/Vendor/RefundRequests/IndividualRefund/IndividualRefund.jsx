@@ -41,7 +41,7 @@ const IndividualRefund = () => {
                                 <tbody>
                                     <tr>
                                         <td>Processing</td>
-                                        <td>$19</td>
+                                        <td>₹19</td>
                                         <td>Trendshop</td>
                                         <td>Admin</td>
                                         <td>7 months ago</td>

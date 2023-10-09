@@ -160,7 +160,7 @@ const Earnings = () => {
             <div className="earnings-div">
                 <Card className='earnings-count'>
                     <div className="earnings-count-left">
-                        <h2>$200.99</h2>
+                        <h2>₹200.99</h2>
                         <p>Balance</p>
                     </div>
                     <div className="earnings-count-right">

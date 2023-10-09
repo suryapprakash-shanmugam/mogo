@@ -221,8 +221,6 @@ const UserProfile = () => {
         listAddressByUserID,
     )
 
-    console.log(userAddressDetails.data.data);
-
     return (
         <div>
             <div className="user-profile-div">
@@ -361,14 +359,14 @@ const UserProfile = () => {
                                         </div>
                                     </div> */}
                                     {
-                                        userAddressDetails.data.data.map((address, index) => {
+                                        userAddressDetails?.data?.data?.map((address, index) => {
                                             return (
                                                 <><div key={index} className="user-profile-div-container-content-tabs-panel-shipping-address">
-                                                    <h5>{address.address_type}</h5>
-                                                    <p>{address.first_name} {address.last_name}</p>
-                                                    <p>{`${address.address}${address.city}, ${address.country}, ${address.state}, ${address.zip_code}`}</p>
-                                                    <p>{address.email}</p>
-                                                    <p>{address.number}</p>
+                                                    <h5>{address?.address_type}</h5>
+                                                    <p>{address?.first_name} {address?.last_name}</p>
+                                                    <p>{`${address?.address}${address?.city}, ${address?.country}, ${address?.state}, ${address?.zip_code}`}</p>
+                                                    <p>{address?.email}</p>
+                                                    <p>{address?.number}</p>
                                                     {/* <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
                                                         <button onClick={() => { setAddressModalOpen(true) }}><img src={edit} width={11} />Edit</button>
                                                         <button><img src={trash} width={11} />Delete</button>
