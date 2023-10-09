@@ -1,13 +1,15 @@
 import { ThemeIcon } from "@mantine/core"
 import { showNotification } from "@mantine/notifications"
 import { CircleCheck, X } from "tabler-icons-react"
+import { CreateUserAddress } from "../../config/quries/Address/userAddress"
 
-export const hanldeCreateUserAddressControl = (
+export const hanldeCreateUserAddressControl = async (
     userAddress,
     setUserAddress,
     validateUserAddress,
     setValidateUserAddress
 ) => {
+    const token = sessionStorage.getItem('MogoUserAccessToken101')
     const {
         address_type,
         first_name,
@@ -20,6 +22,19 @@ export const hanldeCreateUserAddressControl = (
         city,
         zip_code
     } = userAddress
+    const payload = {
+        address_type: address_type,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        number: number,
+        user_address: address,
+        country: country,
+        state: state,
+        city: city,
+        zip_code: zip_code,
+        user_id: token
+    }
     if (address_type.trim()) {
         if (first_name.trim()) {
             if (last_name.trim()) {
@@ -32,7 +47,23 @@ export const hanldeCreateUserAddressControl = (
                                         if (state.trim()) {
                                             if (city.trim()) {
                                                 if (zip_code.trim()) {
-
+                                                    await CreateUserAddress(payload)
+                                                        .then((result) => {
+                                                            showNotification({
+                                                                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
+                                                                    <CircleCheck color="green" />
+                                                                </ThemeIcon>,
+                                                                message: "Address Created Successfully",
+                                                            })
+                                                        })
+                                                        .catch((error) => {
+                                                            showNotification({
+                                                                icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                                                                    <X color="red" />
+                                                                </ThemeIcon>,
+                                                                message: "Error Creating User Address",
+                                                            })
+                                                        })
                                                 }
                                                 else {
                                                     showNotification({

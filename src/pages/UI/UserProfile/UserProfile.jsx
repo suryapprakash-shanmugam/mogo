@@ -17,6 +17,7 @@ import { findUserByid } from '../../../config/quries/users/usersQuery';
 import config from "../../../config/server/Servers"
 import { addressCountries, selectedListStates } from '../../../StateHandler/InitialState/Address/AddressState';
 import { hanldeCreateUserAddressControl } from "../../../controller/userAddress/userAddress"
+import { listAddressByUserID } from '../../../config/quries/Address/userAddress';
 const UserProfile = () => {
 
     const loaction = useNavigate()
@@ -213,6 +214,14 @@ const UserProfile = () => {
             setValidateUserAddress({ ...validateUserAddress, zip_code: 0 })
         }
     }, [userAddress])
+
+    // const user Addres
+    const { data: userAddressDetails } = useQuery(
+        ['userAddress', sessionStorage.getItem('MogoUserAccessToken101')],
+        listAddressByUserID,
+    )
+
+    console.log(userAddressDetails);
 
     return (
         <div>
