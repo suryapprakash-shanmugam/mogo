@@ -114,7 +114,7 @@ const Orders = () => {
         {
             "Order_Id": 1,
             "Buyer": "Abe",
-            "Total": "$69.06",
+            "Total": "₹69.06",
             "Currency": "PAB",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -125,7 +125,7 @@ const Orders = () => {
         {
             "Order_Id": 2,
             "Buyer": "Skippie",
-            "Total": "$5.22",
+            "Total": "₹5.22",
             "Currency": "ARS",
             "Status": "Failed",
             "Payment_Status": "Completed",
@@ -136,7 +136,7 @@ const Orders = () => {
         {
             "Order_Id": 3,
             "Buyer": "Myrah",
-            "Total": "$70.13",
+            "Total": "₹70.13",
             "Currency": "SEK",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -147,7 +147,7 @@ const Orders = () => {
         {
             "Order_Id": 4,
             "Buyer": "Darby",
-            "Total": "$21.35",
+            "Total": "₹21.35",
             "Currency": "PEN",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -158,7 +158,7 @@ const Orders = () => {
         {
             "Order_Id": 5,
             "Buyer": "Markos",
-            "Total": "$73.81",
+            "Total": "₹73.81",
             "Currency": "CDF",
             "Status": "Completed",
             "Payment_Status": "Completed",
@@ -169,7 +169,7 @@ const Orders = () => {
         {
             "Order_Id": 6,
             "Buyer": "Desmund",
-            "Total": "$60.19",
+            "Total": "₹60.19",
             "Currency": "PLN",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -180,7 +180,7 @@ const Orders = () => {
         {
             "Order_Id": 7,
             "Buyer": "Barbabra",
-            "Total": "$19.01",
+            "Total": "₹19.01",
             "Currency": "PHP",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -191,7 +191,7 @@ const Orders = () => {
         {
             "Order_Id": 8,
             "Buyer": "Ingrid",
-            "Total": "$27.14",
+            "Total": "₹27.14",
             "Currency": "KRW",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -202,7 +202,7 @@ const Orders = () => {
         {
             "Order_Id": 9,
             "Buyer": "Jaine",
-            "Total": "$51.73",
+            "Total": "₹51.73",
             "Currency": "PEN",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -213,7 +213,7 @@ const Orders = () => {
         {
             "Order_Id": 10,
             "Buyer": "Ewen",
-            "Total": "$27.48",
+            "Total": "₹27.48",
             "Currency": "IDR",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -224,7 +224,7 @@ const Orders = () => {
         {
             "Order_Id": 11,
             "Buyer": "Kayley",
-            "Total": "$88.13",
+            "Total": "₹88.13",
             "Currency": "THB",
             "Status": "Failed",
             "Payment_Status": "Completed",
@@ -235,7 +235,7 @@ const Orders = () => {
         {
             "Order_Id": 12,
             "Buyer": "Sibylle",
-            "Total": "$3.91",
+            "Total": "₹3.91",
             "Currency": "IDR",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -246,7 +246,7 @@ const Orders = () => {
         {
             "Order_Id": 13,
             "Buyer": "Emeline",
-            "Total": "$74.82",
+            "Total": "₹74.82",
             "Currency": "RUB",
             "Status": "Completed",
             "Payment_Status": "Completed",
@@ -257,7 +257,7 @@ const Orders = () => {
         {
             "Order_Id": 14,
             "Buyer": "Sonni",
-            "Total": "$96.72",
+            "Total": "₹96.72",
             "Currency": "CNY",
             "Status": "Completed",
             "Payment_Status": "Completed",
@@ -268,7 +268,7 @@ const Orders = () => {
         {
             "Order_Id": 15,
             "Buyer": "Justina",
-            "Total": "$61.32",
+            "Total": "₹61.32",
             "Currency": "MXN",
             "Status": "Completed",
             "Payment_Status": "Failed",
@@ -279,7 +279,7 @@ const Orders = () => {
         {
             "Order_Id": 16,
             "Buyer": "Austin",
-            "Total": "$71.11",
+            "Total": "₹71.11",
             "Currency": "IDR",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -290,7 +290,7 @@ const Orders = () => {
         {
             "Order_Id": 17,
             "Buyer": "Lesli",
-            "Total": "$4.44",
+            "Total": "₹4.44",
             "Currency": "THB",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -301,7 +301,7 @@ const Orders = () => {
         {
             "Order_Id": 18,
             "Buyer": "Cindy",
-            "Total": "$2.36",
+            "Total": "₹2.36",
             "Currency": "CNY",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -312,7 +312,7 @@ const Orders = () => {
         {
             "Order_Id": 19,
             "Buyer": "Dorie",
-            "Total": "$80.27",
+            "Total": "₹80.27",
             "Currency": "CNY",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -323,7 +323,7 @@ const Orders = () => {
         {
             "Order_Id": 20,
             "Buyer": "Ginger",
-            "Total": "$48.98",
+            "Total": "₹48.98",
             "Currency": "CNY",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -334,7 +334,7 @@ const Orders = () => {
         {
             "Order_Id": 21,
             "Buyer": "Felisha",
-            "Total": "$90.61",
+            "Total": "₹90.61",
             "Currency": "IDR",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -345,7 +345,7 @@ const Orders = () => {
         {
             "Order_Id": 22,
             "Buyer": "Emelita",
-            "Total": "$25.89",
+            "Total": "₹25.89",
             "Currency": "COP",
             "Status": "Completed",
             "Payment_Status": "Completed",
@@ -356,7 +356,7 @@ const Orders = () => {
         {
             "Order_Id": 23,
             "Buyer": "Rea",
-            "Total": "$3.44",
+            "Total": "₹3.44",
             "Currency": "BRL",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -367,7 +367,7 @@ const Orders = () => {
         {
             "Order_Id": 24,
             "Buyer": "Wandie",
-            "Total": "$81.54",
+            "Total": "₹81.54",
             "Currency": "PHP",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -378,7 +378,7 @@ const Orders = () => {
         {
             "Order_Id": 25,
             "Buyer": "Joyce",
-            "Total": "$79.69",
+            "Total": "₹79.69",
             "Currency": "SEK",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -389,7 +389,7 @@ const Orders = () => {
         {
             "Order_Id": 26,
             "Buyer": "Saundra",
-            "Total": "$9.28",
+            "Total": "₹9.28",
             "Currency": "ILS",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -400,7 +400,7 @@ const Orders = () => {
         {
             "Order_Id": 27,
             "Buyer": "Mable",
-            "Total": "$25.81",
+            "Total": "₹25.81",
             "Currency": "EUR",
             "Status": "Completed",
             "Payment_Status": "Failed",
@@ -411,7 +411,7 @@ const Orders = () => {
         {
             "Order_Id": 28,
             "Buyer": "Lynea",
-            "Total": "$40.64",
+            "Total": "₹40.64",
             "Currency": "RUB",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -422,7 +422,7 @@ const Orders = () => {
         {
             "Order_Id": 29,
             "Buyer": "Jeffie",
-            "Total": "$62.10",
+            "Total": "₹62.10",
             "Currency": "SEK",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -433,7 +433,7 @@ const Orders = () => {
         {
             "Order_Id": 30,
             "Buyer": "Rosaleen",
-            "Total": "$4.19",
+            "Total": "₹4.19",
             "Currency": "PKR",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -444,7 +444,7 @@ const Orders = () => {
         {
             "Order_Id": 31,
             "Buyer": "Ester",
-            "Total": "$80.71",
+            "Total": "₹80.71",
             "Currency": "BAM",
             "Status": "Pending",
             "Payment_Status": "Pending",
@@ -455,7 +455,7 @@ const Orders = () => {
         {
             "Order_Id": 32,
             "Buyer": "Taddeo",
-            "Total": "$69.49",
+            "Total": "₹69.49",
             "Currency": "USD",
             "Status": "Completed",
             "Payment_Status": "Pending",
@@ -466,7 +466,7 @@ const Orders = () => {
         {
             "Order_Id": 33,
             "Buyer": "Larina",
-            "Total": "$67.04",
+            "Total": "₹67.04",
             "Currency": "JPY",
             "Status": "Failed",
             "Payment_Status": "Pending",
@@ -477,7 +477,7 @@ const Orders = () => {
         {
             "Order_Id": 34,
             "Buyer": "Delano",
-            "Total": "$51.58",
+            "Total": "₹51.58",
             "Currency": "SEK",
             "Status": "Completed",
             "Payment_Status": "Completed",
@@ -488,7 +488,7 @@ const Orders = () => {
         {
             "Order_Id": 35,
             "Buyer": "Daveta",
-            "Total": "$43.89",
+            "Total": "₹43.89",
             "Currency": "IDR",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -499,7 +499,7 @@ const Orders = () => {
         {
             "Order_Id": 36,
             "Buyer": "Heinrick",
-            "Total": "$12.29",
+            "Total": "₹12.29",
             "Currency": "CNY",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -510,7 +510,7 @@ const Orders = () => {
         {
             "Order_Id": 37,
             "Buyer": "Kelsy",
-            "Total": "$16.29",
+            "Total": "₹16.29",
             "Currency": "CNY",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -521,7 +521,7 @@ const Orders = () => {
         {
             "Order_Id": 38,
             "Buyer": "Nickie",
-            "Total": "$64.89",
+            "Total": "₹64.89",
             "Currency": "IDR",
             "Status": "Completed",
             "Payment_Status": "Completed",
@@ -532,7 +532,7 @@ const Orders = () => {
         {
             "Order_Id": 39,
             "Buyer": "Cly",
-            "Total": "$23.64",
+            "Total": "₹23.64",
             "Currency": "CNY",
             "Status": "Pending",
             "Payment_Status": "Completed",
@@ -543,7 +543,7 @@ const Orders = () => {
         {
             "Order_Id": 40,
             "Buyer": "Levey",
-            "Total": "$77.24",
+            "Total": "₹77.24",
             "Currency": "PEN",
             "Status": "Pending",
             "Payment_Status": "Pending",

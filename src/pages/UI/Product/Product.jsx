@@ -344,6 +344,7 @@ const Product = ({ category, subcategory, heading }) => {
                                 <div className="product-div-container-main-product-display-content-price-askquestion">
                                     <div className="product-div-container-main-product-display-content-price-askquestion-price">
                                         <div className="product-div-container-main-product-display-content-price-askquestion-price-price">
+
                                             <p className='old-price'>
                                                 {individualProduct?.actual_price
                                                     ?
@@ -561,7 +562,7 @@ const Product = ({ category, subcategory, heading }) => {
                                                                 <p>Free Shipping</p>
                                                             </div>
                                                             <div className="product-div-container-main-product-details-tab-shipping-details-content">
-                                                                <p>(Minimum order amount: $100)</p>
+                                                                <p>(Minimum order amount: ₹100)</p>
                                                             </div>
                                                         </div>
                                                         <div className="product-div-container-main-product-details-tab-shipping-details">
@@ -569,7 +570,7 @@ const Product = ({ category, subcategory, heading }) => {
                                                                 <p>Flat Rate</p>
                                                             </div>
                                                             <div className="product-div-container-main-product-details-tab-shipping-details-content">
-                                                                <p>: $15</p>
+                                                                <p>: ₹15</p>
                                                             </div>
                                                         </div>
                                                     </td>

@@ -92,8 +92,9 @@
 
 .user-profile-div-container-content-tabs-panel-shipping {
     display: grid;
-    grid-template-columns: 40% 40% auto;
+    grid-template-columns: 50% 50%;
     justify-content: space-evenly;
+    gap: 1rem;
 }
 
 .user-profile-div-container-content-tabs-panel-shipping-address {

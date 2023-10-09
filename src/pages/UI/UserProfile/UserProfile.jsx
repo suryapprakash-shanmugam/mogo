@@ -347,7 +347,7 @@ const UserProfile = () => {
 
                             <Tabs.Panel className='user-profile-div-container-content-tabs-panel' value="shipaddress" pl="xs">
                                 <div className="user-profile-div-container-content-tabs-panel-shipping">
-                                    <div className="user-profile-div-container-content-tabs-panel-shipping-address">
+                                    {/* <div className="user-profile-div-container-content-tabs-panel-shipping-address">
                                         <h5>Home</h5>
                                         <p>Peter Jone</p>
                                         <p>150 Chatham St, Unit 4 Hamilton LKL2B6  Hamilton/Ontario/Canada</p>
@@ -357,18 +357,25 @@ const UserProfile = () => {
                                             <button><img src={edit} width={11} />Edit</button>
                                             <button><img src={trash} width={11} />Delete</button>
                                         </div>
-                                    </div>
-                                    <div className="user-profile-div-container-content-tabs-panel-shipping-address">
-                                        <h5>Home</h5>
-                                        <p>Peter Jone</p>
-                                        <p>150 Chatham St, Unit 4 Hamilton LKL2B6  Hamilton/Ontario/Canada</p>
-                                        <p>codingest@gmail.com</p>
-                                        <p>9876543210</p>
-                                        <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
-                                            <button onClick={() => { setAddressModalOpen(true) }}><img src={edit} width={11} />Edit</button>
-                                            <button><img src={trash} width={11} />Delete</button>
-                                        </div>
-                                    </div>
+                                    </div> */}
+                                    {
+                                        userAddressDetails?.data?.data?.map((address, index) => {
+                                            return (
+                                                <><div key={index} className="user-profile-div-container-content-tabs-panel-shipping-address">
+                                                    <h5>{address?.address_type}</h5>
+                                                    <p>{address?.first_name} {address?.last_name}</p>
+                                                    <p>{`${address?.address}${address?.city}, ${address?.country}, ${address?.state}, ${address?.zip_code}`}</p>
+                                                    <p>{address?.email}</p>
+                                                    <p>{address?.number}</p>
+                                                    {/* <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
+                                                        <button onClick={() => { setAddressModalOpen(true) }}><img src={edit} width={11} />Edit</button>
+                                                        <button><img src={trash} width={11} />Delete</button>
+                                                    </div> */}
+                                                </div></>
+                                            )
+                                        })
+                                    }
+
                                 </div>
                                 <div className="shipping-address-add-button">
                                     <button onClick={() => { setAddressModalOpen(true) }}><img src={plus} width={11} />Add New Address</button>

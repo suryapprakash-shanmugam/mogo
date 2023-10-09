@@ -172,7 +172,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--Extra-Light-Gray);
+    background-color: var(--Logo-Color1);
 }
 
 .homeproductlist-div-container-content-product-wishlist-cart-cart {
@@ -182,7 +182,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--Extra-Light-Gray);
+    background-color: var(--Logo-Color1);
 }
 
 .homeproductlist-div-container-content-product-wishlist-cart-wishlist-image {

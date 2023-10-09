@@ -26,11 +26,11 @@ const Dashboard = () => {
         window.scrollTo(0, 0)
     }, [])
     const LatestOrders = [
-        { Order: '#10005', Total: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
-        { Order: '#10005', Total: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
-        { Order: '#10005', Total: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
-        { Order: '#10005', Total: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
-        { Order: '#10005', Total: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
+        { Order: '#10005', Total: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
+        { Order: '#10005', Total: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
+        { Order: '#10005', Total: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
+        { Order: '#10005', Total: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
+        { Order: '#10005', Total: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44', Details: 'Details', path: "/individualorder" },
     ];
     const LatestOrdersrows = LatestOrders.map((LatestOrder, index) => (
         <tr key={index}>
@@ -44,9 +44,9 @@ const Dashboard = () => {
         </tr>
     ));
     const LatestTransactions = [
-        { Id: '01', Order: '#10005', PaymentAmount: '$91', PaymentMethod: '	Bank Transfer', Status: 'Processing', Date: '2023-07-28 / 12:44' },
-        { Id: '01', Order: '#10005', PaymentAmount: '$91', PaymentMethod: '	Bank Transfer', Status: 'Processing', Date: '2023-07-28 / 12:44' },
-        { Id: '01', Order: '#10005', PaymentAmount: '$91', PaymentMethod: '	Bank Transfer', Status: 'Processing', Date: '2023-07-28 / 12:44' },
+        { Id: '01', Order: '#10005', PaymentAmount: '₹91', PaymentMethod: '	Bank Transfer', Status: 'Processing', Date: '2023-07-28 / 12:44' },
+        { Id: '01', Order: '#10005', PaymentAmount: '₹91', PaymentMethod: '	Bank Transfer', Status: 'Processing', Date: '2023-07-28 / 12:44' },
+        { Id: '01', Order: '#10005', PaymentAmount: '₹91', PaymentMethod: '	Bank Transfer', Status: 'Processing', Date: '2023-07-28 / 12:44' },
     ];
     const LatestTransactionsrows = LatestTransactions.map((LatestTransaction, index) => (
         <tr key={index}>
@@ -102,9 +102,9 @@ const Dashboard = () => {
         </tr>
     ));
     const LatestTransactionsFeatured = [
-        { Id: '01', PaymentMethod: 'Bank Transfer', PaymentAmount: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44' },
-        { Id: '01', PaymentMethod: 'Bank Transfer', PaymentAmount: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44' },
-        { Id: '01', PaymentMethod: 'Bank Transfer', PaymentAmount: '$91', Status: 'Processing', Date: '2023-07-28 / 12:44' },
+        { Id: '01', PaymentMethod: 'Bank Transfer', PaymentAmount: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44' },
+        { Id: '01', PaymentMethod: 'Bank Transfer', PaymentAmount: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44' },
+        { Id: '01', PaymentMethod: 'Bank Transfer', PaymentAmount: '₹91', Status: 'Processing', Date: '2023-07-28 / 12:44' },
     ];
     const LatestTransactionsFeaturedrows = LatestTransactionsFeatured.map((LatestTransactionFeatured, index) => (
         <tr key={index}>

@@ -44,7 +44,7 @@ const RefundRequests = () => {
                                                 #10005 - Motivation piano with cello and drums
                                             </Text>
                                         </td>
-                                        <td>$19</td>
+                                        <td>₹19</td>
                                         <td>Admin</td>
                                         <td>Processing</td>
                                         <td>7 months ago</td>
@@ -63,7 +63,7 @@ const RefundRequests = () => {
                                                 #10005 - Motivation piano with cello and drums
                                             </Text>
                                         </td>
-                                        <td>$19</td>
+                                        <td>₹19</td>
                                         <td>Admin</td>
                                         <td>Processing</td>
                                         <td>7 months ago</td>

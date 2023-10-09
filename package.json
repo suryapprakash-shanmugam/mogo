@@ -1,6 +1,7 @@
 {
   "author": "Suryapprakash S",
   "name": "mogo",
+  "homepage": "https://demoui.themogo.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

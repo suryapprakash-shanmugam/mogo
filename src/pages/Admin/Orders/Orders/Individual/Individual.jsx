@@ -39,11 +39,11 @@ const Individual = () => {
             ProductImage: image2,
             ProductDesc: 'Men outerwear navy color (Color: Blue)',
             UploadedBy: 'By Mogo',
-            UnitPrice: '$84.15',
+            UnitPrice: '₹84.15',
             Quantity: '1',
             VAT: '',
-            ShippingCost: '$15',
-            Total: '$84.15',
+            ShippingCost: '₹15',
+            Total: '₹84.15',
             Status: 'Completed',
             Updated: '5 months ago',
             Options: <ProductOptions />, // Use the wrapper component here
@@ -253,8 +253,8 @@ const Individual = () => {
                             <b>Shipping</b>
                         </div>
                         <div className="Individual-display-amount-right">
-                            <p>$61</p>
-                            <p>$30</p>
+                            <p>₹61</p>
+                            <p>₹30</p>
                         </div>
                     </div>
                     <hr className='Individual-display-amount-right-hr' />
@@ -263,7 +263,7 @@ const Individual = () => {
                             <b>Total</b>
                         </div>
                         <div className="Individual-display-amount-right">
-                            <p>$91</p>
+                            <p>₹91</p>
                         </div>
                     </div>
                 </Card>

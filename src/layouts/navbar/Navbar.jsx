@@ -1,5 +1,6 @@
 //import react packages
 import { Accordion, Avatar, Container, Divider, Drawer, Flex, ScrollArea, Space, Title } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -22,6 +23,9 @@ const Navbar = () => {
         childCategory: null
     })
 
+    const header1060MediaQuery = useMediaQuery('(max-width:1061px)')
+    const header786MediaQuery = useMediaQuery('(max-width:787px)')
+    const header500MediaQuery = useMediaQuery('(max-width:501px)')
     // Category
     const [categoryList, setCategoryList] = useState()
 

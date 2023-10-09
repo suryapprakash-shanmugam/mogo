@@ -371,3 +371,63 @@
 }
 
 /* Dhiyanesh Css End */
+.preheader-container-location-currency-user-user-dropdown-signin-p {
+    font-family: 'Open Sans';
+}
+
+@media(max-width:501px) {
+
+    .product-div-container-main-product-details-tab-description h2,
+    p {
+        font-size: 10.5px !important;
+    }
+
+    .preheader-container {
+        padding: 0rem 0.3rem;
+    }
+
+    .preheader-container-contact-sell {
+        gap: 0.8rem;
+    }
+
+    .preheader-container-location-currency-user {
+        gap: 0rem;
+    }
+
+    .preheader-container-location-currency-user .mantine-1v7s5f8 .mantine-1cn2mlo {
+        font-size: 10.5px !important;
+        width: 100px;
+    }
+
+    .preheader-container-location-currency-user-user-dropdown {
+        position: absolute;
+        width: 220px;
+        height: fit-content;
+        background-color: white;
+        left: -180px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        transition: all 500ms ease-in-out;
+        font-family: 'Open Sans';
+    }
+
+    .preheader-container-location-currency-user-user-dropdown-signin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .preheader-container-location-currency-user-user-dropdown-signin-p {
+        font-size: 12px;
+    }
+
+    .preheader-container-location-currency-user-user-dropdown-extra .user-dropdown-link {
+        font-size: 12px;
+        padding: 0px;
+    }
+}
