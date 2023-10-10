@@ -1,7 +1,7 @@
-import { Input, Modal, PasswordInput, Select, Tabs } from '@mantine/core';
+import { Avatar, Flex, Input, Modal, PasswordInput, Select, Tabs, Text, ThemeIcon } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Camera } from 'tabler-icons-react';
+import { Camera, CircleCheck, Pencil, Trash, X } from 'tabler-icons-react';
 import Breadcrumb from '../../../components/UI/Breadcrumb/Breadcrumb'
 import './UserProfile.css'
 import edit from '../../../assets/admin/table/dropdown/edit.png'
@@ -16,8 +16,10 @@ import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData
 import { findUserByid } from '../../../config/quries/users/usersQuery';
 import config from "../../../config/server/Servers"
 import { addressCountries, selectedListStates } from '../../../StateHandler/InitialState/Address/AddressState';
-import { hanldeCreateUserAddressControl } from "../../../controller/userAddress/userAddress"
-import { listAddressByUserID } from '../../../config/quries/Address/userAddress';
+import { handleChangePasswordControl, hanldeCreateUserAddressControl } from "../../../controller/userAddress/userAddress"
+import { deleteUserAddress, listAddressByUserID } from '../../../config/quries/Address/userAddress';
+import { openConfirmModal } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
 const UserProfile = () => {
 
     const loaction = useNavigate()
@@ -177,7 +179,9 @@ const UserProfile = () => {
             userAddress,
             setUserAddress,
             validateUserAddress,
-            setValidateUserAddress
+            setValidateUserAddress,
+            setAddressModalOpen,
+            queryClient
         )
     }
 
@@ -221,8 +225,323 @@ const UserProfile = () => {
         listAddressByUserID,
     )
 
+    // Edit State 
+    const [editAddressModel, setEditAddressModel] = useState(false)
+    const [editUserAddress, setEditUserAddress] = useState({
+        id: '',
+        address_type: '',
+        first_name: '',
+        last_name: '',
+        email: "",
+        number: '',
+        address: '',
+        country: '',
+        state: '',
+        city: '',
+        zip_code: ''
+    })
+
+    // Handle Delete Address
+    const hanldeDeleteUserAddresss = (e) => {
+        openConfirmModal({
+            overlayOpacity: "0.55",
+            overlayBlur: "3",
+            zIndex: '123456789',
+            centered: true,
+            title: <p style={{ fontFamily: "Poppins" }}>Are you Sure ?</p>,
+            children: (
+                <Text size="md" color='red'>
+                    !! Once Deleted You Can't Get Back Address Details Again
+                </Text>
+            ),
+            labels: { confirm: "Delete", cancel: "Cancel" },
+            onConfirm: () => {
+                deleteUserAddress(e)
+                    .then(() => {
+                        queryClient.invalidateQueries("userAddress")
+                        showNotification({
+                            icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
+                                <CircleCheck color="green" />
+                            </ThemeIcon>,
+                            message: "Address Deleted Successfully",
+                        })
+                    })
+                    .catch(() => {
+                        showNotification({
+                            icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                                <X color="red" />
+                            </ThemeIcon>,
+                            message: "User Not Allowed to Delete Address",
+                        })
+                    })
+            }
+        })
+    }
+
+    const handleEidtAddress = (address) => {
+        setEditAddressModel(true)
+        setEditUserAddress({
+            ...editUserAddress,
+            id: address._id,
+            address_type: address.address_type,
+            first_name: address.first_name,
+            last_name: address.last_name,
+            email: address.email,
+            number: address.number,
+            address: address.address,
+            country: address.country,
+            state: address.state,
+            city: address.city,
+            zip_code: address.zip_code
+        })
+    }
+
+    const [validatePassword, setValidatePasssword] = useState({
+        oldPassword: 0,
+        newPassword: 0,
+        confirmPassword: 0
+    })
+
+    const hanldeChangePassword = () => {
+        handleChangePasswordControl(
+            confirmpasswordinput,
+            newpasswordinput,
+            oldpasswordinput,
+            setconfirmpasswordInput,
+            setnewpasswordInput,
+            setoldpasswordInput,
+            setValidatePasssword,
+            validatePassword
+        )
+    }
+
+    useEffect(() => {
+        if (oldpasswordinput) {
+            setValidatePasssword({ ...validatePassword, oldPassword: 0 })
+        }
+        if (newpasswordinput) {
+            setValidatePasssword({ ...validatePassword, newPassword: 0 })
+        }
+        if (confirmpasswordinput) {
+            setValidatePasssword({ ...validatePassword, confirmPassword: 0 })
+        }
+    }, [oldpasswordinput, newpasswordinput, confirmpasswordinput])
+
+
+
     return (
         <div>
+
+            {/* Edit Address */}
+
+            <Modal
+                zIndex={1212111}
+                size="xl"
+                opened={editAddressModel}
+                onClose={() => setEditAddressModel(false)}
+                title=""
+                transitionProps={{ transition: 'fade', duration: 350, timingFunction: 'linear' }}
+                className='sellerbalance-edit-modal'
+            >
+                <div className="sellerbalance-edit-modal-header">
+                    <h4>Edit address</h4>
+                </div>
+                <div className="sellerbalance-edit-modal-body">
+                    <div className="sellerbalance-edit-modal-body-content">
+                        <div className="user-profile-form-input">
+                            <Input.Wrapper
+                                error={`${validateUserAddress.address_type === 1 ?
+                                    'Address Type is Compulsory' : ''
+                                    }`}
+                                label="Addres Title"
+                            >
+                                <Input
+                                    placeholder="Addres Title"
+                                    value={editUserAddress.address_type}
+                                    onChange={(e) => setEditUserAddress({
+                                        ...userAddress,
+                                        address_type: e.target.value
+                                    })}
+                                />
+                            </Input.Wrapper>
+                        </div>
+                        <div className="shipping-address-model-form-input">
+                            <div className="user-profile-form-input">
+                                <Input.Wrapper
+                                    error={`${validateUserAddress.first_name === 1 ?
+                                        'First Name is Compulsory' : ''
+                                        }`}
+                                    label="First Name"
+                                >
+                                    <Input
+                                        placeholder="First Name"
+                                        value={editUserAddress.first_name}
+                                        onChange={(e) => setEditUserAddress({
+                                            ...userAddress,
+                                            first_name: e.target.value
+                                        })}
+                                    />
+                                </Input.Wrapper>
+                            </div>
+                            <div className="user-profile-form-input">
+                                <Input.Wrapper
+                                    error={`${validateUserAddress.last_name === 1 ?
+                                        'Last Name is Compulsory' : ''
+                                        }`}
+                                    label="Last Name"
+                                >
+                                    <Input
+                                        placeholder="Last Name"
+                                        value={editUserAddress.last_name}
+                                        onChange={(e) => setEditUserAddress({
+                                            ...userAddress,
+                                            last_name: e.target.value
+                                        })}
+                                    />
+                                </Input.Wrapper>
+                            </div>
+                            <div className="user-profile-form-input">
+                                <Input.Wrapper
+                                    label="Email Address"
+                                    error={`${validateUserAddress.email === 1 ?
+                                        'Email is Compulsory' :
+                                        validateUserAddress.email === 2 ?
+                                            'Please Enter Valid email Address' : ''
+                                        }`}
+                                >
+                                    <Input
+                                        placeholder="Your email"
+                                        value={editUserAddress.email}
+                                        onChange={(e) => setEditUserAddress({
+                                            ...userAddress,
+                                            email: e.target.value
+                                        })}
+                                    />
+                                </Input.Wrapper>
+                            </div>
+                            <div className="user-profile-form-input">
+                                <Input.Wrapper
+                                    label="Phone Number"
+                                    error={`${validateUserAddress.number === 1 ?
+                                        'Mobile Number is Compulsory' :
+                                        validateUserAddress.number === 2 ?
+                                            'Please Enter Valid Mobile Number' : ''
+                                        }`}
+                                >
+                                    <Input
+                                        placeholder="Phone Number"
+                                        value={editUserAddress.number}
+                                        onChange={(e) => setEditUserAddress({
+                                            ...userAddress,
+                                            number: e.target.value
+                                        })}
+                                    />
+                                </Input.Wrapper>
+                            </div>
+                        </div>
+                        <div className="user-profile-form-input">
+                            <Input.Wrapper
+                                label="Address"
+                                error={`${validateUserAddress.address === 1 ?
+                                    'Address is Compulsory' : ''
+                                    }`}
+                            >
+                                <Input
+                                    placeholder="Address"
+                                    value={editUserAddress.address}
+                                    onChange={(e) => setEditUserAddress({
+                                        ...userAddress,
+                                        address: e.target.value
+                                    })}
+                                />
+                            </Input.Wrapper>
+                        </div>
+                        <div className="shipping-address-model-form-input">
+                            <div className="user-profile-form-input">
+                                <Select
+                                    error={`${validateUserAddress.country === 1 ?
+                                        'Country is Compulsory' : ''
+                                        }`}
+                                    label="Country"
+                                    placeholder="Country"
+                                    rightSection={<img src={anglebottom} width={11} />}
+                                    data={addressCountries?.map(data => ({
+                                        value: data,
+                                        label: data
+                                    }))}
+                                    value={editUserAddress.country}
+                                    onChange={
+                                        (e) => setEditUserAddress({ ...userAddress, country: e })
+                                    }
+                                />
+                            </div>
+                            <div className="user-profile-form-input">
+                                <Select
+                                    error={`${validateUserAddress.state === 1 ?
+                                        'State is Compulsory' : ''
+                                        }`}
+                                    label="State"
+                                    placeholder="State"
+                                    rightSection={<img src={anglebottom} width={11} />}
+                                    data={
+                                        selectedListStates[userAddress.country ? userAddress.country : 'India']?.map(data => ({
+                                            value: data,
+                                            label: data
+                                        }))
+                                    }
+                                    value={editUserAddress.state}
+                                    onChange={
+                                        (e) => setEditUserAddress({ ...userAddress, state: e })
+                                    }
+                                />
+                            </div>
+                            <div className="user-profile-form-input">
+                                <Input.Wrapper
+                                    label="City"
+                                    error={`${validateUserAddress.city === 1 ?
+                                        'City is Compulsory' : ''
+                                        }`}
+                                >
+                                    <Input
+                                        placeholder="City"
+                                        value={editUserAddress.city}
+                                        onChange={(e) => setEditUserAddress({
+                                            ...userAddress,
+                                            city: e.target.value
+                                        })}
+                                    />
+                                </Input.Wrapper>
+                            </div>
+                            <div className="user-profile-form-input">
+                                <Input.Wrapper
+                                    error={`${validateUserAddress.zip_code === 1 ?
+                                        'Zip Code is Compulsory' : ''
+                                        }`}
+                                    label="Zip Code"
+                                >
+                                    <Input placeholder="Zip Code"
+                                        value={editUserAddress.zip_code}
+                                        onChange={(e) => setEditUserAddress({
+                                            ...userAddress,
+                                            zip_code: e.target.value
+                                        })}
+                                    />
+                                </Input.Wrapper>
+                            </div>
+                        </div>
+                        <div className="sellerbalance-edit-modal-body-content-button ht-20">
+                            <button
+                                onClick={handleCreateUserAddress}
+                            >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+
+
+            {/* Edit Address ENd */}
+
+
             <div className="user-profile-div">
                 <div className="user-profile-div-container">
                     <div className="category-div-container-breadcrumb">
@@ -245,15 +564,21 @@ const UserProfile = () => {
                                             selectedImage ?
                                                 <img src={
                                                     URL.createObjectURL(selectedImage)
-                                                } alt='User_Profile' /> :
-                                                <img src={
-                                                    `
-                                                   ${`${config.baseUrlApi}/assets/userprofile/${updateUser.profile_image}`
-                                                    }
-                                                   `}
-                                                    alt='User_Profile'
-                                                />
+                                                } alt='User_Profile' />
+                                                : (
+                                                    updateUser.profile_image ?
+                                                        <img src={
+                                                            `
+                                               ${`${config.baseUrlApi}/assets/userprofile/${updateUser.profile_image}`
+                                                            }
+                                               `}
+                                                            alt='User_Profile'
+                                                        /> :
+                                                        <Avatar
+                                                            size={'xl'}
 
+                                                            radius="xl" src={user_profile} />
+                                                )
                                         }
                                     </div>
                                     <div className="user-profile-div-container-content-tabs-panel-profile-image-icon">
@@ -347,35 +672,29 @@ const UserProfile = () => {
 
                             <Tabs.Panel className='user-profile-div-container-content-tabs-panel' value="shipaddress" pl="xs">
                                 <div className="user-profile-div-container-content-tabs-panel-shipping">
-                                    {/* <div className="user-profile-div-container-content-tabs-panel-shipping-address">
-                                        <h5>Home</h5>
-                                        <p>Peter Jone</p>
-                                        <p>150 Chatham St, Unit 4 Hamilton LKL2B6  Hamilton/Ontario/Canada</p>
-                                        <p>codingest@gmail.com</p>
-                                        <p>9876543210</p>
-                                        <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
-                                            <button><img src={edit} width={11} />Edit</button>
-                                            <button><img src={trash} width={11} />Delete</button>
-                                        </div>
-                                    </div> */}
                                     {userAddressDetails?.data?.data && userAddressDetails.data.data.length > 0 ? (
-                                        userAddressDetails.data.data.map((address, index) => (
+                                        userAddressDetails?.data?.data?.map((address, index) => (
                                             <div key={index} className="user-profile-div-container-content-tabs-panel-shipping-address">
                                                 <h5>{address?.address_type}</h5>
                                                 <p>{address?.first_name} {address?.last_name}</p>
                                                 <p>{`${address?.address}${address?.city}, ${address?.country}, ${address?.state}, ${address?.zip_code}`}</p>
                                                 <p>{address?.email}</p>
                                                 <p>{address?.number}</p>
-                                                <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
-                                                    <button onClick={() => { setAddressModalOpen(true) }}><img src={edit} width={11} />Edit</button>
-                                                    <button><img src={trash} width={11} />Delete</button>
-                                                </div>
+                                                <Flex
+                                                    onClick={() => hanldeDeleteUserAddresss(address._id)}
+                                                    align={'center'}
+                                                    gap={5} style={{ cursor: 'pointer' }}>
+                                                    <Trash
+                                                        strokeWidth={1} size={'1rem'} />
+                                                    <p>
+                                                        Delete Address
+                                                    </p>
+                                                </Flex>
                                             </div>
                                         ))
                                     ) : (
                                         <p>No address available. Click to Add Address</p>
                                     )}
-
 
                                 </div>
                                 <div className="shipping-address-add-button">
@@ -386,25 +705,51 @@ const UserProfile = () => {
                             <Tabs.Panel className='user-profile-div-container-content-tabs-panel' value="changepassword" pl="xs">
                                 <div className="user-profile-form">
                                     <div className="user-profile-form-input">
-                                        <PasswordInput
-                                            label="Old Password"
-                                            value={oldpasswordinput} onChange={(e) => setoldpasswordInput(e.target.value)}
-                                        />
+                                        <Input.Wrapper
+                                            error={`${validatePassword.oldPassword === 1 ?
+                                                'Please Enter Old Password' :
+                                                validatePassword.oldPassword === 2 ?
+                                                    'Invalid Password' : ''
+                                                }`}
+                                        >
+                                            <PasswordInput
+                                                label="Old Password"
+                                                value={oldpasswordinput} onChange={(e) => setoldpasswordInput(e.target.value)}
+                                            />
+                                        </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input">
-                                        <PasswordInput
-                                            label="New Password"
-                                            value={newpasswordinput} onChange={(e) => setnewpasswordInput(e.target.value)}
-                                        />
+                                        <Input.Wrapper
+                                            error={`${validatePassword.newPassword === 1 ?
+                                                'Please Enter New  Password' :
+                                                validatePassword.newPassword === 2 ?
+                                                    'Invalid Password' : ''
+                                                }`}
+                                        >
+                                            <PasswordInput
+                                                label="New Password"
+                                                value={newpasswordinput} onChange={(e) => setnewpasswordInput(e.target.value)}
+                                            />
+                                        </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input">
-                                        <PasswordInput
-                                            label="Confirm Password"
-                                            value={confirmpasswordinput} onChange={(e) => setconfirmpasswordInput(e.target.value)}
-                                        />
+                                        <Input.Wrapper
+                                            error={`${validatePassword.confirmPassword === 1 ?
+                                                'Please Enter Password' :
+                                                validatePassword.confirmPassword === 2 ?
+                                                    'Confirm Password not match with new Password' : ''
+                                                }`}
+                                        >
+                                            <PasswordInput
+                                                label="Confirm Password"
+                                                value={confirmpasswordinput} onChange={(e) => setconfirmpasswordInput(e.target.value)}
+                                            />
+                                        </Input.Wrapper>
                                     </div>
                                     <div className="user-profile-form-input-button">
-                                        <button>Save Changes</button>
+                                        <button
+                                            onClick={hanldeChangePassword}
+                                        >Save Changes</button>
                                     </div>
                                 </div>
                             </Tabs.Panel>

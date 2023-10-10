@@ -23,12 +23,12 @@ import HomeBlogs from '../../../components/UI/HomeBlogs/HomeBlogs'
 
 //import images for category grid
 
-import table_linen from '../../../assets/IconWebp/tablelinen.webp'
-import bath_linen from '../../../assets/IconWebp/bathlinen.webp'
-import kitchen_linen from '../../../assets/IconWebp/kitchenlinen.webp'
-import bed_linen from '../../../assets/IconWebp/bedlinen.webp'
+import table_linen from '../../../assets/Home_Catgeory_Images/electronics.png'
+import bath_linen from '../../../assets/Home_Catgeory_Images/Furniture.png'
+import kitchen_linen from '../../../assets/Home_Catgeory_Images/Fashions.png'
+import bed_linen from '../../../assets/Home_Catgeory_Images/Groceries.png'
 import living_linen from '../../../assets/IconWebp/livinglinen.webp'
-import baby_linen from '../../../assets/IconWebp/babylinen.webp'
+import baby_linen from '../../../assets/Home_Catgeory_Images/Mobiles.png'
 
 //import images for season sale
 
@@ -68,33 +68,33 @@ const Home = () => {
   const flexProductDetails = [
     {
       image: living_linen,
-      title: 'Living Linen',
+      title: 'Home Textiles',
       path: '/category/babylinen'
     },
     {
       image: table_linen,
-      title: 'Table Linen',
-      path: '/category/tablelinen'
+      title: 'Electronics',
+      path: '/comming/soon'
     },
     {
       image: kitchen_linen,
-      title: 'Kitchen Linen',
-      path: '/category/kitchenlinen'
+      title: 'Fashions',
+      path: '/comming_soon'
     },
     {
       image: bath_linen,
-      title: 'Bath Linen',
-      path: '/category/bathlinen'
+      title: 'Furniture',
+      path: '/comming_soon'
     },
     {
       image: bed_linen,
-      title: 'Bed Linen',
-      path: '/category/bedlinen'
+      title: 'Groceries',
+      path: '/comming_soon'
     },
     {
       image: baby_linen,
-      title: 'Baby Linen',
-      path: '/category/livinglinen'
+      title: 'Mobiles & Tabs',
+      path: '/comming_soon'
     },
   ]
 
@@ -142,58 +142,6 @@ const Home = () => {
           ))
         }
       </div>
-      {/* <Container className='product-category-grid' size={'82rem'}>
-        <div className="product-category-grid-div">
-          <div className="product-category-grid-div-table">
-            <Link to='/category/tablelinen'>
-              <div className="product-category-grid-div-table-image">
-                <img src={table_linen} alt="table linen" />
-                <div className="product-category-grid-div-image-content">Table Linen</div>
-              </div>
-            </Link>
-          </div>
-          <div className="product-category-grid-div-kitchen">
-            <Link to='/category/kitchenlinen'>
-              <div className="product-category-grid-div-kitchen-image">
-                <img src={kitchen_linen} alt="kitchen linen" />
-                <div className="product-category-grid-div-image-content">Kitchen Linen</div>
-              </div>
-            </Link>
-          </div>
-          <div className="product-category-grid-div-bath">
-            <Link to='/category/bathlinen'>
-              <div className="product-category-grid-div-bath-image">
-                <img src={bath_linen} alt="bath linen" />
-                <div className="product-category-grid-div-image-content">Bath Linen</div>
-              </div>
-            </Link>
-          </div>
-          <div className="product-category-grid-div-bed">
-          <Link to='/category/bedlinen'>
-          <div className="product-category-grid-div-bed-image">
-          <img src={bed_linen} alt="bed linen" />
-          <div className="product-category-grid-div-image-content">Bed Linen</div>
-              </div>
-            </Link>
-          </div>
-          <div className="product-category-grid-div-living">
-          <div className="product-category-grid-div-image-content">Baby Linen</div>
-            <Link to='/category/livinglinen'>
-              <div className="product-category-grid-div-living-image">
-                <img src={baby_linen} alt="baby linen" />
-              </div>
-            </Link>
-          </div>
-          <div className="product-category-grid-div-baby">
-          <div className="product-category-grid-div-image-content">Living Linen</div>
-            <Link to='/category/babylinen'>
-              <div className="product-category-grid-div-baby-image">
-                <img src={living_linen} alt="baby linen" />
-              </div>
-            </Link>
-          </div>
-        </div>
-      </Container> */}
       <OfferSlider header={specialheader} header2={specialheader2} />
       <Container size={'82rem'} className='home-season-sale'>
         <div className="home-season-sale-season">

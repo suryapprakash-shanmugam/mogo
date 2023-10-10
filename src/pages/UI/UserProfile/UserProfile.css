@@ -37,12 +37,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .user-profile-div-container-content-tabs-panel-profile-image img {
-    width: 75%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
 }
+
 .user-profile-div-container-content-tabs-panel-profile-image-icon {
     position: absolute;
     width: 50px;
@@ -84,6 +86,7 @@
     border: 0px;
     background-color: var(--Logo-Color2);
     color: #fff;
+    cursor: pointer;
 }
 
 .user-profile-div-container-content-tabs .mantine-13mk8k4[data-active] {
@@ -105,6 +108,7 @@
     gap: 0.5rem;
     border: 1px solid var(--Light-Light-Gray);
     padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .user-profile-div-container-content-tabs-panel-shipping-address-button {
@@ -125,6 +129,10 @@
 
 .shipping-address-add-button {
     margin: 2rem 0rem;
+    border: 1px solid var(--Logo-Color1);
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 10px;
 }
 
 .shipping-address-add-button button {
@@ -136,8 +144,8 @@
     align-items: center;
     gap: 0.3rem;
 }
-.shipping-address-model-form-input
-{
+
+.shipping-address-model-form-input {
     display: grid;
     grid-template-columns: 48% 48%;
     justify-content: space-between;
