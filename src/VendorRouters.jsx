@@ -43,6 +43,7 @@ import IndividualOrder from './pages/Vendor/IndividualOrder/Individual';
 import Coupons from './pages/Vendor/Coupons/Coupons';
 import AddCoupon from './pages/Vendor/Coupons/AddCoupon/AddCoupon';
 import Reviews from './pages/Vendor/Reviews/Reviews';
+import ChangePassword from './pages/Vendor/ChangePassword/ChangePassword';
 
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
@@ -97,6 +98,7 @@ const VendorRouters = () => {
         '/vendor_reviews': <Reviews />,
         '/vendor_comments': <Comments />,
         '/vendor_shopsettings': <ShopSettings />,
+        '/vendor_change_password': <ChangePassword />,
 
     }
 
@@ -342,7 +344,9 @@ const VendorRouters = () => {
                                         <MenuMantine.Item icon={<i className='fa fa-th-large' />}>Dashboard</MenuMantine.Item>
                                         <MenuMantine.Item icon={<i className='fa fa-user' />}>Profile</MenuMantine.Item>
                                         <MenuMantine.Item icon={<i className='fa fa-cog' />}>Update Profile</MenuMantine.Item>
-                                        <MenuMantine.Item icon={<i className='fa fa-user' />}>Change Password</MenuMantine.Item>
+                                        <Link to="/vendor_change_password">
+                                            <MenuMantine.Item component="span" icon={<i className='fa fa-user' />}>Change Password</MenuMantine.Item>
+                                        </Link>
                                         <MenuMantine.Divider />
                                         <MenuMantine.Item icon={<i className='fa fa-sign-out' />}>Logout</MenuMantine.Item>
                                     </MenuMantine.Dropdown>
