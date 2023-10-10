@@ -18,6 +18,7 @@ function NumericInput({ value, onChange, label, placeholder }) {
 
     return (
         <div className='numeric-input-form'>
+            {label !== "" ? <label>{label}</label> : ''}
             <input
                 type="text"
                 value={value}

@@ -44,6 +44,7 @@ import Coupons from './pages/Vendor/Coupons/Coupons';
 import AddCoupon from './pages/Vendor/Coupons/AddCoupon/AddCoupon';
 import Reviews from './pages/Vendor/Reviews/Reviews';
 import ChangePassword from './pages/Vendor/ChangePassword/ChangePassword';
+import BankDetails from './pages/Vendor/BankDetails/BankDetails';
 
 //import images
 import Logo from '../src/assets/Mogo-Logo.png'
@@ -99,6 +100,7 @@ const VendorRouters = () => {
         '/vendor_comments': <Comments />,
         '/vendor_shopsettings': <ShopSettings />,
         '/vendor_change_password': <ChangePassword />,
+        '/vendor_bank_details': <BankDetails />,
 
     }
 
@@ -122,7 +124,7 @@ const VendorRouters = () => {
             <div className='admin-sidenav' >
                 <Sidebar collapsed={collapsed} style={{ zIndex: "9999" }} transitionDuration={1000}>
                     <div className="admin-sidebar-logo">
-                        <Link to="/admin_dashboard">
+                        <Link to="/vendor_dashboard">
                             <div className={collapsed === false ? `admin-sidebar-logo-img` : `admin-sidebar-logo-img-favicon`}>
                                 {
                                     collapsed === false ? <img src={Logo} alt="" /> : <img className='Logo_favicon' src={Logo_favicon} alt="" />
@@ -220,6 +222,19 @@ const VendorRouters = () => {
                             <Link to="/vendor_earnings">
                                 <MenuItem component="span" active icon={<i className='fa fa-money' />}>
                                     Earnings
+                                </MenuItem>
+                            </Link>
+                        </Tooltip>
+                        <Tooltip
+                            label="Bank Details"
+                            color="teal"
+                            position="bottom-end"
+                            withArrow
+                            disabled={collapsed !== true ? true : false}
+                        >
+                            <Link to="/vendor_bank_details">
+                                <MenuItem component="span" active icon={<i className='fa fa-bank' />}>
+                                    Bank Details
                                 </MenuItem>
                             </Link>
                         </Tooltip>

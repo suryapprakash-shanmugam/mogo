@@ -240,6 +240,8 @@ const Wipper = () => {
 
                 <Route path="/vendor_change_password" element={<VendorRouters />} />
 
+                <Route path="/vendor_bank_details" element={<VendorRouters />} />
+
             </Routes>
         </div>
     )

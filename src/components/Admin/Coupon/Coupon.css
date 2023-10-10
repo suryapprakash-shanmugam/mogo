@@ -7,7 +7,7 @@
 
 .coupon-component-div-form {
     display: grid;
-    grid-template-columns: 95% 5%;
+    grid-template-columns: 90% 5% 5%;
 }
 
 .coupon-component-div-form input {
@@ -26,4 +26,9 @@
     border: 0px;
     background-color: var(--Logo-Color1);
     color: #fff;
+}
+.coupon-clear-button
+{
+    background-color: var(--Discount-Color) !important;
+    margin-left: 10px;
 }

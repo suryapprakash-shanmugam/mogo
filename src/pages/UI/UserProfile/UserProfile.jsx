@@ -358,23 +358,24 @@ const UserProfile = () => {
                                             <button><img src={trash} width={11} />Delete</button>
                                         </div>
                                     </div> */}
-                                    {
-                                        userAddressDetails?.data?.data?.map((address, index) => {
-                                            return (
-                                                <><div key={index} className="user-profile-div-container-content-tabs-panel-shipping-address">
-                                                    <h5>{address?.address_type}</h5>
-                                                    <p>{address?.first_name} {address?.last_name}</p>
-                                                    <p>{`${address?.address}${address?.city}, ${address?.country}, ${address?.state}, ${address?.zip_code}`}</p>
-                                                    <p>{address?.email}</p>
-                                                    <p>{address?.number}</p>
-                                                    {/* <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
-                                                        <button onClick={() => { setAddressModalOpen(true) }}><img src={edit} width={11} />Edit</button>
-                                                        <button><img src={trash} width={11} />Delete</button>
-                                                    </div> */}
-                                                </div></>
-                                            )
-                                        })
-                                    }
+                                    {userAddressDetails?.data?.data && userAddressDetails.data.data.length > 0 ? (
+                                        userAddressDetails.data.data.map((address, index) => (
+                                            <div key={index} className="user-profile-div-container-content-tabs-panel-shipping-address">
+                                                <h5>{address?.address_type}</h5>
+                                                <p>{address?.first_name} {address?.last_name}</p>
+                                                <p>{`${address?.address}${address?.city}, ${address?.country}, ${address?.state}, ${address?.zip_code}`}</p>
+                                                <p>{address?.email}</p>
+                                                <p>{address?.number}</p>
+                                                <div className="user-profile-div-container-content-tabs-panel-shipping-address-button">
+                                                    <button onClick={() => { setAddressModalOpen(true) }}><img src={edit} width={11} />Edit</button>
+                                                    <button><img src={trash} width={11} />Delete</button>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No address available. Click to Add Address</p>
+                                    )}
+
 
                                 </div>
                                 <div className="shipping-address-add-button">
@@ -541,6 +542,7 @@ const UserProfile = () => {
                                         }`}
                                     label="Country"
                                     placeholder="Country"
+                                    searchable
                                     rightSection={<img src={anglebottom} width={11} />}
                                     data={addressCountries?.map(data => ({
                                         value: data,
@@ -559,6 +561,7 @@ const UserProfile = () => {
                                         }`}
                                     label="State"
                                     placeholder="State"
+                                    searchable
                                     rightSection={<img src={anglebottom} width={11} />}
                                     data={
                                         selectedListStates[userAddress.country ? userAddress.country : 'India']?.map(data => ({
