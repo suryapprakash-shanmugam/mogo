@@ -1,5 +1,5 @@
 //import react packages
-import { Container } from '@mantine/core'
+import { Accordion, Avatar, Container, Divider, Drawer, Flex, ScrollArea, Space, Title } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -8,8 +8,20 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 import { useQuery } from 'react-query'
 import { categoryListAPI } from '../../config/quries/Category/CategoryQueries'
+import { Menu2 } from 'tabler-icons-react'
+import { useDisclosure } from '@mantine/hooks'
+import { useSelector } from 'react-redux'
+
+import config from "../../config/server/Servers"
 
 const Navbar = () => {
+    // Drawer State 
+    const [opened, { open, close }] = useDisclosure(false);
+    const [selectedCategory, setSelectedCategory] = useState({
+        category: null,
+        subCategory: null,
+        childCategory: null
+    })
 
     const header1060MediaQuery = useMediaQuery('(max-width:1061px)')
     const header786MediaQuery = useMediaQuery('(max-width:787px)')
@@ -26,31 +38,216 @@ const Navbar = () => {
             }
         }
     )
+
+    // Drawer Category
+    const categoryAccordion = Array.isArray(categoryList) ? (
+        categoryList.map((cateValue, cindex) => (
+            <Accordion.Item key={cindex} value={cateValue.name}>
+                <Accordion.Control
+                    onClick={() => setSelectedCategory({ ...selectedCategory, category: cateValue._id })}
+                    className='category-accordion-heading'
+                >
+                    <div className='category-accordion-heading-left'>
+                        <p>{cateValue.name}</p>
+                    </div>
+                </Accordion.Control>
+                <Accordion.Panel>
+                    {Array.isArray(cateValue.subCategory) ? (
+                        cateValue.subCategory.map((subValue, sIndex) => (
+                            <Accordion key={sIndex} >
+                                <Accordion.Item value={subValue.name}>
+                                    <Accordion.Control
+                                        onClick={() => setSelectedCategory({ ...selectedCategory, subCategory: subValue._id })}
+                                        className='subcategory-accordion-heading'
+                                    >
+                                        <div className='subcategory-accordion-heading-left'>
+                                            <p>{subValue.name}</p>
+                                        </div>
+                                    </Accordion.Control>
+                                </Accordion.Item>
+                            </Accordion>
+                        ))
+                    ) : (
+                        "Nothing Found"
+                    )}
+                </Accordion.Panel>
+            </Accordion.Item>
+        ))
+    ) : 'No Categories Found to Display';
+
+
+
+    const userData = useSelector((state) => state.userData.value)
+
     return (
         <div>
-            <div className="navbar-div">
-                <div>
+            <Drawer
+                size={300}
+                className='home-category-drawer'
+                onClose={close}
+                zIndex={12345610} opened={opened}
+                p={0}
+                withCloseButton={false}>
+                <ScrollArea>
 
+                    <Divider />
+                    <div className='home-category-drawer-header'>
+                        <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'1rem'}>
+                            <Avatar size={'1.8rem'} radius="lg"
+                                src={
+                                    userData.profile_image
+                                        ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
+                                        : ''
+                                }
+                            />
+                            <p className='para_color open-sanserif'>
+                                {
+                                    userData.first_name ?
+                                        userData.first_name : (
+                                            <p style={{ display: 'flex' }}>
+                                                Hai,<Space w={'0.4rem'} />sign in
+                                            </p>
+                                        )
+                                }
+                            </p>
+                        </Flex>
+                    </div>
+                    <Title order={4} p={'xs'} pl={'lg'} pt={'sm'}>
+                        Trending
+                    </Title>
+                    <Title className='drawer-title' order={6} pb={'xs'} pl={'lg'} pt={'xs'}>
+                        Best Deals
+                    </Title>
+                    <Title className='drawer-title' order={6} pb={'xs'} pl={'lg'} pt={'xs'}>
+                        Today's Deals
+                    </Title>
+                    <Title className='drawer-title' order={6} pb={'xs'} pl={'lg'} pt={'xs'}>
+                        New Releases
+                    </Title>
+                    <Space h={'sm'} />
+                    <Divider />
+                    <Title order={4} p={'xs'} pl={'lg'}>
+                        Shop By Category
+                    </Title>
+                    <Accordion variant="filled" p={0}>
+                        <Accordion.Item p={0} value='Home Textiles'>
+                            <Accordion.Control>
+                                <Title className='drawer-title' order={6}>
+                                    Home Textiles
+                                </Title>
+                            </Accordion.Control>
+                            <Accordion.Panel>
+                                {categoryAccordion}
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                        <Accordion.Item value='Electronics' >
+                            <Accordion.Control>
+                                <Title className='drawer-title' order={6}>
+                                    Electronics
+                                </Title>
+                            </Accordion.Control>
+                            <Accordion.Panel pl={'sm'}>
+                                Comming Soon
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                        <Accordion.Item value='Furniture' >
+                            <Accordion.Control>
+                                <Title className='drawer-title' order={6}>
+                                    Furniture
+                                </Title>
+                            </Accordion.Control>
+                            <Accordion.Panel pl={'sm'}>
+                                Comming Soon
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                        <Accordion.Item value='Fashions' >
+                            <Accordion.Control>
+                                <Title className='drawer-title' order={6}>
+                                    Fashions
+                                </Title>
+                            </Accordion.Control>
+                            <Accordion.Panel pl={'sm'}>
+                                Comming Soon
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                        <Accordion.Item value='Mobiles' >
+                            <Accordion.Control>
+                                <Title className='drawer-title' order={6}>
+                                    Mobiles
+                                </Title>
+                            </Accordion.Control>
+                            <Accordion.Panel pl={'sm'}>
+                                Comming Soon
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                        <Accordion.Item pb={'xs'} value='Groceries' >
+                            <Accordion.Control>
+                                <Title className='drawer-title' order={6}>
+                                    Groceries
+                                </Title>
+                            </Accordion.Control>
+                            <Accordion.Panel pl={'sm'}>
+                                Comming Soon
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                    </Accordion>
+                    <Divider />
+                    <Title order={4} p={'xs'} pl={'lg'} pt={'sm'}>
+                        Help & Settings
+                    </Title>
+                    <Title className='drawer-title' order={6} pb={'xs'} pl={'lg'} pt={'xs'}>
+                        Your Account
+                    </Title>
+                    <Title className='drawer-title' order={6} pb={'xs'} pl={'lg'} pt={'xs'}>
+                        Customer Service
+                    </Title>
+                    <Title className='drawer-title' order={6} pb={'xs'} pl={'lg'} pt={'xs'}>
+                        Sign Out
+                    </Title>
+                </ScrollArea>
+            </Drawer>
+            <div>
+                <div className="navbar-div">
+                    <div className='navbar-data'>
+                        <ul>
+                            <li
+                                style={{ cursor: 'pointer' }}
+                                onClick={open}
+                            >
+                                <Menu2 size={'1rem'} />
+                                ALL
+                            </li>
+                            <li>
+                                Buy Again
+                            </li>
+                            <li>
+                                Best Deals
+                            </li>
+                            <li>
+                                Today's Deals
+                            </li>
+                            <li>
+                                New Releases
+                            </li>
+                        </ul>
+                    </div>
                     <Container size={'82rem'} className='navbar-div-container'>
                         <ul className='navbar-div-container-ul'>
-                            {/* <li><Link to='/' className='navbar-link'>Home</Link></li> */}
                             <ul className='product-dropdown-hover navbar-div-container-ul2'>
-                                {
-                                    Array.isArray(categoryList) ?
-                                        categoryList?.map((value, index) => (
-                                            <li>
-                                                {
-                                                    value.name
-                                                }
-                                            </li>
-                                        )) : ''
-                                }
-                                {/* <li>Bed Linen</li>
-                                <li>Kitchen Linen</li>
-                                <li>Table Linen</li>
-                                <li>Bath Linen</li>
-                                <li>Baby Linen</li> */}
-                                <div className="navbar-div-container-ul-dropdown">
+                                <li >
+                                    Home Textiles
+                                </li>
+                                <li>Electronic's</li>
+                                <li>Furniture</li>
+                                <li>Fashions</li>
+                                <li>Mobiles</li>
+                                <li>Groceries</li>
+                                <li>
+                                    <Title order={5}>
+                                        Returns & Orders
+                                    </Title>
+                                </li>
+                                {/* <div className="navbar-div-container-ul-dropdown">
                                     <div className="navbar-div-container-ul-dropdown-content">
                                         <div className="navbar-div-container-ul-dropdown-content-table">
                                             <Link to='/category/tablelinen' className='navbar-link'>
@@ -159,7 +356,7 @@ const Navbar = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </ul>
                             {/* <li><Link className='navbar-link' to={'/about'}>About Us</Link></li>
                         <li><Link className='navbar-link' to={'/contact'}>Contact Us</Link></li> */}

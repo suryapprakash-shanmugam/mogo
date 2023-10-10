@@ -4,6 +4,8 @@
     border-bottom: 1px solid var(--Extra-Light-Gray);
     font-family: 'Open Sans';
     font-size: 14px;
+    background-color: var(--Logo-Color6);
+    color: white;
 }
 
 .preheader-container {
@@ -24,7 +26,8 @@
     align-items: center;
     width: fit-content;
     height: 100%;
-    color: var(--Para-Color);
+    /* color: var(--Para-Color); */
+    color: white;
 }
 
 .preheader-container-contact-sell-contact {
@@ -38,7 +41,6 @@
 .preheader-container-location-currency-user {
     display: flex;
     gap: 1rem;
-    background-color: white;
     align-items: center;
 }
 
@@ -62,7 +64,9 @@
 .preheader-container-location-currency-user .mantine-1v7s5f8 .mantine-1cn2mlo {
     border: 0;
     width: 100px;
-    color: var(--Para-Color);
+    /* color: var(--Para-Color); */
+    color: white;
+    background-color: transparent;
 }
 
 .preheader-container-location-currency-user-user-image {
@@ -76,7 +80,8 @@
 }
 
 .preheader-container-location-currency-user-location-text {
-    color: var(--Para-Color);
+    /* color: var(--Para-Color); */
+    color: white;
     display: flex;
     align-items: center;
     gap: 0.2rem;
@@ -359,6 +364,13 @@
     text-align: center;
 }
 
+/* Dhiyanesh Css */
+
+.mantine-1nonusa {
+    color: black;
+}
+
+/* Dhiyanesh Css End */
 .preheader-container-location-currency-user-user-dropdown-signin-p {
     font-family: 'Open Sans';
 }

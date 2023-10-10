@@ -66,6 +66,10 @@ const Preheader = () => {
       value: 'tamil',
       label: 'Tamil',
     },
+    {
+      value: 'hindi',
+      label: 'Hindi',
+    },
   ]
 
   const [valueIcon, setValueIcon] = useState('india')
@@ -247,7 +251,7 @@ const Preheader = () => {
                         : ''
                     }
                   />
-                  <p className='para_color'>
+                  <p>
                     {
                       userData.first_name ?
                         userData.first_name :
@@ -262,7 +266,7 @@ const Preheader = () => {
                   {
                     userData.first_name ?
                       <p>
-                        <Center p='lg'>
+                        <Center color='black' p='lg'>
                           {userData.first_name} {userData.last_name}
                         </Center>
                       </p>

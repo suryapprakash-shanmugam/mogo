@@ -1,7 +1,28 @@
+.navbar-div {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    padding-left: 5rem;
+    width: fit-content;
+    gap: 1rem;
+}
+
+.navbar-data ul {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar-data ul li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    gap: 0.3rem;
+}
+
 .navbar-div-container {
     padding: 0;
-    width: 830px;
-    height: 50px;
     display: flex;
     align-items: center;
     font-family: 'Open Sans';
@@ -20,7 +41,6 @@
     align-items: center;
     gap: 2rem;
     list-style-type: none;
-    justify-content: flex-start;
     font-size: 14px;
 }
 
@@ -38,17 +58,10 @@
     cursor: pointer;
 }
 
-.navbar-div-container-ul li:hover {
-    border-bottom: 2px solid var(--Logo-Color1);
-}
-
 .navbar-div-container-ul2 li {
     cursor: pointer;
 }
 
-.navbar-div-container-ul2 li:hover {
-    border-bottom: 2px solid var(--Logo-Color1);
-}
 
 .navbar-div-container-ul-dropdown {
     position: absolute;
@@ -119,6 +132,92 @@
     gap: 2rem;
 }
 
+/* Drawer Css */
+
+
+.home-category-drawer .mantine-1q36a81 {
+    padding: 0;
+}
+
+.home-category-drawer-header {
+    background-color: var(--Logo-Color1);
+    padding: 0.3rem 0.8rem;
+    display: flex;
+    height: 6vh;
+    align-items: center;
+}
+
+
+.home-category-drawer-header p {
+    font-size: 20px;
+    color: white;
+}
+
+.drawer-title {
+    font-weight: 400;
+}
+
+.home-category-drawer .mantine-ecft5f {
+    /* padding: ; */
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 1rem;
+}
+
+.home-category-drawer .mantine-gm39d {
+    padding: 0.2rem 0.5rem;
+}
+
+.home-category-drawer .mantine-2w2bpy {
+    padding: 0.2rem 1.5rem;
+}
+
+.mantine-1ta4rj2 {
+    padding: 0.4rem 1.5rem;
+}
+
+/* Drawer Css  End*/
+
+/* Dhiyanesh CSS */
+
+.navbar-div-container-ul2 li:last-child {
+    padding: 0.3rem;
+    border-radius: 3px;
+    color: var(--Logo-Color6);
+    font-weight: 700;
+    transition: all 500ms ease-in-out;
+}
+
+.navbar-div-container-ul2 li:last-child:hover {
+    color: var(--Logo-Color1);
+}
+
+.navbar-data ul li {
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+}
+
+.navbar-data ul li:first-child:hover {
+    transform: scale(1);
+    color: black;
+    transition: all 500ms ease-in-out;
+}
+
+.navbar-data ul li:hover {
+    transform: scale(1.2);
+    color: var(--Logo-Color6);
+}
+
+.navbar-div-container-ul2 li {
+    transition: all 500ms ease-in-out;
+}
+
+.navbar-div-container-ul2 li:hover {
+    transform: scale(1.2);
+    color: var(--Logo-Color6);
+}
+
+/* Dhiyanesh CSS End */
 @media(max-width:787px) {
     .navbar-div-container-ul
     {
