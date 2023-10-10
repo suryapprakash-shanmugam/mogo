@@ -56,6 +56,7 @@ import UserOrders from './pages/UI/UserOrders/UserOrders';
 import UserOrdersIndividual from './pages/UI/UserOrdersIndividual/UserOrdersIndividual';
 import Blogs from './pages/UI/Blogs/Blogs';
 import BlogsIndividual from './pages/UI/Blogs/BlogsIndividual/BlogsIndividual';
+import Comming_Soon from './pages/Error_Pages/Comming_Soon/Comming_Soon';
 
 const Routers = () => {
     const location = useLocation();
@@ -66,9 +67,7 @@ const Routers = () => {
     const bodyContent = {
         '/': <Home />,
         '/products': <Category />,
-
         '/category': <Category />,
-
         '/category/tablelinen': <Category />,
         '/tablelinen/cloth': <Category />,
         '/tablelinen/placemat': <Category />,
@@ -77,16 +76,12 @@ const Routers = () => {
         '/tablelinen/napkinsrings': <Category />,
         '/tablelinen/coasters': <Category />,
         '/tablelinen/breadbaskets': <Category />,
-
-
         '/category/kitchenlinen': <Category />,
         '/kitchenlinen/aprons': <Category />,
         '/kitchenlinen/gloves': <Category />,
         '/kitchenlinen/potholders': <Category />,
         '/kitchenlinen/towels': <Category />,
         '/kitchenlinen/dishcloths': <Category />,
-
-
         '/category/bathlinen': <Category />,
         '/bathlinen/towels': <Category />,
         '/bathlinen/handtowels': <Category />,
@@ -97,8 +92,6 @@ const Routers = () => {
         '/bathlinen/towelracks': <Category />,
         '/bathlinen/towelrings': <Category />,
         '/bathlinen/towelhooks': <Category />,
-
-
         '/category/bedlinen': <Category />,
         '/bedlinen/bedsheets': <Category />,
         '/bedlinen/pillowcases': <Category />,
@@ -110,8 +103,6 @@ const Routers = () => {
         '/bedlinen/quilts': <Category />,
         '/bedlinen/bolsters': <Category />,
         '/bedlinen/shams': <Category />,
-
-
         '/category/livinglinen': <Category />,
         '/livinglinen/curtains': <Category />,
         '/livinglinen/throws': <Category />,
@@ -123,8 +114,6 @@ const Routers = () => {
         '/livinglinen/hammocks': <Category />,
         '/livinglinen/chaircovers': <Category />,
         '/livinglinen/doorstoppers': <Category />,
-
-
         '/category/babylinen': <Category />,
         '/babylinen/hoodies': <Category />,
         '/babylinen/blanket': <Category />,
@@ -145,7 +134,6 @@ const Routers = () => {
         '/babylinen/fittedsheet': <Category />,
         '/babylinen/apron': <Category />,
         '/babylinen/bumper': <Category />,
-
         '/product/:category/:subcategory/:id': (
             <Product
                 category={category}
@@ -155,29 +143,17 @@ const Routers = () => {
         ),
 
         '/cart': <Cart />,
-
         '/checkout': <Checkout />,
-
         '/orderplaced': <OrderPlaced />,
-
         '/terms-and-conditions': <TermsAndConditions />,
-
         '/wishlist': <WishList />,
-
         '/sellonmogo': <SellOnMogo />,
-
         '/contact': <Contact />,
-
         '/about': <About />,
-
         '/your_account': <UserProfile />,
-
         '/your_orders': <UserOrders />,
-
         '/user_order_individual': <UserOrdersIndividual />,
-
         '/ui_blogs': <Blogs />,
-
         '/ui_blogs_individual': <BlogsIndividual />,
     }
 

@@ -34,3 +34,21 @@ export const updateUserAPI = (payload) => {
         commonHeader
     )
 }
+
+
+export const changePassword = (payload) => {
+    const { id, body } = payload
+    const data = {
+        password: body.password,
+        new_password: body.new_password
+    }
+    return axios.post(`${config.baseUrlApi}/users/changepassword/${id}`,
+        data,
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+        }
+    )
+}

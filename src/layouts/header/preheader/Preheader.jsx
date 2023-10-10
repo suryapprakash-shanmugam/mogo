@@ -228,7 +228,10 @@ const Preheader = () => {
               itemComponent={SelectItem}
               value={languageState.label}
               className='lang-select'
-              rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
+              rightSection={<ChevronDown
+                color='white'
+                // color='rgb(168, 147, 135)' 
+                strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
               onChange={(e) => setValueIcon(e)}
               icon={filterData[0].icon}
               data={languageState}
@@ -237,7 +240,9 @@ const Preheader = () => {
             <div className="preheader-container-location-currency-user-currency">
               <Select
                 zIndex={1234568} defaultValue={currencyArray[0].value}
-                rightSection={<ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
+                rightSection={<ChevronDown
+                  color='white'
+                  strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
                 data={currencyArray}
               />
             </div>
@@ -258,7 +263,10 @@ const Preheader = () => {
                         ' Login'
                     }
                   </p>
-                  <ChevronDown color='rgb(168, 147, 135)' strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />
+                  <ChevronDown
+                    color='white'
+                    //  color='rgb(168, 147, 135)' 
+                    strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />
                 </Flex>
               </Menu.Target>
               <Menu.Dropdown>
@@ -294,23 +302,34 @@ const Preheader = () => {
                   <hr />
                   <div className="preheader-container-location-currency-user-user-dropdown-extra">
                     <p>
-                      <Menu.Item
-                        onClick={!sessionStorage.getItem('MogoUserAccessToken101') && handleYourAccount}
-                        component={Link} to={`${sessionStorage.getItem('MogoUserAccessToken101') ?
-                          '/your_account' : '/'
-                          }`} className="navbar-link user-dropdown-link">
-                        Your Account
-                      </Menu.Item>
+                      {
+                        sessionStorage.getItem('MogoUserAccessToken101') ?
+                          <Menu.Item
+                            component={Link} to={'/your_account'} className="navbar-link user-dropdown-link">
+                            Your Account
+                          </Menu.Item> :
+                          <Menu.Item
+                            onClick={handleYourAccount} className="navbar-link user-dropdown-link">
+                            Your Account
+                          </Menu.Item>
+                      }
                     </p>
                     <p>
-                      <Menu.Item
-                        onClick={!sessionStorage.getItem('MogoUserAccessToken101') && handleYourAccount}
-                        component={Link} to={`${sessionStorage.getItem('MogoUserAccessToken101') ?
-                          '/your_orders' : '/'
-                          }`}  className="navbar-link user-dropdown-link"
-                      >
-                        Your Orders
-                      </Menu.Item>
+                      {
+                        sessionStorage.getItem('MogoUserAccessToken101') ?
+                          <Menu.Item
+                            component={Link} to={
+                              '/your_orders'} className="navbar-link user-dropdown-link"
+                          >
+                            Your Orders
+                          </Menu.Item> :
+                          <Menu.Item
+                            onClick={handleYourAccount}
+                            className="navbar-link user-dropdown-link"
+                          >
+                            Your Orders
+                          </Menu.Item>
+                      }
                     </p>
                     <p>
                       <Menu.Item className="navbar-link user-dropdown-link">

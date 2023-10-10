@@ -52,8 +52,6 @@ const Cart = () => {
         }
     )
 
-    console.log(cartProduct);
-
     return (
         <div>
             <div className="cart-div">
