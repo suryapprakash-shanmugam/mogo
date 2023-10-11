@@ -64,7 +64,6 @@ export const handleCreateProduct = async (productSingleImage, multiProductImage,
     images.forEach((image) => {
         formData.append(`file`, image);
     });
-
     axios.post(`${config.baseUrlApi}/products/create`,
         formData,
         {
