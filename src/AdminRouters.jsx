@@ -301,6 +301,9 @@ const AdminRouters = () => {
                                 <Link to="/productsdetails">
                                     <MenuItem component="span"> Products</MenuItem>
                                 </Link>
+                                <Link to="/addproduct">
+                                    <MenuItem component="span"> Add Product</MenuItem>
+                                </Link>
                                 <Link to="/special_products">
                                     <MenuItem component="span"> Special Products</MenuItem>
                                 </Link>
@@ -321,9 +324,6 @@ const AdminRouters = () => {
                                 </Link>
                                 <Link to="/deleted_products">
                                     <MenuItem component="span"> Deleted Products</MenuItem>
-                                </Link>
-                                <Link to="/addproduct">
-                                    <MenuItem component="span"> Add Product</MenuItem>
                                 </Link>
                                 {/* <Link to="">
                                     <MenuItem component="span"> Bulk Product Upload</MenuItem>

@@ -81,15 +81,24 @@ const Navbar = () => {
                         </div>
                     </Accordion.Control>
                     <Accordion.Panel>
-                        {Array.isArray(subCategoryList) ? (
-                            subCategoryList.map((subValue, sIndex) => (
-                                <Title order={6} p={'xs'} style={{ fontWeight: '400' }}>
-                                    {subValue.name}
-                                </Title>
-                            ))
-                        ) : (
-                            "Comming Soon"
-                        )}
+                        <Accordion>
+                            {Array.isArray(subCategoryList) ? (
+                                subCategoryList.map((subValue, sIndex) => (
+                                    <Accordion.Item value={subValue.name}>
+                                        <Accordion.Control>
+                                            <Title order={6} p={'xs'} style={{ fontWeight: '400' }}>
+                                                {subValue.name}
+                                            </Title>
+                                        </Accordion.Control>
+                                        <Accordion.Panel>
+                                            Comming Soon
+                                        </Accordion.Panel>
+                                    </Accordion.Item>
+                                ))
+                            ) : (
+                                "Comming Soon"
+                            )}
+                        </Accordion>
                     </Accordion.Panel>
                 </Accordion.Item>
             </Accordion>
@@ -222,50 +231,50 @@ const Navbar = () => {
                     </Flex>
                 </div>
             </Drawer>
-            <div>
-                <div className="navbar-div">
-                    <div className='navbar-data'>
-                        <ul>
-                            <li
-                                style={{ cursor: 'pointer' }}
-                                onClick={open}
-                            >
-                                <Menu2 size={'1rem'} />
-                                ALL
+            <div className="navbar-div">
+                <div className='navbar-data'>
+                    <ul>
+                        <li
+                            style={{ cursor: 'pointer' }}
+                            onClick={open}
+                        >
+                            <Menu2 size={'1rem'} />
+                            ALL
+                        </li>
+                        <li>
+                            Buy Again
+                        </li>
+                        <li>
+                            Best Deals
+                        </li>
+                        <li>
+                            Today's Deals
+                        </li>
+                        <li>
+                            New Releases
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul className='navbar-div-container-ul'>
+                        <ul className='product-dropdown-hover navbar-div-container-ul2
+                        poppins-font-family
+                        '>
+                            <li >
+                                Home Textiles
                             </li>
+                            <li>Electronic's</li>
+                            <li>Furniture</li>
+                            <li>Fashions</li>
+                            <li>Mobiles</li>
+                            <li>Groceries</li>
                             <li>
-                                Buy Again
-                            </li>
-                            <li>
-                                Best Deals
-                            </li>
-                            <li>
-                                Today's Deals
-                            </li>
-                            <li>
-                                New Releases
+                                <Title order={5}>
+                                    Returns & Orders
+                                </Title>
                             </li>
                         </ul>
-                    </div>
-                    <Container size={'82rem'} className='navbar-div-container'>
-                        <ul className='navbar-div-container-ul'>
-                            <ul className='product-dropdown-hover navbar-div-container-ul2'>
-                                <li >
-                                    Home Textiles
-                                </li>
-                                <li>Electronic's</li>
-                                <li>Furniture</li>
-                                <li>Fashions</li>
-                                <li>Mobiles</li>
-                                <li>Groceries</li>
-                                <li>
-                                    <Title order={5}>
-                                        Returns & Orders
-                                    </Title>
-                                </li>
-                            </ul>
-                        </ul>
-                    </Container>
+                    </ul>
                 </div>
             </div>
         </div>
