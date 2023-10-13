@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 import { useQuery } from 'react-query'
 import { categoryListAPI } from '../../config/quries/Category/CategoryQueries'
-import { Menu2 } from 'tabler-icons-react'
+import { Menu2, TransferOut } from 'tabler-icons-react'
 import { useDisclosure } from '@mantine/hooks'
 import { useSelector } from 'react-redux'
 
@@ -63,7 +63,6 @@ const Navbar = () => {
             }
         }
     )
-
 
     // Drawer Category
     const categoryAccordion = Array.isArray(categoryList) ? (
@@ -145,24 +144,42 @@ const Navbar = () => {
 
                     <Divider />
                     <div className='home-category-drawer-header'>
-                        <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'1rem'}>
-                            <Avatar size={'1.8rem'} radius="lg"
-                                src={
-                                    userData.profile_image
-                                        ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
-                                        : ''
-                                }
-                            />
-                            <p className='para_color open-sanserif'>
+                        <Flex
+                            w={'100%'}
+                            justify={'space-between'}
+                            style={{ cursor: 'pointer' }} align={'center'}>
+                            <div>
+                                <Flex
+                                    align={'center'} gap={'1rem'}>
+                                    <Avatar size={'1.8rem'} radius="lg"
+                                        src={
+                                            userData.profile_image
+                                                ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
+                                                : ''
+                                        }
+                                    />
+                                    <p className='para_color open-sanserif'>
+                                        {
+                                            userData.first_name ?
+                                                userData.first_name : (
+                                                    <p style={{ display: 'flex' }}>
+                                                        Hai,<Space w={'0.4rem'} />sign in
+                                                    </p>
+                                                )
+                                        }
+                                    </p>
+                                </Flex>
+                            </div>
+                            <div>
                                 {
                                     userData.first_name ?
-                                        userData.first_name : (
-                                            <p style={{ display: 'flex' }}>
-                                                Hai,<Space w={'0.4rem'} />sign in
-                                            </p>
-                                        )
+                                        <TransferOut
+                                            color='white'
+                                            size={'1.5rem'}
+                                        />
+                                        : ''
                                 }
-                            </p>
+                            </div>
                         </Flex>
                     </div>
                     <Title order={4} p={'xs'} pl={'lg'} pt={'sm'}>
@@ -199,6 +216,11 @@ const Navbar = () => {
                         Sign Out
                     </Title>
                 </ScrollArea>
+                <div>
+                    <Flex>
+
+                    </Flex>
+                </div>
             </Drawer>
             <div>
                 <div className="navbar-div">

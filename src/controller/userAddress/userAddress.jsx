@@ -88,6 +88,7 @@ export const hanldeCreateUserAddressControl = async (
                                                             })
                                                         })
                                                         .catch((error) => {
+                                                            console.log(error);
                                                             showNotification({
                                                                 icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
                                                                     <X color="red" />

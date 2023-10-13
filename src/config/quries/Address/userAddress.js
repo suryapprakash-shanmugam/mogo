@@ -12,35 +12,20 @@ const commonHeader = {
 export const listAddressByUserID = ({ queryKey }) => {
     const [_, id] = queryKey
     return axios.get(`${config.baseUrlApi}/address/useraddress/${id}`,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-        }
+        commonHeader
     )
 }
 
 export const CreateUserAddress = (payload) => {
     return axios.post(`${config.baseUrlApi}/address/create`,
         payload,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-        }
+        commonHeader
     )
 }
 
 export const deleteUserAddress = (id) => {
     return axios.delete(`${config.baseUrlApi}/address/delete/${id}`,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-        }
+        commonHeader
     )
 }
 
