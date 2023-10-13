@@ -4,17 +4,17 @@ import './AddCoupon.css'
 import list from '../../../../assets/admin/payout/list.png'
 import { Link } from 'react-router-dom'
 import Coupon from '../../../../components/Admin/Coupon/Coupon'
-import NumericInput from '../../../../components/UI/Input/NumericInput'
-import ReactDatePicker from 'react-datepicker'
+import NumericInput from '../../../../components/Admin/Input/NumericInput'
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 const AddCoupon = () => {
 
-    const [numberofDaysmaxValue, setNumberofDaysMaxValue] = useState('');
-    const [numberofCouponsmaxValue, setNumberofCouponsMaxValue] = useState('');
-    const [orderAmountmaxValue, setOrderAmountMaxValue] = useState('');
-    const [selectedDate, setSelectedDate] = useState(null);
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
+    // const [numberofDaysmaxValue, setNumberofDaysMaxValue] = useState('');
+    // const [numberofCouponsmaxValue, setNumberofCouponsMaxValue] = useState('');
+    // const [orderAmountmaxValue, setOrderAmountMaxValue] = useState('');
+    // const [selectedDate, setSelectedDate] = useState(null);
     const subcategories = ['Sub Category 1', 'Sub Category 2', 'Sub Category 3'];
 
     const [categoryChecked, setCategoryChecked] = useState(false);
@@ -45,6 +45,37 @@ const AddCoupon = () => {
         }
     }, [areAllSubCategoriesUnchecked]);
 
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
+
+    const handleDateChange = (update) => {
+        setDateRange(update);
+        setCouponDetails({
+            ...couponDetails,
+            dateduration: update,
+        });
+    };
+
+
+    const [couponDetails, setCouponDetails] = useState(
+        {
+            coupon: '',
+            dateduration: '',
+            no_of_coupons: '',
+            minimum_order_amt: '',
+            coupon_usage_type: '',
+            coupon_category: '',
+            coupon_subcategory: '',
+        }
+    )
+
+    const handleCouponChange = (e) => {
+        setCouponDetails({
+            ...couponDetails,
+            coupon: e.target.value,
+        });
+    };
+
 
     return (
         <div>
@@ -52,30 +83,48 @@ const AddCoupon = () => {
                 <Card className='addcoupon-div-card'>
                     <div className="addcoupon-div-card-heading">
                         <h4>Add Coupon</h4>
-                        <Text component={Link} to="/vendor_coupons">
+                        <Text component={Link} to="/coupons">
                             <button><img src={list} width={14} alt="list icon" />Coupons</button>
                         </Text>
                     </div>
                     <div className="addcoupon-div-card-content">
-                        <Coupon />
+                        <Coupon onChange={handleCouponChange} />
                         <div className="addcoupon-div-card-content-input">
-                            <NumericInput
-                                value={numberofDaysmaxValue}
-                                onChange={setNumberofDaysMaxValue}
-                                label="Number of Days"
+
+                            <label>Date Duration</label>
+                            <DatePicker
+                                className="date-duration-coupon"
+                                selectsRange={true}
+                                startDate={startDate}
+                                endDate={endDate}
+                                onChange={handleDateChange}
+                                isClearable={true}
+                                showDisabledMonthNavigation
+                                minDate={new Date()}
                             />
                         </div>
                         <div className="addcoupon-div-card-content-input">
                             <NumericInput
-                                value={numberofCouponsmaxValue}
-                                onChange={setNumberofCouponsMaxValue}
+                                value={couponDetails.no_of_coupons}
+                                onChange={(newValue) => {
+                                    setCouponDetails({
+                                        ...couponDetails,
+                                        no_of_coupons: newValue,
+                                    });
+                                }}
                                 label="Number of Coupons"
                             />
+
                         </div>
                         <div className="addcoupon-div-card-content-input">
                             <NumericInput
-                                value={orderAmountmaxValue}
-                                onChange={setOrderAmountMaxValue}
+                                value={couponDetails.minimum_order_amt}
+                                onChange={(newValue) => {
+                                    setCouponDetails({
+                                        ...couponDetails,
+                                        minimum_order_amt: newValue,
+                                    });
+                                }}
                                 label="Minimum order amount"
                             />
                         </div>
@@ -83,22 +132,20 @@ const AddCoupon = () => {
                             <Radio.Group
                                 name="coupon_usage_type"
                                 label="Coupon Usage Type"
+                                value={couponDetails.coupon_usage_type}
+                                onChange={(e) => {
+                                    setCouponDetails({
+                                        ...couponDetails,
+                                        coupon_usage_type: e
+                                    });
+                                }}
                             >
                                 <Group mt="xs">
                                     <Radio value="Each user can use it for only one order" label="Each user can use it for only one order" />
                                     <Radio value="Each user can use it for multiple orders" label="Each user can use it for multiple orders" />
                                 </Group>
                             </Radio.Group>
-                        </div>
-                        <div className="addcoupon-div-card-content-input">
-                            <label>Expiry Date</label>
-                            <div className="datepicker-style-addcoupon">
-                                <ReactDatePicker
-                                    className='addcoupon-div-card-content-datepicker-style'
-                                    selected={selectedDate}
-                                    onChange={handleDateChange}
-                                />
-                            </div>
+
                         </div>
                         <div className="addcoupon-div-card-content-input-checkbox">
                             <label>Products</label>

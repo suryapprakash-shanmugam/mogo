@@ -191,170 +191,176 @@ const Preheader = () => {
   }
 
   const preheaderMediaQuery = useMediaQuery('(max-width:501px)')
+  const preheader450MediaQuery = useMediaQuery('(max-width:450px)')
 
 
   return (
     <div>
-      <div className="preheader">
-        <Container size={'82rem'} className='preheader-container'>
-          <div className="preheader-container-contact-sell">
-            <div className="preheader-container-contact-sell-contact">
-              <Text component={Link} to='/contact'>
-                <p>Contact</p>
-              </Text>
-            </div>
-            <div className="preheader-container-contact-sell-sell">
-              <Text component={Link} to='/sellonmogo'>
-                <p>Sell on Mogo</p>
-              </Text>
-            </div>
-          </div>
-          <div className="preheader-container-location-currency-user">
-            <div onClick={() => setModalOpen(true)} className="preheader-container-location-currency-user-location">
-              {/* <div className="preheader-container-location-currency-user-location-image">
-                <img src={map} alt="Loaction" />
-              </div> */}
-              <div className="preheader-container-location-currency-user-location-text">
-                {
-                  preheaderMediaQuery ? <MapPin strokeWidth={1} size={'0.8rem'} /> : <MapPin strokeWidth={1} size={'1.1rem'} />
-                }
-
-                <p>Location</p>
+      {preheader450MediaQuery ? <>
+        {/* <div className="preheader-bottom">
+          kjhiuh
+        </div> */}
+      </> : <>
+        <div className="preheader">
+          <Container size={'82rem'} className='preheader-container'>
+            <div className="preheader-container-contact-sell">
+              <div className="preheader-container-contact-sell-contact">
+                <Text component={Link} to='/contact'>
+                  <p>Contact</p>
+                </Text>
+              </div>
+              <div className="preheader-container-contact-sell-sell">
+                <Text component={Link} to='/sellonmogo'>
+                  <p>Sell on Mogo</p>
+                </Text>
               </div>
             </div>
-            <Select
-              zIndex={1234568}
-              defaultValue="india"
-              itemComponent={SelectItem}
-              value={languageState.label}
-              className='lang-select'
-              rightSection={<ChevronDown
-                color='white'
-                // color='rgb(168, 147, 135)' 
-                strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
-              onChange={(e) => setValueIcon(e)}
-              icon={filterData[0].icon}
-              data={languageState}
-              transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
-            />
-            <div className="preheader-container-location-currency-user-currency">
+            <div className="preheader-container-location-currency-user">
+              <div onClick={() => setModalOpen(true)} className="preheader-container-location-currency-user-location">
+                {/* <div className="preheader-container-location-currency-user-location-image">
+                <img src={map} alt="Loaction" />
+              </div> */}
+                <div className="preheader-container-location-currency-user-location-text">
+                  {
+                    preheaderMediaQuery ? <MapPin strokeWidth={1} size={'0.8rem'} /> : <MapPin strokeWidth={1} size={'1.1rem'} />
+                  }
+
+                  <p>Location</p>
+                </div>
+              </div>
               <Select
-                zIndex={1234568} defaultValue={currencyArray[0].value}
+                zIndex={1234568}
+                defaultValue="india"
+                itemComponent={SelectItem}
+                value={languageState.label}
+                className='lang-select'
                 rightSection={<ChevronDown
                   color='white'
+                  // color='rgb(168, 147, 135)' 
                   strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
-                data={currencyArray}
+                onChange={(e) => setValueIcon(e)}
+                icon={filterData[0].icon}
+                data={languageState}
+                transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
               />
-            </div>
-            <Menu zIndex={1234568}>
-              <Menu.Target>
-                <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
-                  <Avatar size={preheaderMediaQuery ? "1.5rem" : "2rem"} radius="lg"
-                    src={
-                      userData.profile_image
-                        ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
-                        : ''
-                    }
-                  />
-                  <p>
+              <div className="preheader-container-location-currency-user-currency">
+                <Select
+                  zIndex={1234568} defaultValue={currencyArray[0].value}
+                  rightSection={<ChevronDown
+                    color='white'
+                    strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />}
+                  data={currencyArray}
+                />
+              </div>
+              <Menu zIndex={1234568}>
+                <Menu.Target>
+                  <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
+                    <Avatar size={preheaderMediaQuery ? "1rem" : "1.5rem"} radius="lg"
+                      src={
+                        userData.profile_image
+                          ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
+                          : ''
+                      }
+                    />
+                    <p>
+                      {
+                        userData.first_name ?
+                          userData.first_name :
+                          ' Login'
+                      }
+                    </p>
+                    <ChevronDown
+                      color='white'
+                      //  color='rgb(168, 147, 135)' 
+                      strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />
+                  </Flex>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <div className="preheader-container-location-currency-user-user-dropdown">
                     {
                       userData.first_name ?
-                        userData.first_name :
-                        ' Login'
-                    }
-                  </p>
-                  <ChevronDown
-                    color='white'
-                    //  color='rgb(168, 147, 135)' 
-                    strokeWidth={1} size={preheaderMediaQuery ? "0.8rem" : "1.2rem"} />
-                </Flex>
-              </Menu.Target>
-              <Menu.Dropdown>
-                <div className="preheader-container-location-currency-user-user-dropdown">
-                  {
-                    userData.first_name ?
-                      <p>
-                        <Center color='black' p='lg'>
-                          {userData.first_name} {userData.last_name}
-                        </Center>
-                      </p>
-                      : <div className="preheader-container-location-currency-user-user-dropdown-signin">
-                        <Menu.Item
-                          className='preheader-container-location-currency-user-user-dropdown-signin-button'
-                          onClick={() => setLoginModalOpen(true)}
-                        >
-                          Signin
-                        </Menu.Item>
-                        <p onClick={() => setRegisterModalOpen(true)}>
+                        <p>
+                          <Center color='black' p='lg'>
+                            {userData.first_name} {userData.last_name}
+                          </Center>
+                        </p>
+                        : <div className="preheader-container-location-currency-user-user-dropdown-signin">
                           <Menu.Item
-                            p={0}
-                            className='preheader-container-location-currency-user-user-dropdown-signin-p'
+                            className='preheader-container-location-currency-user-user-dropdown-signin-button'
+                            onClick={() => setLoginModalOpen(true)}
                           >
-                            New Customer ?
-                            &nbsp;
-                            <span>
-                              Start here
-                            </span>
+                            Signin
+                          </Menu.Item>
+                          <p onClick={() => setRegisterModalOpen(true)}>
+                            <Menu.Item
+                              p={0}
+                              className='preheader-container-location-currency-user-user-dropdown-signin-p'
+                            >
+                              New Customer ?
+                              &nbsp;
+                              <span>
+                                Start here
+                              </span>
+                            </Menu.Item>
+                          </p>
+                        </div>
+                    }
+                    <hr />
+                    <div className="preheader-container-location-currency-user-user-dropdown-extra">
+                      <p>
+                        {
+                          sessionStorage.getItem('MogoUserAccessToken101') ?
+                            <Menu.Item
+                              component={Link} to={'/your_account'} className="navbar-link user-dropdown-link">
+                              Your Account
+                            </Menu.Item> :
+                            <Menu.Item
+                              onClick={handleYourAccount} className="navbar-link user-dropdown-link">
+                              Your Account
+                            </Menu.Item>
+                        }
+                      </p>
+                      <p>
+                        {
+                          sessionStorage.getItem('MogoUserAccessToken101') ?
+                            <Menu.Item
+                              component={Link} to={
+                                '/your_orders'} className="navbar-link user-dropdown-link"
+                            >
+                              Your Orders
+                            </Menu.Item> :
+                            <Menu.Item
+                              onClick={handleYourAccount}
+                              className="navbar-link user-dropdown-link"
+                            >
+                              Your Orders
+                            </Menu.Item>
+                        }
+                      </p>
+                      <p>
+                        <Menu.Item className="navbar-link user-dropdown-link">
+                          Seller Account
+                        </Menu.Item>
+                      </p>
+                      <p>
+                        <Menu.Item className="navbar-link user-dropdown-link">
+                          Become Seller
+                        </Menu.Item>
+                      </p>
+                      {
+                        userData.first_name &&
+                        <p onClick={handleLogout}>
+                          <Menu.Item className="navbar-link user-dropdown-link">
+                            Log out
                           </Menu.Item>
                         </p>
-                      </div>
-                  }
-                  <hr />
-                  <div className="preheader-container-location-currency-user-user-dropdown-extra">
-                    <p>
-                      {
-                        sessionStorage.getItem('MogoUserAccessToken101') ?
-                          <Menu.Item
-                            component={Link} to={'/your_account'} className="navbar-link user-dropdown-link">
-                            Your Account
-                          </Menu.Item> :
-                          <Menu.Item
-                            onClick={handleYourAccount} className="navbar-link user-dropdown-link">
-                            Your Account
-                          </Menu.Item>
                       }
-                    </p>
-                    <p>
-                      {
-                        sessionStorage.getItem('MogoUserAccessToken101') ?
-                          <Menu.Item
-                            component={Link} to={
-                              '/your_orders'} className="navbar-link user-dropdown-link"
-                          >
-                            Your Orders
-                          </Menu.Item> :
-                          <Menu.Item
-                            onClick={handleYourAccount}
-                            className="navbar-link user-dropdown-link"
-                          >
-                            Your Orders
-                          </Menu.Item>
-                      }
-                    </p>
-                    <p>
-                      <Menu.Item className="navbar-link user-dropdown-link">
-                        Seller Account
-                      </Menu.Item>
-                    </p>
-                    <p>
-                      <Menu.Item className="navbar-link user-dropdown-link">
-                        Become Seller
-                      </Menu.Item>
-                    </p>
-                    {
-                      userData.first_name &&
-                      <p onClick={handleLogout}>
-                        <Menu.Item className="navbar-link user-dropdown-link">
-                          Log out
-                        </Menu.Item>
-                      </p>
-                    }
 
+                    </div>
                   </div>
-                </div>
-              </Menu.Dropdown>
-            </Menu>
-            {/* <div className="preheader-container-location-currency-user-user">
+                </Menu.Dropdown>
+              </Menu>
+              {/* <div className="preheader-container-location-currency-user-user">
               <div className="preheader-container-location-currency-user-user-image">
                 <img src={user} alt="user-icon" />
               </div>
@@ -372,9 +378,11 @@ const Preheader = () => {
                 </div>
               </div>
             </div> */}
-          </div>
-        </Container>
-      </div>
+            </div>
+          </Container>
+        </div>
+      </>
+      }
 
       {/* model starts */}
       <Modal

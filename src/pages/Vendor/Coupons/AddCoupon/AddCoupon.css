@@ -22,7 +22,7 @@
     align-items: center;
     border: 0px;
     color: #fff;
-    background-color: var(--Logo-Color1);
+    background-color: var(--Logo-Color3);
     border-radius: 3px;
 }
 
@@ -82,4 +82,10 @@
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
+}
+.date-duration-coupon
+    {
+    width: 100%;
+    border: 1px solid var(--Extra-Light-Gray);
+    height: 2rem;
 }

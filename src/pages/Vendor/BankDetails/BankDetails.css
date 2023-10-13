@@ -1,0 +1,83 @@
+.bank-details-div {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.bank-details-div-card {
+    padding: 0px;
+}
+
+.bank-details-div-card-heading {
+    padding: 20px 20px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bank-details-div-card-heading button {
+    cursor: pointer;
+    border: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--Logo-Color1);
+    color: #fff;
+    width: 146px;
+    height: 34px;
+    border-radius: 3px;
+}
+
+.bank-details-div-card-content {
+    padding: 20px;
+}
+
+.bank-details-form-individual {
+    margin-bottom: 1rem;
+}
+
+.bank-details-from .mantine-1k9itrp {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.bank-details-form-individual .mantine-1fzet7j {
+    margin-bottom: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.bank-details-btn
+{
+    min-height: auto;
+}
+.bank-details-div-card-content-show-bank-details
+{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.bank-details-div-card-content-show-bank-details-individual
+{
+    width: 100%;
+    padding: 20px;
+    border: 1px solid var(--Extra-Light-Gray);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+    .bank-details-div-card-content-show-bank-details-individual p
+    {
+        font-size: 14px;
+    }
+
+    .bank-details-div-card-content-show-bank-details-individual-buttons
+    {
+        display: flex;
+        gap: 1rem;
+    }
+    .bank-details-div-card-content-show-bank-details-individual-buttons button
+    {
+        cursor: pointer;
+        border: 0px;
+        background-color: transparent;
+        width: 65px;
+        display: flex;
+        justify-content: space-evenly;
+    }

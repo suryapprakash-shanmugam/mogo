@@ -53,7 +53,7 @@ const Header = () => {
             <div className="header-div">
                 <Flex pt={'0.3rem'} pb={'1rem'} pl={'2rem'} pr={'2rem'} align={'center'} justify={'space-around'}>
                     <Flex align={'center'} gap={header1060MediaQuery ? '0.5rem' : '2rem'}>
-                        <Image component={Link} to='/' width={'160px'} src={logo} alt="logo" />
+                        <Image component={Link} to='/' width={header1060MediaQuery ? '130px' : '160px' } src={logo} alt="logo" />
                         <div className="header-div-container-search">
                             <Paper className="header-div-container-search-paper">
                                 <Select
@@ -70,11 +70,11 @@ const Header = () => {
                             </Paper>
                         </div>
                     </Flex>
-                    <Flex gap={'1.5rem'} className='search-engine-right' align={'center'}>
+                    <Flex gap={header786MediaQuery ? '0.3rem' : '1.5rem'} className='search-engine-right' align={'center'}>
                         <Flex component={Link} to="/cart" className="navbar-link" gap={3} align={'center'}>
                             <ShoppingCart
                                 strokeWidth={1}
-                                size={'2rem'}
+                                size={header786MediaQuery ? '1.5rem' : '2rem'}
                             />
                             <p>
                                 Cart
@@ -83,7 +83,7 @@ const Header = () => {
                         <Flex component={Link} to="/wishlist" className="navbar-link" gap={3} align={'center'}>
                             <Heart
                                 strokeWidth={1}
-                                size={'2rem'}
+                                size={header786MediaQuery ? '1.5rem' : '2rem'}
                             />
                             <p>
                                 Wishlist
