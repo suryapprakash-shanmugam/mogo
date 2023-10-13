@@ -197,9 +197,9 @@ const Preheader = () => {
   return (
     <div>
       {preheader450MediaQuery ? <>
-        <div className="preheader-bottom">
+        {/* <div className="preheader-bottom">
           kjhiuh
-        </div>
+        </div> */}
       </> : <>
         <div className="preheader">
           <Container size={'82rem'} className='preheader-container'>
@@ -255,7 +255,7 @@ const Preheader = () => {
               <Menu zIndex={1234568}>
                 <Menu.Target>
                   <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'0.4rem'}>
-                    <Avatar size={preheaderMediaQuery ? "1.5rem" : "2rem"} radius="lg"
+                    <Avatar size={preheaderMediaQuery ? "1rem" : "1.5rem"} radius="lg"
                       src={
                         userData.profile_image
                           ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
