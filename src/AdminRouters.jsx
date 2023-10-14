@@ -108,6 +108,7 @@ import { getAdminByID } from './config/quries/AdminLogin/Quries';
 import Location from './pages/Admin/Location/Location';
 import Users from './pages/Admin/Users/Users';
 import Reviews from './pages/Admin/Reviews/Reviews';
+import { setAdminData } from './StateHandler/Slice/AdminData/AdminDataSlice';
 
 
 const AdminRouters = () => {
@@ -166,19 +167,21 @@ const AdminRouters = () => {
     const renderBodyData = bodyContent[location.pathname] || null
     // Login Status Checking
     const loginStatus = useSelector((state) => state?.loginStatus?.value)
-
+    const adminData = useSelector((state) => state?.adminData?.value)
     // Navigate to Push 
     const navigate = useNavigate()
     const adminId = sessionStorage.getItem('MogoAdminAccessToken101')
-    const { data } = useQuery(
+    useQuery(
         ['adminData', adminId],
         getAdminByID,
         {
             refetchOnWindowFocus: false,
             enabled: !!adminId,
+            onSuccess: (res) => {
+                dispatch(setAdminData(res.data.data))
+            }
         }
     )
-
     // Login status Checking
     useEffect(() => {
         if (sessionStorage.getItem('MogoAdminAccessToken102') && sessionStorage.getItem('MogoAdminAccessToken101')) {
@@ -203,9 +206,9 @@ const AdminRouters = () => {
                         <Link to="/admin_dashboard">
                             <div className={collapsed === false ? `admin-sidebar-logo-img` : `admin-sidebar-logo-img-favicon`}>
                                 {
-                                    collapsed === false ? <img src={Logo} alt="" /> : 
-                                    
-                                    <img className='Logo_favicon' src={Logo_favicon} alt="" />
+                                    collapsed === false ? <img src={Logo} alt="" /> :
+
+                                        <img className='Logo_favicon' src={Logo_favicon} alt="" />
                                 }
                             </div>
                         </Link>
@@ -565,12 +568,21 @@ const AdminRouters = () => {
                                     <MenuMantine.Target>
                                         <div className='admin-user-profile-dropdown-button-style'>
                                             <div className="admin-user-profile-dropdown-button-img">
-                                                <Avatar
-                                                 radius="xl" />
+                                                {
+                                                    adminData.profile_image ?
+                                                        <Avatar
+                                                            radius="xl" /> :
+                                                        <Avatar
+                                                            radius="xl" />
+                                                }
                                             </div>
                                             <div className="admin-user-profile-dropdown-button-content">
                                                 <p>
-                                                    Admin
+                                                    {
+                                                        adminData.name ?
+                                                            adminData.name :
+                                                            'Hello There'
+                                                    }
                                                 </p>
                                             </div>
                                         </div>
@@ -578,9 +590,13 @@ const AdminRouters = () => {
 
                                     <MenuMantine.Dropdown>
                                         <MenuMantine.Item icon={<i className='fa fa-th-large' />}>Dashboard</MenuMantine.Item>
-                                        <MenuMantine.Item icon={<i className='fa fa-user' />}>Profile</MenuMantine.Item>
+                                        <MenuMantine.Item
+                                        
+                                        icon={<i className='fa fa-user' />}>Profile</MenuMantine.Item>
                                         <MenuMantine.Item icon={<i className='fa fa-cog' />}>Update Profile</MenuMantine.Item>
-                                        <MenuMantine.Item icon={<i className='fa fa-user' />}>Change Password</MenuMantine.Item>
+                                        <MenuMantine.Item
+                                        
+                                        icon={<i className='fa fa-user' />}>Change Password</MenuMantine.Item>
                                         <MenuMantine.Divider />
                                         <MenuMantine.Item
                                             onClick={handleLogout}
