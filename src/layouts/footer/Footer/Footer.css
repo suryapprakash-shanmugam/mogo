@@ -286,3 +286,22 @@
 }
 
 /* Dhiyanesh Css */
+
+@media(max-width:1201px) {
+    .footer-container {
+        gap: 1rem;
+        padding: 2rem 1rem;
+    }
+
+    .footer-content:nth-child(2) {
+        padding-left: 2rem;
+    }
+
+    .footer-logo {
+        width: 100%;
+    }
+
+    .footer-content ul {
+        width: 100%;
+    }
+}
