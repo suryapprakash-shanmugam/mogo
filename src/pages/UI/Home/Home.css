@@ -269,3 +269,13 @@
     color: white;
     transform: scale(1.2);
 }
+
+@media(max-width:1201px) {
+    .home-page-product-flex-container
+    {
+        flex-wrap: wrap;
+    }
+    .home-page-product-flex {
+        margin: 1rem 0.5rem 1rem 0.5rem;
+    }
+}

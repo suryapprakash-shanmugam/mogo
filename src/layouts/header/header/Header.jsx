@@ -69,7 +69,7 @@ const Header = () => {
                         <Flex component={Link} to="/cart" className="navbar-link" gap={3} align={'center'}>
                             <ShoppingCart
                                 strokeWidth={1}
-                                size={header786MediaQuery ? '1.5rem' : '2rem'}
+                                size={header786MediaQuery ? '1.2rem' : '2rem'}
                             />
                             <p>
                                 Cart
@@ -78,7 +78,7 @@ const Header = () => {
                         <Flex component={Link} to="/wishlist" className="navbar-link" gap={3} align={'center'}>
                             <Heart
                                 strokeWidth={1}
-                                size={header786MediaQuery ? '1.5rem' : '2rem'}
+                                size={header786MediaQuery ? '1.2rem' : '2rem'}
                             />
                             <p>
                                 Wishlist

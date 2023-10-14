@@ -17,6 +17,7 @@ import living_linen from '../../../assets/home/grid-category/living_linen.webp'
 import folder from '../../../assets/home/home-blogs/folder.webp'
 import time from '../../../assets/home/home-blogs/time.webp'
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from '@mantine/hooks';
 
 const HomeBlogs = ({ header, subheader, header2 }) => {
 
@@ -64,8 +65,8 @@ const HomeBlogs = ({ header, subheader, header2 }) => {
             blog_description: 'The Living Linen Project was set up in 1995 as an oral archive of the knowledge of the Irish linen industry still available within a nucleus of people who were formerly working in the industry in Ulster.'
         },
     ]
-
-    const slidesToShow = 3;
+    const header1000MediaQuery = useMediaQuery('(max-width:1000px)')
+    const slidesToShow = header1000MediaQuery ? 2 : 3;
     const calculatedSlideSize = `${100 / slidesToShow}%`;
 
     return (

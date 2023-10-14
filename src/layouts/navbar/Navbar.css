@@ -52,6 +52,7 @@
     gap: 2.15rem;
     list-style-type: none;
     margin-left: 1.6rem;
+    font-family: 'Open Sans';
 }
 
 .navbar-div-container-ul li {
@@ -220,37 +221,45 @@
 }
 
 /* Dhiyanesh CSS End */
-@media(max-width:787px) {
-    .navbar-div-container-ul {
-        justify-content: center;
+@media(max-width:1101px) {
+    .navbar-data ul {
+        gap: 1rem;
     }
-
-    .navbar-div-container-ul-dropdown {
-        padding: 1rem;
-    }
-
-    .navbar-div-container-ul-dropdown-content {
-        gap: 0.5rem;
-        justify-content: unset;
-    }
-}
-
-@media(max-width:501px) {
-    .navbar-div-container-ul {
-        justify-content: flex-start;
-    }
-
-    .navbar-div-container-ul2 {
-        gap: 0.8rem;
+    .navbar-data ul li {
         font-size: 12px;
     }
 
-    .navbar-div-container-ul-dropdown {
-        padding: 1rem;
+    .navbar-div-container-ul2 {
+        gap: 1.5rem;
+        margin-left: 0.3rem;
+    }
+    .navbar-div-container-ul2 li {
+        font-size: 12px;
+    }
+    .navbar-div-container-ul2 li:last-child
+    {
+        font-size: 12px;        
+    }
+}
+@media(max-width:850px) {
+    .navbar-data ul {
+        gap: 0.5rem;
+        font-size: 10px;
+    }
+    .navbar-data ul li {
+        font-size: 10px;
     }
 
-    .navbar-div-container-ul-dropdown-content {
-        gap: 0.5rem;
-        justify-content: unset;
+    .navbar-div-container-ul2 {
+        gap: 1rem;
+        margin-left: 0.1rem;
+        font-size: 10px;
+    }
+    .navbar-div-container-ul2 li {
+        font-size: 10px;
+    }
+    .navbar-div-container-ul2 li:last-child
+    {
+        font-size: 10px;        
     }
 }

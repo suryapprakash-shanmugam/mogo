@@ -29,11 +29,14 @@ import ReactHtmlParser from 'react-html-parser';
 import { categoryById } from '../../../config/quries/Category/CategoryQueries';
 import { subCategorById } from '../../../config/quries/SubCategory/SubCategoryQuries';
 import { handleAddtoCartControl } from '../../../controller/cart/cartController';
+import { useMediaQuery } from '@mantine/hooks';
 
 const OfferSlider = ({ header, header2 }) => {
     const navigate = useNavigate()
 
     const autoplay = useRef(Autoplay({ delay: 2000 }));
+
+    const header1000MediaQuery = useMediaQuery('(max-width:1000px)')
 
     //offerslider array
     const offerSliderArray = [
@@ -150,7 +153,7 @@ const OfferSlider = ({ header, header2 }) => {
             like: '0',
         },
     ]
-    const slidesToShow = 5;
+    const slidesToShow = header1000MediaQuery ? 3 : 5;
     const calculatedSlideSize = `${100 / slidesToShow}%`;
 
 
