@@ -5,7 +5,7 @@
 
 .vendor-dashboard-show-count-main-div {
     display: grid;
-    grid-template-columns: 24% 24% 24% 24%;
+    grid-template-columns: 19% 19% 19% 19% 19%;
     gap: 1rem;
 }
 

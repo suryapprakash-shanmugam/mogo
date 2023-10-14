@@ -167,7 +167,8 @@ export const handleUpdateUserControl = async (
     setUpdateUser,
     validateUser,
     setValidateUser,
-    queryClient
+    queryClient,
+    userData
 ) => {
     const {
         email,
@@ -176,46 +177,80 @@ export const handleUpdateUserControl = async (
         number,
         profile_image
     } = updateUser
-
     const formData = new FormData()
     formData.append('first_name', first_name.trim())
     formData.append('last_name', last_name.trim())
     formData.append('mobile_number', number.trim())
-    formData.append('file', profile_image)
-
-    const payload = {
-        id: sessionStorage.getItem('MogoUserAccessToken101'),
-        body: formData
-    }
+    if (profile_image !== userData.profile_image)
+        formData.append('file', profile_image)
     if (first_name) {
         if (last_name) {
             if (number) {
-                await axios.post(`${config.baseUrlApi}/users/updateuser/${sessionStorage.getItem('MogoUserAccessToken101')}`,
-                    formData,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            "Authorization": `Bearer ${sessionStorage.getItem('MogoUserAccessToken102')}`
-                        }
-                    }
-                )
-                    .then(() => {
-                        showNotification({
-                            icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
-                                <CircleCheck color="green" />
-                            </ThemeIcon>,
-                            message: "Profile Updated Successfully",
-                        })
-                        queryClient.invalidateQueries('userData')
-                    })
-                    .catch(() => {
-                        showNotification({
-                            icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
-                                <X color="red" />
-                            </ThemeIcon>,
-                            message: "Error Updating Profile",
-                        })
-                    })
+                if (profile_image !== userData.profile_image) {
+                    await
+                        axios.put(`${config.baseUrlApi}/users/updateuser/${sessionStorage.getItem('MogoUserAccessToken101')}`,
+                            formData,
+                            {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
+                                    "Authorization": `Bearer ${sessionStorage.getItem('MogoUserAccessToken102')}`
+                                }
+                            }
+                        )
+                            .then(() => {
+                                showNotification({
+                                    icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
+                                        <CircleCheck color="green" />
+                                    </ThemeIcon>,
+                                    message: "Profile Updated Successfully",
+                                })
+                                setUpdateUser({
+                                    ...updateUser,
+                                    email: '',
+                                    first_name: '',
+                                    last_name: '',
+                                    number: '',
+                                })
+                                queryClient.invalidateQueries('userData')
+                            })
+                            .catch(() => {
+                                showNotification({
+                                    icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                                        <X color="red" />
+                                    </ThemeIcon>,
+                                    message: "Error Updating Profile",
+                                })
+                            })
+                }
+                else {
+                    await
+                        axios.put(`${config.baseUrlApi}/users/updateuserwithoutimage/${sessionStorage.getItem('MogoUserAccessToken101')}`,
+                            formData,
+                            {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
+                                    "Authorization": `Bearer ${sessionStorage.getItem('MogoUserAccessToken102')}`
+                                }
+                            }
+                        )
+                            .then(() => {
+                                showNotification({
+                                    icon: <ThemeIcon variant="light" radius="xl" size="xl" color="green">
+                                        <CircleCheck color="green" />
+                                    </ThemeIcon>,
+                                    message: "Profile Updated Successfully",
+                                })
+                                queryClient.invalidateQueries('userData')
+                            })
+                            .catch(() => {
+                                showNotification({
+                                    icon: <ThemeIcon variant="light" radius="xl" size="xl" color="red">
+                                        <X color="red" />
+                                    </ThemeIcon>,
+                                    message: "Error Updating Profile",
+                                })
+                            })
+                }
             }
             else {
                 setValidateUser({ ...validateUser, number: 1 })

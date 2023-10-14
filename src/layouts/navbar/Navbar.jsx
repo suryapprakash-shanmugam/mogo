@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 import { useQuery } from 'react-query'
 import { categoryListAPI } from '../../config/quries/Category/CategoryQueries'
-import { Menu2 } from 'tabler-icons-react'
+import { Menu2, TransferOut } from 'tabler-icons-react'
 import { useDisclosure } from '@mantine/hooks'
 import { useSelector } from 'react-redux'
 
@@ -64,7 +64,6 @@ const Navbar = () => {
         }
     )
 
-
     // Drawer Category
     const categoryAccordion = Array.isArray(categoryList) ? (
         categoryList.map((cateValue, cindex) => (
@@ -82,15 +81,24 @@ const Navbar = () => {
                         </div>
                     </Accordion.Control>
                     <Accordion.Panel>
-                        {Array.isArray(subCategoryList) ? (
-                            subCategoryList.map((subValue, sIndex) => (
-                                <Title order={6} p={'xs'} style={{ fontWeight: '400' }}>
-                                    {subValue.name}
-                                </Title>
-                            ))
-                        ) : (
-                            "Comming Soon"
-                        )}
+                        <Accordion>
+                            {Array.isArray(subCategoryList) ? (
+                                subCategoryList.map((subValue, sIndex) => (
+                                    <Accordion.Item value={subValue.name}>
+                                        <Accordion.Control>
+                                            <Title order={6} p={'xs'} style={{ fontWeight: '400' }}>
+                                                {subValue.name}
+                                            </Title>
+                                        </Accordion.Control>
+                                        <Accordion.Panel>
+                                            Comming Soon
+                                        </Accordion.Panel>
+                                    </Accordion.Item>
+                                ))
+                            ) : (
+                                "Comming Soon"
+                            )}
+                        </Accordion>
                     </Accordion.Panel>
                 </Accordion.Item>
             </Accordion>
@@ -145,24 +153,42 @@ const Navbar = () => {
 
                     <Divider />
                     <div className='home-category-drawer-header'>
-                        <Flex style={{ cursor: 'pointer' }} align={'center'} gap={'1rem'}>
-                            <Avatar size={'1.8rem'} radius="lg"
-                                src={
-                                    userData.profile_image
-                                        ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
-                                        : ''
-                                }
-                            />
-                            <p className='para_color open-sanserif'>
+                        <Flex
+                            w={'100%'}
+                            justify={'space-between'}
+                            style={{ cursor: 'pointer' }} align={'center'}>
+                            <div>
+                                <Flex
+                                    align={'center'} gap={'1rem'}>
+                                    <Avatar size={'1.8rem'} radius="lg"
+                                        src={
+                                            userData.profile_image
+                                                ? `${config.baseUrlApi}/assets/userprofile/${userData.profile_image}`
+                                                : ''
+                                        }
+                                    />
+                                    <p className='para_color open-sanserif'>
+                                        {
+                                            userData.first_name ?
+                                                userData.first_name : (
+                                                    <p style={{ display: 'flex' }}>
+                                                        Hai,<Space w={'0.4rem'} />sign in
+                                                    </p>
+                                                )
+                                        }
+                                    </p>
+                                </Flex>
+                            </div>
+                            <div>
                                 {
                                     userData.first_name ?
-                                        userData.first_name : (
-                                            <p style={{ display: 'flex' }}>
-                                                Hai,<Space w={'0.4rem'} />sign in
-                                            </p>
-                                        )
+                                        <TransferOut
+                                            color='white'
+                                            size={'1.5rem'}
+                                        />
+                                        : ''
                                 }
-                            </p>
+                            </div>
                         </Flex>
                     </div>
                     <Title order={4} p={'xs'} pl={'lg'} pt={'sm'}>
@@ -199,51 +225,56 @@ const Navbar = () => {
                         Sign Out
                     </Title>
                 </ScrollArea>
+                <div>
+                    <Flex>
+
+                    </Flex>
+                </div>
             </Drawer>
-            <div>
-                <div className="navbar-div">
-                    <div className='navbar-data'>
-                        <ul>
-                            <li
-                                style={{ cursor: 'pointer' }}
-                                onClick={open}
-                            >
-                                <Menu2 size={'1rem'} />
-                                ALL
+            <div className="navbar-div">
+                <div className='navbar-data'>
+                    <ul>
+                        <li
+                            style={{ cursor: 'pointer' }}
+                            onClick={open}
+                        >
+                            <Menu2 size={'1rem'} />
+                            ALL
+                        </li>
+                        <li>
+                            Buy Again
+                        </li>
+                        <li>
+                            Best Deals
+                        </li>
+                        <li>
+                            Today's Deals
+                        </li>
+                        <li>
+                            New Releases
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul className='navbar-div-container-ul'>
+                        <ul className='product-dropdown-hover navbar-div-container-ul2
+                        poppins-font-family
+                        '>
+                            <li >
+                                Home Textiles
                             </li>
+                            <li>Electronic's</li>
+                            <li>Furniture</li>
+                            <li>Fashions</li>
+                            <li>Mobiles</li>
+                            <li>Groceries</li>
                             <li>
-                                Buy Again
-                            </li>
-                            <li>
-                                Best Deals
-                            </li>
-                            <li>
-                                Today's Deals
-                            </li>
-                            <li>
-                                New Releases
+                                <Title order={5}>
+                                    Returns & Orders
+                                </Title>
                             </li>
                         </ul>
-                    </div>
-                    <Container size={'82rem'} className='navbar-div-container'>
-                        <ul className='navbar-div-container-ul'>
-                            <ul className='product-dropdown-hover navbar-div-container-ul2'>
-                                <li >
-                                    Home Textiles
-                                </li>
-                                <li>Electronic's</li>
-                                <li>Furniture</li>
-                                <li>Fashions</li>
-                                <li>Mobiles</li>
-                                <li>Groceries</li>
-                                <li>
-                                    <Title order={5}>
-                                        Returns & Orders
-                                    </Title>
-                                </li>
-                            </ul>
-                        </ul>
-                    </Container>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -31,43 +31,11 @@ const UserProfile = () => {
     ];
     const [addressModalOpen, setAddressModalOpen] = useState(false)
 
-    const country = [
-        { value: 'react', label: 'React' },
-        { value: 'ng', label: 'Angular' },
-        { value: 'svelte', label: 'Svelte' },
-        { value: 'vue', label: 'Vue' },
-    ]
-    const state = [
-        { value: 'react', label: 'React' },
-        { value: 'ng', label: 'Angular' },
-        { value: 'svelte', label: 'Svelte' },
-        { value: 'vue', label: 'Vue' },
-    ]
-
-    const [emailinput, setEmailInput] = useState('')
-    const [firstNameinput, setfirstNameInput] = useState('')
-    const [lastNameinput, setlastNameInput] = useState('')
-    const [phoneinput, setphoneInput] = useState('')
     const [oldpasswordinput, setoldpasswordInput] = useState('')
     const [newpasswordinput, setnewpasswordInput] = useState('')
     const [confirmpasswordinput, setconfirmpasswordInput] = useState('')
-    const [addresstitleinput, setaddresstitleInput] = useState('')
-    const [addfirstnameinput, setaddfirstnameInput] = useState('')
-    const [addlastnameinput, setaddlastnameInput] = useState('')
-    const [addemailinput, setaddemailInput] = useState('')
-    const [addphoneinput, setaddphoneInput] = useState('')
-    const [addaddressinput, setaddaddressInput] = useState('')
-    const [shopCountry, setShopCountry] = useState('')
-    const [shopState, setShopState] = useState('')
-    const [shopCity, setShopCity] = useState('')
-    const [shopZIpcode, setShopZIpcode] = useState('')
 
-    const handileShopCountry = (selectedValue) => {
-        setShopCountry(selectedValue)
-    }
-    const handileShopState = (selectedValue) => {
-        setShopState(selectedValue)
-    }
+
 
     useEffect(() => {
         if (!sessionStorage.getItem('MogoUserAccessToken102') &&
@@ -108,7 +76,8 @@ const UserProfile = () => {
             setUpdateUser,
             validateUser,
             setValidateUser,
-            queryClient
+            queryClient,
+            userData
         )
     }
 
@@ -132,6 +101,7 @@ const UserProfile = () => {
         findUserByid,
         {
             onSuccess: (res) => {
+                console.log(res);
                 dispatch(setUserData(res?.data?.data))
                 setUpdateUser({
                     ...updateUser,
@@ -142,6 +112,9 @@ const UserProfile = () => {
                     profile_image: res.data.data.profile_image
                 })
             },
+            onError:(err)=>{
+                console.log(err);
+            }
         }
     )
 
@@ -657,7 +630,11 @@ const UserProfile = () => {
                                             <Input
                                                 placeholder="Phone Number"
                                                 value={updateUser.number}
-                                                onChange={(e) => setUpdateUser({ ...updateUser, number: e.target.value })}
+                                                onChange={(e) =>
+                                                    setUpdateUser({
+                                                        ...updateUser,
+                                                        number: e.target.value
+                                                    })}
                                             />
                                         </Input.Wrapper>
                                     </div>

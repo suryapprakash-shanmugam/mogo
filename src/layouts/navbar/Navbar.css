@@ -1,10 +1,10 @@
 .navbar-div {
     display: flex;
+    width: 100%;
     align-items: center;
     padding: 1rem 0;
-    padding-left: 5rem;
-    width: fit-content;
     gap: 1rem;
+    justify-content: center;
 }
 
 .navbar-data ul {
@@ -145,6 +145,7 @@
     display: flex;
     height: 6vh;
     align-items: center;
+    justify-content: space-between;
 }
 
 
