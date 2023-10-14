@@ -14,7 +14,7 @@
     z-index: 9999;
 }
 
-.admin-sidenav {
+.vendor-sidenav {
     display: flex;
     max-height: 100vh;
 }
@@ -23,7 +23,7 @@
     display: none;
 }
 
-.admin-sidebar-logo {
+.vendor-sidebar-logo {
     width: 100%;
     padding: 0.5rem 0.8rem;
     position: sticky;
@@ -31,19 +31,19 @@
     background-color: #fbfbfb;
     z-index: 1;
 }
-
-.admin-sidebar-logo-img {
+.vendor-sidebar-logo-img
+{
     width: 175px;
     /* height: 78.13px; */
     margin: auto;
 }
-
-.admin-sidebar-logo-img-favicon {
+.vendor-sidebar-logo-img-favicon
+{
     width: 50px !important;
     height: 50px !important;
 }
 
-.admin-sidebar-logo img {
+.vendor-sidebar-logo img {
     width: 100%;
     height: 100%;
 }
@@ -53,12 +53,12 @@
     height: 50px !important;
 }
 
-.admin-sidenav-main-admin-content {
+.vendor-sidenav-main-vendor-content {
     background-color: #f3f6f8;
     width: 100%;
 }
 
-.admin-sidenav-topbar-color {
+.vendor-sidenav-topbar-color {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
     width: 100%;
     min-height: 2rem;
@@ -72,58 +72,58 @@
     top: 0;
 }
 
-.admin-sidenav-toggle-style-button {
+.vendor-sidenav-toggle-style-button {
     border: 0;
     background-color: #0000;
     font-size: 20px;
 }
 
-.admin-sidenav-toggle-style-button:hover {
+.vendor-sidenav-toggle-style-button:hover {
     cursor: pointer;
 }
 
-.admin-user-profile-dropdown-button-style:hover {
+.vendor-user-profile-dropdown-button-style:hover {
     cursor: pointer;
 }
 
-.admin-user-profile-dropdown-button-style {
+.vendor-user-profile-dropdown-button-style {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.admin-user-profile-dropdown-button-img {
+.vendor-user-profile-dropdown-button-img {
     width: 40px;
     height: 40px;
     object-fit: contain;
     clip-path: circle();
 }
 
-.admin-user-profile-dropdown-button-img img {
+.vendor-user-profile-dropdown-button-img img {
     width: 100%;
     height: 100%;
 }
 
-.admin-user-profile-dropdown .mantine-eby8v3 {
+.vendor-user-profile-dropdown .mantine-eby8v3 {
     align-items: baseline;
     color: #777777;
 }
 
-.admin-user-profile-dropdown .mantine-eby8v3:hover {
+.vendor-user-profile-dropdown .mantine-eby8v3:hover {
     color: #333333;
 }
 
-.admin-all-pages-content {
+.vendor-all-pages-content {
     padding: 1rem 0.5rem;
     width: 100%;
 }
 
-.admin-sidenav a {
+.vendor-sidenav a {
     color: rgb(149, 156, 172);
     text-decoration: none;
 }
 
-.admin-sidenav .admin-sidenav-menu-style {
+.vendor-sidenav .vendor-sidenav-menu-style {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
 }

@@ -76,10 +76,18 @@ const Cart = () => {
     )
 
     const handleRemoveFromCart = (index) => {
-        const newCategoryProductArray = [...cartProductIdArray]
+        const newCategoryProductArray = cartProduct
         newCategoryProductArray.splice(index, 1)
-        alert('Item Removed')
+        setCartProduct(newCategoryProductArray);
+        console.log(cartProduct)
+        alert('Item Removed');
     }
+    // const handleRemoveFromCart = (index) => {
+    //     const updatedCart = [...cartProduct];
+    //     updatedCart.splice(index, 1);
+    //     setCartProduct(updatedCart);
+    //     const serializedArray = JSON.stringify(updatedCart);
+    //     Cookies.set('Product_id', serializedArray);
 
     const initialCart = cartProduct.map((value) => ({
         ...value,
