@@ -19,6 +19,9 @@ import maestro from '../../../assets/footer/copyright/maestro.webp'
 import mastercard from '../../../assets/footer/copyright/mastercard.webp'
 import visa from '../../../assets/footer/copyright/visa.webp'
 
+import angleleft from '../../../assets/pagination/angleleft.webp'
+import angleright from '../../../assets/pagination/angleright.webp'
+
 //import react router dom packages
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
@@ -28,6 +31,7 @@ import Cookies from 'js-cookie'
 
 // Config
 import config from "../../../config/server/Servers"
+import ReactPaginate from 'react-paginate'
 
 const Cart = () => {
 
@@ -85,8 +89,21 @@ const Cart = () => {
 
     const initialCart = cartProduct.map((value) => ({
         ...value,
-        quantity: value.quantity || 1, // Set a default quantity of 1 if quantity is undefined
+        quantity: value.quantity || 1,
     }));
+
+    const ITEMS_PER_PAGE = 3;
+    const [currentPage, setCurrentPage] = useState(0);
+    const handlePageChange = ({ selected }) => {
+        setCurrentPage(selected);
+    };
+
+    const totalPages = Math.ceil(cartProduct.length / ITEMS_PER_PAGE);
+
+    const displayedItems = cartProduct.slice(
+        currentPage * ITEMS_PER_PAGE,
+        (currentPage * ITEMS_PER_PAGE) + ITEMS_PER_PAGE
+    );
 
 
     return (
@@ -104,7 +121,7 @@ const Cart = () => {
                                             </div>
                                             {
                                                 Array.isArray(cartProduct) ?
-                                                    cartProduct.map((value, index) => {
+                                                    displayedItems.map((value, index) => {
                                                         const decreaseQuantity = () => {
                                                             if (initialCart[index].quantity > 1) {
                                                                 const updatedCart = [...initialCart];
@@ -176,7 +193,7 @@ const Cart = () => {
                                                                             </p>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="cart-div-container-main-cart-products-content-price">
+                                                                    {/* <div className="cart-div-container-main-cart-products-content-price">
                                                                         <div className="cart-div-container-main-cart-products-content-price-heading">
                                                                             <p>VAT (15%):</p>
                                                                         </div>
@@ -189,7 +206,7 @@ const Cart = () => {
                                                                                 }
                                                                             </p>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> */}
                                                                     <div className="cart-div-container-main-cart-products-content-button">
                                                                         <button
                                                                             onClick={() => handleRemoveFromCart(index)}
@@ -217,6 +234,24 @@ const Cart = () => {
                                             <Text component={Link} to={'/'}>
                                                 <button><img src={arrowleft} width={14} alt="arrow left icon" />Keep Shopping</button>
                                             </Text>
+                                            {
+                                                cartProduct.length  > 3 ?
+                                                    <div className="pagination-container cart-pagination">
+                                                        <ReactPaginate
+                                                            previousLabel={<img src={angleleft} width="20" alt='pagination left icon' />}
+                                                            nextLabel={<img src={angleright} width="20" alt='pagination right icon' />}
+                                                            pageCount={totalPages}
+                                                            onPageChange={handlePageChange}
+                                                            forcePage={currentPage}
+                                                            containerClassName={'pagination'}
+                                                            activeClassName={'active'}
+                                                            previousClassName={currentPage === 0 ? 'disabled' : ''}
+                                                            nextClassName={currentPage === totalPages - 1 ? 'disabled' : ''}
+                                                            disabledClassName={'disabled'}
+                                                        />
+                                                    </div>
+                                                    : ""
+                                            }
                                         </div>
                                     </div>
                                     <div className="cart-div-container-main-right">
