@@ -116,13 +116,18 @@
 }
 
 .cart-div-container-main-left-keep-shoping {
-    width: 156px;
-    height: 41px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-pagination {
+    justify-content: flex-end;
 }
 
 .cart-div-container-main-left-keep-shoping button {
-    width: 100%;
-    height: 100%;
+    width: 156px;
+    height: 41px;
     display: flex;
     justify-content: center;
     align-items: center;
