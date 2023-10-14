@@ -30,9 +30,6 @@ import Cookies from 'js-cookie'
 import config from "../../../config/server/Servers"
 
 const Cart = () => {
-
-    // Quantity Value 
-    const [quantityValue, setQuantityValue] = useState(1);
     const [cartProductIdArray, cartProductArrayId] = useState([])
     const [cartProduct, setCartProduct] = useState([])
     const getCookie = Cookies.get('Product_id')
@@ -81,13 +78,17 @@ const Cart = () => {
         alert('Item Removed')
     }
 
-    console.log(cartProduct);
-
     const initialCart = cartProduct.map((value) => ({
         ...value,
-        quantity: value.quantity || 1, // Set a default quantity of 1 if quantity is undefined
+        quantity: value.quantity || 1,
     }));
 
+
+    useEffect(() => {
+        if (sessionStorage.getItem('MogoUserAccessToken101')) {
+
+        }
+    })
 
     return (
         <div>
