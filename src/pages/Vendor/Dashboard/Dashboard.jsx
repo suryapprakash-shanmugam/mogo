@@ -42,7 +42,7 @@ const Dashboard = () => {
             <td>{LatestOrder.Status}</td>
             <td>{LatestOrder.Date}</td>
             <td>
-                <Link className="admin-dashboard-details-link" to={LatestOrder.path}>{LatestOrder.Details} </Link>
+                <Link className="vendor-dashboard-details-link" to={LatestOrder.path}>{LatestOrder.Details} </Link>
             </td>
         </tr>
     ));
@@ -79,7 +79,7 @@ const Dashboard = () => {
                 </div>
             </td>
             <td>
-                <Link className="admin-dashboard-details-link" to={LatestProduct.path}>{LatestProduct.Details} </Link>
+                <Link className="vendor-dashboard-details-link" to={LatestProduct.path}>{LatestProduct.Details} </Link>
             </td>
         </tr>
     ));
@@ -100,7 +100,7 @@ const Dashboard = () => {
                 </div>
             </td>
             <td>
-                <Link className="admin-dashboard-details-link" to={LatestPendingProduct.path}>{LatestPendingProduct.Details} </Link>
+                <Link className="vendor-dashboard-details-link" to={LatestPendingProduct.path}>{LatestPendingProduct.Details} </Link>
             </td>
         </tr>
     ));
@@ -156,51 +156,51 @@ const Dashboard = () => {
     ]
     return (
         <div>
-            <div className="admin-dashboard">
-                <div className="admin-dashboard-show-count-main-div">
-                    <div className="admin-dashboard-show-count-orders">
-                        <div className="admin-dashboard-show-count-orders-left">
+            <div className="vendor-dashboard">
+                <div className="vendor-dashboard-show-count-main-div">
+                    <div className="vendor-dashboard-show-count-orders">
+                        <div className="vendor-dashboard-show-count-orders-left">
                             <h1>5</h1>
                             <p>Orders</p>
                         </div>
-                        <div className="admin-dashboard-show-count-orders-right">
+                        <div className="vendor-dashboard-show-count-orders-right">
                             <Link to="/admindashboard/orders">
                                 <i className='fa fa-shopping-cart'></i>
                             </Link>
                         </div>
                     </div>
-                    <div className="admin-dashboard-show-count-users">
-                        <div className="admin-dashboard-show-count-users-left">
+                    <div className="vendor-dashboard-show-count-users">
+                        <div className="vendor-dashboard-show-count-users-left">
                             <h1>5</h1>
                             <p>Balance</p>
                         </div>
-                        <div className="admin-dashboard-show-count-users-right">
+                        <div className="vendor-dashboard-show-count-users-right">
                             <Link to="/admindashboard/users_users">
                                 <i className='fa fa-money'></i>
                             </Link>
                         </div>
                     </div>
-                    <div className="admin-dashboard-show-count-products">
-                        <div className="admin-dashboard-show-count-products-left">
+                    <div className="vendor-dashboard-show-count-products">
+                        <div className="vendor-dashboard-show-count-products-left">
                             <h1>5</h1>
                             <p>Products</p>
                         </div>
-                        <div className="admin-dashboard-show-count-products-right">
+                        <div className="vendor-dashboard-show-count-products-right">
                             <Link to="/admindashboard/products">
                                 <Basket
                                     size={38}
                                     strokeWidth={2}
-                                    className="admin-dashboard-show-count-tabler-icons"
+                                    className="vendor-dashboard-show-count-tabler-icons"
                                 />
                             </Link>
                         </div>
                     </div>
-                    <div className="admin-dashboard-show-count-sales-amount">
-                        <div className="admin-dashboard-show-count-sales-amount-left">
+                    <div className="vendor-dashboard-show-count-sales-amount">
+                        <div className="vendor-dashboard-show-count-sales-amount-left">
                             <h1>5</h1>
                             <p>Pending Products</p>
                         </div>
-                        <div className="admin-dashboard-show-count-sales-amount-right">
+                        <div className="vendor-dashboard-show-count-sales-amount-right">
                             <Link to="/admindashboard/transactions">
                                 <i className='fa fa-money'></i>
                             </Link>
@@ -216,7 +216,7 @@ const Dashboard = () => {
                         <LineChart />
                     </Card>
                 </div>
-                <div className="admin-dashboard-show-latest">
+                <div className="vendor-dashboard-show-latest">
                     <Accordion
                         radius="lg"
                         variant="separated"
@@ -236,7 +236,7 @@ const Dashboard = () => {
                             <Accordion.Control>Latest Orders</Accordion.Control>
                             <Accordion.Panel>
                                 <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
+                                    <thead className='vendor-dashboard-show-latest-table-th'>
                                         <tr>
                                             <th>Order</th>
                                             <th>Total</th>
@@ -245,10 +245,10 @@ const Dashboard = () => {
                                             <th>Details</th>
                                         </tr>
                                     </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestOrdersrows}</tbody>
+                                    <tbody className='vendor-dashboard-show-latest-table-td'>{LatestOrdersrows}</tbody>
                                 </Table>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
+                                <div className="vendor-dashboard-show-latest-show-more-main">
+                                    <div className="vendor-dashboard-show-latest-show-more">
                                         <Link to="/admindashboard/orders">View All</Link>
                                     </div>
                                 </div>
@@ -278,17 +278,17 @@ const Dashboard = () => {
                             <Accordion.Control>Latest Reviews</Accordion.Control>
                             <Accordion.Panel>
                                 <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
+                                    <thead className='vendor-dashboard-show-latest-table-th'>
                                         <tr>
                                             <th>Id</th>
                                             <th>UserName</th>
                                             <th>Review</th>
                                         </tr>
                                     </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestReviewsrows}</tbody>
+                                    <tbody className='vendor-dashboard-show-latest-table-td'>{LatestReviewsrows}</tbody>
                                 </Table>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
+                                <div className="vendor-dashboard-show-latest-show-more-main">
+                                    <div className="vendor-dashboard-show-latest-show-more">
                                         <Link to="/admindashboard/reviews">View All</Link>
                                     </div>
                                 </div>
@@ -315,17 +315,17 @@ const Dashboard = () => {
                             <Accordion.Control>Latest Comments</Accordion.Control>
                             <Accordion.Panel>
                                 <Table highlightOnHover>
-                                    <thead className='admin-dashboard-show-latest-table-th'>
+                                    <thead className='vendor-dashboard-show-latest-table-th'>
                                         <tr>
                                             <th>Id</th>
                                             <th>UserName</th>
                                             <th>Comments</th>
                                         </tr>
                                     </thead>
-                                    <tbody className='admin-dashboard-show-latest-table-td'>{LatestCommentsrows}</tbody>
+                                    <tbody className='vendor-dashboard-show-latest-table-td'>{LatestCommentsrows}</tbody>
                                 </Table>
-                                <div className="admin-dashboard-show-latest-show-more-main">
-                                    <div className="admin-dashboard-show-latest-show-more">
+                                <div className="vendor-dashboard-show-latest-show-more-main">
+                                    <div className="vendor-dashboard-show-latest-show-more">
                                         <Link to="/admindashboard/product_comments">View All</Link>
                                     </div>
                                 </div>
