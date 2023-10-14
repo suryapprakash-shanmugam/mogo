@@ -80,12 +80,23 @@ const Cart = () => {
     )
 
     const handleRemoveFromCart = (index) => {
-        const newCategoryProductArray = [...cartProductIdArray]
+        const newCategoryProductArray = cartProduct
         newCategoryProductArray.splice(index, 1)
-        alert('Item Removed')
+        alert('Item Removed');
     }
+    // const handleRemoveFromCart = (index) => {
+    //     const updatedCart = [...cartProduct];
+    //     updatedCart.splice(index, 1);
+    //     setCartProduct(updatedCart);
+    //     const serializedArray = JSON.stringify(updatedCart);
+    //     Cookies.set('Product_id', serializedArray);
 
-    console.log(cartProduct);
+    //     alert('Item Removed');
+    // };
+
+
+
+    //console.log(cartProduct);
 
     const initialCart = cartProduct.map((value) => ({
         ...value,
@@ -235,7 +246,7 @@ const Cart = () => {
                                                 <button><img src={arrowleft} width={14} alt="arrow left icon" />Keep Shopping</button>
                                             </Text>
                                             {
-                                                cartProduct.length  > 3 ?
+                                                cartProduct.length > 3 ?
                                                     <div className="pagination-container cart-pagination">
                                                         <ReactPaginate
                                                             previousLabel={<img src={angleleft} width="20" alt='pagination left icon' />}

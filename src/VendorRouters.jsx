@@ -19,7 +19,7 @@ import 'font-awesome/css/font-awesome.min.css';
 //import VendorRouters css
 import './VendorRouters.css'
 
-//import dashboard from pages->admin->dashboard
+//import dashboard from pages->vendor->dashboard
 import Dashboard from './pages/Vendor/Dashboard/Dashboard';
 
 import AddProduct from './pages/Vendor/Product/AddProduct/AddProduct';
@@ -59,20 +59,20 @@ import ShopSettings from './pages/Vendor/ShopSettings/ShopSettings';
 
 const VendorRouters = () => {
     window.scrollTo(0, 0)
-    const adminsidenavmediaquery = useMediaQuery('(max-width:768px)')
+    const vendorsidenavmediaquery = useMediaQuery('(max-width:768px)')
     const [collapsed, setCollapsed] = useState(false);
 
     // Dispatch 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (adminsidenavmediaquery) {
+        if (vendorsidenavmediaquery) {
             setCollapsed(true)
         }
         else {
             setCollapsed(false)
         }
-    }, [adminsidenavmediaquery])
+    }, [vendorsidenavmediaquery])
     window.scrollTo(0, 0)
     const location = useLocation();
     const bodyContent = {
@@ -116,23 +116,23 @@ const VendorRouters = () => {
     //         dispatch(setLoginStatus(true))
     //     }
     //     else {
-    //         window.location.reload(navigate('/admin'))
+    //         window.location.reload(navigate('/vendor'))
     //     }
     // }, [])
     return (
         <div>
-            <div className='admin-sidenav' >
+            <div className='vendor-sidenav' >
                 <Sidebar collapsed={collapsed} style={{ zIndex: "9999" }} transitionDuration={1000}>
-                    <div className="admin-sidebar-logo">
+                    <div className="vendor-sidebar-logo">
                         <Link to="/vendor_dashboard">
-                            <div className={collapsed === false ? `admin-sidebar-logo-img` : `admin-sidebar-logo-img-favicon`}>
+                            <div className={collapsed === false ? `vendor-sidebar-logo-img` : `vendor-sidebar-logo-img-favicon`}>
                                 {
                                     collapsed === false ? <img src={Logo} alt="" /> : <img className='Logo_favicon' src={Logo_favicon} alt="" />
                                 }
                             </div>
                         </Link>
                     </div>
-                    <Menu className='admin-sidenav-menu-style' style={{ position: "relative", color: '#959cac' }}>
+                    <Menu className='vendor-sidenav-menu-style' style={{ position: "relative", color: '#959cac' }}>
                         <Tooltip
                             label="Home"
                             color="teal"
@@ -333,21 +333,21 @@ const VendorRouters = () => {
                     </Menu>
                 </Sidebar>
                 <ScrollArea w={"100%"}>
-                    <main className='admin-sidenav-main-admin-content' >
-                        <div className='admin-sidenav-topbar-color'>
+                    <main className='vendor-sidenav-main-vendor-content' >
+                        <div className='vendor-sidenav-topbar-color'>
                             <div>
-                                <button className="admin-sidenav-toggle-style-button" onClick={() => setCollapsed(!collapsed)}>
+                                <button className="vendor-sidenav-toggle-style-button" onClick={() => setCollapsed(!collapsed)}>
                                     <i className='fa fa-bars'></i>
                                 </button>
                             </div>
-                            <div className="admin-user-profile-dropdown">
+                            <div className="vendor-user-profile-dropdown">
                                 <MenuMantine shadow="md" width={200}>
                                     <MenuMantine.Target>
-                                        <div className='admin-user-profile-dropdown-button-style'>
-                                            <div className="admin-user-profile-dropdown-button-img">
-                                                {   /* <img src={admin_user_profile} alt="" /> */}
+                                        <div className='vendor-user-profile-dropdown-button-style'>
+                                            <div className="vendor-user-profile-dropdown-button-img">
+                                                {   /* <img src={vendor_user_profile} alt="" /> */}
                                             </div>
-                                            <div className="admin-user-profile-dropdown-button-content">
+                                            <div className="vendor-user-profile-dropdown-button-content">
                                                 <p>
                                                     Vendor
                                                 </p>
@@ -368,7 +368,7 @@ const VendorRouters = () => {
                                 </MenuMantine>
                             </div>
                         </div>
-                        <div className="admin-all-pages-content">
+                        <div className="vendor-all-pages-content">
                             <div>{renderBodyData}</div>
                         </div>
                     </main>
