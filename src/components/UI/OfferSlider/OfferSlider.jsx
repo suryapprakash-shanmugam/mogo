@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 //import mantine components
-import { Container, Rating, Center, Space } from '@mantine/core'
+import { Container, Rating, Center } from '@mantine/core'
 
 //import OfferSlider css
 import './OfferSlider.css'
@@ -16,8 +16,6 @@ import Autoplay from 'embla-carousel-autoplay';
 import { Link } from 'react-router-dom'
 
 //import images
-import baby_linen from '../../../assets/home/grid-category/baby_linen.webp'
-import bath_linen from '../../../assets/home/grid-category/bath_linen.webp'
 import wishlist from '../../../assets/header/wishlist.webp'
 import cart from '../../../assets/header/cart.webp'
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,6 +27,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { categoryById } from '../../../config/quries/Category/CategoryQueries';
 import { subCategorById } from '../../../config/quries/SubCategory/SubCategoryQuries';
 import { handleAddtoCartControl } from '../../../controller/cart/cartController';
+import Cookies from 'js-cookie';
 
 const OfferSlider = ({ header, header2 }) => {
     const navigate = useNavigate()
@@ -36,120 +35,6 @@ const OfferSlider = ({ header, header2 }) => {
     const autoplay = useRef(Autoplay({ delay: 2000 }));
 
     //offerslider array
-    const offerSliderArray = [
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '30',
-            currencysymbol: '$',
-            productnewprice: '25',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '30',
-            currencysymbol: '$',
-            productnewprice: '29',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '30',
-            currencysymbol: '$',
-            productnewprice: '25',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '50',
-            currencysymbol: '$',
-            productnewprice: '25',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '40',
-            currencysymbol: '$',
-            productnewprice: '25',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '30',
-            currencysymbol: '$',
-            productnewprice: '25',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '35',
-            currencysymbol: '$',
-            productnewprice: '25',
-            link: '/products',
-            like: '0',
-        },
-        {
-            offer: '10%',
-            image: baby_linen,
-            secondImage: bath_linen,
-            heading: 'This is demo',
-            productshop: 'Shopiezy',
-            productrating: '4',
-            wishlistcount: '3',
-            productoldprice: '30',
-            currencysymbol: '$',
-            productnewprice: '26',
-            link: '/products',
-            like: '0',
-        },
-    ]
     const slidesToShow = 5;
     const calculatedSlideSize = `${100 / slidesToShow}%`;
 
@@ -162,6 +47,7 @@ const OfferSlider = ({ header, header2 }) => {
     useQuery('productList',
         listAllProduct,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 dispatch(setProductList(res?.data?.data?.result))
             },
@@ -194,6 +80,8 @@ const OfferSlider = ({ header, header2 }) => {
         ['categoryByid', categoryId],
         categoryById,
         {
+            refetchOnWindowFocus: false,
+            enabled: !!categoryId,
             onSuccess: (res) => {
                 const filter = res.data?.data?.result?.name.replace(' ', "_")
                 setCategoryName(filter)
@@ -205,6 +93,8 @@ const OfferSlider = ({ header, header2 }) => {
         ['subcategoryByid', subCategoryId],
         subCategorById,
         {
+            refetchOnWindowFocus: false,
+            enabled: !!subCategoryId,
             onSuccess: (res) => {
                 const filter = res.data?.data?.result?.name.replace(' ', "_")
                 setSubCategoryName(filter)
@@ -212,15 +102,35 @@ const OfferSlider = ({ header, header2 }) => {
         }
     )
 
-    const [productId, setProductId] = useState()
-
+    // Cart State
+    const [cartArray, setCartArray] = useState([])
+    // User ID
+    const user_id = sessionStorage.getItem('MogoUserAccessToken101')
     const handleAddtoCart = (id) => {
-        const payload = {
-            product_id: id,
-            user_id: sessionStorage.getItem('MogoUserAccessToken101')
+        if (user_id) {
+            const payload = {
+                product_id: id,
+                user_id: user_id
+            }
+            handleAddtoCartControl(payload)
+            navigate('/')
         }
-        handleAddtoCartControl(payload)
-        navigate('/')
+        else {
+            setCartArray([...cartArray, id])
+            const serializedArray = JSON.stringify(cartArray);
+            Cookies.set('Product_id', serializedArray)
+        }
+    }
+
+    const getCookie = Cookies.get('Product_id')
+    const cartArrayList = getCookie ? JSON.parse(getCookie) : [];
+
+    const hanldeNavigatePage = (product) => {
+        setCategoryId(product.product_category);
+        setSubCategoryId(product.product_subcategory)
+        if (categoryId && subCategoryId) {
+            navigate(`/product/${categoryName}/${subCategoryName}/${product._id}`)
+        }
     }
 
     return (
@@ -253,41 +163,44 @@ const OfferSlider = ({ header, header2 }) => {
                             shuffledProducts.map((product, index) => {
                                 return (
                                     <Carousel.Slide key={index} className='offerslider-div-container-slider-individual'>
-                                        <Link
-                                            onMouseOver={() => {
-                                                setCategoryId(product.product_category);
-                                                setSubCategoryId(product.product_subcategory)
-                                            }}
-                                            onClick={() => {
-                                                setCategoryId(product.product_category);
-                                                setSubCategoryId(product.product_subcategory)
-                                            }}
-                                            to={`/product/${categoryName}/${subCategoryName}/${product._id}`}
-                                        >
-                                            <div className="offerslider-div-container-slider-image">
+                                        <div className="offerslider-div-container-slider-image">
+                                            <div
+                                                className='offerslider-div-container-slider-image-router'
+                                                onClick={() => {
+                                                    hanldeNavigatePage(product)
+                                                }}
+                                                onMouseOver={() => {
+                                                    setCategoryId(product.product_category);
+                                                    setSubCategoryId(product.product_subcategory)
+                                                }}
+                                            >
                                                 <img src={`${config.baseUrlApi}/assets/productImages/${product.product_image}`} alt="" />
                                                 <img className="second-image" src={`${config.baseUrlApi}/assets/productImages/${product.product_gallery_image[1]}`} alt="" />
-                                                {/* <img src={offerSlider.secondImage} alt="" /> */}
-                                                <div className="offerslider-div-container-slider-individual-wishlist-cart">
-                                                    <div id="offerslider-div-container-slider-individual-wishlist-cart-wishlist">
-                                                        <img src={wishlist} width='10' alt="" />
-                                                    </div>
-                                                    <div
-                                                        onClick={() => {
-                                                            handleAddtoCart(product._id);
-                                                        }}
-                                                        id="offerslider-div-container-slider-individual-wishlist-cart-cart">
-                                                        <img src={cart} width='10' alt="" />
-                                                    </div>
+                                            </div>
+                                            {/* <img src={offerSlider.secondImage} alt="" /> */}
+                                            <div className="offerslider-div-container-slider-individual-wishlist-cart">
+                                                <div id="offerslider-div-container-slider-individual-wishlist-cart-wishlist">
+                                                    <img src={wishlist} width='10' alt="" />
                                                 </div>
-                                                <div className="offerslider-div-container-slider-individual-discount">
-                                                    <p>
-                                                        34%
-                                                    </p>
+                                                <div
+                                                    onClick={() => {
+                                                        handleAddtoCart(product._id);
+                                                    }}
+                                                    id="offerslider-div-container-slider-individual-wishlist-cart-cart">
+                                                    <img src={cart} width='10' alt="" />
                                                 </div>
                                             </div>
-                                        </Link>
-                                        <div className="offerslider-div-container-slider-content">
+                                            <div className="offerslider-div-container-slider-individual-discount">
+                                                <p>
+                                                    34%
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div
+                                            onClick={() => {
+                                                hanldeNavigatePage(product)
+                                            }}
+                                            className="offerslider-div-container-slider-content">
                                             <div className="offerslider-div-container-slider-content-heading">
                                                 <p style={{ padding: '1rem 0' }}>
                                                     {product.name}

@@ -208,6 +208,7 @@ const Product = ({ category, subcategory, heading }) => {
     useQuery('productList',
         listAllProduct,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 dispatch(setProductList(res?.data?.data?.result))
             },
@@ -220,6 +221,7 @@ const Product = ({ category, subcategory, heading }) => {
         ['individualProduct', location.heading],
         getProductByID,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setIndividialProduct(res?.data?.data?.result)
             }

@@ -41,6 +41,19 @@
     position: relative;
 }
 
+.offerslider-div-container-slider-image-router {
+    width: 100%;
+    height: 260px;
+    cursor: pointer;
+    position: relative;
+    object-fit: contain;
+}
+
+.offerslider-div-container-slider-image-router img {
+    width: 100%;
+    height: 100%;
+}
+
 .offerslider-div-container-slider-individual-wishlist-cart {
     position: absolute;
     width: 50px;

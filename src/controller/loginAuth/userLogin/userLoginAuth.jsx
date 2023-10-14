@@ -98,7 +98,8 @@ export const handleLoginControl = async (
     setuserLogin,
     userLoginValidation,
     setUserLoginValidation,
-    setLoginModalOpen
+    setLoginModalOpen,
+    queryClient
 ) => {
     const {
         email, password
@@ -126,6 +127,8 @@ export const handleLoginControl = async (
                             password: ''
                         })
                         setLoginModalOpen(false)
+                        queryClient.invalidateQueries('userData')
+                        window.location.reload()
                     })
                     .catch((err) => {
                         if (err.response.status == 401) {
@@ -171,7 +174,6 @@ export const handleUpdateUserControl = async (
     userData
 ) => {
     const {
-        email,
         first_name,
         last_name,
         number,

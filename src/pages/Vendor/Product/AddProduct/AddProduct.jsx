@@ -271,6 +271,7 @@ const AddProduct = () => {
     useQuery('Products',
         listAllProduct,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setProductData(res?.data?.data?.result)
             }
@@ -392,6 +393,7 @@ const AddProduct = () => {
     useQuery('categoryList',
         categoryListAPI,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, category: res.data.data.result })
             }
@@ -405,6 +407,7 @@ const AddProduct = () => {
         ],
         subCategoryListByCategoryID,
         {
+            refetchOnWindowFocus: false,
             enabled: !!productDetails.product_category,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, subCategory: res.data.data.result })
@@ -623,7 +626,7 @@ const AddProduct = () => {
                                                                 label="Track stock quantity for this product"
                                                                 radius="xs"
                                                                 size="xs"
-                                                                onChange={(e) => {setProductDetails({ ...productDetails, status: e });setStockManagement(e.currentTarget.checked)}}
+                                                                onChange={(e) => { setProductDetails({ ...productDetails, status: e }); setStockManagement(e.currentTarget.checked) }}
                                                             />
                                                         </Input.Wrapper>
                                                     </div>
@@ -640,7 +643,7 @@ const AddProduct = () => {
                                                                     >
                                                                         <Quantity
                                                                             value={maxQuantityValue}
-                                                                            onChange={(e) => {setProductDetails({ ...productDetails, initial_quantity: e });setMaxQuantityValue(e)}}
+                                                                            onChange={(e) => { setProductDetails({ ...productDetails, initial_quantity: e }); setMaxQuantityValue(e) }}
                                                                         />
                                                                     </Input.Wrapper>
                                                                 </div>
@@ -648,7 +651,7 @@ const AddProduct = () => {
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
-                                                                        onChange={(e) => {setProductDetails({ ...productDetails, allow_backorders: e })}}
+                                                                        onChange={(e) => { setProductDetails({ ...productDetails, allow_backorders: e }) }}
                                                                     >
                                                                         {
                                                                             validateProductField.allow_backorders === 1 ?
@@ -674,7 +677,7 @@ const AddProduct = () => {
                                                                 <label>Stock status</label>
                                                                 <Radio.Group
                                                                     name="favoriteFramework"
-                                                                    onChange={(e) => {setProductDetails({ ...productDetails, stock_status: e })}}
+                                                                    onChange={(e) => { setProductDetails({ ...productDetails, stock_status: e }) }}
                                                                 >
                                                                     <Group mt="xs">
                                                                         <Radio value="In stock" label="In stock" />
@@ -819,7 +822,7 @@ const AddProduct = () => {
                                                             label="Track stock quantity for this product"
                                                             radius="xs"
                                                             size="xs"
-                                                            onChange={(e) => {setProductDetails({ ...productDetails, status: e });setStockManagement(e.currentTarget.checked)}}
+                                                            onChange={(e) => { setProductDetails({ ...productDetails, status: e }); setStockManagement(e.currentTarget.checked) }}
                                                         />
                                                     </div>
                                                     {
@@ -836,7 +839,7 @@ const AddProduct = () => {
                                                                     <label>Allow backorders?</label>
                                                                     <Radio.Group
                                                                         name="favoriteFramework"
-                                                                        onChange={(e) => {setProductDetails({ ...productDetails, allow_backorders: e })}}
+                                                                        onChange={(e) => { setProductDetails({ ...productDetails, allow_backorders: e }) }}
                                                                     >
                                                                         <Group mt="xs">
                                                                             <Radio value="Do not allow" label="Do not allow" />
@@ -861,7 +864,7 @@ const AddProduct = () => {
                                                                     onChange={(e) =>
                                                                         setProductDetails({
                                                                             ...productDetails,
-                                                                            stock_status:e
+                                                                            stock_status: e
 
                                                                         })
                                                                     }
@@ -1091,8 +1094,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationStockStatusArray}
-                                                                                                value={variationStockClass} 
-                                                                                                onChange={handlevariationStockClassChange} 
+                                                                                                value={variationStockClass}
+                                                                                                onChange={handlevariationStockClassChange}
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1128,8 +1131,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationshippingArray}
-                                                                                                value={variationshipping} 
-                                                                                                onChange={handlevariationshippingChange} 
+                                                                                                value={variationshipping}
+                                                                                                onChange={handlevariationshippingChange}
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">
@@ -1138,8 +1141,8 @@ const AddProduct = () => {
                                                                                                 rightSection={<img src={anglebottom} alt="anglebottom icon" width={14} />}
                                                                                                 placeholder="Add Existing"
                                                                                                 data={variationtaxclassArray}
-                                                                                                value={variationtaxclass} 
-                                                                                                onChange={handlevariationtaxclassChange} 
+                                                                                                value={variationtaxclass}
+                                                                                                onChange={handlevariationtaxclassChange}
                                                                                             />
                                                                                         </div>
                                                                                         <div className="accordionvariation-content-form-fields-individual-full">

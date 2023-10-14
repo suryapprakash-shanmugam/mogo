@@ -100,6 +100,7 @@ const UserProfile = () => {
         ['userData', sessionStorage.getItem('MogoUserAccessToken101')],
         findUserByid,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 console.log(res);
                 dispatch(setUserData(res?.data?.data))
@@ -112,7 +113,7 @@ const UserProfile = () => {
                     profile_image: res.data.data.profile_image
                 })
             },
-            onError:(err)=>{
+            onError: (err) => {
                 console.log(err);
             }
         }

@@ -271,6 +271,7 @@ const AddProduct = () => {
     useQuery('Products',
         listAllProduct,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setProductData(res?.data?.data?.result)
             }
@@ -394,6 +395,7 @@ const AddProduct = () => {
     useQuery('categoryList',
         categoryListAPI,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, category: res.data.data.result })
             }
@@ -407,6 +409,7 @@ const AddProduct = () => {
         ],
         subCategoryListByCategoryID,
         {
+            refetchOnWindowFocus: false,
             enabled: !!productDetails.product_category,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, subCategory: res.data.data.result })

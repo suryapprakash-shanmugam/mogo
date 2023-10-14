@@ -21,7 +21,7 @@ import { ChevronDown, MapPin } from 'tabler-icons-react'
 import Flag from "react-country-flag"
 import { handleLoginControl, handleRegisterControl } from '../../../controller/loginAuth/userLogin/userLoginAuth'
 import { useDispatch, useSelector } from 'react-redux'
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import { findUserByid } from '../../../config/quries/users/usersQuery'
 import { setUserData } from '../../../StateHandler/Slice/UserSlice/UserSliceData'
 import config from "../../../config/server/Servers"
@@ -154,12 +154,14 @@ const Preheader = () => {
 
   const userData = useSelector((state) => state.userData.value)
   const dispatch = useDispatch()
+  const queryClient = useQueryClient()
 
   // Fetching User By ID
   useQuery(
     ['userData', sessionStorage.getItem('MogoUserAccessToken101')],
     findUserByid,
     {
+      refetchOnWindowFocus: false,
       enabled: !!sessionStorage.getItem('MogoUserAccessToken101'),
       onSuccess: (res) => {
         dispatch(setUserData(res?.data?.data))
@@ -180,7 +182,9 @@ const Preheader = () => {
       setuserLogin,
       userLoginValidation,
       setUserLoginValidation,
-      setLoginModalOpen
+      setLoginModalOpen,
+      queryClient
+
     )
   }
 
