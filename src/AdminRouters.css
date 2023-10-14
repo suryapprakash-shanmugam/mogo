@@ -95,8 +95,8 @@
 .admin-user-profile-dropdown-button-img {
     width: 40px;
     height: 40px;
-    background-color: red;
     clip-path: circle();
+    object-fit: contain;
 }
 
 .admin-user-profile-dropdown-button-img img {

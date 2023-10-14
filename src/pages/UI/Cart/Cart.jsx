@@ -18,7 +18,6 @@ import discover from '../../../assets/footer/copyright/discover.webp'
 import maestro from '../../../assets/footer/copyright/maestro.webp'
 import mastercard from '../../../assets/footer/copyright/mastercard.webp'
 import visa from '../../../assets/footer/copyright/visa.webp'
-
 import angleleft from '../../../assets/pagination/angleleft.webp'
 import angleright from '../../../assets/pagination/angleright.webp'
 
@@ -106,7 +105,6 @@ const Cart = () => {
 
         }
     })
-
     return (
         <div>
             <div className="cart-div">
@@ -146,6 +144,7 @@ const Cart = () => {
                                                             }
                                                         };
 
+
                                                         return (
                                                             <div
                                                                 key={index}
@@ -182,32 +181,37 @@ const Cart = () => {
                                                                     </div>
                                                                     <div className="cart-div-container-main-cart-products-content-price">
                                                                         <div className="cart-div-container-main-cart-products-content-price-heading">
-                                                                            <p>Total:</p>
+                                                                            <p>Total Quantity:</p>
                                                                         </div>
                                                                         <div className="cart-div-container-main-cart-products-content-price-price">
-                                                                            <p><span>$</span>
-                                                                                {
+                                                                            <p>
+                                                                                {/* {
                                                                                     value.sale_price ?
                                                                                         value.sale_price :
                                                                                         199
+                                                                                } */}
+                                                                                {initialCart[index].quantity}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="cart-div-container-main-cart-products-content-price">
+                                                                        <div className="cart-div-container-main-cart-products-content-price-heading">
+                                                                            <p>Total:</p>
+                                                                        </div>
+                                                                        <div className="cart-div-container-main-cart-products-content-price-price">
+                                                                            <p id='totalPrice'><span>$</span>
+                                                                                {
+                                                                                    value.sale_price ?
+                                                                                        <>
+                                                                                            {initialCart[index].quantity * value.sale_price}
+                                                                                        </> :
+                                                                                        <>
+                                                                                            {initialCart[index].quantity * 199}
+                                                                                        </>
                                                                                 }
                                                                             </p>
                                                                         </div>
                                                                     </div>
-                                                                    {/* <div className="cart-div-container-main-cart-products-content-price">
-                                                                        <div className="cart-div-container-main-cart-products-content-price-heading">
-                                                                            <p>VAT (15%):</p>
-                                                                        </div>
-                                                                        <div className="cart-div-container-main-cart-products-content-price-price">
-                                                                            <p><span>$</span>
-                                                                                {
-                                                                                    value.sale_price ?
-                                                                                        Math.round(15 / 100 * value.sale_price) :
-                                                                                        Math.round(15 / 100 * 199)
-                                                                                }
-                                                                            </p>
-                                                                        </div>
-                                                                    </div> */}
                                                                     <div className="cart-div-container-main-cart-products-content-button">
                                                                         <button
                                                                             onClick={() => handleRemoveFromCart(index)}
@@ -236,7 +240,7 @@ const Cart = () => {
                                                 <button><img src={arrowleft} width={14} alt="arrow left icon" />Keep Shopping</button>
                                             </Text>
                                             {
-                                                cartProduct.length  > 3 ?
+                                                cartProduct.length > 3 ?
                                                     <div className="pagination-container cart-pagination">
                                                         <ReactPaginate
                                                             previousLabel={<img src={angleleft} width="20" alt='pagination left icon' />}

@@ -8,7 +8,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 //import mantine packages
-import { Menu as MenuMantine, ScrollArea, Tooltip } from '@mantine/core'
+import { Avatar, Menu as MenuMantine, ScrollArea, Tooltip } from '@mantine/core'
 
 //import react-pro-slider packages
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
@@ -183,11 +183,6 @@ const AdminRouters = () => {
     useEffect(() => {
         if (sessionStorage.getItem('MogoAdminAccessToken102') && sessionStorage.getItem('MogoAdminAccessToken101')) {
             dispatch(setLoginStatus(true))
-            // if (data?.data?.data?.email) {
-            // }
-            // else {
-            //     window.location.reload(navigate('/admin'))
-            // }
         }
         else {
             window.location.reload(navigate('/admin'))
@@ -208,7 +203,9 @@ const AdminRouters = () => {
                         <Link to="/admin_dashboard">
                             <div className={collapsed === false ? `admin-sidebar-logo-img` : `admin-sidebar-logo-img-favicon`}>
                                 {
-                                    collapsed === false ? <img src={Logo} alt="" /> : <img className='Logo_favicon' src={Logo_favicon} alt="" />
+                                    collapsed === false ? <img src={Logo} alt="" /> : 
+                                    
+                                    <img className='Logo_favicon' src={Logo_favicon} alt="" />
                                 }
                             </div>
                         </Link>
@@ -568,7 +565,8 @@ const AdminRouters = () => {
                                     <MenuMantine.Target>
                                         <div className='admin-user-profile-dropdown-button-style'>
                                             <div className="admin-user-profile-dropdown-button-img">
-                                                {   /* <img src={admin_user_profile} alt="" /> */}
+                                                <Avatar
+                                                 radius="xl" />
                                             </div>
                                             <div className="admin-user-profile-dropdown-button-content">
                                                 <p>

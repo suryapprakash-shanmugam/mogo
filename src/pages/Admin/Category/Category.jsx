@@ -187,48 +187,37 @@ const Category = () => {
                                     Edit
                                 </Flex>
                             </button>
-                            {/* <button onClick={handleDeleteCategory}>
-                                <Flex align={'center'} gap={'0.4rem'}>
-                                    <Trash size={'1rem'} />
-                                    Delete
-                                </Flex>
-                            </button> */}
-
                         </div>
                     </Accordion.Control>
-                    <Accordion.Panel>
-                        <Accordion variant="contained" radius="xs" chevronPosition="left">
-                            {
-                                Array.isArray(categoryDetails.subCategory) ?
-                                    categoryDetails.subCategory?.map((subValue, sIndex) => (
-                                        <>
-                                            <Accordion.Item value={subValue.name}>
-                                                <Accordion.Control
-                                                    onClick={() => setSelectedCategory({ ...selectedCategory, subCategory: subValue._id })}
-                                                    key={sIndex} className='subcategory-accordion-heading'>
-                                                    <div className='subcategory-accordion-heading-left'>
-                                                        <p>
-                                                            {
-                                                                subValue.name
-                                                            }
-                                                        </p>
-                                                    </div>
-                                                    <div className='subcategory-accordion-heading-right'>
-                                                        <button onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            setEditModal({
-                                                                ...editModal,
-                                                                subCategory: true
-                                                            })
-                                                        }}>Edit</button>
-                                                    </div>
-                                                </Accordion.Control>
-                                            </Accordion.Item>
-                                        </>
-                                    )) : "Nothing Found"
-                            }
-                        </Accordion>
-                    </Accordion.Panel>
+                    {
+                        Array.isArray(categoryDetails.subCategory) ?
+                            categoryDetails.subCategory?.map((subValue, sIndex) => (
+                                <Accordion.Panel
+                                    key={sIndex}
+                                    pl={'xl'}
+                                >
+                                    <div
+                                        className='subcategory-accordion-heading-left'>
+                                        <p>
+                                            {
+                                                subValue.name
+                                            }
+                                        </p>
+                                        {/* <div className='subcategory-accordion-heading-right'>
+                                            <button onClick={(e) => {
+                                                e.stopPropagation();
+                                                setEditModal({
+                                                    ...editModal,
+                                                    subCategory: true
+                                                })
+                                            }}>
+                                                Edit
+                                            </button>
+                                        </div> */}
+                                    </div>
+                                </Accordion.Panel>
+                            )) : "Nothing Found"
+                    }
                 </Accordion.Item>
             ))
             : 'No Categories Found to Display'
