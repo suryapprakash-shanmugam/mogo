@@ -82,6 +82,8 @@ const Cart = () => {
     const handleRemoveFromCart = (index) => {
         const newCategoryProductArray = cartProduct
         newCategoryProductArray.splice(index, 1)
+        setCartProduct(newCategoryProductArray);
+        console.log(cartProduct)
         alert('Item Removed');
     }
     // const handleRemoveFromCart = (index) => {
