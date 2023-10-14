@@ -78,9 +78,16 @@ const Cart = () => {
     const handleRemoveFromCart = (index) => {
         const newCategoryProductArray = [...cartProductIdArray]
         newCategoryProductArray.splice(index, 1)
+        alert('Item Removed')
     }
 
     console.log(cartProduct);
+
+    const initialCart = cartProduct.map((value) => ({
+        ...value,
+        quantity: value.quantity || 1, // Set a default quantity of 1 if quantity is undefined
+    }));
+
 
     return (
         <div>
@@ -99,19 +106,28 @@ const Cart = () => {
                                                 Array.isArray(cartProduct) ?
                                                     cartProduct.map((value, index) => {
                                                         const decreaseQuantity = () => {
-                                                            if (quantityValue > 1) {
-                                                                setQuantityValue(quantityValue - 1);
+                                                            if (initialCart[index].quantity > 1) {
+                                                                const updatedCart = [...initialCart];
+                                                                updatedCart[index].quantity -= 1;
+                                                                setCartProduct(updatedCart);
                                                             }
                                                         };
 
                                                         const increaseQuantity = () => {
-                                                            setQuantityValue(quantityValue + 1);
+                                                            const updatedCart = [...initialCart];
+                                                            updatedCart[index].quantity += 1;
+                                                            setCartProduct(updatedCart);
                                                         };
 
                                                         const updateQuantity = (e) => {
                                                             const newValue = parseInt(e.target.value);
-                                                            setQuantityValue(newValue);
+                                                            if (!isNaN(newValue)) {
+                                                                const updatedCart = [...initialCart];
+                                                                updatedCart[index].quantity = newValue;
+                                                                setCartProduct(updatedCart);
+                                                            }
                                                         };
+
                                                         return (
                                                             <div
                                                                 key={index}
@@ -182,25 +198,16 @@ const Cart = () => {
                                                                 </div>
                                                                 <div className="cart-div-container-main-cart-products-count">
                                                                     <div className='product-div-container-main-product-display-content-counter-cart-wishlist-counter'>
-                                                                        <button
-                                                                            onClick={decreaseQuantity}
-                                                                            disabled={quantityValue === 1}
-                                                                        >
-                                                                            -
-                                                                        </button>
+                                                                        <button onClick={() => decreaseQuantity(index)} disabled={value.quantity === 1}>-</button>
                                                                         <input
-                                                                            onChange={updateQuantity}
+                                                                            onChange={(e) => updateQuantity(e, index)}
                                                                             className='product-div-container-main-product-display-content-counter-cart-wishlist-counter-input'
-                                                                            value={quantityValue}
+                                                                            value={initialCart[index].quantity}
                                                                         />
-
-                                                                        <button
-                                                                            onClick={increaseQuantity}
-                                                                        >
-                                                                            +
-                                                                        </button>
+                                                                        <button onClick={() => increaseQuantity(index)}>+</button>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                         )
                                                     }) : ''
