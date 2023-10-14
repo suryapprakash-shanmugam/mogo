@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 //import mantine packages
-import { Button, Checkbox, Container, Flex, Image, Input, Modal, Paper, PasswordInput, Select, Text } from '@mantine/core'
+import { Button, Checkbox, Container, Flex, Image, Input, Modal, Paper, PasswordInput, Select } from '@mantine/core'
 
 //import react router dom packages
 import { Link } from 'react-router-dom'

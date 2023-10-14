@@ -18,7 +18,9 @@ export const userRegisterAPI = (payload) => {
 
 export const findUserByid = ({ queryKey }) => {
     const [_, id] = queryKey
-    return axios.get(`${config.baseUrlApi}/users/${id}`)
+    return axios.get(`${config.baseUrlApi}/users/${id}`,
+        commonHeader
+    )
 }
 
 export const userLoginAPI = (payload) => {

@@ -174,6 +174,7 @@ const AdminRouters = () => {
         ['adminData', adminId],
         getAdminByID,
         {
+            refetchOnWindowFocus: false,
             enabled: !!adminId,
         }
     )

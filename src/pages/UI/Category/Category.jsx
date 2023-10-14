@@ -493,6 +493,7 @@ const Category = () => {
     useQuery('productList',
         listAllProduct,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 dispatch(setProductList(res?.data?.data?.result))
             },

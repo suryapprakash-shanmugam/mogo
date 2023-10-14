@@ -239,3 +239,9 @@
 .cart-div-container-main-right-discount-coupen-form-button button:hover {
     background-color: var(--Logo-Color2);
 }
+
+.cart-empty {
+    width: 100%;
+    height: 40vh;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+}

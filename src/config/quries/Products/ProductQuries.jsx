@@ -28,3 +28,11 @@ export const getProductByID = ({ queryKey }) => {
     const [_, id] = queryKey
     return axios.get(`${config.baseUrlApi}/products/getbyid/${id}`)
 }
+
+
+// Array of Product 
+export const getArrayOfProductid = (payload) => {
+    return axios.post(`${config.baseUrlApi}/products/arrayofproduct`,
+        payload
+    )
+}

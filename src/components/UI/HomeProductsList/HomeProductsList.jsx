@@ -202,6 +202,7 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
     useQuery('productList',
         listAllProduct,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 dispatch(setProductList(res?.data?.data?.result))
             },
@@ -234,6 +235,7 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
         ['categoryByid', categoryId],
         categoryById,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 const filter = res.data?.data?.result?.name.replace(' ', "_")
                 setCategoryName(filter)
@@ -245,6 +247,7 @@ const HomeProductsList = ({ header, subheader, header2 }) => {
         ['subcategoryByid', subCategoryId],
         subCategorById,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 const filter = res.data?.data?.result?.name.replace(' ', "_")
                 setSubCategoryName(filter)

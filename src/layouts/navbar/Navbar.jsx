@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 import { useQuery } from 'react-query'
 import { categoryListAPI } from '../../config/quries/Category/CategoryQueries'
-import { Menu2, TransferOut } from 'tabler-icons-react'
+import { Heart, Menu2, ShoppingCart, TransferOut } from 'tabler-icons-react'
 import { useDisclosure } from '@mantine/hooks'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import config from "../../config/server/Servers"
 import { subCategoryListByCategoryID } from '../../config/quries/SubCategory/SubCategoryQuries'
+import { setUserData } from '../../StateHandler/Slice/UserSlice/UserSliceData'
 
 const Navbar = () => {
     // Drawer State 
@@ -27,28 +28,20 @@ const Navbar = () => {
     const header1060MediaQuery = useMediaQuery('(max-width:1061px)')
     const header786MediaQuery = useMediaQuery('(max-width:787px)')
     const header500MediaQuery = useMediaQuery('(max-width:501px)')
+
     // Category
     const [categoryList, setCategoryList] = useState()
-    const [subCategoryList, setSubCategoryList] = useState()
+    const [subCategoryList, setSubCategoryList] = useState([])
     useQuery(
         'categoryList',
         categoryListAPI,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setCategoryList(res?.data?.data?.result)
             }
         }
     )
-
-    const [openAccordionItems, setOpenAccordionItems] = useState([]);
-
-    const toggleAccordion = (value) => {
-        if (openAccordionItems.includes(value)) {
-            setOpenAccordionItems(openAccordionItems.filter((item) => item !== value));
-        } else {
-            setOpenAccordionItems([...openAccordionItems, value]);
-        }
-    };
 
     useQuery(
         [
@@ -57,8 +50,10 @@ const Navbar = () => {
         ],
         subCategoryListByCategoryID,
         {
+            refetchOnWindowFocus: false,
             enabled: !!selectedCategory.category,
             onSuccess: (res) => {
+                console.log(res);
                 setSubCategoryList(res?.data?.data?.result)
             }
         }
@@ -114,31 +109,77 @@ const Navbar = () => {
         'Groceries'
     ]
 
-    const drawerAccord = accordianHeader.map((value, index) => (
-        <Accordion variant="filled" p={0}>
-            <Accordion.Item p={0} value='Home Textiles' key={index}>
+    const drawerAccord = accordianHeader.map((accordianHeaders, headerindex) => {
+        return (
+            <Accordion.Item
+                key={headerindex}
+                value={accordianHeaders}
+            >
                 <Accordion.Control>
-                    <Title className='drawer-title' order={6}>
-                        {value}
-                    </Title>
+                    {accordianHeaders}
                 </Accordion.Control>
-                {
-                    index === 0 ?
-                        <Accordion.Panel>
-                            {categoryAccordion}
-                        </Accordion.Panel> :
-                        <Accordion.Panel pl={'sm'}>
-                            Comming Soon
-                        </Accordion.Panel>
-                }
-
+                <Accordion.Panel>
+                    {
+                        headerindex === 0 ?
+                            <Accordion variant='filled'>
+                                {
+                                    Array.isArray(categoryList) ?
+                                        categoryList.map((category, categoryIndex) => {
+                                            return (
+                                                <Accordion.Item
+                                                    key={categoryIndex}
+                                                    onClick={() =>
+                                                        setSelectedCategory({
+                                                            ...selectedCategory,
+                                                            category: category._id
+                                                        })}
+                                                    value={category.name}
+                                                >
+                                                    <Accordion.Control>
+                                                        {
+                                                            category.name
+                                                        }
+                                                    </Accordion.Control>
+                                                    {
+                                                        Array.isArray(subCategoryList) ?
+                                                            subCategoryList.map((subcategory, subcategoryIndex) => {
+                                                                return (
+                                                                    <Accordion.Panel
+                                                                        pl={'lg'}
+                                                                        key={subcategoryIndex}
+                                                                    >
+                                                                        {
+                                                                            subcategory.name
+                                                                        }
+                                                                    </Accordion.Panel>
+                                                                )
+                                                            }) : 'Comming Soon'
+                                                    }
+                                                </Accordion.Item>
+                                            )
+                                        }) : 'Comming Soon'
+                                }
+                            </Accordion> :
+                            <p style={{ paddingLeft: '1rem' }}>
+                                Comming Soon
+                            </p>
+                    }
+                </Accordion.Panel>
             </Accordion.Item>
-        </Accordion>
-    ))
+        )
+    })
 
 
 
     const userData = useSelector((state) => state.userData.value)
+    const dispatch = useDispatch()
+    // Handle Logout
+    const handleLogout = () => {
+        sessionStorage.removeItem('MogoUserAccessToken102')
+        sessionStorage.removeItem('MogoUserAccessToken101')
+        dispatch(setUserData(''))
+        window.location.reload()
+    }
 
     return (
         <div>
@@ -183,6 +224,7 @@ const Navbar = () => {
                                 {
                                     userData.first_name ?
                                         <TransferOut
+                                            onClick={handleLogout}
                                             color='white'
                                             size={'1.5rem'}
                                         />
@@ -208,9 +250,9 @@ const Navbar = () => {
                     <Title order={4} p={'xs'} pl={'lg'}>
                         Shop By Category
                     </Title>
-                    {
-                        drawerAccord
-                    }
+                    <Accordion variant='filled'>
+                        {drawerAccord}
+                    </Accordion>
                     <Divider />
                     <Title order={4} p={'xs'} pl={'lg'} pt={'sm'}>
                         Help & Settings
@@ -225,11 +267,20 @@ const Navbar = () => {
                         Sign Out
                     </Title>
                 </ScrollArea>
-                <div>
-                    <Flex>
-
+                {/* <div className='nav-bar-drawer-footer'>
+                    <Flex
+                        align={'center'}
+                        justify={'space-between'}
+                    >
+                        <ShoppingCart
+                            strokeWidth={1}
+                            size={header786MediaQuery ? '1.5rem' : '2rem'} />
+                        <Heart
+                            strokeWidth={1}
+                            size={header786MediaQuery ? '1.5rem' : '2rem'}
+                        />
                     </Flex>
-                </div>
+                </div> */}
             </Drawer>
             <div className="navbar-div">
                 <div className='navbar-data'>

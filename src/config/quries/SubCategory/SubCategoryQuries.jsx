@@ -27,7 +27,6 @@ export const subCategoryCreate = (payload) => {
 export const subCategoryListByCategoryID = ({ queryKey }) => {
     const [_, id] = queryKey
     return axios.get(`${config.baseUrlApi}/subcategory/findbycategory/${id}`,
-        commonHeader
     )
 }
 export const subCategorById = ({ queryKey }) => {

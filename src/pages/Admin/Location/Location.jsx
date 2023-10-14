@@ -88,6 +88,7 @@ const Location = () => {
     useQuery('categoryList',
         categoryListAPI,
         {
+            refetchOnWindowFocus: false,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, category: res.data.data.result })
             }
@@ -100,6 +101,7 @@ const Location = () => {
         ],
         subCategoryListByCategoryID,
         {
+            refetchOnWindowFocus: false,
             enabled: !!selectedCategory.category,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, subCategory: res.data.data.result })
@@ -114,6 +116,7 @@ const Location = () => {
         ],
         listChildCategoryBySubCategory,
         {
+            refetchOnWindowFocus: false,
             enabled: !!selectedCategory.subCategory,
             onSuccess: (res) => {
                 setCategoryDetails({ ...categoryDetails, childCategory: res.data.data.result })
