@@ -18,6 +18,7 @@ import discover from '../../../assets/footer/copyright/discover.webp'
 import maestro from '../../../assets/footer/copyright/maestro.webp'
 import mastercard from '../../../assets/footer/copyright/mastercard.webp'
 import visa from '../../../assets/footer/copyright/visa.webp'
+
 import angleleft from '../../../assets/pagination/angleleft.webp'
 import angleright from '../../../assets/pagination/angleright.webp'
 
@@ -33,6 +34,9 @@ import config from "../../../config/server/Servers"
 import ReactPaginate from 'react-paginate'
 
 const Cart = () => {
+
+    // Quantity Value 
+    const [quantityValue, setQuantityValue] = useState(1);
     const [cartProductIdArray, cartProductArrayId] = useState([])
     const [cartProduct, setCartProduct] = useState([])
     const getCookie = Cookies.get('Product_id')
@@ -89,30 +93,32 @@ const Cart = () => {
     //     const serializedArray = JSON.stringify(updatedCart);
     //     Cookies.set('Product_id', serializedArray);
 
+    //     alert('Item Removed');
+    // };
+
+
+
+    //console.log(cartProduct);
+
     const initialCart = cartProduct.map((value) => ({
         ...value,
         quantity: value.quantity || 1,
     }));
 
-    const ITEMS_PER_PAGE = 3;
-    const [currentPage, setCurrentPage] = useState(0);
-    const handlePageChange = ({ selected }) => {
-        setCurrentPage(selected);
-    };
+    // const ITEMS_PER_PAGE = 3;
+    // const [currentPage, setCurrentPage] = useState(0);
+    // const handlePageChange = ({ selected }) => {
+    //     setCurrentPage(selected);
+    // };
 
-    const totalPages = Math.ceil(cartProduct.length / ITEMS_PER_PAGE);
+    // const totalPages = Math.ceil(cartProduct.length / ITEMS_PER_PAGE);
 
-    const displayedItems = cartProduct.slice(
-        currentPage * ITEMS_PER_PAGE,
-        (currentPage * ITEMS_PER_PAGE) + ITEMS_PER_PAGE
-    );
+    // const displayedItems = cartProduct.slice(
+    //     currentPage * ITEMS_PER_PAGE,
+    //     (currentPage * ITEMS_PER_PAGE) + ITEMS_PER_PAGE
+    // );
 
 
-    useEffect(() => {
-        if (sessionStorage.getItem('MogoUserAccessToken101')) {
-
-        }
-    })
     return (
         <div>
             <div className="cart-div">
@@ -128,7 +134,7 @@ const Cart = () => {
                                             </div>
                                             {
                                                 Array.isArray(cartProduct) ?
-                                                    displayedItems.map((value, index) => {
+                                                cartProduct.map((value, index) => {
                                                         const decreaseQuantity = () => {
                                                             if (initialCart[index].quantity > 1) {
                                                                 const updatedCart = [...initialCart];
@@ -151,7 +157,6 @@ const Cart = () => {
                                                                 setCartProduct(updatedCart);
                                                             }
                                                         };
-
 
                                                         return (
                                                             <div
@@ -189,37 +194,32 @@ const Cart = () => {
                                                                     </div>
                                                                     <div className="cart-div-container-main-cart-products-content-price">
                                                                         <div className="cart-div-container-main-cart-products-content-price-heading">
-                                                                            <p>Total Quantity:</p>
-                                                                        </div>
-                                                                        <div className="cart-div-container-main-cart-products-content-price-price">
-                                                                            <p>
-                                                                                {/* {
-                                                                                    value.sale_price ?
-                                                                                        value.sale_price :
-                                                                                        199
-                                                                                } */}
-                                                                                {initialCart[index].quantity}
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="cart-div-container-main-cart-products-content-price">
-                                                                        <div className="cart-div-container-main-cart-products-content-price-heading">
                                                                             <p>Total:</p>
                                                                         </div>
                                                                         <div className="cart-div-container-main-cart-products-content-price-price">
-                                                                            <p id='totalPrice'><span>$</span>
+                                                                            <p><span>$</span>
                                                                                 {
                                                                                     value.sale_price ?
-                                                                                        <>
-                                                                                            {initialCart[index].quantity * value.sale_price}
-                                                                                        </> :
-                                                                                        <>
-                                                                                            {initialCart[index].quantity * 199}
-                                                                                        </>
+                                                                                        value.sale_price :
+                                                                                        199
                                                                                 }
                                                                             </p>
                                                                         </div>
                                                                     </div>
+                                                                    {/* <div className="cart-div-container-main-cart-products-content-price">
+                                                                        <div className="cart-div-container-main-cart-products-content-price-heading">
+                                                                            <p>VAT (15%):</p>
+                                                                        </div>
+                                                                        <div className="cart-div-container-main-cart-products-content-price-price">
+                                                                            <p><span>$</span>
+                                                                                {
+                                                                                    value.sale_price ?
+                                                                                        Math.round(15 / 100 * value.sale_price) :
+                                                                                        Math.round(15 / 100 * 199)
+                                                                                }
+                                                                            </p>
+                                                                        </div>
+                                                                    </div> */}
                                                                     <div className="cart-div-container-main-cart-products-content-button">
                                                                         <button
                                                                             onClick={() => handleRemoveFromCart(index)}
@@ -247,7 +247,7 @@ const Cart = () => {
                                             <Text component={Link} to={'/'}>
                                                 <button><img src={arrowleft} width={14} alt="arrow left icon" />Keep Shopping</button>
                                             </Text>
-                                            {
+                                            {/* {
                                                 cartProduct.length > 3 ?
                                                     <div className="pagination-container cart-pagination">
                                                         <ReactPaginate
@@ -264,7 +264,7 @@ const Cart = () => {
                                                         />
                                                     </div>
                                                     : ""
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                     <div className="cart-div-container-main-right">
