@@ -15,6 +15,7 @@ import VendorLogin from './pages/Vendor/Login/Login'
 //import AdminROuters for backend
 import AdminRouters from './AdminRouters'
 import VendorRouters from './VendorRouters'
+import AdminProfile from './pages/Admin/AdminProfile/AdminProfile'
 
 const Wipper = () => {
     return (
@@ -241,6 +242,7 @@ const Wipper = () => {
                 <Route path="/vendor_change_password" element={<VendorRouters />} />
 
                 <Route path="/vendor_bank_details" element={<VendorRouters />} />
+                <Route path="/admin_profile" element={<AdminProfile />} />
 
             </Routes>
         </div>

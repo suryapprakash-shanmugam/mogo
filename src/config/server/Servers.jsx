@@ -1,14 +1,14 @@
 const local = {
-    baseUrlApi: 'http://localhost:1002'
-}
+  baseUrlApi: "http://localhost:1234",
+};
 
 const staging = {
-    baseUrlApi: 'https://mogo-appi.onrender.com/'
-}
+  baseUrlApi: "https://mogo-k78y.onrender.com",
+};
 
 const config = {
-    local,
-    staging
-}
+  local,
+  staging,
+};
 
-export default config['local']
+export default config["staging"];
